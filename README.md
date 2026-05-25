@@ -17,8 +17,8 @@ bioactivity scoring, anything requiring wet-lab data.
 
 | Phase | Content | Gate |
 |---|---|---|
-| **0** (this commit) | MIBiG fungal-PKS ingestion + deterministic executor + curated validation | parquet built & pair count reported; executor round-trips ≥80% of the curated gate set; executor pure/deterministic + tested |
-| 1 | Beam-search verifier → `Z*(y)`, identifiability (`\|Z*(y)\|`) distribution | known program ∈ `Z*(y)` for every curated system |
+| **0** (done — Gate MET) | MIBiG fungal-PKS ingestion + deterministic executor + curated validation | parquet built & pair count reported; executor round-trips ≥80% of the curated gate set; executor pure/deterministic + tested |
+| **1** (done — Gate MET) | Beam-search verifier → `Z*(y)`, identifiability (`\|Z*(y)\|`) distribution | known program ∈ `Z*(y)` for every curated system |
 | 2 | ESM-2 encoder + controller, verifier-constrained ML objective, baselines, ablations, eval | data-efficiency curve + ablation table + split-wise results, reproducible |
 
 ### Arm B / bioactivity (NOT built — roadmap only)
@@ -56,8 +56,10 @@ python3.12 -m venv .venv
 ```bash
 make data        # download MIBiG 4.0 (if absent) + build the fungal PKS pairs parquet
 make roundtrip   # curated round-trip + Gate 0 status table
-make test        # executor unit/property/regression tests
-make phase0      # all of the above
+make search      # verifier/search over curated set -> Z*(y) + Gate 1 status
+make test        # executor + search unit/property/regression tests
+make phase0      # data + roundtrip + test
+make phase1      # search + test
 ```
 
 ### Manual data download (if `make data` cannot reach the network)

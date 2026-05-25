@@ -3,9 +3,10 @@ EMAIL ?= brageei@uio.no
 MIBIG_URL = https://dl.secondarymetabolites.org/mibig/mibig_json_4.0.tar.gz
 MIBIG_DIR = data/raw/mibig_json_4.0
 
-.PHONY: phase0 data roundtrip test mibig clean
+.PHONY: phase0 phase1 data roundtrip search test mibig clean
 
 phase0: data roundtrip test
+phase1: search test
 
 mibig:
 	@if [ ! -d "$(MIBIG_DIR)" ]; then \
@@ -18,6 +19,9 @@ data: mibig
 
 roundtrip:
 	PYTHONPATH=src $(PY) -m lpi.cli.roundtrip
+
+search:
+	PYTHONPATH=src $(PY) -m lpi.cli.search
 
 test:
 	PYTHONPATH=src $(PY) -m pytest -q
