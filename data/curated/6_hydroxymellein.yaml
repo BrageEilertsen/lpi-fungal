@@ -1,0 +1,30 @@
+name: 6-hydroxymellein
+organism: Cladonia / many fungi (a common dihydroisocoumarin)
+bgc: dihydroisocoumarin PR-PKS (MIBiG BGC0001489 lists 6-hydroxymellein)
+subclass: PR
+citation: >
+  6-hydroxymellein = (3R)-6,8-dihydroxy-3-methyl-3,4-dihydroisocoumarin, a real fungal
+  pentaketide co-metabolite of the mellein family. Encoded here as the executor's
+  product of Brage's originally-stated mellein program (single KR at cycle 1).
+program:
+  starter: acetyl
+  cycles:
+    - { reduction: kr }
+    - { reduction: keto }
+    - { reduction: keto }
+    - { reduction: keto }
+  release: dihydroisocoumarin
+scored_level: cyclized
+expected_linear_smiles: "CC(O)CC(=O)CC(=O)CC(=O)CC(=O)O"
+expected_final_smiles: "CC1Cc2cc(O)cc(O)c2C(=O)O1"
+tier: gate
+ground_truth: independent
+program_confidence: high
+needs_expert_review: false
+notes: >
+  This is the single-KR pentaketide program (acetyl + 4 malonyl, KR only at cycle 1).
+  It round-trips exactly to 6,8-dihydroxy-3-methyl-3,4-dihydroisocoumarin (6-hydroxy-
+  mellein, C10H10O4). It exists to make the mellein-vs-6-hydroxymellein distinction
+  explicit: one KR -> 6-hydroxymellein; two KR -> mellein (see mellein.yaml, QUESTIONS
+  Q2). Demonstrates the composite closure (lactone + aromatic ring on one scaffold) and
+  that the executor is reduction-count-sensitive. Constitutional match (achiral Phase 0).

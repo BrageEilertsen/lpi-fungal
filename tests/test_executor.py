@@ -29,10 +29,21 @@ def test_chain_length_bookkeeping():
 
 
 def test_exec_is_pure_and_deterministic():
-    prog = Program("acetyl", (Cycle(R.KETO), Cycle(R.DH), Cycle(R.KETO)), Release.ALDOL_AROMATIC)
+    # 6-MSA program: single KR at cycle 2 (no programmed DH), aromatized on release.
+    prog = Program("acetyl", (Cycle(R.KETO), Cycle(R.KR), Cycle(R.KETO)), Release.ALDOL_AROMATIC)
     a = M.canonical_smiles(core.exec(prog))
     b = M.canonical_smiles(core.exec(prog))
     assert a == b == "Cc1cccc(O)c1C(=O)O"  # 6-MSA, stable across runs
+
+
+def test_mellein_two_kr_vs_one_kr_distinction():
+    # Reduction-count sensitivity: 1 KR -> 6-hydroxymellein; 2 KR -> mellein.
+    one = core.run(Program("acetyl", (Cycle(R.KR), Cycle(R.KETO), Cycle(R.KETO), Cycle(R.KETO)),
+                           Release.DIHYDROISOCOUMARIN))
+    two = core.run(Program("acetyl", (Cycle(R.KR), Cycle(R.KETO), Cycle(R.KR), Cycle(R.KETO)),
+                           Release.DIHYDROISOCOUMARIN))
+    assert M.canonical_smiles(one.final) == "CC1Cc2cc(O)cc(O)c2C(=O)O1"  # 6-hydroxymellein
+    assert M.canonical_smiles(two.final) == "CC1Cc2cccc(O)c2C(=O)O1"  # mellein
 
 
 def test_hydrolysis_release_final_equals_linear():

@@ -60,9 +60,11 @@ def score_entry(entry: CuratedEntry) -> RoundTripResult:
     except ValueError as exc:
         return RoundTripResult(entry, "ERROR", got_smiles, expected,
                                f"could not parse expected SMILES: {exc}")
-    if match["match"]:
-        how = "smiles" if match["smiles"] else "inchi"
-        return RoundTripResult(entry, "PASS", got_smiles, expected, f"matched via {how}")
+    # Phase-0 executor is achiral by design (stereo is a Phase-2 head, paper Section 4.1):
+    # a constitutional (stereo-insensitive) match is a PASS; note whether stereo agreed.
+    if match["match_flat"]:
+        stereo = "stereo+constitution" if match["match"] else "constitution (stereo deferred)"
+        return RoundTripResult(entry, "PASS", got_smiles, expected, f"matched: {stereo}")
     return RoundTripResult(entry, "FAIL", got_smiles, expected, "structure mismatch")
 
 

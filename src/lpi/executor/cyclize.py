@@ -1,10 +1,14 @@
-"""Single-mode terminal cyclization (lactonization + non-PT aromatic aldol).
+"""Single-mode terminal cyclization (lactonization + single-mode aromatic aldol).
 
 Scope (per the approved Phase 0 plan): one unambiguous cyclization mode per release
 type, no regiochemistry choice. This covers the small aromatic/lactonizing fungal
-PKS (orsellinic acid, 6-MSA, mellein, triacetic-acid lactone). The five-class
-PT-domain regioselectivity problem of the large NR-PKS (norsolorinic acid / aflatoxin
-class) is deliberately deferred to :mod:`lpi.executor.aromatic` / Phase 0b.
+PKS (orsellinic acid, 6-MSA, mellein, triacetic-acid lactone).
+
+Note on PT domains (Brage's correction): OrsA *does* carry a PT domain -- the point is
+that at tetraketide size the PT has only ONE productive cyclization mode, so there is no
+regiochemical ambiguity to model. The five-class PT regioselectivity problem is real only
+for the larger NR-PKS (hexa-/hepta-/octaketides, e.g. norsolorinic acid / aflatoxin),
+which is deferred to :mod:`lpi.executor.aromatic` / Phase 0b.
 
 These operators act on the *released linear acid* (post TE-hydrolysis), so the linear
 checkpoint is always available upstream regardless of whether cyclization succeeds.
@@ -27,18 +31,42 @@ _ORSELLINIC_ALDOL = (
     ">>[OH][C:1](=[O:10])[c:2]1[c:3]([OH:11])[cH][c:5]([OH:12])[cH][c:7]1[CH3:8]"
 )
 
-# 6-MSA-type aldol on the singly-reduced tetraketide acid (one KR+DH leaves a C4=C5
-# enoyl): HOOC-CH2-CO-CH=CH-CH2-CO-CH3 -> 2-hydroxy-6-methylbenzoic acid (6-MSA).
-# The reduced position is why 6-MSA lacks orsellinic's 4-OH.
+# 6-MSA-type aldol on the singly-reduced tetraketide acid. Per Brage: encode the single
+# reduction as KR only (a beta-hydroxyl), NOT a programmed DH -- the dehydration en route
+# to the ring is coupled to aromatization. So the substrate carries a beta-OH at the
+# reduced position; aromatization expels it as water (which is why 6-MSA lacks
+# orsellinic's 4-OH). HOOC-CH2-CO-CH2-CH(OH)-CH2-CO-CH3 -> 2-hydroxy-6-methylbenzoic acid.
 _6MSA_ALDOL = (
-    "[OH][C:1](=[O:9])[CH2:2][C:3](=[O:10])[CH:4]=[CH:5][CH2:6][C:7](=O)[CH3:8]"
+    "[OH][C:1](=[O:9])[CH2:2][C:3](=[O:10])[CH2:4][CH:5]([OH])[CH2:6][C:7](=O)[CH3:8]"
     ">>[OH][C:1](=[O:9])[c:2]1[c:3]([OH:10])[cH:4][cH:5][cH:6][c:7]1[CH3:8]"
 )
 
 # Aromatic single-mode templates tried in order; they are substrate-disjoint (the
 # orsellinic motif requires three intact keto groups, the 6-MSA motif requires the
-# enoyl), so at most one fires for a given linear chain.
+# beta-hydroxyl), so at most one fires for a given linear chain.
 _AROMATIC_TEMPLATES = (_ORSELLINIC_ALDOL, _6MSA_ALDOL)
+
+# Dihydroisocoumarin composite closure (mellein family): TE-released linear pentaketide
+# acid -> a fused benzene + delta-lactone in one operator. Lactonization (C1 carboxyl
+# onto the cycle-1 KR hydroxyl) + aromatic aldol on the C2-C7 segment + aromatization.
+# Two substrate-disjoint variants:
+#   * MELLEIN     : the C5-derived ring position is reduced (CH-OH) -> aromatic CH, no OH.
+#                   Requires TWO KRs (cycles 1 and 3) -> (R)-mellein, C10H10O3.
+#   * HYDROXYMELLEIN: the C5-derived ring ketone survives -> a second phenol.
+#                   Requires ONE KR (cycle 1) -> 6-hydroxymellein, C10H10O4.
+# Stereochemistry at C3 is not set here (achiral Phase-0 executor; a Phase-2 head).
+_MELLEIN = (
+    "[OH][C:1](=[O:11])[CH2:2][C:3](=[O:12])[CH2:4][CH:5]([OH])[CH2:6][C:7](=O)"
+    "[CH2:8][CH:9]([OH])[CH3:10]"
+    ">>[CH3:10][CH:9]1[CH2:8][c:7]2[cH:6][cH:5][cH:4][c:3]([OH:12])[c:2]2[C:1](=[O:11])O1"
+)
+_HYDROXYMELLEIN = (
+    "[OH][C:1](=[O:11])[CH2:2][C:3](=[O:12])[CH2:4][C:5](=[O:13])[CH2:6][C:7](=O)"
+    "[CH2:8][CH:9]([OH])[CH3:10]"
+    ">>[CH3:10][CH:9]1[CH2:8][c:7]2[cH:6][c:5]([OH:13])[cH:4][c:3]([OH:12])[c:2]2"
+    "[C:1](=[O:11])O1"
+)
+_DIHYDROISOCOUMARIN_TEMPLATES = (_MELLEIN, _HYDROXYMELLEIN)
 
 # Triacetic-acid-lactone (TAL) lactonization on a non-reduced triketide acid:
 # HOOC-CH2-CO-CH2-CO-CH3 -> 4-hydroxy-6-methyl-2H-pyran-2-one. The C5 enol oxygen
@@ -72,9 +100,9 @@ def lactonize(linear_acid: Chem.Mol) -> Chem.Mol | None:
     return _run_single(_TAL_LACTONE, linear_acid)
 
 
-def aldol_aromatic(linear_acid: Chem.Mol) -> Chem.Mol | None:
+def _first_unique(templates, linear_acid: Chem.Mol) -> Chem.Mol | None:
     products: dict[str, Chem.Mol] = {}
-    for smarts in _AROMATIC_TEMPLATES:
+    for smarts in templates:
         prod = _run_single(smarts, linear_acid)
         if prod is not None:
             products[Chem.MolToSmiles(prod)] = prod
@@ -83,9 +111,19 @@ def aldol_aromatic(linear_acid: Chem.Mol) -> Chem.Mol | None:
     return None  # no template matched, or conflicting matches
 
 
+def aldol_aromatic(linear_acid: Chem.Mol) -> Chem.Mol | None:
+    return _first_unique(_AROMATIC_TEMPLATES, linear_acid)
+
+
+def dihydroisocoumarin(linear_acid: Chem.Mol) -> Chem.Mol | None:
+    return _first_unique(_DIHYDROISOCOUMARIN_TEMPLATES, linear_acid)
+
+
 def release(linear_acid: Chem.Mol, mode: Release) -> Chem.Mol | None:
     if mode is Release.LACTONIZATION:
         return lactonize(linear_acid)
     if mode is Release.ALDOL_AROMATIC:
         return aldol_aromatic(linear_acid)
+    if mode is Release.DIHYDROISOCOUMARIN:
+        return dihydroisocoumarin(linear_acid)
     return None

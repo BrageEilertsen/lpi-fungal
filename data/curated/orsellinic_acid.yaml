@@ -3,9 +3,10 @@ organism: Aspergillus nidulans
 bgc: OrsA (ors cluster)
 subclass: NR
 citation: >
-  Schroeckh et al. 2009 PNAS; Sanchez et al. 2010. OrsA is a non-reducing PKS that
-  condenses one acetyl + three malonyl units into a non-reduced tetraketide that
-  cyclizes by a single unambiguous C2-C7 aldol/aromatization (no PT regiochemistry).
+  Schroeckh et al. 2009 PNAS; Sanchez et al. 2010 Mol. BioSyst. OrsA (SAT-KS-AT-PT-ACP-TE)
+  condenses one acetyl + three malonyl into a non-reduced tetraketide. It DOES carry a PT
+  domain, but at tetraketide size the PT has only one productive mode -- a single
+  unambiguous C2-C7 aldol/aromatization, no regiochemical ambiguity.
 program:
   starter: acetyl
   cycles:
@@ -24,3 +25,5 @@ notes: >
   The ring methyl is the starter acetate's terminal carbon, NOT a C-MeT product:
   the program contains zero C-MeT actions. Final structure is 2,4-dihydroxy-6-
   methylbenzoic acid (PubChem CID 68072), an independent non-circular target.
+  (Correction to an earlier note: OrsA is not "non-PT" -- it has a PT domain; the point
+  is it is single-mode at this chain length.)

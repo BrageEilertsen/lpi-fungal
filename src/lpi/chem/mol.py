@@ -55,12 +55,22 @@ def exact_mass(mol: Chem.Mol) -> float:
     return Descriptors.ExactMolWt(mol)
 
 
+def strip_stereo(mol: Chem.Mol) -> Chem.Mol:
+    """Return a copy with all stereochemistry removed (flat / constitutional graph)."""
+    work = Chem.Mol(mol)
+    Chem.RemoveStereochemistry(work)
+    return work
+
+
 def structures_match(mol_a: Chem.Mol, mol_b: Chem.Mol) -> dict[str, bool]:
     """Compare two molecules on canonical SMILES and InChI.
 
-    Returns a dict with both signals so callers can require either or both. We treat
-    a match on *either* canonical SMILES or InChI as a structure match, because InChI
-    absorbs tautomer/representation differences that the canonical SMILES does not.
+    Returns several signals. ``match`` requires full (stereo-aware) agreement on either
+    canonical SMILES or InChI. ``match_flat`` ignores stereochemistry (constitutional
+    match only). The Phase-0 executor is *achiral by design* -- stereochemistry (KR
+    subtype, etc.) is assigned by the learned operator heads in Phase 2 (paper Section
+    4.1) -- so Phase-0 round-trip scoring accepts ``match_flat`` and records whether
+    stereo also agreed.
     """
     smi_a, smi_b = canonical_smiles(mol_a), canonical_smiles(mol_b)
     try:
@@ -69,10 +79,12 @@ def structures_match(mol_a: Chem.Mol, mol_b: Chem.Mol) -> dict[str, bool]:
     except Exception:
         inchi_ok = False
     smiles_ok = smi_a == smi_b
+    flat_ok = canonical_smiles(strip_stereo(mol_a)) == canonical_smiles(strip_stereo(mol_b))
     return {
         "smiles": smiles_ok,
         "inchi": inchi_ok,
         "match": smiles_ok or inchi_ok,
+        "match_flat": flat_ok or smiles_ok or inchi_ok,
     }
 
 

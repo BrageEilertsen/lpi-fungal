@@ -1,30 +1,32 @@
-name: tenellin polyketide backbone (TenS PKS portion, pre-NRPS)
+name: tenellin polyketide backbone (TenS PKS portion)
 organism: Beauveria bassiana
-bgc: TenS (PKS-NRPS hybrid)
+bgc: TenS (PKS-NRPS hybrid) + TenC (trans-ER)
 subclass: HR
 citation: >
-  Eley et al. 2007; Halo et al. 2008. TenS is a hybrid PKS-NRPS: the HR-PKS module
-  assembles a methylated, partially-reduced pentaketide acyl chain that is then
-  condensed with L-tyrosine by the NRPS module (and later ring-expanded to the
-  2-pyridone). Only the polyketide acyl portion is in scope here.
+  Yang, Friedrich, ... Simpson & Cox 2019 Chem. Sci. 10:8478 (methylation & chain-length
+  programming); Halo et al. 2008; RSC Adv. 2024 PMC10941261. TenS makes a dimethylated,
+  partially-reduced pentaketide acyl chain, condensed with L-tyrosine by the NRPS module
+  then Dieckmann-cyclized to the tetramate (pretenellin A).
 program:
   starter: acetyl
   cycles:
-    - { reduction: dh }
-    - { reduction: er, c_methyl: true }
-    - { reduction: dh }
-    - { reduction: keto }
+    - { reduction: dh, c_methyl: true }  # cycle 1, diketide (+C-MeT)
+    - { reduction: er, c_methyl: true }  # cycle 2, triketide (+C-MeT)
+    - { reduction: dh }                  # cycle 3, tetraketide
+    - { reduction: keto }                # cycle 4, pentaketide
   release: hydrolysis
 scored_level: linear
 expected_linear_smiles: null
 expected_final_smiles: null
-tier: gate
+tier: phase2
 ground_truth: pending
-program_confidence: low
+program_confidence: medium
 needs_expert_review: true
 notes: >
-  PENDING authoritative ground truth. Scored at the linear checkpoint BEFORE the NRPS
-  tyrosine condensation. The reduction/methylation schedule above is a best-effort
-  guess; the authoritative TenS polyketide acyl-chain structure (the substrate handed
-  to the NRPS C-domain) is needed from Brage to score. Reported as PENDING. See
-  QUESTIONS.md Q4.
+  NOT A PHASE-0 EXECUTOR ENTRY (Brage's correction). The isolated product pretenellin A
+  requires NRPS condensation with tyrosine + Dieckmann tetramate cyclization -- entirely
+  outside a PKS executor -- and the pre-NRPS acyl chain is a transient with no independent
+  structure. Tenellin is a PHASE-2 TRACE-LEVEL BENCHMARK: predict pentaketide chain length
+  + C-MeT at cycles 1 and 2 (HIGH confidence, well characterized). The per-cycle reduction
+  vector above is a best-effort guess (MEDIUM) to be verified against pretenellin A; it is
+  not scored in Phase 0. ER at cycle 2 is supplied in trans by TenC.
