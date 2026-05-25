@@ -51,6 +51,7 @@ class Release(Enum):
     LACTONIZATION = "lactonization"  # O->C(=O) lactone (e.g. triacetic acid lactone)
     ALDOL_AROMATIC = "aldol_aromatic"  # single-mode aldol/Claisen + aromatization
     DIHYDROISOCOUMARIN = "dihydroisocoumarin"  # composite: lactone + aromatic aldol (mellein)
+    PT_NAPHTHALENE = "pt_naphthalene"  # NR-PKS PT-domain pentaketide -> naphthalene
     NONE = "none"  # leave tethered (debug / inspection only)
 
 

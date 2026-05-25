@@ -1,0 +1,327 @@
+bgc_id,name,coverage,matched_core_smiles,class
+BGC0000003,AF-toxin,0.364,CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0000004,aflatoxin G1,0.0,,no_match
+BGC0000005,aflatoxin,0.0,,no_match
+BGC0000006,aflatoxin B1,0.0,,no_match
+BGC0000007,aflatoxin G1,0.0,,no_match
+BGC0000008,aflatoxin B1,0.0,,no_match
+BGC0000009,aflatoxin B1,0.0,,no_match
+BGC0000010,aflatoxin,0.0,,no_match
+BGC0000011,Sterigmatocystin,0.0,,no_match
+BGC0000012,alternapyrone,0.607,CC(=O)CC(=O)CC(=O)CC(=O)C(C)C(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0000013,alternariol,0.714,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0000022,asperfuranone,0.526,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0000027,ankaflavin,0.435,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0000030,bikaverin,0.5,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core
+BGC0000037,cichorine,0.6,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0000039,compactin,0.435,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0000045,dehydrocurvularin,0.375,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0000046,depudecin,0.545,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0000048,dothistromin,0.556,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core
+BGC0000057,F9775A,0.476,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0000062,Fumonisin B1,0.588,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0000063,hydroxyl-Fumonisin C1,0.576,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)C(C)C(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0000064,fusarin C,0.591,CC(=O)CC(=O)CC(=O)C(C)C(=O)CC(=O)CC(=O)O,linear_only
+BGC0000070,griseofulvin,0.353,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0000076,hypothemycin,0.316,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0000077,hypothemycin,0.316,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0000088,lovastatin,0.417,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0000089,lovastatin,0.417,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0000098,monacolin K,0.417,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0000099,monascorubrin,0.435,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0000101,emodin,0.667,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0000104,mycophenolic acid,0.353,CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0000120,patulin,0.0,,no_match
+BGC0000121,Pestheic Acid,0.444,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0000129,pyripyropene A,0.323,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0000134,radicicol,0.333,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0000146,solanapyrone D,0.556,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0000152,sterigmatocystin,0.0,,no_match
+BGC0000154,stipitatic acid,0.75,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0000155,T-toxin,0.732,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0000156,TAN-1612,0.476,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0000160,terreic acid,0.857,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0000161,isoterrein,0.75,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0000168,viridicatumtoxin,0.333,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0000170,yanuthone D,0.464,CC(=O)CC(=O)CC(=O)C(C)C(=O)CC(=O)CC(=O)O,linear_only
+BGC0000684,asperthecin,0.667,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0000959,aspyridone A,0.368,CC(=O)CC(=O)C(C)C(=O)O,linear_only
+BGC0000968,chaetoglobosin A,0.294,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0000977,cyclopiazonic acid,0.5,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core
+BGC0000983,cytochalasin E,0.286,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0000992,fusaridione A,0.444,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001026,NG-391,0.545,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001030,ochratoxin A,0.5,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001035,pneumocandin B0,0.28,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001037,pseurotin,0.273,CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001049,tenellin,0.429,CC(=O)CC(=O)C(C)C(=O)CC(=O)O,linear_only
+BGC0001057,zearalenone,0.333,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001067,Fumagillin,0.385,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001118,endocrocin,0.625,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001121,orsellinic acid,1.0,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0001122,dihydroisoflavipucine,0.5,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001124,pyranonigrin E,0.444,CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001136,desmethylbassianin,0.455,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001141,4-epi-15-epi-brefeldin A,0.375,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001143,azanigerone A,0.526,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001144,neosartoricin B,0.417,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001158,bikaverin,0.5,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core
+BGC0001187,xenolozoyenone,0.706,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001190,fusaric acid,0.6,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001205,communesin A,0.214,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001218,fumosorinone,0.483,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001219,shanorellin,0.889,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0001242,oxyjavanicin,0.667,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001243,botryenalol,0.471,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0001244,(-)-Mellein,1.0,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001245,lasiodiplodin,0.353,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001246,trans-resorcylide,0.375,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001247,cercosporin,0.345,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001252,UNII-YC2Q1O94PT,0.579,CC(=O)CC(=O)CC(=O)C(C)C(=O)CC(=O)O,linear_only
+BGC0001253,ACT-Toxin I,0.346,CC(=O)CC(=O)C(C)C(=O)CC(=O)O,linear_only
+BGC0001254,ACT-Toxin II,0.346,CC(=O)CC(=O)C(C)C(=O)CC(=O)O,linear_only
+BGC0001255,equisetin,0.455,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001257,"1,3,6,8-tetrahydroxynaphthalene",1.0,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core
+BGC0001258,"1,3,6,8-tetrahydroxynaphthalene",1.0,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core
+BGC0001259,elsinochrome A,0.333,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001262,AK-toxin I,0.348,CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001264,betaenone A,0.476,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001265,melanin,0.556,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001266,grayanic acid,0.435,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001268,fusarin C,0.591,CC(=O)CC(=O)CC(=O)C(C)C(=O)CC(=O)CC(=O)O,linear_only
+BGC0001269,gibberellin A3,0.316,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001270,gibberellin A7,0.316,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001271,emericellin,0.24,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001272,elsinochrome B,0.333,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001273,asperlactone,0.667,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001275,6-methylsalicyclic acid,1.0,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0001276,6-methylsalicyclic acid,1.0,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0001280,betaenone C,0.476,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001281,ustilagic acid,0.444,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001304,aflavarin,0.25,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001305,fujikurin B,0.5,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001309,usnic acid,0.333,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001338,citrinin,0.769,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001339,squalestatin S1,0.257,CC(=O)CC(=O)C(C)C(=O)CC(=O)O,linear_only
+BGC0001340,byssochlamic acid,0.333,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001358,leucinostatin A,0.177,CC(=O)CC(=O)CC(=O)C(C)C(=O)CC(=O)O,linear_only
+BGC0001360,mycophenolic acid,0.5,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001373,sordarin,0.37,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001385,byssochlamic acid,0.333,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001390,LL-Z1272beta,0.565,CC(=O)CC(=O)CC(=O)C(C)C(=O)CC(=O)CC(=O)O,linear_only
+BGC0001400,citreoviridin,0.348,CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001401,melleolide F,0.435,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001403,trypacidin,0.333,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001404,sorbicillin,0.429,CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001405,chaetoviridin E,0.435,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001445,leporin B,0.455,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001446,asparasone A,0.556,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001449,ucs1025a,0.5,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001450,macrophorin A,0.455,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001466,wortmanamide,0.762,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001489,6-hydroxymellein,1.0,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001508,andrastin A,0.357,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001541,cercosporin,0.345,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001542,cercosporin,0.345,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001544,chlorflavonin,0.0,,no_match
+BGC0001557,cornexistin,0.375,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001563,curvupallide-B,0.429,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001578,duclauxin,0.345,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core
+BGC0001600,fusarielin H,0.4,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001606,gibepyrone-A,0.6,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001616,himeic acid A,0.455,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001626,isoindolinone,0.0,,no_match
+BGC0001677,mycophenolic acid,0.353,CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001708,novofumigatonin,0.4,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001720,oosporein,0.429,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001722,aspernidine A,0.542,CC(=O)CC(=O)CC(=O)C(C)C(=O)CC(=O)CC(=O)O,linear_only
+BGC0001729,paraherquonin,0.417,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001738,phomasetin,0.4,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001741,phyllostictine A,0.353,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001749,epipyriculol,0.714,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001793,swainsonine,0.0,,no_match
+BGC0001794,swainsonine,0.0,,no_match
+BGC0001827,xenovulene A,0.273,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001857,burnettramic acid A,0.634,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001865,elsinochrome C,0.333,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001866,viriditoxin,0.294,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001874,α-cyclopiazonic acid,0.5,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core
+BGC0001881,pyrichalasin H,0.258,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0001886,Secalonic acid B,0.188,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0001899,abscisic acid,0.667,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001906,"2-acetyl-1,3,6,8-tetrahydroxynaphthalene",0.833,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001909,strobilurin A,0.438,CC(=O)CC(=O)C(C)C(=O)O,linear_only
+BGC0001913,phomoidride,0.323,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001923,ascochlorin,0.435,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001926,chrodrimanin B,0.4,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0001966,BII-rafflesfungin,0.318,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0001982,pyrichalasin H,0.258,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0001988,neosartorin,0.176,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002030,viriditoxin,0.294,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002035,ilicicolin H,0.37,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002062,agnestin A,0.4,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002063,cryptosporioptide B,0.158,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002065,strobilurin A,0.438,CC(=O)CC(=O)C(C)C(=O)O,linear_only
+BGC0002066,harzianopyridone,0.5,CC(=O)CC(=O)C(C)C(=O)O,linear_only
+BGC0002067,atpenin B,0.467,CC(=O)CC(=O)C(C)C(=O)O,linear_only
+BGC0002093,ilicicolin H,0.37,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002139,burnettiene A,0.375,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002154,"1,3,5,8-tetrahydroxynapthalene",1.0,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core
+BGC0002155,nectriapyrone C,0.545,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002158,tenuazonic acid,0.6,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002161,scytalone,1.0,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core
+BGC0002165,betaenone C,0.476,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002168,decumbenone a,0.625,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002169,acurin A,0.571,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002170,4-methyl-5-dimethyltetradecahexaene-β-ketolactone,0.682,CC(=O)CC(=O)CC(=O)CC(=O)C(C)C(=O)CC(=O)CC(=O)O,linear_only
+BGC0002171,pyrophen,0.375,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002175,YWA1,0.714,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core
+BGC0002177,ustilaginoidin N,0.345,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core
+BGC0002180,(+)-asperlin,0.6,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002185,gregatin A,0.375,CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002186,fusaristatin A,0.444,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002187,monorden D,0.333,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002188,W493 B,0.267,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002190,sorbicillin,0.429,CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002191,prolipyrone B,0.6,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002192,FR901512,0.476,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002194,epipyrone A,0.559,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)C(C)C(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002197,terrestric acid,0.545,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002200,aurovertin E,0.261,CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002203,beauverolide Ba,0.258,CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002204,flavichalasine F,0.4,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002205,phomacin D,0.4,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002206,harziphilone,0.667,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002209,ustethylin A,0.727,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0002210,pyranoviolin A,0.462,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002212,Orsellinic acid,1.0,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0002214,methyl (2S)-4-methyl-2-(octanoylamino)pentanoate,0.533,CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002222,zopfiellin,0.286,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002223,scytalidin,0.273,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002224,zopfiellin,0.286,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002229,aculin A,0.231,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002230,tolypyridone C,0.429,CC(=O)CC(=O)C(C)C(=O)CC(=O)O,linear_only
+BGC0002231,fusaric acid,0.6,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002233,trichoxide,0.556,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002234,flavoglaucin,0.526,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002235,"12,13-dihydroxymagnaporthepyrone",0.625,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002236,8-methyldiaporthin,0.714,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002237,dichlorodiaporthin,0.769,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002238,"2,4'-dihydroxy-3'-methoxypropiophenone",0.6,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002239,pyrrocidine A,0.323,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002240,BAB,1.0,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002241,ywa1,0.714,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core
+BGC0002243,biruloquinone,0.588,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002244,pestalotiollide B,0.286,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002247,chaetoconvosins B,0.333,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002249,phaeospelide A,0.176,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002250,triticone A,0.714,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002253,waikikiamide A,0.244,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002254,notoamide F,0.222,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002255,lijiquinone,0.261,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002257,rufoschweinitzin,0.333,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002258,shimalactone A,0.345,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002259,beauveriolide I,0.222,CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002261,lucilactaene,0.545,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002262,sporothriolide,0.462,CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002263,spiromarmycin,0.526,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002265,atranorin,0.421,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0002266,calidoustene A,0.476,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core
+BGC0002268,"CJ-16,173",0.316,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002269,MCA17-1,0.571,CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002270,swainsonine,0.0,,no_match
+BGC0002275,pyrophen,0.375,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002281,sambutoxin,0.321,CC(=O)CC(=O)C(C)C(=O)CC(=O)O,linear_only
+BGC0002304,varicidin A,0.476,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002375,cladosporiumin I,0.462,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002427,subglutinol A,0.37,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002428,FDDP-D,0.345,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002429,higginsianin B,0.37,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002483,usnic acid,0.333,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002502,fumonisin B3,0.588,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002505,xenoacremone A,0.207,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002507,sporandol,0.357,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002511,biruloquinone,0.588,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002513,6-methylcristazarin,0.714,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002515,solanapyrone A,0.556,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002516,prephenalenone,0.714,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core
+BGC0002525,fusarubin,0.667,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002537,emeridone F,0.4,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002538,chaetolivacine A,0.345,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002546,cytoglobosin X,0.25,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0002555,emerimicin V,0.077,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002592,geodin,0.353,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002593,lecanoric acid,0.5,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0002594,orcinol,0.857,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002595,orsellinic acid,1.0,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0002596,lecanoric acid,0.5,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0002598,ochratoxin A,0.5,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002603,chevalone E,0.385,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002604,sartorypyrone A,0.357,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002605,ochratoxin A,0.5,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002606,ochratoxin A,0.5,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002607,ochratoxin A,0.5,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002608,ochratoxin A,0.5,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002609,ochratoxin A,0.5,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002614,subglutinol A,0.37,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002616,mycophenolic acid,0.353,CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002619,mycophenolic acid,0.353,CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002709,aurofusarin,0.333,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core
+BGC0002731,nanangenine A,0.667,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core
+BGC0002745,verrucosidin,0.25,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002749,aspcandine,0.0,,no_match
+BGC0002758,Azanidulone,0.909,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002759,brevione E,0.357,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002812,Colletochlorin A,0.444,CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002845,Sartorypyrone A,0.357,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002847,olivetolic acid,0.833,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002848,CJ-20557,0.421,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0002849,Luteodienoside A,0.391,CC(=O)CC(=O)C(C)C(=O)CC(=O)O,linear_only
+BGC0002852,"3,6-dialkyl-α-pyrone",0.6,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002864,Mollicellin Z ,0.476,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002867,chlorogeumsanol B,0.435,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002872,Zaragozic acid A,0.257,CC(=O)CC(=O)C(C)C(=O)CC(=O)O,linear_only
+BGC0002874,cristazarin,0.769,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002877,Cordypyrone A,0.727,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002883,biruloquinone,0.588,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002887,radicicol,0.333,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002891,arthripenoid C,0.2,CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002904,fumonisin B2,0.588,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002911,naringenin,0.0,,no_match
+BGC0002930,6'-O-demethyl-dihydroaustalide K,0.417,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002936,Gyrophoric acid,0.333,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0002953,11'-O-desmethyl fendlerol,0.385,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0002966,luteodienoside A,0.391,CC(=O)CC(=O)C(C)C(=O)CC(=O)O,linear_only
+BGC0002970,xylariolide D,0.6,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002971,Fugralin A,0.75,CC(=O)CC(=O)C(C)C(=O)CC(=O)O,linear_only
+BGC0002980,sphingofungin B,1.0,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002984,Brefeldin A,0.375,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0002987,scirpilin A,0.615,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002993,Oxopyrrolidine A,0.417,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0002998,ilicicolinal,0.565,CC(=O)CC(=O)CC(=O)C(C)C(=O)CC(=O)CC(=O)O,linear_only
+BGC0002999,(2S)-annullatin A,0.588,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0003006,Rasfonin,0.36,CC(=O)CC(=O)C(C)C(=O)CC(=O)O,linear_only
+BGC0003011,Eupenifeldin,0.182,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0003013,agonodepside A,0.435,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0003017,Macrollin A,0.429,CC(=O)CC(=O)C(C)C(=O)CC(=O)O,linear_only
+BGC0003018,sclerotiorin,0.476,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0003028,Terrestric acid,0.545,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0003032,soppiline A,0.952,CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)CC(=O)O,linear_only
+BGC0003093,Phomoxanthone A,0.158,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0003094,Roseopurpurin C,0.333,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0003099,"7-But-15-enyl-6,8-dihydroxy-3(R)-pent-11-enylisochroman-1-one",0.556,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0003108,pycnidione,0.182,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0003109,stachysalicyloid C,0.625,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0003113,multiformin A,0.417,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0003115,orsellinoxypropanoic acid,0.727,Cc1cc(O)cc(O)c1C(=O)O,cyclic_core
+BGC0003118,Multiforisin H,0.462,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0003120,Minutellin A,0.37,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0003126,kotanin,0.25,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0003142,FDDP D,0.345,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0003144,Physodic acid,0.385,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0003145,macrophasetin A,0.455,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0003147,Taslactam C,0.6,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0003149,Taslactam D,0.6,Cc1cc(O)cc(=O)o1,cyclic_core
+BGC0003150,Ascochitine,0.667,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0003151,Annullatin D,0.588,CC1Cc2cccc(O)c2C(=O)O1,cyclic_core
+BGC0003154,cyclopiazonic acid,0.5,Oc1cc(O)c2c(O)cc(O)cc2c1,cyclic_core

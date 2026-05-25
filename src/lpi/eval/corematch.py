@@ -58,8 +58,90 @@ def core_in_target(core: Chem.Mol, target: Chem.Mol, min_core_carbons: int = 4) 
     cg = carbon_skeleton_graph(core)
     if cg.number_of_nodes() < min_core_carbons:
         return False
-    tg = carbon_skeleton_graph(target)
+    return _graph_in(cg, carbon_skeleton_graph(target))
+
+
+def _graph_in(cg: nx.Graph, tg: nx.Graph) -> bool:
     if cg.number_of_nodes() > tg.number_of_nodes():
         return False
     matcher = nx.algorithms.isomorphism.GraphMatcher(tg, cg, node_match=_node_match)
     return matcher.subgraph_is_isomorphic()
+
+
+# --------------------------------------------------------------------- core library
+from dataclasses import dataclass  # noqa: E402
+
+from lpi.chem.program import Cycle, Program, ReductionState as _R, Release  # noqa: E402
+from lpi.executor import core as _core  # noqa: E402
+
+
+@dataclass
+class CoreEntry:
+    program: Program
+    smiles: str
+    graph: nx.Graph
+    n_carbons: int
+    is_cyclic: bool
+
+
+def build_core_library(max_cycles: int = 14) -> list[CoreEntry]:
+    """Distinct producible carbon SKELETONS from representative programs.
+
+    Reductions do not change a chain's carbon skeleton, so linear cores use a fixed
+    reduction; cyclised cores use a reduction pattern that makes the release fire. This
+    is representative, not exhaustive over methyl positions (documented). Linear cores are
+    intentionally permissive; cyclised cores (ring systems) carry the meaningful signal.
+    """
+    progs: list[Program] = []
+    # linear straight chains of increasing length (skeleton = path)
+    for n in range(1, max_cycles + 1):
+        progs.append(Program("acetyl", tuple(Cycle(_R.KETO) for _ in range(n)),
+                             Release.HYDROLYSIS))
+    # one methylated linear variant per length (a single branch point)
+    for n in range(1, max_cycles + 1):
+        cyc = tuple(Cycle(_R.KETO, c_methyl=(i == n // 2)) for i in range(n))
+        progs.append(Program("acetyl", cyc, Release.HYDROLYSIS))
+    # cyclised cores (ring systems) -- the meaningful skeletons
+    progs += [
+        Program("acetyl", (Cycle(_R.KETO),) * 2, Release.LACTONIZATION),      # pyranone C6
+        Program("acetyl", (Cycle(_R.KETO),) * 3, Release.ALDOL_AROMATIC),     # resorcylate C8
+        Program("acetyl", (Cycle(_R.KR), Cycle(_R.KETO), Cycle(_R.KR), Cycle(_R.KETO)),
+                Release.DIHYDROISOCOUMARIN),                                   # mellein C10
+        Program("acetyl", (Cycle(_R.KETO),) * 4, Release.PT_NAPHTHALENE),     # naphthalene C10
+    ]
+    lib: dict[str, CoreEntry] = {}
+    for prog in progs:
+        try:
+            mol = _core.exec(prog)
+        except Exception:  # noqa: BLE001
+            continue
+        smi = Chem.MolToSmiles(mol)
+        if smi in lib:
+            continue
+        g = carbon_skeleton_graph(mol)
+        is_cyclic = any(d.get("in_ring") for _, d in g.nodes(data=True))
+        lib[smi] = CoreEntry(prog, smi, g, g.number_of_nodes(), is_cyclic)
+    return list(lib.values())
+
+
+def best_core_match(target: Chem.Mol, library: list[CoreEntry],
+                    min_core_carbons: int = 6) -> CoreEntry | None:
+    """Best matching core by COVERAGE (matched-core carbons / target carbons).
+
+    Coverage is the principled signal: a small ring embeds in almost any aromatic product
+    (subgraph match alone is permissive), but a high-coverage core means the predicted
+    backbone IS most of the molecule and the tailoring is minor/additive. We return the
+    embedding core with the most carbons (= highest coverage for a fixed target).
+    """
+    tg = carbon_skeleton_graph(target)
+    n_y = tg.number_of_nodes()
+    candidates = [c for c in library if min_core_carbons <= c.n_carbons <= n_y]
+    for entry in sorted(candidates, key=lambda c: -c.n_carbons):  # largest core first
+        if _graph_in(entry.graph, tg):
+            return entry
+    return None
+
+
+def coverage(core: CoreEntry, target: Chem.Mol) -> float:
+    n_y = carbon_skeleton_graph(target).number_of_nodes()
+    return core.n_carbons / n_y if n_y else 0.0

@@ -26,6 +26,9 @@ search:
 reachability:
 	PYTHONPATH=src $(PY) -m lpi.cli.reachability
 
+corematch:
+	PYTHONPATH=src $(PY) -m lpi.cli.corematch
+
 test:
 	PYTHONPATH=src $(PY) -m pytest -q
 

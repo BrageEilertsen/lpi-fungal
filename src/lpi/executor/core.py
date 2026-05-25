@@ -90,6 +90,13 @@ def run(program: Program, operator_library=op) -> ExecResult:
     if program.release in (Release.HYDROLYSIS, Release.NONE):
         final = linear if program.release is Release.HYDROLYSIS else None
         cyclization_ok = True
+    elif program.release is Release.PT_NAPHTHALENE:
+        # PT naphthalene consumes the thioester (Claisen release), so it acts on the
+        # tethered intermediate, not the hydrolysed acid.
+        from . import aromatic
+
+        final = aromatic.cyclize_naphthalene(tethered)
+        cyclization_ok = final is not None
     else:
         from . import cyclize
 
