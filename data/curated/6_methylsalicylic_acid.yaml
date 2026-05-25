@@ -1,0 +1,27 @@
+name: 6-methylsalicylic acid
+organism: Penicillium patulum (Penicillium griseofulvum)
+bgc: 6-MSAS (MSAS / AtX)
+subclass: PR
+citation: >
+  Dimroth et al. 1970; Spencer & Jordan 1992; Moriguchi et al. 2010. 6-MSAS is a
+  partially-reducing PKS: one acetyl + three malonyl, with a single ketoreduction +
+  dehydration. The reduced position is why 6-MSA lacks orsellinic's 4-OH.
+program:
+  starter: acetyl
+  cycles:
+    - { reduction: keto }
+    - { reduction: dh }
+    - { reduction: keto }
+  release: aldol_aromatic
+scored_level: cyclized
+expected_linear_smiles: "CC(=O)CC=CC(=O)CC(=O)O"
+expected_final_smiles: "Cc1cccc(O)c1C(=O)O"
+tier: gate
+ground_truth: independent
+program_confidence: medium
+needs_expert_review: true
+notes: >
+  Final = 2-hydroxy-6-methylbenzoic acid (PubChem CID 68151), independent target.
+  The KR+DH is placed on cycle 2 because that beta-keto maps to the carbon that is a
+  phenol in orsellinic but absent in 6-MSA (see QUESTIONS.md Q1 for confirmation of
+  the exact reduced cycle). Ring methyl = starter carbon, zero C-MeT actions.

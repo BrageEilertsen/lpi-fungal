@@ -1,0 +1,27 @@
+name: citrinin
+organism: Monascus ruber / Penicillium citrinum
+bgc: CitS (PksCT)
+subclass: NR
+citation: >
+  Shimizu et al. 2005; He & Cox 2016. Citrinin is a C-MeT-heavy pentaketide whose
+  precursor assignment has been revised in the literature; it also involves oxidative
+  tailoring beyond the PKS rule set.
+program:
+  starter: acetyl
+  cycles:
+    - { reduction: keto, c_methyl: true }
+    - { reduction: keto, c_methyl: true }
+    - { reduction: keto, c_methyl: true }
+    - { reduction: keto }
+  release: none
+scored_level: cyclized
+expected_linear_smiles: null
+expected_final_smiles: "CC1OC=C2C(=O)C(C)=C(O)C(C(=O)O)=C2C1C"
+tier: bonus
+ground_truth: pending
+program_confidence: low
+needs_expert_review: true
+notes: >
+  BONUS / non-gating (per the agreed plan: citrinin is a C-MeT stress test but its
+  precursor is contested and it needs oxidative tailoring not in the rule set). Used
+  to exercise multiple C-MeT actions; not expected to round-trip yet. See QUESTIONS.md.

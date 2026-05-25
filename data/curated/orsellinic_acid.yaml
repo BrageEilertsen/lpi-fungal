@@ -1,0 +1,26 @@
+name: orsellinic acid
+organism: Aspergillus nidulans
+bgc: OrsA (ors cluster)
+subclass: NR
+citation: >
+  Schroeckh et al. 2009 PNAS; Sanchez et al. 2010. OrsA is a non-reducing PKS that
+  condenses one acetyl + three malonyl units into a non-reduced tetraketide that
+  cyclizes by a single unambiguous C2-C7 aldol/aromatization (no PT regiochemistry).
+program:
+  starter: acetyl
+  cycles:
+    - { reduction: keto }
+    - { reduction: keto }
+    - { reduction: keto }
+  release: aldol_aromatic
+scored_level: cyclized
+expected_linear_smiles: "CC(=O)CC(=O)CC(=O)CC(=O)O"
+expected_final_smiles: "Cc1cc(O)cc(O)c1C(=O)O"
+tier: gate
+ground_truth: independent
+program_confidence: high
+needs_expert_review: false
+notes: >
+  The ring methyl is the starter acetate's terminal carbon, NOT a C-MeT product:
+  the program contains zero C-MeT actions. Final structure is 2,4-dihydroxy-6-
+  methylbenzoic acid (PubChem CID 68072), an independent non-circular target.

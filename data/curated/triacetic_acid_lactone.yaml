@@ -1,0 +1,24 @@
+name: triacetic acid lactone
+organism: (PKS-agnostic derailment / engineered; classic non-reduced triketide)
+bgc: generic non-reducing triketide shunt
+subclass: NR
+citation: >
+  Classic triketide pyranone shunt product (e.g. Richardson et al.; produced by many
+  PKS when chain release outcompetes further extension). Non-reduced triketide that
+  lactonizes to 4-hydroxy-6-methyl-2H-pyran-2-one.
+program:
+  starter: acetyl
+  cycles:
+    - { reduction: keto }
+    - { reduction: keto }
+  release: lactonization
+scored_level: cyclized
+expected_linear_smiles: "CC(=O)CC(=O)CC(=O)O"
+expected_final_smiles: "Cc1cc(O)cc(=O)o1"
+tier: gate
+ground_truth: independent
+program_confidence: high
+needs_expert_review: false
+notes: >
+  Final = 4-hydroxy-6-methyl-2-pyranone (TAL, PubChem CID 5380381), independent
+  target. Tests single-mode lactonization release. Methyl = starter carbon.

@@ -1,0 +1,24 @@
+name: hexanoic acid (fully-reduced triketide; FAS/HR-PKS full-cascade proxy)
+organism: (generic; e.g. the hexanoyl starter of aflatoxin PKS is made by a FAS)
+bgc: fully-reducing proxy
+subclass: HR
+citation: >
+  Mechanistic sanity case: a fully-reduced triketide (acetyl + two malonyl, every
+  cycle taken to the methylene via the full KR->DH->ER cascade) is n-hexanoic acid.
+  Exercises the complete reductive cascade end to end.
+program:
+  starter: acetyl
+  cycles:
+    - { reduction: er }
+    - { reduction: er }
+  release: hydrolysis
+scored_level: linear
+expected_linear_smiles: "CCCCCC(=O)O"
+expected_final_smiles: "CCCCCC(=O)O"
+tier: sanity
+ground_truth: independent
+program_confidence: high
+needs_expert_review: false
+notes: >
+  n-hexanoic acid (PubChem CID 8892). Trivial extreme (all reductions); a sanity
+  check on the full cascade, not a test of a nontrivial program.

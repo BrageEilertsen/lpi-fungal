@@ -1,0 +1,22 @@
+name: 3-hydroxybutyric acid (KR-only diketide; beta-hydroxyl state test)
+organism: (generic; the beta-hydroxyl reductive state)
+bgc: KR-only proxy
+subclass: HR
+citation: >
+  Mechanistic case isolating the ketoreduction-only state: acetyl + one malonyl with
+  KR (no DH/ER) is 3-hydroxybutyryl, released as 3-hydroxybutyric acid.
+program:
+  starter: acetyl
+  cycles:
+    - { reduction: kr }
+  release: hydrolysis
+scored_level: linear
+expected_linear_smiles: "CC(O)CC(=O)O"
+expected_final_smiles: "CC(O)CC(=O)O"
+tier: sanity
+ground_truth: independent
+program_confidence: high
+needs_expert_review: false
+notes: >
+  3-hydroxybutyric acid (PubChem CID 441). Isolates the KR (beta-hydroxyl) state;
+  stereochemistry (D/L) is a Phase 2 operator-head concern, not tested here.

@@ -1,0 +1,23 @@
+name: octanoic acid (fully-reduced tetraketide; full-cascade proxy)
+organism: (generic fully-reducing proxy)
+bgc: fully-reducing proxy
+subclass: HR
+citation: >
+  Mechanistic sanity case: a fully-reduced tetraketide (acetyl + three malonyl, every
+  cycle to methylene) is n-octanoic acid. Confirms chain-length bookkeeping over four
+  ketide units under the full cascade.
+program:
+  starter: acetyl
+  cycles:
+    - { reduction: er }
+    - { reduction: er }
+    - { reduction: er }
+  release: hydrolysis
+scored_level: linear
+expected_linear_smiles: "CCCCCCCC(=O)O"
+expected_final_smiles: "CCCCCCCC(=O)O"
+tier: sanity
+ground_truth: independent
+program_confidence: high
+needs_expert_review: false
+notes: "n-octanoic acid (PubChem CID 379). Trivial extreme (all reductions)."

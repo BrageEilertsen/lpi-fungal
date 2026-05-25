@@ -1,0 +1,31 @@
+name: mellein
+organism: Aspergillus ochraceus / Septoria nodorum (and many fungi)
+bgc: mellein synthase (HR/PR PKS; e.g. AbPKS / MlnS-type)
+subclass: PR
+citation: >
+  Sun et al. 2012; Chooi & Tang. Mellein = 8-hydroxy-3-methyl-3,4-dihydroisocoumarin,
+  a pentaketide. The 3-methyl is the starter acetate carbon (NOT C-MeT). Formula
+  C10H10O3 implies one net -O/+2H over the fully-keto pentaketide acid (one ER-
+  equivalent), but the exact reduced cycle AND the fold (which carbons aromatize vs.
+  form the dihydro lactone) need confirmation.
+program:
+  starter: acetyl
+  cycles:
+    - { reduction: kr }
+    - { reduction: keto }
+    - { reduction: keto }
+    - { reduction: keto }
+  release: none
+scored_level: cyclized
+expected_linear_smiles: null
+expected_final_smiles: "CC1Cc2cccc(O)c2C(=O)O1"
+tier: gate
+ground_truth: pending
+program_confidence: low
+needs_expert_review: true
+notes: >
+  PENDING. Final structure (PubChem CID 28516) is independent, but (a) the
+  dihydroisocoumarin cyclization (aromatization + lactonization with a sp3 C3/C4) is
+  a distinct release mode not yet implemented, and (b) the reduction pattern + fold
+  are unconfirmed. Will NOT round-trip until both are resolved. See QUESTIONS.md Q2.
+  Listed in the gate per the agreed must-have set; reported honestly as pending.

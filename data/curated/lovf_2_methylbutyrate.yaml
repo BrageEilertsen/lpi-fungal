@@ -1,0 +1,24 @@
+name: 2-methylbutyric acid (LovF diketide; C-MeT + full-cascade test)
+organism: Aspergillus terreus
+bgc: LovF (lovastatin diketide synthase)
+subclass: HR
+citation: >
+  Ma et al. 2009 Science; Kennedy et al. 1999. LovF assembles the lovastatin
+  2-methylbutyryl side chain from one acetyl + one malonyl with a single C-MeT
+  alpha-methylation and the full reductive cascade (KR->DH->ER).
+program:
+  starter: acetyl
+  cycles:
+    - { reduction: er, c_methyl: true }
+  release: hydrolysis
+scored_level: linear
+expected_linear_smiles: "CCC(C)C(=O)O"
+expected_final_smiles: "CCC(C)C(=O)O"
+tier: gate
+ground_truth: independent
+program_confidence: high
+needs_expert_review: false
+notes: >
+  2-methylbutyric acid (PubChem CID 8314), independent target. The alpha-methyl IS a
+  genuine SAM-dependent C-MeT product here (contrast orsellinic/6-MSA, whose methyl is
+  the starter carbon). Clean test of C-MeT interacting with the full cascade.

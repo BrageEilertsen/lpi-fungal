@@ -1,0 +1,30 @@
+name: tenellin polyketide backbone (TenS PKS portion, pre-NRPS)
+organism: Beauveria bassiana
+bgc: TenS (PKS-NRPS hybrid)
+subclass: HR
+citation: >
+  Eley et al. 2007; Halo et al. 2008. TenS is a hybrid PKS-NRPS: the HR-PKS module
+  assembles a methylated, partially-reduced pentaketide acyl chain that is then
+  condensed with L-tyrosine by the NRPS module (and later ring-expanded to the
+  2-pyridone). Only the polyketide acyl portion is in scope here.
+program:
+  starter: acetyl
+  cycles:
+    - { reduction: dh }
+    - { reduction: er, c_methyl: true }
+    - { reduction: dh }
+    - { reduction: keto }
+  release: hydrolysis
+scored_level: linear
+expected_linear_smiles: null
+expected_final_smiles: null
+tier: gate
+ground_truth: pending
+program_confidence: low
+needs_expert_review: true
+notes: >
+  PENDING authoritative ground truth. Scored at the linear checkpoint BEFORE the NRPS
+  tyrosine condensation. The reduction/methylation schedule above is a best-effort
+  guess; the authoritative TenS polyketide acyl-chain structure (the substrate handed
+  to the NRPS C-domain) is needed from Brage to score. Reported as PENDING. See
+  QUESTIONS.md Q4.

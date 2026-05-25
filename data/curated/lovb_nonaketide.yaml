@@ -1,0 +1,37 @@
+name: LovB dihydromonacolin L nonaketide (linear, pre-Diels-Alder)
+organism: Aspergillus terreus
+bgc: LovB (+ LovC trans-ER); lovastatin nonaketide synthase
+subclass: HR
+citation: >
+  Ma et al. 2009 Science 326:589. LovB runs eight elongation cycles (nonaketide) with
+  a per-cycle-distinct reduction state and a single C-MeT methylation; its own ER is
+  degenerate and ER activity is supplied in trans by LovC. The decalin of
+  dihydromonacolin L forms by an intramolecular Diels-Alder AFTER chain assembly.
+program:
+  starter: acetyl
+  cycles:
+    - { reduction: er }
+    - { reduction: dh }
+    - { reduction: er, c_methyl: true }
+    - { reduction: kr }
+    - { reduction: dh }
+    - { reduction: er }
+    - { reduction: dh }
+    - { reduction: keto }
+  release: hydrolysis
+scored_level: linear
+expected_linear_smiles: null
+expected_final_smiles: null
+tier: gate
+ground_truth: pending
+program_confidence: low
+needs_expert_review: true
+notes: >
+  PENDING authoritative ground truth. This is the canonical programmed-reduction
+  system, scored at the LINEAR checkpoint (the Diels-Alder is a separate terminal
+  operator, out of the gate). The per-cycle reduction states above are a BEST-EFFORT
+  interpretation of Ma et al. 2009 and are NOT confirmed; the open-chain nonaketide
+  precursor (pre-DA) is not available as a database SMILES. Need Brage to supply (i)
+  the authoritative per-cycle reduction/methylation schedule and (ii) the linear
+  precursor structure to score against. Reported as PENDING, not passed. See
+  QUESTIONS.md Q3. C19 backbone (9 ketides x2 + 1 C-MeT) is the only firm constraint.
