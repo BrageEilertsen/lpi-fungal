@@ -19,16 +19,14 @@ expected_linear_smiles: "CC(O)CC(=O)CC(O)CC(=O)CC(=O)O"
 expected_final_smiles: "C[C@@H]1Cc2cccc(O)c2C(=O)O1"
 tier: gate
 ground_truth: independent
-program_confidence: medium
-needs_expert_review: true
+program_confidence: high
+needs_expert_review: false
 notes: >
   Round-trips to (R)-mellein (PubChem CID 28516) on the constitutional graph (Phase-0
   executor is achiral; the 3R stereocentre is a Phase-2 KR-head concern).
-  DEVIATION FROM BRAGE'S STATED PROGRAM, flagged for review (QUESTIONS.md Q2): Brage
-  specified a SINGLE KR at cycle 1. Mass balance shows that program reaches
-  6-hydroxymellein (C10H10O4), not (R)-mellein (C10H10O3) -- see 6_hydroxymellein.yaml.
-  Reaching mellein requires a SECOND KR at cycle 3 to deoxygenate the C5-derived ring
-  position (analogous to the single KR that removes orsellinic's 4-OH in 6-MSA).
-  Mass balance closes only with two KRs: C10H12O6 +2KR -> C10H16O6 -lactonize(H2O)->
-  C10H14O5 -aldol(H2O)-> C10H12O4 -aromatize(H2O)-> C10H10O3. Please confirm whether the
-  intended synthase makes mellein (2 KR) or 6-hydroxymellein (1 KR).
+  CONFIRMED by Brage (2026-05-25): mellein = KR at cycles 1 AND 3 (the cycle-3 second KR
+  is structurally forced -- the reduced-out ring carbon is the cycle-3 beta-keto).
+  6-hydroxymellein = KR at cycle 1 only (see 6_hydroxymellein.yaml). The matched pair
+  (differing by one KR) is the reduction-count fidelity test. Mass balance: C10H12O6
+  +2KR -> C10H16O6 -lactonize(H2O)-> C10H14O5 -aldol(H2O)-> C10H12O4 -aromatize(H2O)->
+  C10H10O3.

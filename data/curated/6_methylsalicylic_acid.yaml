@@ -20,11 +20,12 @@ expected_linear_smiles: "CC(=O)CC(O)CC(=O)CC(=O)O"
 expected_final_smiles: "Cc1cccc(O)c1C(=O)O"
 tier: gate
 ground_truth: independent
-program_confidence: medium
-needs_expert_review: true
+program_confidence: high
+needs_expert_review: false
 notes: >
   Final = 2-hydroxy-6-methylbenzoic acid (PubChem CID 68151), independent target.
-  The KR is placed on cycle 2 because that beta-keto maps to the carbon that is a phenol
-  in orsellinic but absent in 6-MSA; aromatization expels the beta-OH as water (no
-  programmed DH). See QUESTIONS.md Q1 for confirmation of the exact reduced cycle and
-  the KR-vs-DH modelling. Ring methyl = starter carbon, zero C-MeT actions.
+  Cycle-2 KR CONFIRMED by Brage (2026-05-25): 6-MSA = orsellinic minus one ring phenol;
+  the reduced-out carbon (orsellinic's 4-OH) is the cycle-2 beta-keto. Mass balance:
+  non-reduced tetraketide acid C8H10O5 -> +KR -> C8H12O5 -> aromatize (-2 H2O) -> C8H8O3.
+  Aromatization expels the beta-OH (no programmed DH). Ring methyl = starter carbon,
+  zero C-MeT actions.

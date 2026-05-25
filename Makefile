@@ -23,6 +23,9 @@ roundtrip:
 search:
 	PYTHONPATH=src $(PY) -m lpi.cli.search
 
+reachability:
+	PYTHONPATH=src $(PY) -m lpi.cli.reachability
+
 test:
 	PYTHONPATH=src $(PY) -m pytest -q
 

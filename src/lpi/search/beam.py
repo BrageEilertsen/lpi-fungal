@@ -68,6 +68,7 @@ class SearchStats:
     n_programs_executed: int = 0
     n_pruned_overshoot: int = 0
     runtime_s: float = 0.0
+    budget_exhausted: bool = False  # hit max_executions before finishing (scan only)
 
 
 @dataclass
@@ -107,8 +108,13 @@ def _cycle_options(spec: OperatorSpec) -> list[Cycle]:
 
 
 def search(target_smiles: str, spec: OperatorSpec | None = None,
-           beam_width: int = 2000) -> SearchResult:
-    """Beam-search programs and return the verified consistent set Z*(y)."""
+           beam_width: int = 2000, max_executions: int | None = None) -> SearchResult:
+    """Beam-search programs and return the verified consistent set Z*(y).
+
+    ``max_executions`` (optional) caps the number of executor calls so a reachability
+    scan over many targets cannot hang; if hit, ``stats.budget_exhausted`` is set and the
+    returned Z*(y) is a lower bound (search was incomplete).
+    """
     spec = spec or OperatorSpec()
     t0 = time.perf_counter()
     target = M.mol_from_smiles(target_smiles)
@@ -125,6 +131,9 @@ def search(target_smiles: str, spec: OperatorSpec | None = None,
             prog = Program(starter=starter, cycles=partial_cycles, release=rel)
             if _chain_carbons(prog) != target_c:
                 continue  # final carbon count must equal target
+            if max_executions is not None and stats.n_programs_executed >= max_executions:
+                stats.budget_exhausted = True
+                return
             try:
                 res = core.run(prog)
             except Exception:  # noqa: BLE001
@@ -147,6 +156,8 @@ def search(target_smiles: str, spec: OperatorSpec | None = None,
         # depth 0 release (e.g. just the starter) is possible but rarely matches; include.
         try_release((), starter)
         for _depth in range(max_cycles):
+            if stats.budget_exhausted:
+                break
             next_beam: list[tuple[str, tuple[Cycle, ...]]] = []
             for st, cycles in beam:
                 for cyc in cycle_opts:
