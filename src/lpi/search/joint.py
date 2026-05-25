@@ -126,7 +126,10 @@ def explain_cluster(target_smiles: str, gene_budget: dict[str, int],
         best_ms = min(ms, key=lambda m: m.n_edits)
         if best_ms.n_edits > best:
             continue  # parsimony prune: cannot be a minimal-edit explanation
-        key = repr(prog)
+        core_smiles = M.canonical_smiles(core)
+        # |Z*(y)| counts distinct chemical explanations (core structure + canonical edit
+        # multiset), not distinct PKS programs that happen to yield the same core.
+        key = (core_smiles, tuple(sorted(best_ms.counts.items())))
         if key in seen:
             continue
         # heavy-atom skeleton embedding (keeps O-/N-linked decorations connected); allow
@@ -137,7 +140,7 @@ def explain_cluster(target_smiles: str, gene_budget: dict[str, int],
             continue
         seen.add(key)
         e = best_ms.n_edits
-        expl = Explanation(prog, M.canonical_smiles(core), best_ms.counts, e)
+        expl = Explanation(prog, core_smiles, best_ms.counts, e)
         if e < best:
             best = e
             res.explanations = [x for x in res.explanations if x.n_edits <= best]

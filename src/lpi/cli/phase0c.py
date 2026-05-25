@@ -23,13 +23,14 @@ from pathlib import Path
 from rdkit import Chem, RDLogger
 
 from lpi.chem import mol as M
-from lpi.data.genebudget import gene_budget_from_mibig
+from lpi.data.genebudget import gene_budget
 from lpi.data.mibig import PROCESSED, ROOT
 from lpi.search.joint import explain_cluster
 
 RDLogger.DisableLog("rdApp.*")
-MAX_TAILORING_GENES = 6
+MAX_TAILORING_GENES = 8
 MAX_CARBONS = 20
+EMAIL = "brageei@uio.no"
 
 
 def _largest_fragment(mol: Chem.Mol) -> Chem.Mol:
@@ -42,6 +43,7 @@ def main(argv: list[str] | None = None) -> int:
 
     import pandas as pd
 
+    offline = "--offline" in (argv or [])
     df = pd.read_parquet(PROCESSED / "fungal_pks_pairs.parquet")
     rows = []
     verified = hard = skipped = 0
@@ -51,10 +53,10 @@ def main(argv: list[str] | None = None) -> int:
 
     for _, r in df.iterrows():
         bgc = r["bgc_id"]
-        budget = gene_budget_from_mibig(bgc)
+        budget = gene_budget(bgc, email=EMAIL, offline=offline)
         if budget is None:
             skipped += 1
-            continue  # unannotated -> needs HMMER (Phase 0b-full)
+            continue  # no MIBiG annotation and no fetchable GenBank CDS
         smi = r.get("product_smiles_canonical") or r.get("product_smiles_raw")
         try:
             y = _largest_fragment(M.mol_from_smiles(smi))
@@ -92,7 +94,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"  annotated clusters scanned (<= {MAX_TAILORING_GENES} genes, "
           f"<= C{MAX_CARBONS}): {scanned}")
     print(f"  hard tier (too many genes / too large)        : {hard}")
-    print(f"  unannotated (need HMMER, Phase 0b-full)        : {skipped}")
+    print(f"  no gene budget (no MIBiG ann. + no GenBank CDS): {skipped}")
     print("-" * 62)
     print(f"  EXACT-BY-BUDGET verified                       : {verified} / {scanned}")
     print(f"  ceiling (no budgeted explanation)              : {scanned - verified}")

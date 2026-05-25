@@ -56,7 +56,17 @@ def explain_delta(target_delta: dict[str, int], gene_budget: dict[str, int],
     """
     if target_delta.get("N", 0) != 0:
         return []  # nitrogen => NRPS fusion, not a tailoring edit in this vocabulary
-    edits = admissible_edits(gene_budget)
+    # Collapse onto distinct (family, delta) classes: hydroxylation/epoxidation (both
+    # oxygenase +O) and o-/c-methylation (both methyltransferase +CH2) are chemically
+    # interchangeable at the formula/budget level, so counting them separately would
+    # inflate |Z*(y)| with relabellings of the same budget.
+    seen_sig: set[tuple] = set()
+    edits = []
+    for e in admissible_edits(gene_budget):
+        sig = (e.family, tuple(sorted(e.delta.items())))
+        if sig not in seen_sig:
+            seen_sig.add(sig)
+            edits.append(e)
     if not edits and any(target_delta.values()):
         return []
     target = _vec(target_delta)
