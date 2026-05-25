@@ -32,6 +32,12 @@ corematch:
 phase0c:
 	PYTHONPATH=src $(PY) -m lpi.cli.phase0c
 
+clustercad:
+	PYTHONPATH=src $(PY) -m lpi.data.clustercad
+
+differential:
+	PYTHONPATH=src $(PY) -m lpi.cli.differential
+
 test:
 	PYTHONPATH=src $(PY) -m pytest -q
 
