@@ -26,10 +26,17 @@ from pathlib import Path
 from rdkit import Chem
 
 from lpi.chem import mol as M
-from lpi.search.beam import OperatorSpec, search
+from lpi.search.beam import OperatorSpec, formula_feasible, search
 
 ALLOWED_ELEMENTS = {1, 6, 8}  # H, C, O
-CARBON_CAP = 16  # chains larger than this are not scanned (tractability bound)
+# EXACT-match scan cap. Empirically every scanned C13-41 fungal PKS product is unreachable
+# at exact match (they are core + post-PKS tailoring), so exhaustively enumerating cores
+# for very large chains buys ~nothing at exact level while costing tens of seconds each.
+# We cap exact-match scanning at C20 (covers the realistic untailored-core range with
+# margin; the largest reachable so far is the C12 'BAB') and report C>20 separately. The
+# CORE-match scan (core subgraph of y) examines ALL sizes -- that is where large products
+# can still contribute via an embedded core.
+CARBON_CAP = 20
 CARBON_MIN = 4
 
 
@@ -71,12 +78,10 @@ def _scan_spec() -> OperatorSpec:
 
 
 def scan_target(bgc_id: str, name: str, smiles: str,
-                beam_width: int = 8000, max_executions: int = 30000) -> ReachRow:
-    # beam_width is exhaustive for C<=13 (4^5=1024, 4^6=4096 reduction patterns), where
-    # all products the current rule set can reach actually live. Larger/hard targets that
-    # exhaust max_executions are reported as 'budget' (indeterminate), NOT 'unreachable' --
-    # avoiding the beam-width false-negatives that an earlier, smaller beam produced on
-    # mellein / 6-hydroxymellein.
+                beam_width: int = 4000, max_executions: int = 60000) -> ReachRow:
+    # With the formula prefilter + feasibility gate, executor calls are rare; beam_width
+    # 4000 is exhaustive for the C<=20 exact-match range. (An earlier, smaller beam caused
+    # false-negatives on mellein / 6-hydroxymellein -- fixed.)
     try:
         mol = M.mol_from_smiles(smiles)
     except ValueError:
@@ -91,7 +96,14 @@ def scan_target(bgc_id: str, name: str, smiles: str,
     if carbons > CARBON_CAP:
         return ReachRow(bgc_id, name, smiles, carbons, "too_large")
 
-    result = search(M.canonical_smiles(mol), _scan_spec(),
+    # Target-level formula feasibility: if no program's product formula can equal this
+    # target, it is provably unreachable -- skip the (expensive) structural search.
+    from lpi.search.beam import _formula_cho
+    spec = _scan_spec()
+    if not formula_feasible(_formula_cho(mol), spec, max_cycles=carbons // 2 + 1):
+        return ReachRow(bgc_id, name, smiles, carbons, "unreachable")
+
+    result = search(M.canonical_smiles(mol), spec,
                     beam_width=beam_width, max_executions=max_executions)
     if result.size > 0:
         return ReachRow(bgc_id, name, smiles, carbons, "reachable",
