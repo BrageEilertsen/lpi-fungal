@@ -1,0 +1,23 @@
+# Raw downloaded data sources (large; not committed)
+data/raw/
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+
+# Results scratch (committed selectively)
+results/scratch/
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# wandb (Phase 2, optional)
+wandb/

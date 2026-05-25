@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lpi-fungal"
+version = "0.0.1"
+description = "Latent Program Induction for Iterative Fungal Synthases - dry pipeline (Arm A)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Brage Eilertsen", email = "brageei@uio.no" }]
+
+# Phase 0 dependencies only (executor + data). ML deps (torch/transformers) are
+# isolated in the optional [ml] group and pulled in for Phase 2 so the go/no-go
+# is not blocked on heavy installs or a GPU.
+dependencies = [
+    "rdkit==2025.9.6",
+    "pandas==2.3.3",
+    "pyarrow==23.0.1",
+    "numpy==2.2.6",
+    "pyyaml==6.0.2",
+    "requests==2.32.3",
+    "networkx==3.4.2",
+    "biopython==1.85",
+]
+
+[project.optional-dependencies]
+# Phase 0b / domain-annotation fallback when antiSMASH output is unavailable.
+hmmer = ["pyhmmer==0.10.15"]
+# Phase 2 (controller, encoder, operator heads). Not needed for Gate 0.
+ml = [
+    "torch==2.5.1",
+    "transformers==4.46.3",
+    "fair-esm==2.0.0",
+]
+dev = ["pytest==9.0.3"]
+
+[project.scripts]
+lpi-roundtrip = "lpi.cli.roundtrip:main"
+lpi-ingest = "lpi.cli.ingest:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
