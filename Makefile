@@ -38,6 +38,9 @@ clustercad:
 differential:
 	PYTHONPATH=src $(PY) -m lpi.cli.differential
 
+figures:
+	PYTHONPATH=src $(PY) scripts/figures.py
+
 test:
 	PYTHONPATH=src $(PY) -m pytest -q
 

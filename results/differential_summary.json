@@ -1,0 +1,18 @@
+{
+  "reduction": {
+    "mlp": 0.7831632653061225,
+    "domain_rule": 0.7831632653061225,
+    "majority": 0.3494897959183674
+  },
+  "stereo": {
+    "mlp": 0.7193877551020408,
+    "majority": 0.6862244897959183
+  },
+  "transfer": {
+    "active_domains": 1.0,
+    "constant_domains": 0.5666666666666667,
+    "n_cycles": 30
+  },
+  "n_train": 699,
+  "n_test": 392
+}

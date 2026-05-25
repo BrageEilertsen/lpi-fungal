@@ -9,7 +9,7 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-from lpi.data.mibig import PROCESSED
+from lpi.data.mibig import PROCESSED, ROOT
 from lpi.model.differential import evaluate, transfer_test
 
 
@@ -21,6 +21,17 @@ def main(argv: list[str] | None = None) -> int:
         return 1
     r = evaluate(pq)
     t = transfer_test(pq)
+    # persist a summary for reproducible figure generation
+    import json
+    summary = {
+        "reduction": {"mlp": r.mlp_reduction_acc, "domain_rule": r.domain_rule_acc,
+                      "majority": r.majority_acc},
+        "stereo": {"mlp": r.stereo_mlp_acc, "majority": r.stereo_majority_acc},
+        "transfer": {"active_domains": t.active_domains_acc,
+                     "constant_domains": t.constant_domains_acc, "n_cycles": t.n_cycles},
+        "n_train": r.n_train, "n_test": r.n_test,
+    }
+    (ROOT / "results" / "differential_summary.json").write_text(json.dumps(summary, indent=2))
     print("Differential PoC — ClusterCAD bacterial module-pairs (ΔBGC → Δstructure)")
     print("-" * 70)
     print(f"  clean extension modules: {r.n_train + r.n_test} "
