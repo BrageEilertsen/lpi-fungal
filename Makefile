@@ -29,6 +29,9 @@ reachability:
 corematch:
 	PYTHONPATH=src $(PY) -m lpi.cli.corematch
 
+phase0c:
+	PYTHONPATH=src $(PY) -m lpi.cli.phase0c
+
 test:
 	PYTHONPATH=src $(PY) -m pytest -q
 

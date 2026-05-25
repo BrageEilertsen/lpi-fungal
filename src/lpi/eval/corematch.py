@@ -45,6 +45,68 @@ def carbon_skeleton_graph(mol: Chem.Mol) -> nx.Graph:
     return g
 
 
+_HEAVY = {6, 7, 8, 9, 15, 16, 17, 35, 53}  # C N O F P S Cl Br I
+
+
+def heavy_skeleton_graph(mol: Chem.Mol) -> nx.Graph:
+    """Heavy-atom graph (C,N,O,halogens,...): nodes carry element + ring; edges are
+    heavy-heavy bonds (bond order ignored). Unlike the carbon-only graph this keeps
+    O-/N-linked groups connected, so O-methyl / glycosyl / hydroxyl decorations attach
+    properly and heteroatom rings do not collapse."""
+    g = nx.Graph()
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in _HEAVY:
+            g.add_node(atom.GetIdx(), z=atom.GetAtomicNum(), in_ring=atom.IsInRing())
+    for bond in mol.GetBonds():
+        a, b = bond.GetBeginAtom(), bond.GetEndAtom()
+        if a.GetAtomicNum() in _HEAVY and b.GetAtomicNum() in _HEAVY:
+            g.add_edge(a.GetIdx(), b.GetIdx())
+    return g
+
+
+def _heavy_node_match(y_attr: dict, core_attr: dict) -> bool:
+    # element must match; a core ring atom must map to a ring atom of y (no un-cyclising)
+    if y_attr.get("z") != core_attr.get("z"):
+        return False
+    if core_attr.get("in_ring"):
+        return bool(y_attr.get("in_ring"))
+    return True
+
+
+def heavy_skeleton_complete_extra_bonds(core: Chem.Mol, target: Chem.Mol,
+                                        max_extra_ring_bonds: int | None = None
+                                        ) -> int | None:
+    """Heavy-atom analogue of skeleton_complete_extra_bonds: the core's heavy-atom skeleton
+    accounts for all of y's heavy atoms modulo single-bond-separable decorations. Returns
+    min extra ring-closure bonds, or None if no skeleton-complete mapping qualifies."""
+    cg = heavy_skeleton_graph(core)
+    tg = heavy_skeleton_graph(target)
+    if cg.number_of_nodes() == 0 or cg.number_of_nodes() > tg.number_of_nodes():
+        return None
+    core_edges = cg.number_of_edges()
+    gm = nx.algorithms.isomorphism.GraphMatcher(tg, cg, node_match=_heavy_node_match)
+    best: int | None = None
+    for i, mapping in enumerate(gm.subgraph_monomorphisms_iter()):
+        if i >= 20000:
+            break
+        matched = set(mapping)
+        ok = True
+        for comp in nx.connected_components(tg.subgraph(set(tg) - matched)):
+            if sum(1 for n in comp for nb in tg.neighbors(n) if nb in matched) != 1:
+                ok = False
+                break
+        if not ok:
+            continue
+        extra = tg.subgraph(matched).number_of_edges() - core_edges
+        if max_extra_ring_bonds is not None and extra > max_extra_ring_bonds:
+            continue
+        if best is None or extra < best:
+            best = extra
+            if best == 0:
+                break
+    return best
+
+
 def _node_match(y_attr: dict, core_attr: dict) -> bool:
     # GraphMatcher(Yg, Cg) calls node_match(y_node_attr, core_node_attr).
     # A core RING carbon must map to a ring carbon of y (cyclisation cannot be undone);
