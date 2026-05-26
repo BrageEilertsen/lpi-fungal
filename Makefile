@@ -3,7 +3,7 @@ EMAIL ?= brageei@uio.no
 MIBIG_URL = https://dl.secondarymetabolites.org/mibig/mibig_json_4.0.tar.gz
 MIBIG_DIR = data/raw/mibig_json_4.0
 
-.PHONY: phase0 phase1 data roundtrip search test mibig clean
+.PHONY: phase0 phase1 data roundtrip search test mibig crossgrammar observability realdemo clean
 
 phase0: data roundtrip test
 phase1: search test
@@ -40,6 +40,15 @@ differential:
 
 figures:
 	PYTHONPATH=src $(PY) scripts/figures.py
+
+crossgrammar:
+	PYTHONPATH=src $(PY) scripts/cross_grammar_demo.py
+
+observability:
+	PYTHONPATH=src $(PY) scripts/observability_demo.py
+
+realdemo:
+	PYTHONPATH=src $(PY) scripts/real_demo_6msa.py
 
 test:
 	PYTHONPATH=src $(PY) -m pytest -q

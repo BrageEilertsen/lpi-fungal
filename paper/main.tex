@@ -28,7 +28,7 @@
 \small \texttt{brageei@uio.no}\\
 \small \textit{Affiliation to be completed}}
 
-\date{May 2026 --- draft v1.2}
+\date{May 2026 --- draft v1.3 (inverse-compiler reframe)}
 
 \begin{document}
 \maketitle
@@ -211,7 +211,8 @@ DH $-\mathrm{H_2O}$, ER $+\mathrm{H_2}$, C-MeT $+\mathrm{CH_2}$) and by reconstr
 polyketides. Single-mode cyclization---lactonization, the small-aromatic aldol (orsellinic,
 6-MSA) and the mellein dihydroisocoumarin---is implemented; the five-class PT-domain
 regiochemistry of large NR-PKS and the lovastatin Diels--Alder are deliberately scoped out and
-flagged. The executor is a pure, deterministic function with a regression suite ($58$ tests).
+flagged. The executor is a pure, deterministic function validated within the project's regression
+suite ($116$ tests).
 
 \begin{figure}[t]
 \centering
@@ -785,9 +786,13 @@ differential and ESM-2 components. Each result maps to one command:
 \code{make data} (the $326$ pairs), \code{make roundtrip} (executor gate),
 \code{make search} (the verifier and \zstar{}), \code{make reachability} (exact-match $8/326$),
 \code{make corematch} (the core-match sensitivity), \code{make phase0c} (tailoring-latent
-$7/106$), \code{make clustercad} and \code{make differential} (the differential PoC),
-\code{make figures} (Figures~\ref{fig:tiers}--\ref{fig:diff}), and \code{make test} ($58$ tests).
-Per-result numbers, scripts, and git commits are tabulated in \texttt{PAPER\_READINESS.md}.
+$7/106$), \code{make clustercad} and \code{make differential} (the differential probe),
+\code{make crossgrammar}, \code{make observability}, and \code{make realdemo} (the cross-grammar
+PKS/NRPS/hybrid demo, the candidate-collapse observability benchmark, and the blind real-cluster
+6-MSA mining demo), \code{make figures} (Figures~\ref{fig:tiers}--\ref{fig:diff}), and
+\code{make test} ($116$ tests). The six tagged milestones (\texttt{lpi-v0.2-cross-grammar} through
+\texttt{lpi-v0.6-real-mining}), per-result numbers, scripts, and commits are tabulated in the
+repository \texttt{README} and \texttt{PAPER\_READINESS.md}.
 
 \section{The ESM-2 sequence head: built, blocked on data access}
 \label{app:esm}
