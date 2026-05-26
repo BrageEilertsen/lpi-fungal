@@ -21,9 +21,8 @@
 \newcommand{\zstar}{\ensuremath{Z^{\star}(y)}}
 \newcommand{\code}[1]{\texttt{#1}}
 
-\title{\textbf{The Reconstructibility Ceiling}\\[2pt]
-\large Why predicting fungal polyketide structures from biosynthetic gene
-clusters is hard, and a verifier-grounded path forward}
+\title{\textbf{A Biosynthetic Inverse Compiler for\\Verifier-Grounded Fungal Genome Mining}\\[2pt]
+\large The reconstructibility ceiling in fungal polyketide chemistry}
 
 \author{Brage Eilertsen\\
 \small \texttt{brageei@uio.no}\\
@@ -35,41 +34,38 @@ clusters is hard, and a verifier-grounded path forward}
 \maketitle
 
 \begin{abstract}
-Machine-learning models that infer fungal secondary-metabolite properties from biosynthetic
-gene cluster features remain weak (balanced accuracies of $51$--$68\%$), and pooling roughly a
-thousand bacterial BGCs with the few hundred fungal ones barely moves the ceiling. We argue, and
-then \emph{measure}, that the analogous ceiling for \emph{structure} prediction is not primarily a
-data-volume problem but a \emph{reconstructibility} fact: a fungal BGC often does not expose the
-latent biosynthetic execution trace needed to reconstruct the product. Bacterial modular polyketide synthases (PKS) are colinear, so the
-per-module chemistry is readable from domain content---which is why a per-module intermediate
-database (ClusterCAD) exists for bacteria. Fungal PKS are iterative: a single module is reused
-across cycles under a hidden program, so neither the per-step chemistry nor the program is
-recoverable from the cluster alone, so no fungal analogue of ClusterCAD can exist in the same
-per-module tabular sense without additional observables. We make this concrete
-with open tools and a three-tier reconstruction analysis over all $326$ fungal PKS entries in
-MIBiG~4.0. We build (i)~a sound, deterministic chemical \emph{executor} for fungal iterative
-PKS programs and a beam-search \emph{verifier} that returns the exact consistent program set
-\zstar{}; (ii)~a curated, literature-sourced benchmark of fungal PKS programs; and
-(iii)~the reconstruction analysis itself. Only \textbf{8/326} products are exactly
-reconstructible from a PKS program; a structural-similarity (``core-match'') proxy is shown to
-be \emph{unreliable}, swinging from $8$ to $160$ as a single nuisance parameter is varied and
-admitting non-PKS false positives; and a \emph{tailoring-latent} reformulation, in which
-post-PKS edits enter the latent under two observed budgets (co-clustered enzymes and the exact
-molecular-formula difference), exactly reconstructs \textbf{7/106} products---but
-\emph{conditional on a producible PKS core it succeeds for 64\% of clusters, near-uniquely},
-localizing the bottleneck precisely to PKS-core computability rather than tailoring. We
-identify a small rearrangement/non-PKS ceiling that is unreconstructible in principle.
-Finally we propose---and \emph{demonstrate}---a differential reformulation
-($\Delta\text{BGC}\!\to\!\Delta\text{structure}$): trained on abundant bacterial ClusterCAD
-modules, a model predicts the per-step reduction chemistry well above chance and transfers to
-fungal cycles \emph{perfectly when the active domains are known} ($1.00$), while collapsing to
-$0.57$ when given only the synthase's fixed domain set---a clean quantification of the
-iteration-grammar wall. Finally we show this ceiling is not monolithic: it decomposes into a
-narrow highly-reducing per-cycle-reduction \emph{computability} wall ($\sim$9\% of products)
-and a broad, incrementally addressable aromatic-cyclization \emph{coverage} wall ($\sim$61\%;
-extending one closure moves exact reconstruction $8\!\to\!9/326$), and that the sound executor
-doubles as a constrained candidate generator for genome mining. All tools, data, and analyses
-are open and reproducible from single commands.
+Predicting a fungal natural product from its biosynthetic gene cluster (BGC) is usually posed as
+direct $\mathrm{BGC}\!\to\!$structure regression; models built this way remain weak (balanced
+accuracies $51$--$68\%$), and pooling a thousand bacterial BGCs with the few hundred fungal ones
+barely helps. We argue the framing is wrong. A BGC is not a molecular blueprint but a
+\emph{constrained latent program space}: the product is the image $y=\mathrm{Exec}_{\Theta}(z;G)$ of
+a biosynthetic program $z$ under an operator library $\Theta$ and a domain-derived grammar $G$, so
+genome mining is \emph{inference over $z$} from physical observables rather than regression. We
+build a \textbf{grammar-agnostic biosynthetic inverse compiler} that realizes this: a
+grammar-specific, sound deterministic \emph{executor} enumerates legal programs; a shared,
+adduct-aware, ppm-tolerant \emph{observability layer} collapses the candidate set with accurate mass
+and MS/MS; and a shared \emph{verifier} returns a three-state reconstructibility verdict---%
+\textsc{verified}, \textsc{under-observed} (naming the next observable that would collapse the set),
+or \textsc{out-of-grammar}.
+
+Our empirical case study is fungal iterative PKS, where the framing bites hardest: bacterial modular
+PKS are colinear (per-module chemistry readable from domain content---hence the ClusterCAD
+database), whereas fungal PKS are iterative, so the program is not identifiable from the fixed domain
+set alone. A three-tier reconstruction analysis over all $326$ fungal PKS entries in MIBiG~4.0
+quantifies the ceiling: only \textbf{8/326} products are exactly reconstructible; a
+structural-similarity proxy is \emph{unreliable} (swinging $8\!\to\!160$ with a single nuisance
+parameter, and admitting non-PKS false positives); and a tailoring-latent reformulation reconstructs
+\textbf{7/106} clusters exactly---but \textbf{64\%} conditional on a producible core, localizing the
+bottleneck to PKS-core reconstructibility. A differential probe shows the per-step chemistry is
+learnable from abundant bacterial data and transfers to fungi perfectly with the active domains
+($1.00$) but collapses to $0.57$ from the fixed domain set---the iteration-grammar wall, which
+decomposes into a narrow highly-reducing control wall ($\sim$9\%) and a broad, coverage-addressable
+aromatic-cyclization wall ($\sim$61\%).
+
+Finally we show the architecture is not PKS-specific: the same observability and verdict layers run
+\emph{unchanged} over a non-ribosomal peptide (NRPS) grammar and a typed PKS--NRPS hybrid bridge---%
+only the program generator is family-specific. All tools, data, and analyses are open and
+reproducible from single commands.
 \end{abstract}
 
 \section{Introduction}
@@ -90,36 +86,66 @@ $56$--$68\%$. That second result is our point of departure: if the bottleneck we
 of fungal examples, a fourfold increase in (cross-domain) training data should help
 substantially. It did not.
 
-We argue this is because bacterial and fungal assembly lines obey different grammars, and that
-this is best understood as a statement about \emph{computability} rather than sample size. We
-do not propose a new genome-to-structure predictor. Instead we contribute open tools and a
-quantitative characterization of \emph{how much} of fungal polyketide chemistry is
-reconstructible from gene content at all, and \emph{why} the rest is not---together with a
-demonstrated path forward. Our contributions are:
+The deeper issue is the framing. \emph{Natural-product discovery should not be posed as direct
+$\mathrm{BGC}\!\to\!$structure regression, but as verifier-grounded inference over latent
+biosynthetic programs constrained by genome-derived grammars and physical observables.} A BGC is not
+a molecular blueprint but a constrained program space: the product is the image
+$y=\mathrm{Exec}_{\Theta}(z;G)$ of a latent program $z$ under a biochemical operator library
+$\Theta$ and a domain-derived grammar $G$, and mining is inference over $z$ from the observables in
+hand. We realize this as a \textbf{grammar-agnostic biosynthetic inverse compiler}
+(Figure~\ref{fig:arch}): a grammar-specific executor enumerates legal programs, a shared
+observability layer collapses them with mass and MS/MS, and a shared verifier returns a three-state
+reconstructibility verdict. We do \emph{not} claim a complete genome-to-structure predictor; we
+contribute the architecture, an empirical reconstructibility analysis of fungal PKS that explains the
+field's ceiling, and cross-grammar demonstrations. Our contributions are:
 
 \begin{enumerate}[leftmargin=1.4em,itemsep=2pt]
-\item A \textbf{sound, deterministic chemical executor} for fungal iterative-PKS biosynthetic
-programs and a \textbf{beam-search verifier} that returns the exact consistent program set
-\zstar{} (Sections~\ref{sec:executor}--\ref{sec:verifier}).
-\item A \textbf{curated, literature-sourced benchmark} of fungal iterative-PKS programs
-(Section~\ref{sec:benchmark}).
-\item A \textbf{three-tier reconstruction analysis} over MIBiG~4.0's fungal PKS entries
-(Section~\ref{sec:tiers})---exact-match, a core-match \emph{sensitivity analysis} showing
-structural-similarity proxies are unreliable here, and a tailoring-latent reformulation---
-quantifying what fraction of fungal polyketide products is computationally reconstructible
-from the gene cluster, and why the rest is not.
-\item The \textbf{conceptual result} (Section~\ref{sec:concept}): grammar mismatch and data
-deficit are one fact. Colinearity makes per-step cores reconstructible from domain content (so
-ClusterCAD exists); iteration makes them non-identifiable from the fixed domain set alone (so no
-fungal analogue can exist in the same per-module tabular sense). This explains the field's
-$51$--$68\%$ ceiling.
-\item The \textbf{differential-learning reformulation} ($\Delta\text{BGC}\!\to\!
-\Delta\text{structure}$, Section~\ref{sec:differential}), \emph{demonstrated} on bacterial
-ClusterCAD with a fungal transfer test.
-\item A \textbf{reconstructibility taxonomy} (Section~\ref{sec:concept}): a single accuracy score
-is replaced by four separable failure modes---operator coverage, hidden iterative control,
-tailoring under-constraint, and non-local pathway structure.
+\item A \textbf{grammar-agnostic inverse compiler} over biosynthetic program grammars: a sound
+deterministic executor and beam verifier returning the exact consistent program set \zstar{}
+behind one observable-constrained interface (Sections~\ref{sec:executor}--\ref{sec:verifier}).
+\item A \textbf{deterministic reconstructibility analysis} of fungal iterative PKS over MIBiG~4.0
+(Section~\ref{sec:tiers}): exact-match $8/326$, a core-match \emph{sensitivity} showing
+structural-similarity proxies are unreliable, and a tailoring-latent reformulation ($7/106$;
+$64\%$ conditional on a producible core), with a curated literature benchmark
+(Section~\ref{sec:benchmark}) and a differential probe of the iteration-grammar wall
+(Section~\ref{sec:differential}).
+\item A \textbf{shared metabolomics observability layer} (Section~\ref{sec:mining}): an
+adduct-aware, ppm-tolerant approximate verifier $Z^{\star}_{\epsilon}$, a within-grammar
+formula-ambiguity report, a tolerance-scored MS/MS matcher, and a minimum-sufficient-observables
+planner.
+\item \textbf{Cross-grammar demonstrations} on PKS, NRPS, and a typed PKS--NRPS hybrid bridge
+(Section~\ref{sec:crossgrammar})---the same observability and verdict layers, only the program
+generator changing.
+\item A \textbf{three-state reconstructibility verdict} (\textsc{verified} / \textsc{under-observed}
+/ \textsc{out-of-grammar}) with a next-observable planner, resting on a failure-mode taxonomy
+(operator coverage, hidden iterative control, tailoring under-constraint, non-local structure)
+that replaces a single accuracy score.
 \end{enumerate}
+
+\begin{figure}[t]
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[node distance=4mm and 7mm,
+  box/.style={draw,rounded corners,align=center,inner sep=3pt,minimum height=8mm,font=\small},
+  fam/.style={fill=blue!8}, sh/.style={fill=gray!12},
+  >={Stealth[length=2mm]}]
+\node[box,fam] (bgc) {BGC /\\domain alphabet $G$};
+\node[box,fam,right=of bgc] (gram) {grammar compiler\\PKS / NRPS / hybrid};
+\node[box,fam,right=of gram] (prog) {candidate\\programs $z$};
+\node[box,fam,right=of prog] (exec) {executor\\$\mathrm{Exec}_\Theta(z;G)$};
+\node[box,fam,right=of exec] (struct) {candidate\\structures};
+\node[box,sh,below=7mm of struct] (obs) {observability layer\\mass / adduct / ppm / MS-MS};
+\node[box,sh,left=of obs] (verd) {verdict\\verified / under-observed /\\out-of-grammar};
+\draw[->](bgc)--(gram); \draw[->](gram)--(prog); \draw[->](prog)--(exec); \draw[->](exec)--(struct);
+\draw[->](struct)--(obs); \draw[->](obs)--(verd);
+\end{tikzpicture}}
+\caption{The grammar-agnostic inverse compiler. Family-specific grammars (blue) compile a cluster's
+domain alphabet into candidate programs that a sound executor renders to structures; a shared
+observability layer (grey) collapses the candidate set with mass and MS/MS, and a shared verifier
+returns a three-state reconstructibility verdict. Only the grammar and executor are family-specific;
+the observability and verdict layers are reused across PKS, NRPS, and hybrid grammars.}
+\label{fig:arch}
+\end{figure}
 
 All numbers in this paper are produced by the open code base by a single documented command
 and are traceable to a git commit; Appendix~\ref{app:repro} lists the commands.
@@ -235,16 +261,20 @@ $\text{acetyl}+2\!\times\!\text{ER}$ or $\text{butyryl}+1\!\times\!\text{ER}$, g
 $|\zstar|=2$---so identifiability is governed by the operator-set constraints, as the
 formulation predicts.
 
-\paragraph{Soundness and completeness are relative to the grammar.} All guarantees are stated with
-respect to the operator library $\Theta$, the (domain-derived) grammar $G$, and the observable set
-$O$. For $Z^{\star}_{\Theta}(y;G,O)=\{\,z\in Z_{\Theta}(G,O):\mathrm{Exec}_{\Theta}(z;G)\simeq y\,\}$
+\subsection{Guarantees}
+\label{sec:guarantees}
+All guarantees are stated relative to the operator library $\Theta$, the (domain-derived) grammar
+$G$, the observable set $O$, and---for the tolerant mass observable (Section~\ref{sec:mining})---the
+mass tolerance $\epsilon$ and the adduct model. For
+$Z^{\star}_{\Theta}(y;G,O)=\{\,z\in Z_{\Theta}(G,O):\mathrm{Exec}_{\Theta}(z;G)\simeq y\,\}$
 the search is \emph{sound}---every returned $z$ executes to a structure matching $y$ under
 $\simeq$---and \emph{relatively complete}: every legal program in the enumerated grammar that
 matches $y$ is returned, up to the beam bound. It is deliberately \emph{not} biologically complete:
 if nature uses an operator outside $\Theta$, an empty $Z^{\star}$ is correct relative to $\Theta$
 even though the molecule is producible \emph{in vivo}. An empty consistent set is therefore a typed
 \emph{certificate of failure mode}---missing operator, hidden control, tailoring under-constraint,
-or non-local pathway---not a claim of biological impossibility.
+or non-local pathway---not a claim of biological impossibility; the approximate verifier
+$Z^{\star}_{\epsilon}$ inherits the same relativity, now also to $\epsilon$ and the allowed adducts.
 
 \section{A curated benchmark of fungal PKS programs}
 \label{sec:benchmark}
@@ -551,23 +581,6 @@ ClusterCAD performs, so the obstacle is a deliberate algorithmic boundary rather
 experiment. The head is coded and runnable the moment a per-domain-labelled sequence source exists.
 Details and the assembled label sets are in Appendix~\ref{app:esm}.
 
-\section{Related work}
-\label{sec:related}
-
-\citet{riedling2024} establishes the $51$--$68\%$ ceiling and the near-flat cross-domain result
-that motivates this work. Rule-based detectors and product predictors---antiSMASH/fungiSMASH
-\citep{antismash}, PRISM \citep{prism}, DeepBGC \citep{deepbgc}, GECCO \citep{gecco}, CLOCI
-\citep{cloci}---detect clusters and, for bacteria, read off colinear products; none induce an
-iterative program. ClusterCAD \citep{clustercad,clustercad2} is the modular-PKS intermediate
-database we both consume (for the differential PoC) and cite as the bacterial existence proof of
-contribution~4. MIBiG \citep{mibig} is our pair source; BGC family methods such as BiG-SLiCE /
-BiG-FAM \citep{bigslice} define the within-family neighbourhoods relevant to differential pairs.
-Property/arrangement predictors such as CHAMOIS \citep{chamois} infer ontology-level chemistry,
-not exact iterative programs. Methodologically we draw on execution-guided, neurosymbolic
-program synthesis \citep{dreamcoder} and on protein language models \citep{esm2}; chemistry is
-handled with RDKit \citep{rdkit}. Our distinguishing stance is to \emph{measure} exact
-reconstructibility and to ground every claim in a sound deterministic verifier.
-
 \section{Cross-grammar generalization: NRPS v0}
 \label{sec:crossgrammar}
 
@@ -608,13 +621,10 @@ withheld-mass row is the engine in its
 operative mode: from the genome alone the peptide is \emph{under-observed}, and the verdict names the
 observable---accurate mass---that would collapse the candidate set.
 
-\paragraph{What this does and does not establish.} This is a proof of \emph{framework} generality,
-not of NRPS biochemical coverage. The NRPS v0 is deliberately conservative: eight proteinogenic
-monomers, an achiral backbone, two release modes, no adenylation-domain substrate-specificity model,
-and no PKS--NRPS hybrid bridge. The claim is precisely that a second biosynthetic grammar plugs into
-the same inference and verdict stack---evidence that the architecture is grammar-agnostic, with
-families differing in their program grammars and operator libraries while sharing one
-observable-constrained reconstructibility layer.
+\paragraph{Scope.} This is a proof of \emph{framework} generality, not NRPS biochemical coverage
+(the v0 grammar's conservative scope is stated once in Section~\ref{sec:limits}): the point is that
+a second grammar plugs into the same inference and verdict stack, the architecture being
+grammar-agnostic because the shared layer reads only candidate structures.
 
 \subsection{Compositional grammars and hybrid biosynthesis}
 \label{sec:hybrid}
@@ -637,8 +647,33 @@ thus made machine-checkable. The framework now spans \textbf{PKS, NRPS, and a mi
 hybrid bridge} behind one inference-and-verdict interface; grammars are family-specific and
 composable, while observability and the reconstructibility verdict are shared.
 
+\section{Related work}
+\label{sec:related}
+
+\citet{riedling2024} establishes the $51$--$68\%$ ceiling and the near-flat cross-domain result
+that motivates this work. Rule-based detectors and product predictors---antiSMASH/fungiSMASH
+\citep{antismash}, PRISM \citep{prism}, DeepBGC \citep{deepbgc}, GECCO \citep{gecco}, CLOCI
+\citep{cloci}---detect clusters and, for bacteria, read off colinear products; none induce an
+iterative program. ClusterCAD \citep{clustercad,clustercad2} is the modular-PKS intermediate
+database we both consume (for the differential probe) and cite as the bacterial existence proof
+that colinear assembly lines are tabulable (the conceptual result of Section~\ref{sec:concept}).
+MIBiG \citep{mibig} is our pair source; BGC family methods such as BiG-SLiCE /
+BiG-FAM \citep{bigslice} define the within-family neighbourhoods relevant to differential pairs.
+Property/arrangement predictors such as CHAMOIS \citep{chamois} infer ontology-level chemistry,
+not exact iterative programs. Methodologically we draw on execution-guided, neurosymbolic
+program synthesis \citep{dreamcoder} and on protein language models \citep{esm2}; chemistry is
+handled with RDKit \citep{rdkit}. Our distinguishing stance is to \emph{measure} exact
+reconstructibility and to ground every claim in a sound deterministic verifier.
+
 \section{Limitations}
 \label{sec:limits}
+
+\paragraph{What this does \emph{not} claim.} We do not claim complete fungal structure prediction,
+complete NRPS or hybrid coverage, or validation on real untargeted-metabolomics spectra. We claim a
+grammar-agnostic, verifier-grounded inference architecture---an inverse compiler with a shared
+observability and three-state-verdict layer---and demonstrate it on PKS, NRPS, and a typed PKS--NRPS
+hybrid grammar. The NRPS and hybrid grammars are v0 demonstrations of architecture generality, not
+full family coverage. With that scope fixed once, the specific limitations are:
 
 \begin{itemize}[leftmargin=1.4em,itemsep=2pt]
 \item \textbf{Partial executor coverage.} Single-mode cyclization plus a tetraketide-aromatic and
@@ -694,9 +729,10 @@ dimerization / depside coupling & non-local products & high (non-local) \\
 
 \section{Conclusion}
 
-This work does not add another black-box BGC$\to$structure predictor; it builds a sound
-\emph{inverse compiler} for fungal polyketide programs and uses it to \emph{measure}
-reconstructibility relative to a grammar. The fungal BGC-to-molecule ceiling is, we have argued and measured, a grammar problem
+This work does not add another black-box BGC$\to$structure predictor; it builds a grammar-agnostic
+\emph{inverse compiler} for biosynthetic programs---demonstrated on PKS, NRPS, and a typed
+PKS--NRPS hybrid---and uses its fungal-PKS instance to \emph{measure} reconstructibility relative to
+a grammar. The fungal BGC-to-molecule ceiling is, we have argued and measured, a grammar problem
 masquerading as a data problem---and grammar mismatch is itself the data deficit, because
 iteration makes the per-step core non-identifiable from gene content alone. We quantified the
 reconstructible fraction (exactly $8/326$; $7$ of the $106$ gene-budgeted clusters under a
@@ -711,18 +747,15 @@ highly-reducing control wall and a broad, coverage-addressable aromatic-cyclizat
 the same sound executor serves as a constrained candidate generator, turning a negative result
 into a usable mining tool. The tools, benchmark, and analyses are open and reproducible.
 
-\paragraph{A program-synthesis view.} These results are one instance of a more general framing: a
-BGC is not a molecular blueprint but a \emph{constrained program space}. The product is the image
-$y=\mathrm{Exec}_{\Theta}(z;G)$ of a latent biosynthetic program $z$ under a biochemical operator
-library $\Theta$, so genome mining is inference over $z$ from the observables in hand rather than
-direct $\mathrm{BGC}\!\to\!$structure regression, with the residual uncertainty in $z$ falling as
-orthogonal observables are added---the operational mode quantified in Section~\ref{sec:mining}.
-Read this way, the failure modes form a reconstructibility taxonomy---operator coverage, hidden
-per-cycle control, tailoring under-constraint, and non-local pathway structure---and the field's
-single accuracy score aggregates distinct phenomena that this decomposition separates. Developing
-the typed operator library and observability model into a general verifier-grounded
-program-inference engine is the natural next step; the present paper is its polyketide case study,
-with a reference v0 (\code{lpi.engine}) released alongside.
+\paragraph{Outlook.} Read through the program-synthesis lens of the introduction
+($y=\mathrm{Exec}_{\Theta}(z;G)$), the failure modes form a reconstructibility taxonomy---operator
+coverage, hidden per-cycle control, tailoring under-constraint, and non-local pathway structure---and
+the field's single accuracy score aggregates distinct phenomena this decomposition separates.
+Deepening the family grammars (NRPS substrate specificity, the tetramic-acid release, a learned
+transition policy for the highly-reducing wall) and validating the observability layer on real
+spectra are the natural next steps. The architecture itself---grammar-specific generation under a
+shared observability and three-state verdict layer---is the contribution, with the reference
+implementation (\code{lpi.engine}) released alongside.
 
 \paragraph{Reproducibility.} All results are produced by single commands over pinned
 dependencies; see Appendix~\ref{app:repro}.
