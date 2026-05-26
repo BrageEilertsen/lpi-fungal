@@ -512,6 +512,21 @@ regime. We release a reference implementation, \code{lpi.engine}: a single inter
 cluster's domain set and observables (accurate mass, MS/MS) to ranked candidate cores and a
 per-cluster reconstructibility verdict.
 
+\paragraph{A first real-cluster case study.} To test the engine against the outside world rather
+than only curated or simulated targets, we ran it \emph{blind} on a real MIBiG cluster---the
+6-methylsalicylic acid synthase (\texttt{BGC0001275}, producer \emph{Glarea lozoyensis}). MIBiG
+annotates the cluster only as class ``PKS'' with no per-module domains---the very gap this paper
+documents---so the grammar input is the canonical 6-MSAS architecture (KS-AT-DH-KR-ACP), and the
+sole observable is the real monoisotopic mass ($152.0473$, PubChem CID~$11279$) supplied as the
+$[\mathrm{M}-\mathrm{H}]^-$ ion at $5$~ppm; the product structure is withheld from inference. The
+domain alphabet alone admits $1{,}121$ producible cores, the accurate mass collapses these to a
+single candidate, and the engine returns \textsc{verified}. Only on reveal do we score it: the
+unique candidate is exactly 6-methylsalicylic acid (rank~$1$). A real EI-MS spectrum (MassBank
+\texttt{MSBNK-Fac\_Eng\_Univ\_Tokyo-JP008039}) corroborates the molecular ion at $m/z\,152$; being
+EI rather than LC-MS/MS it serves as a mass sanity reference, not a fragmentation rung, and since
+the mass alone is already decisive we report the MS/MS rung as not applied rather than simulate it.
+This is one clean real-cluster case, not a benchmark.
+
 \section{A path forward: differential learning, demonstrated}
 \label{sec:differential}
 
@@ -693,10 +708,11 @@ heavily tailored) compounds.
 demonstrates the transferable per-step chemistry; the iteration grammar (the $100\%\!\to\!57\%$
 gap) remains open for \emph{blind} prediction, though we show it is largely circumvented given an
 MS mass (Section~\ref{sec:mining}).
-\item \textbf{The mining pipeline is demonstrated, not yet validated.} The
-alphabet$+$mass$+$MS/MS chain is shown as near-unique recovery on reachable cores and as
-fragment-fingerprint \emph{separability} under a crude in-silico fragmenter; validation against
-real untargeted-metabolomics spectra (e.g.\ CFM-ID / GNPS), per-cluster domain alphabets from
+\item \textbf{The mining pipeline has one real-cluster case study, not yet a benchmark.} A blind
+real-cluster, real-mass run (6-MSA, Section~\ref{sec:mining}) verifies the known product at rank~$1$;
+beyond it the alphabet$+$mass$+$MS/MS chain is shown as near-unique recovery on reachable cores and
+as fragment-fingerprint \emph{separability} under a crude in-silico fragmenter. A multi-cluster
+benchmark, real LC-MS/MS validation (e.g.\ CFM-ID / GNPS), per-cluster domain alphabets from
 antiSMASH/fungiSMASH, and a learned candidate-ranking prior (data-limited at present) are the
 natural next steps. In clean form mass and MS/MS act as hard masks; in real metabolomics (adducts,
 isotopes, noisy or partial spectra) they become high-confidence constraints with explicit
