@@ -13,8 +13,9 @@ manifold: how many designs are structural-only ('engineerable' with documented e
 control edit ('frontier', iteration-program editing). For fungal iterative PKS the control axis
 dominates -- design here *is* iteration-program editing, which only this architecture can formulate.
 
-Honesty: edit tiers are CLASS-level; specific directed-evolution citations (Khosla/Cane/Leadlay for
-structural; Tang/Cox for control) and the full MIBiG/ClusterCAD manifold are the flagged data steps.
+Cost basis: edit tiers are literature-curated (data/curation/edit_tiers.csv + edit_precedent.md);
+control edits stack super-additively (Cox 2023). The full MIBiG/ClusterCAD manifold is the flagged
+data step (bacterial generalization).
 """
 from __future__ import annotations
 
@@ -48,7 +49,7 @@ def main() -> None:
     print(f"{'':46s} {'edit-specs':>10s} {'distinct products':>18s}")
     for k, note in [("engineerable", "structural-only, documented"),
                     ("frontier", ">=1 control edit (dominates)"),
-                    ("speculative", "release reprogram / too far")]:
+                    ("speculative", "de-novo C-MeT / shortened chain / too far")]:
         print(f"  {k:13s} ({note:30s}) {len(ds[k]):10d} {distinct_products(ds[k]):18d}")
     print("\n  -> for fungal iterative PKS the *control* axis dominates the design space: biosynthetic")
     print("     design here is mostly iteration-program editing, the axis only this engine can express.\n")

@@ -22,7 +22,8 @@ from lpi.engine import State
 from lpi.executor import core
 from lpi.grammars import PKS
 from lpi.observe import MSObservables, exact_mass, infer_ms
-from lpi.realizability import _target_domains, natural_manifold, one_edit_neighbours, realize
+from lpi.realizability import (_target_domains, cost, natural_manifold, one_edit_neighbours,
+                               realize)
 
 RDLogger.DisableLog("rdApp.*")
 
@@ -64,7 +65,7 @@ def main() -> None:
         if r.verdict == "natural":
             continue
         rows.append((r, prog, smi))
-    rows.sort(key=lambda t: (sum(int(e.tier) for e in t[0].edits), t[0].control_cost))
+    rows.sort(key=lambda t: (cost(t[0].edits), t[0].control_cost))
 
     print(f"{'(S,C)':>6s} {'verdict':12s} {'mass':>9s}  {'verifies by':19s} edit / structure")
     print("-" * 100)

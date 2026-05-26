@@ -17,10 +17,14 @@ Two edit axes, because they map onto fundamentally different wet-lab capabilitie
 A design at "(2 structural, 1 control)" is a different proposition than "(3 structural, 0 control)":
 the first needs iteration-program editing (frontier protein engineering), the second is standard.
 
-Soundness boundary: the per-edit feasibility *tier* is CLASS-level (these edit classes exist in the
-combinatorial-biosynthesis literature); it does NOT attach specific paper citations. Curating which
-exact edits are documented (Khosla / Cane / Leadlay for structural; Tang / Cox for control) is a
-separate, web-verifiable literature step -- the moat -- and is deliberately not fabricated here.
+Cost basis (curated 2026-05-26; see data/curation/edit_tiers.csv + edit_precedent.md): per-edit tiers
+are grounded in real PKS-engineering precedent. Structural edits with bacterial modular-PKS precedent
+-- AT/extender swap, loading/starter swap, reductive-loop add -- are DOCUMENTED; de-novo C-MeT
+insertion (add_cmt) and cyclization-mode reprogramming (release) are harder. CONTROL edits are the
+iteration-grammar frontier (Cox 2023, Nat. Prod. Rep. 40:9-27): a single edit near a real template is
+achievable (Fisch & Cox 2011, JACS 133:16635) but stacking them is "extremely difficult" because the
+programme is emergent and non-separable -- so control cost is SUPER-ADDITIVE (quadratic in the number
+of control edits; see ``cost``).
 """
 from __future__ import annotations
 
@@ -110,8 +114,16 @@ def _target_domains(prog: Program) -> frozenset[str]:
 
 
 def cost(edits: list[Edit]) -> int:
-    """Total tier-weighted edit cost (control edits and release reprogramming weigh more)."""
-    return sum(int(e.tier) for e in edits)
+    """Total realizability cost. Structural edits sum linearly by tier (independent domain-content
+    swaps with bacterial precedent). CONTROL edits are SUPER-ADDITIVE -- quadratic in their count --
+    because the iteration programme is an emergent, non-separable function of all per-cycle decisions
+    (Cox 2023): one control edit near a real template is achievable (Fisch & Cox 2011) but stacked
+    control edits scale toward the iteration-program wall. The form ``(sum of control tiers) * (number
+    of control edits)`` reduces to the linear tier cost at k=1 and grows as ~k^2 for k>1."""
+    structural = sum(int(e.tier) for e in edits if e.axis is Axis.STRUCTURAL)
+    control_edits = [e for e in edits if e.axis is Axis.CONTROL]
+    control = sum(int(e.tier) for e in control_edits) * len(control_edits)
+    return structural + control
 
 
 def edits_from(target: Program, template: Template) -> list[Edit]:
@@ -123,14 +135,17 @@ def edits_from(target: Program, template: Template) -> list[Edit]:
     # STRUCTURAL: domain-content delta -- catalytic domains the target needs that the template lacks.
     # (Adding a domain is the structural edit; programming when it fires is a control edit, below.)
     for d in sorted(_target_domains(target) - dom):
-        out.append(Edit("add_domain", f"+{d}", Tier.DOCUMENTED, Axis.STRUCTURAL))
+        if d == "CMT":   # de-novo C-MeT insertion into a methylation-free synthase: no precedent
+            out.append(Edit("add_cmt", "+CMT", Tier.SPECULATIVE, Axis.STRUCTURAL))
+        else:            # reductive-loop add (KR/DH/ER): mature modular-PKS precedent
+            out.append(Edit("add_reductive", f"+{d}", Tier.DOCUMENTED, Axis.STRUCTURAL))
     if target.starter != tp.starter:
         out.append(Edit("starter", f"{tp.starter}->{target.starter}", Tier.DOCUMENTED, Axis.STRUCTURAL))
     if {c.extender for c in target.cycles} != {c.extender for c in tp.cycles}:
         out.append(Edit("extender", "AT extender swap", Tier.DOCUMENTED, Axis.STRUCTURAL))
-    if target.release != tp.release:
+    if target.release != tp.release:   # TE/cyclase swap -- structurally a domain swap (bacterial canon)
         out.append(Edit("release", f"{tp.release.value}->{target.release.value}",
-                        Tier.SPECULATIVE, Axis.STRUCTURAL))
+                        Tier.PLAUSIBLE, Axis.STRUCTURAL))
     # CONTROL: the iteration program given the available domains -- which cycle each domain fires on
     # (per-cycle reduction / C-MeT) and the iteration count. This is the iteration-grammar frontier.
     nt, nm = len(target.cycles), len(tp.cycles)
@@ -143,8 +158,10 @@ def edits_from(target: Program, template: Template) -> list[Edit]:
             out.append(Edit("c_methyl", f"cyc{i + 1} {'+' if ct.c_methyl else '-'}C-MeT",
                             Tier.PLAUSIBLE, Axis.CONTROL))
     for i in range(min(nt, nm), max(nt, nm)):
-        out.append(Edit("cycle_add" if nt > nm else "cycle_remove",
-                        f"{'+' if nt > nm else '-'}cyc{i + 1}", Tier.PLAUSIBLE, Axis.CONTROL))
+        if nt > nm:      # adding an iteration: per-cycle reprogramming, plausible near a template
+            out.append(Edit("cycle_add", f"+cyc{i + 1}", Tier.PLAUSIBLE, Axis.CONTROL))
+        else:            # removing an iteration changes the program's termination count -- speculative
+            out.append(Edit("cycle_remove", f"-cyc{i + 1}", Tier.SPECULATIVE, Axis.CONTROL))
     return out
 
 
@@ -161,8 +178,8 @@ def _verdict(edits: list[Edit]) -> str:
 
 
 def realize(target: Program, manifold: list[Template]) -> Realizability:
-    """Nearest natural cluster + edit path, ranked by total tier-weighted cost -- the most
-    realizable route (control edits and release reprogramming weigh more than documented swaps)."""
+    """Nearest natural cluster + edit path, ranked by total cost -- the most realizable route
+    (control edits stack super-additively; see ``cost``)."""
     best: tuple[int, Template, list[Edit]] | None = None
     for tmpl in manifold:
         es = edits_from(target, tmpl)

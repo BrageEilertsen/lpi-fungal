@@ -1,0 +1,10 @@
+axis,kind,class_tier,n_designs_manifold,n_designs_6msa,example_instances,axis_note
+control,reduction,PLAUSIBLE,49,8,cyc1 dh->er; cyc1 dh->keto; cyc1 dh->kr; cyc1 keto->dh; cyc1 keto->er; cyc1 keto->kr; cyc1 kr->dh; cyc1 kr->er ...,iteration program (which cycle a domain fires on / iteration count); the 0.57 frontier
+control,cycle_add,PLAUSIBLE,20,4,+cyc4; +cyc5; +cyc6,iteration program (which cycle a domain fires on / iteration count); the 0.57 frontier
+control,c_methyl,PLAUSIBLE,19,3,cyc1 +C-MeT; cyc2 +C-MeT; cyc3 +C-MeT; cyc4 +C-MeT; cyc5 +C-MeT,iteration program (which cycle a domain fires on / iteration count); the 0.57 frontier
+control,cycle_remove,SPECULATIVE,5,1,-cyc3; -cyc4; -cyc5,iteration program (which cycle a domain fires on / iteration count); the 0.57 frontier
+structural,add_reductive,DOCUMENTED,22,4,+DH; +ER; +KR,domain content; transfers from bacterial modular-PKS engineering precedent
+structural,extender,DOCUMENTED,19,3,AT extender swap,domain content; transfers from bacterial modular-PKS engineering precedent
+structural,add_cmt,SPECULATIVE,19,3,+CMT,domain content; transfers from bacterial modular-PKS engineering precedent
+structural,release,PLAUSIBLE,15,3,aldol_aromatic->dihydroisocoumarin; aldol_aromatic->hydrolysis; aldol_aromatic->lactonization; dihydroisocoumarin->aldol_aromatic; dihydroisocoumarin->hydrolysis; dihydroisocoumarin->lactonization; hydrolysis->aldol_aromatic; hydrolysis->dihydroisocoumarin ...,domain content; transfers from bacterial modular-PKS engineering precedent
+structural,starter,DOCUMENTED,15,3,acetyl->butyryl; acetyl->hexanoyl; acetyl->propionyl,domain content; transfers from bacterial modular-PKS engineering precedent
