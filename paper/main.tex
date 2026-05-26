@@ -35,11 +35,12 @@ clusters is hard, and a verifier-grounded path forward}
 \maketitle
 
 \begin{abstract}
-Machine-learning models that map a fungal biosynthetic gene cluster (BGC) to its chemical
-product stall at balanced accuracies of $51$--$68\%$, and pooling roughly a thousand
-bacterial BGCs with the few hundred fungal ones barely moves the ceiling. We argue, and then
-\emph{measure}, that this ceiling is not primarily a data-volume problem but a
-\emph{computability} fact. Bacterial modular polyketide synthases (PKS) are colinear, so the
+Machine-learning models that infer fungal secondary-metabolite properties from biosynthetic
+gene cluster features remain weak (balanced accuracies of $51$--$68\%$), and pooling roughly a
+thousand bacterial BGCs with the few hundred fungal ones barely moves the ceiling. We argue, and
+then \emph{measure}, that the analogous ceiling for \emph{structure} prediction is not primarily a
+data-volume problem but a \emph{reconstructibility} fact: a fungal BGC often does not expose the
+latent biosynthetic execution trace needed to reconstruct the product. Bacterial modular polyketide synthases (PKS) are colinear, so the
 per-module chemistry is readable from domain content---which is why a per-module intermediate
 database (ClusterCAD) exists for bacteria. Fungal PKS are iterative: a single module is reused
 across cycles under a hidden program, so neither the per-step chemistry nor the program is
@@ -230,6 +231,17 @@ set permits an alternative route---e.g.\ hexanoic acid is reached as
 $\text{acetyl}+2\!\times\!\text{ER}$ or $\text{butyryl}+1\!\times\!\text{ER}$, giving
 $|\zstar|=2$---so identifiability is governed by the operator-set constraints, as the
 formulation predicts.
+
+\paragraph{Soundness and completeness are relative to the grammar.} All guarantees are stated with
+respect to the operator library $\Theta$, the (domain-derived) grammar $G$, and the observable set
+$O$. For $Z^{\star}_{\Theta}(y;G,O)=\{\,z\in Z_{\Theta}(G,O):\mathrm{Exec}_{\Theta}(z;G)\simeq y\,\}$
+the search is \emph{sound}---every returned $z$ executes to a structure matching $y$ under
+$\simeq$---and \emph{relatively complete}: every legal program in the enumerated grammar that
+matches $y$ is returned, up to the beam bound. It is deliberately \emph{not} biologically complete:
+if nature uses an operator outside $\Theta$, an empty $Z^{\star}$ is correct relative to $\Theta$
+even though the molecule is producible \emph{in vivo}. An empty consistent set is therefore a typed
+\emph{certificate of failure mode}---missing operator, hidden control, tailoring under-constraint,
+or non-local pathway---not a claim of biological impossibility.
 
 \section{A curated benchmark of fungal PKS programs}
 \label{sec:benchmark}
@@ -570,9 +582,14 @@ library $\Theta$, so genome mining is inference over $z$ from the observables in
 direct $\mathrm{BGC}\!\to\!$structure regression. The residual uncertainty in $z$---which we
 measure operationally by the size of the verified candidate set, not by a calibrated
 entropy---falls as orthogonal observables are added: the genome alone leaves it high (the $0.57$
-per-cycle transfer); the domain alphabet bounds the operators; for cores within executor reach an
-MS-measured mass collapses them to a median of one candidate; and predicted MS/MS resolves the
-residual isomers. Read this way, the failure modes form a reconstructibility taxonomy---operator
+per-cycle transfer); the domain alphabet bounds the operators; for small cores under a tight
+(domain-informed) alphabet an MS-measured mass alone collapses the set to $\sim\!1$, while for
+complex cores under a rich grammar the mass collapses it sharply but not uniquely and predicted
+MS/MS resolves the residual to a single core. A grammar-relative identifiability benchmark over
+$30$ sampled cores bears this out (median verified set $1672\!\to\!219\!\to\!1$ across grammar
+$\to$ $+$mass $\to$ $+$MS/MS; the true core is recovered $30/30$ under the correct grammar and true
+mass but $0/30$ under a deliberately wrong, non-reducing grammar---so the grammar and the mass each
+do real work, and the small sets are not an artefact of a tiny search space). Read this way, the failure modes form a reconstructibility taxonomy---operator
 coverage, hidden per-cycle control, tailoring under-constraint, and non-local pathway
 structure---and the field's single accuracy score aggregates distinct phenomena that this
 decomposition separates. Developing the typed operator library and observability model into a
