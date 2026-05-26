@@ -381,9 +381,13 @@ $8/326$, the $304/326$ unknown subclasses, and the $95/99$ core-unreachable diag
 faces of the same fact.
 
 \paragraph{Two orthogonal walls, not one.} The ceiling is not uniform, and conflating its parts
-overstates the computability claim. A structural subclass proxy (aromatic-carbon fraction and
-saturation, validated against the curated HR/NR/PR labels on the reduced-vs-aromatic axis) splits
-the $326$ products into three regimes. Non- and partially-reducing aromatics ($\sim\!61\%$) have an
+overstates the computability claim. A structural subclass proxy\footnote{Per product:
+$N\!>\!0$ heavy atoms $\Rightarrow$ hybrid/non-PKS; else aromatic-carbon fraction
+$f_{\mathrm{ar}}\!\ge\!0.4 \Rightarrow$ NR/PR aromatic; $f_{\mathrm{ar}}\!\le\!0.1$ with
+$\mathrm{H{:}C}\!\ge\!1.4 \Rightarrow$ HR-reduced; otherwise PR/mixed. On the twelve curated
+systems this recovers the reduced-vs-aromatic axis for all four highly-reducing entries; it does
+\emph{not} separate NR from PR (both aromatic), which the two-walls split does not require.}
+(aromatic-carbon fraction and saturation) splits the $326$ products into three regimes. Non- and partially-reducing aromatics ($\sim\!61\%$) have an
 architecturally fixed reduction program---a non-reducing synthase makes an all-keto chain---so
 their only hard step is cyclization regiochemistry, which is deterministic and \emph{incrementally
 addressable by executor coverage}: generalising the resorcylic-aldol closure to an arbitrary
@@ -391,7 +395,11 @@ starter alkyl, for instance, lifts exact reconstruction from $8$ to $9/326$ (oli
 no loss of soundness. Highly-reducing polyketides ($\sim\!9\%$) cyclize trivially but carry the
 genuine computability wall---the per-cycle reduction program, i.e.\ the $100\%\!\to\!57\%$ gap,
 shown above to be neither positional nor bacteria-transferable. The remaining $\sim\!30\%$ are
-$N$-containing PKS--NRPS hybrids or non-PKS skeletons, a scope boundary rather than a wall. Hence
+$N$-containing PKS--NRPS hybrids or non-PKS skeletons, a scope boundary rather than a wall: the
+achiral C/H/O executor tracks the polyketide backbone up to the PKS--NRPS handoff (the linear
+checkpoint) but does not model the amino-acid condensation and release, so the PKS-core portion of
+a hybrid such as the tenellin synthase TenS stays computable even when its tetramic-acid product
+does not. Hence
 ``fungal BGC$\to$structure is uncomputable'' is too strong: the computability wall is the narrow
 highly-reducing slice, while the dominant aromatic fraction is a tractable coverage problem.
 Because the executor is a \emph{sound generator}, a cluster's catalytic alphabet moreover bounds a
@@ -480,8 +488,11 @@ profile (PF08659) via HMMER---but the label$\to$sequence join does not come clea
 structure-derived ClusterCAD labels count only confirmed $\mathrm{C_2}/\mathrm{C_3}$ extension
 modules, whereas the profile detects \emph{every} ketoreductase domain (loading modules, standalone
 tailoring short-chain dehydrogenases, contig neighbours), reconciling for only a handful of clusters
-without reimplementing ClusterCAD's module parser. We therefore claim no number for the head; a clean
-run awaits a ClusterCAD database export or domain calling on cluster-scoped sequences.
+without reimplementing ClusterCAD's module parser. This is a deliberate algorithmic boundary rather
+than a missing experiment: the per-domain label$\to$sequence link \emph{is} the bespoke module
+decomposition ClusterCAD performs, and rebuilding it from raw genome sequence is out of scope here.
+The head is specified, coded, and runnable the moment a per-domain-labelled sequence source exists
+(a ClusterCAD export, or domain calls reconciled to ClusterCAD's module boundaries).
 
 \section{Related work}
 \label{sec:related}
