@@ -17,7 +17,7 @@ from rdkit import RDLogger
 
 from lpi.chem import mol as M
 from lpi.grammars import PKS
-from lpi.matching import Cluster, Peak, match
+from lpi.matching import Attribution, Cluster, Peak, match
 from lpi.observe import ADDUCTS, exact_mass, ion_mz
 
 RDLogger.DisableLog("rdApp.*")
@@ -64,18 +64,19 @@ def main() -> None:
     peaks.append(Peak("decoy@322.1", ion_mz(323.1234, ADDUCTS["[M-H]-"]), ("[M-H]-",), 5.0, name="decoy"))
 
     res = match(clusters, peaks)
-    calls = res.discovery_calls()
-    print(f"{'peak':16s} {'verdict':14s} {'struct?':8s} attribution")
+    calls = res.peak_calls()
+    print(f"{'peak':16s} {'structure':14s} {'struct?':8s} attribution")
     print("-" * 78)
     for p in peaks:
         c = calls.get(p.id)
         if c is None:
-            print(f"{p.id:16s} {'UNEXPLAINED':14s} {'-':8s} no cluster under current grammars")
+            print(f"{p.id:16s} {'OUT-OF-GRAMMAR':14s} {'-':8s} unattributed (no cluster)")
             continue
         tb, tflat = truth.get(p.id, (None, None))
-        struct_ok = "YES" if tflat and tflat in {_flat(s) for s in c["structures"]} else "no"
-        attrib = ("AMBIGUOUS: " + ",".join(c["clusters"])) if c["cluster_ambiguous"] else c["clusters"][0]
-        print(f"{p.id:16s} {c['state'].value:14s} {struct_ok:8s} {attrib}")
+        struct_ok = "YES" if tflat and tflat in {_flat(s) for s in c.structures} else "no"
+        attrib = ("AMBIGUOUS: " + ",".join(c.clusters)) if c.attribution is Attribution.AMBIGUOUS \
+            else f"unique: {c.clusters[0]}"
+        print(f"{p.id:16s} {c.structure_verdict.value:14s} {struct_ok:8s} {attrib}")
     print(f"\nunexplained peaks: {res.unexplained_peaks or 'none'}")
     print(f"total scored edges: {len(res.edges)}")
     print("\nReading: the structure is recovered per peak (struct?=YES); where PR clusters share the\n"

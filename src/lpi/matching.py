@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass, field
+from enum import Enum
 from typing import Any
 
 from lpi.engine import State
@@ -65,6 +66,29 @@ class Assignment:
     score: float
 
 
+class Attribution(str, Enum):
+    """The cluster axis of a peak call -- which cluster produced it (orthogonal to the structure
+    axis, which is the engine's State: whether the *molecule* is determined)."""
+
+    UNIQUE = "unique"            # one cluster best-explains the peak
+    AMBIGUOUS = "ambiguous"      # several (often grammar-degenerate) clusters tie -- needs sequence/expression
+    UNATTRIBUTED = "unattributed"  # no cluster under the current grammars
+
+
+@dataclass
+class PeakCall:
+    """A peak's call on two orthogonal axes: structure (the molecule) and attribution (the cluster).
+    These do not collapse into one verdict -- MS/MS resolves structure; expression/sequence resolves
+    attribution -- and a downstream planner targets whichever axis is unresolved."""
+
+    peak_id: str
+    structure_verdict: State        # VERIFIED / UNDER_OBSERVED / OUT_OF_GRAMMAR -- the molecule
+    attribution: Attribution        # UNIQUE / AMBIGUOUS / UNATTRIBUTED -- the cluster
+    structures: list[str]
+    clusters: list[str]
+    score: float
+
+
 @dataclass
 class MatchResult:
     edges: list[Assignment] = field(default_factory=list)        # all edges, ranked by score desc
@@ -83,27 +107,27 @@ class MatchResult:
     def edges_for_peak(self, peak_id: str) -> list[Assignment]:
         return [e for e in self.edges if e.peak_id == peak_id]
 
-    def discovery_calls(self) -> dict[str, dict]:
-        """Per peak, the honest discovery call separating *structure* from *cluster attribution*:
-        the top-scoring structure(s) and the cluster(s) tied at the top. When several
-        grammar-degenerate clusters tie, the structure is determined but the producing cluster is
-        not (``cluster_ambiguous``) -- the signal that disambiguation needs sequence/MS-MS/expression.
-        """
+    def peak_calls(self) -> dict[str, PeakCall]:
+        """Per peak, the call on the two orthogonal axes (structure, attribution). The structure
+        verdict is VERIFIED only when the top-scoring edges agree on a single structure that each is
+        individually verified; otherwise the molecule is under-observed. The attribution is AMBIGUOUS
+        when grammar-degenerate clusters tie -- the molecule is pinned but the producing cluster is not.
+        (Peaks with no edge are OUT_OF_GRAMMAR / UNATTRIBUTED; see ``unexplained_peaks``.)"""
         by_peak: dict[str, list[Assignment]] = {}
         for e in self.edges:
             by_peak.setdefault(e.peak_id, []).append(e)
-        out: dict[str, dict] = {}
+        out: dict[str, PeakCall] = {}
         for pid, es in by_peak.items():
             top = max(e.score for e in es)
             tied = [e for e in es if abs(e.score - top) < 1e-9]
-            out[pid] = {
-                "state": tied[0].state,
-                "score": top,
-                "structures": sorted({e.top_smiles for e in tied if e.top_smiles}),
-                "clusters": sorted({e.cluster_id for e in tied}),
-                "cluster_ambiguous": len({e.cluster_id for e in tied}) > 1,
-                "n_edges": len(es),
-            }
+            structures = sorted({e.top_smiles for e in tied if e.top_smiles})
+            clusters = sorted({e.cluster_id for e in tied})
+            if len(structures) == 1 and all(e.state is State.VERIFIED for e in tied):
+                structure_verdict = State.VERIFIED
+            else:
+                structure_verdict = State.UNDER_OBSERVED            # molecule not pinned
+            attribution = Attribution.UNIQUE if len(clusters) == 1 else Attribution.AMBIGUOUS
+            out[pid] = PeakCall(pid, structure_verdict, attribution, structures, clusters, top)
         return out
 
 

@@ -10,7 +10,7 @@ from __future__ import annotations
 from lpi.chem import mol as M
 from lpi.engine import State
 from lpi.grammars import PKS
-from lpi.matching import Cluster, Peak, match
+from lpi.matching import Attribution, Cluster, Peak, match
 from lpi.observe import ADDUCTS, exact_mass, ion_mz
 
 _ORS = "Cc1cc(O)cc(O)c1C(=O)O"          # orsellinic acid, C8H8O4 (non-reducing)
@@ -47,20 +47,23 @@ def test_decoy_peak_is_unexplained():
 
 def test_real_peaks_recover_the_correct_structure():
     clusters, peaks = _setup()
-    calls = match(clusters, peaks).discovery_calls()
+    calls = match(clusters, peaks).peak_calls()
     for pid, smi in [("ors", _ORS), ("msa", _MSA), ("mel", _MEL)]:
-        assert calls[pid]["state"] is State.VERIFIED
-        assert _flat(smi) in {_flat(s) for s in calls[pid]["structures"]}
+        assert calls[pid].structure_verdict is State.VERIFIED
+        assert _flat(smi) in {_flat(s) for s in calls[pid].structures}
 
 
-def test_cluster_attribution_ambiguous_for_grammar_degenerate_clusters():
+def test_structure_and_attribution_are_separate_axes():
     clusters, peaks = _setup()
-    calls = match(clusters, peaks).discovery_calls()
-    # 6-MSA: both PR clusters share {KS,AT,DH,KR,ACP} -> attribution ambiguous, structure unique
-    assert calls["msa"]["cluster_ambiguous"]
-    assert {"PR1", "PR2"} <= set(calls["msa"]["clusters"])
+    calls = match(clusters, peaks).peak_calls()
+    msa = calls["msa"]
+    # 6-MSA: the molecule is pinned (structure VERIFIED) but the cluster is not (both PR clusters
+    # share {KS,AT,DH,KR,ACP}) -- the two axes diverge, which is the whole point of separating them
+    assert msa.structure_verdict is State.VERIFIED
+    assert msa.attribution is Attribution.AMBIGUOUS
+    assert {"PR1", "PR2"} <= set(msa.clusters)
     # the non-reducing cluster cannot make 6-MSA (needs a ketoreduction) -> not a candidate producer
-    assert "NR" not in calls["msa"]["clusters"]
+    assert "NR" not in msa.clusters
 
 
 def test_match_graph_has_no_edges_to_unreachable_peak():
