@@ -43,7 +43,8 @@ bacterial BGCs with the few hundred fungal ones barely moves the ceiling. We arg
 per-module chemistry is readable from domain content---which is why a per-module intermediate
 database (ClusterCAD) exists for bacteria. Fungal PKS are iterative: a single module is reused
 across cycles under a hidden program, so neither the per-step chemistry nor the program is
-recoverable from the cluster alone, and no fungal ClusterCAD can exist. We make this concrete
+recoverable from the cluster alone, so no fungal analogue of ClusterCAD can exist in the same
+per-module tabular sense without additional observables. We make this concrete
 with open tools and a three-tier reconstruction analysis over all $326$ fungal PKS entries in
 MIBiG~4.0. We build (i)~a sound, deterministic chemical \emph{executor} for fungal iterative
 PKS programs and a beam-search \emph{verifier} that returns the exact consistent program set
@@ -107,8 +108,9 @@ structural-similarity proxies are unreliable here, and a tailoring-latent reform
 quantifying what fraction of fungal polyketide products is computationally reconstructible
 from the gene cluster, and why the rest is not.
 \item The \textbf{conceptual result} (Section~\ref{sec:concept}): grammar mismatch and data
-deficit are one fact. Colinearity makes per-step cores computable (so ClusterCAD exists);
-iteration makes them uncomputable (so no fungal ClusterCAD exists). This explains the field's
+deficit are one fact. Colinearity makes per-step cores reconstructible from domain content (so
+ClusterCAD exists); iteration makes them non-identifiable from the fixed domain set alone (so no
+fungal analogue can exist in the same per-module tabular sense). This explains the field's
 $51$--$68\%$ ceiling.
 \item The \textbf{differential-learning reformulation} ($\Delta\text{BGC}\!\to\!
 \Delta\text{structure}$, Section~\ref{sec:differential}), \emph{demonstrated} on bacterial
@@ -139,9 +141,11 @@ degenerate---ER activity is supplied \emph{in trans} by the standalone partner L
 \citep{ma2009}. In NR-PKS a dedicated product-template (PT) domain dictates the regioselectivity
 of aromatic-ring cyclization \citep{crawford2009}.
 
-\paragraph{The hypothesis, sharpened to computability.} We hypothesize that the $51$--$68\%$
-ceiling reflects a control-flow mismatch rather than a sample-size limit, and that the precise
-statement is about computability: in colinear assembly lines the per-step core \emph{is a
+\paragraph{The hypothesis, sharpened to reconstructibility.} We hypothesize that the $51$--$68\%$
+ceiling reflects a control-flow mismatch rather than a sample-size limit. We state this as a
+\emph{reconstructibility} (identifiability) property, not undecidability: throughout, ``computable''
+is shorthand for whether the per-step core is recoverable from the BGC-visible domain content under
+our sound executor grammar. In colinear assembly lines the per-step core \emph{is a
 function of domain content} and can therefore be tabulated (ClusterCAD); in iterative assembly
 lines the same domain set must perform different chemistry on different cycles, so the per-step
 core is \emph{not} a function of domain content and the end-product-to-program map is
@@ -288,7 +292,9 @@ core-match (right, grey) is a permissive upper bound shown for contrast, not a t
 
 \subsection{Tier 1 --- exact match: 8/326}
 Searching for a PKS program whose executor image equals the product exactly yields
-\textbf{$8/326$} reconstructible products: small untailored aromatics and lactones (orsellinic
+\textbf{$8/326$} reconstructible products (a lower bound under the \emph{implemented} executor
+grammar---an artefact of operator coverage, not an absolute property of fungal PKS biology):
+small untailored aromatics and lactones (orsellinic
 acid, 6-MSA, the triacetic-acid-lactone family) plus a handful of reduced linears. This is the
 quantitative face of the computability claim: only the untailored, single-mode-cyclized
 fraction is directly reconstructible.
@@ -373,7 +379,8 @@ portion of hybrids would thus unlock substantially more than the higher PT-aroma
 The three tiers cohere into one statement. In colinear bacterial PKS the per-module core is a
 function of domain content, so it can be tabulated---ClusterCAD is the existence proof. In
 iterative fungal PKS the \emph{same} domains must do different chemistry on different cycles, so
-the per-step core is not a function of domain content and no fungal ClusterCAD can be built;
+the per-step core is not a function of the fixed domain set alone, so no fungal analogue of
+ClusterCAD can be built in the same per-module tabular sense without further observables;
 the end-product$\to$program map is many-to-one and the per-cycle intermediates are unobserved.
 This is why augmenting scarce fungal data with abundant bacterial data does not help: the
 bacterial data teaches a control flow that is structurally wrong for fungi. The exact-match
@@ -544,7 +551,7 @@ natural next steps.
 
 The fungal BGC-to-molecule ceiling is, we have argued and measured, a grammar problem
 masquerading as a data problem---and grammar mismatch is itself the data deficit, because
-iteration makes the per-step core uncomputable from gene content. We quantified the
+iteration makes the per-step core non-identifiable from gene content alone. We quantified the
 reconstructible fraction (exactly $8/326$; $7$ of the $106$ gene-budgeted clusters under a
 tailoring-latent model, but $64\%$ conditional on a producible core), showed that
 structural-similarity proxies are unreliable for this question, and located the wall precisely at
@@ -555,6 +562,22 @@ the iteration program itself---and a \emph{narrow} target: the ceiling decompose
 highly-reducing computability wall and a broad, coverage-addressable aromatic-cyclization wall, and
 the same sound executor serves as a constrained candidate generator, turning an impossibility
 result into a usable mining tool. The tools, benchmark, and analyses are open and reproducible.
+
+\paragraph{A program-synthesis view.} These results are one instance of a more general framing: a
+BGC is not a molecular blueprint but a \emph{constrained program space}. The product is the image
+$y=\mathrm{Exec}_{\Theta}(z;G)$ of a latent biosynthetic program $z$ under a biochemical operator
+library $\Theta$, so genome mining is inference over $z$ from the observables in hand rather than
+direct $\mathrm{BGC}\!\to\!$structure regression. The residual uncertainty in $z$---which we
+measure operationally by the size of the verified candidate set, not by a calibrated
+entropy---falls as orthogonal observables are added: the genome alone leaves it high (the $0.57$
+per-cycle transfer); the domain alphabet bounds the operators; for cores within executor reach an
+MS-measured mass collapses them to a median of one candidate; and predicted MS/MS resolves the
+residual isomers. Read this way, the failure modes form a reconstructibility taxonomy---operator
+coverage, hidden per-cycle control, tailoring under-constraint, and non-local pathway
+structure---and the field's single accuracy score aggregates distinct phenomena that this
+decomposition separates. Developing the typed operator library and observability model into a
+general verifier-grounded program-inference engine is the natural next step; the present paper is
+its polyketide case study.
 
 \paragraph{Reproducibility.} All results are produced by single commands over pinned
 dependencies; see Appendix~\ref{app:repro}.
