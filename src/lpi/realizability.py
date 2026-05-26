@@ -1,46 +1,55 @@
-"""Realizability: design-by-grammar-inversion over the natural-cluster manifold.
+"""Realizability: design-by-grammar-inversion with a structural/control axis decomposition.
 
-The third direction. The executor runs forward (program -> structure) and the verifier runs inverse
-(structure -> programs). This module adds *design*: given a target program (e.g. one producing a
-desired structure), how far is it from something nature already builds? A program ``z`` is realizable
-to degree ``r`` if there is a known natural program ``z0`` reachable from ``z`` by ``r`` typed edits
--- the operations combinatorial biosynthesis actually performs (reductive-domain editing, AT
-starter/extender swaps, module deletion, C-methyltransferase insertion, cyclization/release
-reprogramming). The output is a *distance-to-realizable* coordinate for every target, plus the edit
-path and a feasibility verdict.
+The executor runs forward (program -> structure) and the verifier runs inverse (structure ->
+programs). This module adds *design*: given a target program, how far is it from something nature
+already builds, and -- crucially -- *along which axis*?
 
-Soundness boundary, stated plainly: the per-edit *tier* below is a CLASS-level feasibility judgment
-(these edit classes are established in combinatorial biosynthesis). It does NOT attach specific paper
-citations -- curating which exact edits are documented in the directed-evolution literature
-(Khosla / Cane / Leadlay / ...) is a separate, web-verifiable data step, and is deliberately not
-fabricated here. The metric's machinery is exact; the literature weighting is pluggable.
+Two edit axes, because they map onto fundamentally different wet-lab capabilities:
+
+* STRUCTURAL edits change the **domain content** -- adding a reductive domain, swapping the
+  loading/AT starter or extender, reprogramming the release cyclase. These transfer from bacterial
+  modular-PKS engineering precedent (domain swaps, module deletion) and are comparatively documented.
+* CONTROL edits change the **iteration program** with the domain set fixed -- which cycle a present
+  domain fires on (the per-cycle reduction pattern) or the iteration count. This is the
+  iteration-grammar frontier: exactly the 100%->57% wall of the differential probe, now as a design
+  dimension. No other tool can even formulate it, because none has the iteration-grammar machinery.
+
+A design at "(2 structural, 1 control)" is a different proposition than "(3 structural, 0 control)":
+the first needs iteration-program editing (frontier protein engineering), the second is standard.
+
+Soundness boundary: the per-edit feasibility *tier* is CLASS-level (these edit classes exist in the
+combinatorial-biosynthesis literature); it does NOT attach specific paper citations. Curating which
+exact edits are documented (Khosla / Cane / Leadlay for structural; Tang / Cox for control) is a
+separate, web-verifiable literature step -- the moat -- and is deliberately not fabricated here.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from enum import IntEnum
+from dataclasses import dataclass
+from enum import Enum, IntEnum
 
-from lpi.chem.program import Cycle, Program, ReductionState as R, Release
+from lpi.chem.program import Cycle, Extender, Program, ReductionState as R, Release
+
+
+class Axis(Enum):
+    STRUCTURAL = "structural"   # domain content -- bacterial-precedent-transferable
+    CONTROL = "control"         # iteration program -- the iteration-grammar frontier
 
 
 class Tier(IntEnum):
-    """Class-level feasibility of an edit operation (cost weight); 1 = most established."""
-
-    DOCUMENTED = 1     # an established combinatorial-biosynthesis edit class
-    PLAUSIBLE = 2      # grammatically legal, harder / less commonly engineered
-    SPECULATIVE = 3    # in-grammar but ~undocumented in vivo
+    DOCUMENTED = 1
+    PLAUSIBLE = 2
+    SPECULATIVE = 3
 
 
-# edit kind -> class-level tier (see module docstring: NOT specific-paper-cited)
-_TIER: dict[str, Tier] = {
-    "reduction": Tier.DOCUMENTED,    # KR/DH/ER activity edit / reductive-domain swap
-    "extender": Tier.DOCUMENTED,     # AT extender-unit swap (e.g. malonyl<->methylmalonyl)
-    "starter": Tier.DOCUMENTED,      # loading-module / starter-unit swap
-    "cycle_remove": Tier.DOCUMENTED, # module deletion / reduced iteration count
-    "c_methyl": Tier.PLAUSIBLE,      # C-methyltransferase insertion / removal
-    "cycle_add": Tier.PLAUSIBLE,     # module insertion / extra iteration
-    "release": Tier.SPECULATIVE,     # cyclase/thioesterase reprogramming (release-mode change)
+# reductive domains required to reach each beta-state.
+_RED_DOMAINS: dict[R, frozenset[str]] = {
+    R.KETO: frozenset(),
+    R.KR: frozenset({"KR"}),
+    R.DH: frozenset({"KR", "DH"}),
+    R.ER: frozenset({"KR", "DH", "ER"}),
 }
+
+ENGINEERABLE_MAX_EDITS = 3
 
 
 @dataclass(frozen=True)
@@ -48,97 +57,209 @@ class Edit:
     kind: str
     detail: str
     tier: Tier
+    axis: Axis
+
+
+@dataclass(frozen=True)
+class Template:
+    """A natural cluster: its program plus the catalytic domain set it carries (sets the axis of an
+    edit -- a reduction within the domain capability is control, one needing a new domain is structural)."""
+
+    id: str
+    program: Program
+    domains: frozenset[str]
 
 
 @dataclass
 class Realizability:
     target: Program
     nearest_id: str
-    nearest: Program
+    nearest: Template
     edits: list[Edit]
-    cost: int
-    verdict: str        # 'natural' | 'engineerable' | 'speculative'
+    verdict: str        # natural | engineerable | frontier | speculative
 
     @property
-    def n_edits(self) -> int:
-        return len(self.edits)
+    def structural_edits(self) -> list[Edit]:
+        return [e for e in self.edits if e.axis is Axis.STRUCTURAL]
+
+    @property
+    def control_edits(self) -> list[Edit]:
+        return [e for e in self.edits if e.axis is Axis.CONTROL]
+
+    @property
+    def structural_cost(self) -> int:
+        return len(self.structural_edits)
+
+    @property
+    def control_cost(self) -> int:
+        return len(self.control_edits)
 
 
-def edits_from(target: Program, template: Program) -> list[Edit]:
-    """The typed edit operations that transform ``template`` into ``target`` (positional v1:
-    cycle-by-cycle up to the shorter program, plus chain-length and starter/release deltas)."""
-    out: list[Edit] = []
-    if target.starter != template.starter:
-        out.append(Edit("starter", f"{template.starter}->{target.starter}", _TIER["starter"]))
-    if target.release != template.release:
-        out.append(Edit("release", f"{template.release.value}->{target.release.value}",
-                        _TIER["release"]))
-    nt, nm = len(target.cycles), len(template.cycles)
-    for i in range(min(nt, nm)):
-        ct, cm = target.cycles[i], template.cycles[i]
-        if ct.reduction != cm.reduction:
-            out.append(Edit("reduction", f"cyc{i + 1} {cm.reduction.value}->{ct.reduction.value}",
-                            _TIER["reduction"]))
-        if ct.c_methyl != cm.c_methyl:
-            out.append(Edit("c_methyl", f"cyc{i + 1} {'+' if ct.c_methyl else '-'}C-MeT",
-                            _TIER["c_methyl"]))
-        if ct.extender != cm.extender:
-            out.append(Edit("extender", f"cyc{i + 1} {cm.extender.value}->{ct.extender.value}",
-                            _TIER["extender"]))
-    for i in range(min(nt, nm), max(nt, nm)):
-        if nt > nm:
-            out.append(Edit("cycle_add", f"+cyc{i + 1}", _TIER["cycle_add"]))
-        else:
-            out.append(Edit("cycle_remove", f"-cyc{i + 1}", _TIER["cycle_remove"]))
-    return out
+def _norm(domains) -> frozenset[str]:
+    return frozenset(str(d).upper() for d in domains)
+
+
+def _target_domains(prog: Program) -> frozenset[str]:
+    """The catalytic (reductive + C-MeT) domains a program requires."""
+    d: set[str] = set()
+    for c in prog.cycles:
+        d |= _RED_DOMAINS[c.reduction]
+        if c.c_methyl:
+            d.add("CMT")
+    return frozenset(d)
 
 
 def cost(edits: list[Edit]) -> int:
-    """Tier-weighted edit cost (DOCUMENTED edits are cheap; SPECULATIVE ones expensive)."""
+    """Total tier-weighted edit cost (control edits and release reprogramming weigh more)."""
     return sum(int(e.tier) for e in edits)
 
 
-#: at most this many documented/plausible edits still counts as "engineerable".
-ENGINEERABLE_MAX_EDITS = 3
+def edits_from(target: Program, template: Template) -> list[Edit]:
+    """Typed edits transforming ``template`` into ``target``, each tagged with axis + tier
+    (positional v1: cycle-by-cycle to the shorter program, plus length and starter/release deltas)."""
+    dom = _norm(template.domains)
+    tp = template.program
+    out: list[Edit] = []
+    # STRUCTURAL: domain-content delta -- catalytic domains the target needs that the template lacks.
+    # (Adding a domain is the structural edit; programming when it fires is a control edit, below.)
+    for d in sorted(_target_domains(target) - dom):
+        out.append(Edit("add_domain", f"+{d}", Tier.DOCUMENTED, Axis.STRUCTURAL))
+    if target.starter != tp.starter:
+        out.append(Edit("starter", f"{tp.starter}->{target.starter}", Tier.DOCUMENTED, Axis.STRUCTURAL))
+    if {c.extender for c in target.cycles} != {c.extender for c in tp.cycles}:
+        out.append(Edit("extender", "AT extender swap", Tier.DOCUMENTED, Axis.STRUCTURAL))
+    if target.release != tp.release:
+        out.append(Edit("release", f"{tp.release.value}->{target.release.value}",
+                        Tier.SPECULATIVE, Axis.STRUCTURAL))
+    # CONTROL: the iteration program given the available domains -- which cycle each domain fires on
+    # (per-cycle reduction / C-MeT) and the iteration count. This is the iteration-grammar frontier.
+    nt, nm = len(target.cycles), len(tp.cycles)
+    for i in range(min(nt, nm)):
+        ct, cm = target.cycles[i], tp.cycles[i]
+        if ct.reduction != cm.reduction:
+            out.append(Edit("reduction", f"cyc{i + 1} {cm.reduction.value}->{ct.reduction.value}",
+                            Tier.PLAUSIBLE, Axis.CONTROL))
+        if ct.c_methyl != cm.c_methyl:
+            out.append(Edit("c_methyl", f"cyc{i + 1} {'+' if ct.c_methyl else '-'}C-MeT",
+                            Tier.PLAUSIBLE, Axis.CONTROL))
+    for i in range(min(nt, nm), max(nt, nm)):
+        out.append(Edit("cycle_add" if nt > nm else "cycle_remove",
+                        f"{'+' if nt > nm else '-'}cyc{i + 1}", Tier.PLAUSIBLE, Axis.CONTROL))
+    return out
 
 
 def _verdict(edits: list[Edit]) -> str:
-    """natural (already exists) | engineerable (a few documented/plausible edits from a natural
-    cluster) | speculative (a tier-3/undocumented edit, or too many edits to be a near neighbour)."""
     if not edits:
         return "natural"
-    if any(e.tier == Tier.SPECULATIVE for e in edits):
+    if any(e.tier is Tier.SPECULATIVE for e in edits):   # release reprogramming
         return "speculative"
-    if len(edits) <= ENGINEERABLE_MAX_EDITS:
+    if any(e.axis is Axis.CONTROL for e in edits):        # needs iteration-program editing
+        return "frontier"
+    if len(edits) <= ENGINEERABLE_MAX_EDITS:              # documented domain-content edits only
         return "engineerable"
     return "speculative"
 
 
-def realize(target: Program, manifold: dict[str, Program]) -> Realizability:
-    """Distance-to-realizable: the nearest natural program, the edit path, cost, and verdict."""
-    best: tuple[str, Program, list[Edit], int] | None = None
-    for cid, z0 in manifold.items():
-        es = edits_from(target, z0)
+def realize(target: Program, manifold: list[Template]) -> Realizability:
+    """Nearest natural cluster + edit path, ranked by total tier-weighted cost -- the most
+    realizable route (control edits and release reprogramming weigh more than documented swaps)."""
+    best: tuple[int, Template, list[Edit]] | None = None
+    for tmpl in manifold:
+        es = edits_from(target, tmpl)
         c = cost(es)
-        if best is None or c < best[3]:
-            best = (cid, z0, es, c)
-    cid, z0, es, c = best  # type: ignore[misc]
-    return Realizability(target, cid, z0, es, c, _verdict(es))
+        if best is None or c < best[0]:
+            best = (c, tmpl, es)
+    _, tmpl, es = best  # type: ignore[misc]
+    return Realizability(target, tmpl.id, tmpl, es, _verdict(es))
 
 
-# ---- the natural-cluster manifold (real reachable fungal PKS programs) -------------
-# Programs are the exact reachable solutions from the MIBiG reachability scan (results/reachability.csv).
-def natural_manifold() -> dict[str, Program]:
+# ---- the natural-cluster manifold (real reachable fungal PKS programs + domain architectures) ----
+def natural_manifold() -> list[Template]:
     K, KR, DH = R.KETO, R.KR, R.DH
+    nr = frozenset({"KS", "AT", "ACP"})                       # non-reducing
+    pr = frozenset({"KS", "AT", "DH", "KR", "ACP"})           # partially reducing
+    hr = frozenset({"KS", "AT", "DH", "KR", "ER", "ACP"})     # highly reducing
+    return [
+        Template("BGC0001121 orsellinic", Program("acetyl", (Cycle(K), Cycle(K), Cycle(K)),
+                                                  Release.ALDOL_AROMATIC), nr),
+        Template("BGC0001275 6-MSA", Program("acetyl", (Cycle(K), Cycle(KR), Cycle(K)),
+                                             Release.ALDOL_AROMATIC), pr),
+        Template("BGC0001244 mellein", Program("acetyl", (Cycle(KR), Cycle(K), Cycle(KR), Cycle(K)),
+                                               Release.DIHYDROISOCOUMARIN), pr),
+        Template("BGC0001489 6-OH-mellein", Program("acetyl", (Cycle(KR), Cycle(K), Cycle(K), Cycle(K)),
+                                                    Release.DIHYDROISOCOUMARIN), pr),
+        Template("BGC0002240 BAB", Program("acetyl", (Cycle(DH), Cycle(KR), Cycle(DH), Cycle(DH),
+                                                      Cycle(DH)), Release.HYDROLYSIS), hr),
+    ]
+
+
+# ---- the design neighbourhood: 1-edit neighbours of a template, by axis -----------
+_STARTERS = ("acetyl", "propionyl", "butyryl", "hexanoyl")
+_RELEASES = (Release.HYDROLYSIS, Release.LACTONIZATION, Release.ALDOL_AROMATIC,
+             Release.DIHYDROISOCOUMARIN)
+
+
+def one_edit_neighbours(template: Template) -> set[Program]:
+    """Every program one typed edit from the template (both axes), for design-space enumeration."""
+    p, dom = template.program, _norm(template.domains)
+    cyc = list(p.cycles)
+    out: set[Program] = set()
+    states = [s for s in (R.KETO, R.KR, R.DH, R.ER)]
+    for i in range(len(cyc)):
+        for s in states:                                   # reduction edits (control or structural)
+            if s != cyc[i].reduction:
+                nc = cyc.copy(); nc[i] = Cycle(s, cyc[i].c_methyl, cyc[i].extender)
+                out.add(Program(p.starter, tuple(nc), p.release))
+        nc = cyc.copy(); nc[i] = Cycle(cyc[i].reduction, not cyc[i].c_methyl, cyc[i].extender)
+        out.add(Program(p.starter, tuple(nc), p.release))   # C-MeT toggle
+        other_ext = Extender.METHYLMALONYL if cyc[i].extender is Extender.MALONYL else Extender.MALONYL
+        nc = cyc.copy(); nc[i] = Cycle(cyc[i].reduction, cyc[i].c_methyl, other_ext)
+        out.add(Program(p.starter, tuple(nc), p.release))   # extender swap (structural)
+    for s in states:                                        # iteration-count change (control)
+        out.add(Program(p.starter, tuple(cyc + [Cycle(s)]), p.release))
+    if len(cyc) > 1:
+        out.add(Program(p.starter, tuple(cyc[:-1]), p.release))
+    for st in _STARTERS:                                    # starter swap (structural)
+        if st != p.starter:
+            out.add(Program(st, p.cycles, p.release))
+    for rel in _RELEASES:                                   # release reprogram (structural, speculative)
+        if rel != p.release:
+            out.add(Program(p.starter, p.cycles, rel))
+    out.discard(p)
+    return out
+
+
+def design_space(manifold: list[Template]) -> dict:
+    """Enumerate the 1-edit design neighbourhood of the whole manifold; classify each distinct design
+    by its most-realizable route's axis breakdown (the decisive structural-vs-control count)."""
+    designs: dict[str, Realizability] = {}
+    natural = {repr(t.program) for t in manifold}
+    for t in manifold:
+        for prog in one_edit_neighbours(t):
+            if repr(prog) in natural:
+                continue
+            r = realize(prog, manifold)
+            designs[repr(prog)] = r
+    engineerable = [r for r in designs.values() if r.verdict == "engineerable"]
+    frontier = [r for r in designs.values() if r.verdict == "frontier"]
+    speculative = [r for r in designs.values() if r.verdict == "speculative"]
     return {
-        "BGC0001121 orsellinic": Program("acetyl", (Cycle(K), Cycle(K), Cycle(K)),
-                                         Release.ALDOL_AROMATIC),
-        "BGC0001275 6-MSA": Program("acetyl", (Cycle(K), Cycle(KR), Cycle(K)),
-                                    Release.ALDOL_AROMATIC),
-        "BGC0001244 mellein": Program("acetyl", (Cycle(KR), Cycle(K), Cycle(KR), Cycle(K)),
-                                      Release.DIHYDROISOCOUMARIN),
-        "BGC0001489 6-OH-mellein": Program("acetyl", (Cycle(KR), Cycle(K), Cycle(K), Cycle(K)),
-                                           Release.DIHYDROISOCOUMARIN),
-        "BGC0002240 BAB": Program("acetyl", (Cycle(DH), Cycle(KR), Cycle(DH), Cycle(DH), Cycle(DH)),
-                                  Release.HYDROLYSIS),
+        "n_designs": len(designs),
+        "engineerable": engineerable,      # structural-only, documented PKS engineering
+        "frontier": frontier,              # involve a control edit -- iteration-program editing
+        "speculative": speculative,        # release reprogram / too far
     }
+
+
+def distinct_products(realizations: list[Realizability]) -> int:
+    """Distinct constitutional product structures among a design set -- the honest diversity count,
+    since different edit-specs can collapse to the same molecule (esp. release reprogramming)."""
+    from lpi.chem import mol as M
+    from lpi.executor import core
+    prods: set[str] = set()
+    for r in realizations:
+        try:
+            prods.add(M.canonical_smiles(M.strip_stereo(core.exec(r.target))))
+        except Exception:  # noqa: BLE001 - an edited program whose cyclization cannot fire
+            pass
+    return len(prods)

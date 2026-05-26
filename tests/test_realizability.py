@@ -1,27 +1,44 @@
-"""Realizability metric: design-by-grammar-inversion edit distance over the program manifold."""
+"""Realizability metric: dual-axis (structural / control) edit distance + the design-space finding."""
 from __future__ import annotations
 
 from lpi.chem.program import Cycle, Program, ReductionState as R, Release
-from lpi.realizability import Tier, cost, edits_from, natural_manifold, realize
+from lpi.realizability import (Axis, Tier, _target_domains, design_space, edits_from,
+                               natural_manifold, realize)
 
 _MAN = natural_manifold()
-_6MSA = _MAN["BGC0001275 6-MSA"]          # acetyl + K,KR,K -> aldol aromatic
-_ORS = _MAN["BGC0001121 orsellinic"]      # acetyl + K,K,K -> aldol aromatic
+_BY = {t.id: t for t in _MAN}
+_MSA = _BY["BGC0001275 6-MSA"]      # acetyl K,KR,K -> aldol; PR domains {KS,AT,DH,KR,ACP}
 
 
 def test_natural_program_is_distance_zero():
-    r = realize(_6MSA, _MAN)
-    assert r.cost == 0 and r.n_edits == 0 and r.verdict == "natural"
-    assert r.nearest_id == "BGC0001275 6-MSA"
+    r = realize(_MSA.program, _MAN)
+    assert r.verdict == "natural" and r.structural_cost == 0 and r.control_cost == 0
 
 
-def test_single_reduction_flip_is_one_documented_edit():
+def test_reprogram_within_capability_is_control_only():
+    # 6-MSA carries a KR domain; firing KR on cycle 3 as well is a pure control (iteration) edit
     target = Program("acetyl", (Cycle(R.KETO), Cycle(R.KR), Cycle(R.KR)), Release.ALDOL_AROMATIC)
     r = realize(target, _MAN)
-    assert r.nearest_id == "BGC0001275 6-MSA"     # nearest is 6-MSA (one cycle differs)
-    assert r.cost == 1 and r.n_edits == 1
-    assert r.edits[0].kind == "reduction" and r.edits[0].tier is Tier.DOCUMENTED
-    assert r.verdict == "engineerable"
+    assert r.nearest_id == "BGC0001275 6-MSA"
+    assert r.structural_cost == 0 and r.control_cost == 1
+    assert r.control_edits[0].kind == "reduction" and r.verdict == "frontier"
+
+
+def test_new_domain_is_structural_plus_control_to_fire():
+    # ER is not in 6-MSA's domain set: add the ER domain (structural) AND fire it on cyc2 (control)
+    target = Program("acetyl", (Cycle(R.KETO), Cycle(R.ER), Cycle(R.KETO)), Release.ALDOL_AROMATIC)
+    r = realize(target, _MAN)
+    assert any(e.kind == "add_domain" and e.axis is Axis.STRUCTURAL for e in r.edits)
+    assert r.structural_cost == 1 and r.control_cost == 1 and r.verdict == "frontier"
+
+
+def test_iteration_count_change_is_control():
+    target = Program("acetyl", (Cycle(R.KETO), Cycle(R.KR), Cycle(R.KETO), Cycle(R.KETO)),
+                     Release.ALDOL_AROMATIC)
+    r = realize(target, _MAN)
+    assert any(e.kind in ("cycle_add", "cycle_remove") and e.axis is Axis.CONTROL
+               for e in r.control_edits)
+    assert r.verdict == "frontier"
 
 
 def test_release_reprogramming_is_speculative():
@@ -31,27 +48,15 @@ def test_release_reprogramming_is_speculative():
     assert r.verdict == "speculative"
 
 
-def test_many_edits_even_if_documented_is_not_engineerable():
-    # 5 reduction flips from 6-MSA's nearest neighbour -> too far to call engineerable
-    target = Program("acetyl", (Cycle(R.ER), Cycle(R.ER), Cycle(R.ER), Cycle(R.ER), Cycle(R.ER)),
-                     Release.HYDROLYSIS)
-    r = realize(target, _MAN)
-    assert r.verdict == "speculative"             # documented edit classes, but too many
+def test_target_domains_inference():
+    p = Program("acetyl", (Cycle(R.KETO), Cycle(R.ER)), Release.HYDROLYSIS)   # ER needs KR,DH,ER
+    assert _target_domains(p) == frozenset({"KR", "DH", "ER"})
 
 
-def test_edit_tiers_and_cost():
-    # orsellinic + one C-MeT (tier 2) -> cost 2, engineerable
-    target = Program("acetyl", (Cycle(R.KETO), Cycle(R.KETO, c_methyl=True), Cycle(R.KETO)),
-                     Release.ALDOL_AROMATIC)
-    es = edits_from(target, _ORS)
-    assert len(es) == 1 and es[0].kind == "c_methyl" and es[0].tier is Tier.PLAUSIBLE
-    assert cost(es) == 2
-    assert realize(target, _MAN).verdict == "engineerable"
-
-
-def test_nearest_template_is_chosen():
-    # a 4-cycle reduced program is closest to mellein/6-OH-mellein (4-cycle), not 6-MSA (3-cycle)
-    target = Program("acetyl", (Cycle(R.KR), Cycle(R.KETO), Cycle(R.KR), Cycle(R.KETO)),
-                     Release.DIHYDROISOCOUMARIN)
-    r = realize(target, _MAN)
-    assert r.nearest_id == "BGC0001244 mellein" and r.cost == 0   # this *is* mellein's program
+def test_design_space_control_axis_dominates_for_fungi():
+    ds = design_space(_MAN)
+    assert ds["n_designs"] > 0
+    # the finding: for fungal iterative PKS the control axis dominates the 1-edit design space
+    assert len(ds["frontier"]) > len(ds["engineerable"])
+    assert all(r.control_cost == 0 for r in ds["engineerable"])   # engineerable = structural-only
+    assert all(r.control_cost >= 1 for r in ds["frontier"])       # frontier = involves a control edit

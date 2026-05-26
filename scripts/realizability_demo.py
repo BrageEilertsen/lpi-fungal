@@ -1,71 +1,67 @@
-"""Design-by-grammar-inversion demo: a distance-to-realizable coordinate for every target.
+"""Design-by-grammar-inversion: the structural/control realizability geometry.
 
-For a set of target programs -- natural products and non-natural designed analogs -- the engine
-returns the nearest natural cluster, the typed edit path (with class-level feasibility tiers), a
-realizability verdict, and the executed structure. This is the third direction: not "reconstruct a
-known molecule" but "what is the smallest documented-edit path from an existing cluster to a desired
-one." The same sound executor that verifies natural products verifies the designs.
+Every target program gets a coordinate against the natural-cluster manifold, decomposed into two
+edit axes that map onto different wet-lab capabilities:
 
-Honest scope (see lpi.realizability): the natural manifold here is the small reachable set, and the
-edit tiers are CLASS-level (no fabricated paper citations). The machinery is exact; whether the
-manifold is dense enough to give meaningful distances for arbitrary drug targets is the open
-question this metric makes cheaply testable.
+* STRUCTURAL edits change domain content (add a reductive domain, swap starter/extender, reprogram
+  the release) -- transferable from bacterial modular-PKS engineering precedent;
+* CONTROL edits change the iteration program with the domain set fixed (which cycle a domain fires
+  on; the iteration count) -- the iteration-grammar frontier, the 100%->57% wall as a design axis.
+
+The headline experiment is the 1-edit design neighbourhood of the (small, high-value) fungal
+manifold: how many designs are structural-only ('engineerable' with documented edits) vs require a
+control edit ('frontier', iteration-program editing). For fungal iterative PKS the control axis
+dominates -- design here *is* iteration-program editing, which only this architecture can formulate.
+
+Honesty: edit tiers are CLASS-level; specific directed-evolution citations (Khosla/Cane/Leadlay for
+structural; Tang/Cox for control) and the full MIBiG/ClusterCAD manifold are the flagged data steps.
 """
 from __future__ import annotations
 
 from rdkit import RDLogger
 
-from lpi.chem import mol as M
 from lpi.chem.program import Cycle, Program, ReductionState as R, Release
-from lpi.executor import core
-from lpi.observe import exact_mass
-from lpi.realizability import natural_manifold, realize
+from lpi.realizability import design_space, distinct_products, natural_manifold, realize
 
 RDLogger.DisableLog("rdApp.*")
 
 man = natural_manifold()
 
-# (label, target program). Naturals have distance 0; the rest are non-natural designed analogs.
-TARGETS = [
-    ("6-MSA (natural)", man["BGC0001275 6-MSA"]),
-    ("orsellinic (natural)", man["BGC0001121 orsellinic"]),
-    ("design: 6-MSA + KR@cyc3 (reduced analog)",
+EXAMPLES = [
+    ("6-MSA + KR@cyc3 (reprogram firing)",
      Program("acetyl", (Cycle(R.KETO), Cycle(R.KR), Cycle(R.KR)), Release.ALDOL_AROMATIC)),
-    ("design: orsellinic + C-MeT@cyc2 (methylated)",
-     Program("acetyl", (Cycle(R.KETO), Cycle(R.KETO, c_methyl=True), Cycle(R.KETO)),
+    ("6-MSA + ER@cyc2 (add ER domain + fire it)",
+     Program("acetyl", (Cycle(R.KETO), Cycle(R.ER), Cycle(R.KETO)), Release.ALDOL_AROMATIC)),
+    ("6-MSA iteration++ (extra reduced cycle)",
+     Program("acetyl", (Cycle(R.KETO), Cycle(R.KR), Cycle(R.KETO), Cycle(R.KETO)),
              Release.ALDOL_AROMATIC)),
-    ("design: 6-MSA -> lactone release",
+    ("6-MSA -> lactone (release reprogram)",
      Program("acetyl", (Cycle(R.KETO), Cycle(R.KR), Cycle(R.KETO)), Release.LACTONIZATION)),
-    ("design: propionyl-started reduced hexaketide",
-     Program("propionyl", (Cycle(R.ER), Cycle(R.DH), Cycle(R.KR), Cycle(R.KETO), Cycle(R.ER)),
-             Release.HYDROLYSIS)),
 ]
 
 
-def _structure(prog: Program) -> tuple[str, float]:
-    try:
-        m = core.exec(prog)
-        return M.canonical_smiles(m), exact_mass(M.canonical_smiles(m))
-    except Exception:  # noqa: BLE001
-        return "(executor: cyclization did not fire)", float("nan")
-
-
 def main() -> None:
-    print("Design-by-grammar-inversion: distance-to-realizable over the natural-cluster manifold\n")
-    print(f"{'target':44s} {'verdict':13s} {'edits':>5s}  nearest natural cluster")
-    print("-" * 96)
-    for label, prog in TARGETS:
+    print("Design-by-grammar-inversion: structural/control realizability over the fungal manifold\n")
+
+    ds = design_space(man)
+    print(f"1-edit design neighbourhood of {len(man)} fungal templates -> {ds['n_designs']} distinct designs")
+    print(f"{'':46s} {'edit-specs':>10s} {'distinct products':>18s}")
+    for k, note in [("engineerable", "structural-only, documented"),
+                    ("frontier", ">=1 control edit (dominates)"),
+                    ("speculative", "release reprogram / too far")]:
+        print(f"  {k:13s} ({note:30s}) {len(ds[k]):10d} {distinct_products(ds[k]):18d}")
+    print("\n  -> for fungal iterative PKS the *control* axis dominates the design space: biosynthetic")
+    print("     design here is mostly iteration-program editing, the axis only this engine can express.\n")
+
+    print(f"{'designed target':40s} {'(S,C)':>7s} {'verdict':12s} nearest natural cluster")
+    print("-" * 92)
+    for label, prog in EXAMPLES:
         r = realize(prog, man)
-        print(f"{label:44s} {r.verdict:13s} {r.cost:5d}  {r.nearest_id}")
-        if r.edits:
-            print("      path: " + "; ".join(f"{e.detail} [T{int(e.tier)}:{e.tier.name.lower()}]"
-                                              for e in r.edits))
-        smi, mass = _structure(prog)
-        print(f"      -> {smi}" + (f"  (m={mass:.3f})" if mass == mass else ""))
-    print("\nReading: every target gets a coordinate -- natural (cost 0), engineerable (a few")
-    print("documented/plausible edits from a real cluster), or speculative (an undocumented release")
-    print("reprogramming, or too many edits). Edit tiers are class-level; specific directed-evolution")
-    print("citations and the full MIBiG/ClusterCAD manifold are the flagged next data step.")
+        sc = f"({r.structural_cost},{r.control_cost})"
+        print(f"{label:40s} {sc:>7s} {r.verdict:12s} {r.nearest_id}")
+        s = "; ".join(e.detail for e in r.structural_edits) or "-"
+        c = "; ".join(e.detail for e in r.control_edits) or "-"
+        print(f"      structural: {s}   |   control: {c}")
 
 
 if __name__ == "__main__":
