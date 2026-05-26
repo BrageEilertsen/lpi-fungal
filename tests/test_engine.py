@@ -4,7 +4,8 @@ from __future__ import annotations
 
 from lpi.chem import mol as M
 from lpi.chem.program import ReductionState as R, Release
-from lpi.engine import Observables, contains, frag_fingerprint, infer
+from lpi.engine import (Observables, alphabet_from_domains, contains, frag_fingerprint,
+                        infer, infer_cluster)
 from lpi.search.beam import _formula_cho
 from lpi.search.generate import Alphabet
 
@@ -40,3 +41,19 @@ def test_ladder_is_monotone_nonincreasing():
                       msms=frag_fingerprint(_ORS))
     L = infer(obs).ladder
     assert L["alphabet"] >= L["alphabet+mass"] >= L["alphabet+mass+msms"] >= 1
+
+
+def test_alphabet_from_domains_nr_vs_hr():
+    nr = alphabet_from_domains({"KS", "AT", "ACP", "PT", "TE"})
+    assert nr.reductions == (R.KETO,)                    # non-reducing -> keto only
+    assert Release.ALDOL_AROMATIC in nr.releases          # PT -> aromatic releases
+    hr = alphabet_from_domains({"KS", "AT", "ACP", "KR", "DH", "ER", "cMT"})
+    assert hr.reductions == (R.KETO, R.KR, R.DH, R.ER)    # full reductive cascade
+    assert hr.allow_cmet                                  # cMT -> alpha-methylation enabled
+
+
+def test_infer_cluster_reconstructs_orsellinic_from_domains():
+    cho = _formula_cho(M.mol_from_smiles(_ORS))
+    res = infer_cluster({"KS", "AT", "ACP", "PT", "TE"}, 3, 3, target_cho=cho)
+    assert contains(res, _ORS) is not None
+    assert res.regime in ("reconstructed", "near-unique")

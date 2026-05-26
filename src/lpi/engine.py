@@ -25,6 +25,7 @@ from dataclasses import dataclass
 
 from rdkit import Chem, RDLogger
 
+from lpi.chem.program import ReductionState, Release
 from lpi.search.generate import Alphabet, Candidate, generate, rank_of
 
 RDLogger.DisableLog("rdApp.*")
@@ -105,3 +106,53 @@ def infer(obs: Observables, ladder: bool = True) -> EngineResult:
 def contains(result: EngineResult, target_smiles: str) -> int | None:
     """Rank of a known target among the engine's candidates (for retrospective evaluation)."""
     return rank_of(result, target_smiles)
+
+
+# ---- L2 bridge: derive the legal program grammar from a cluster's domain set ------
+def alphabet_from_domains(domains, starters: tuple[str, ...] = ("acetyl",)) -> Alphabet:
+    """Map a cluster's catalytic domain set (the ``G`` in ``y=Exec_Theta(z;G)``) to the program
+    grammar it permits.
+
+    The reductive cascade is gated by domain presence (ER presupposes DH presupposes KR); a
+    C-methyltransferase (cMT) enables alpha-methylation; release modes are mapped from PT/TE
+    presence. The release mapping is intentionally permissive (PT->aromatic, TE->lactone,
+    otherwise all): an over-broad release set costs candidates, not correctness, because the
+    mass/MS-MS observables do the real pruning downstream.
+    """
+    d = {str(x).upper() for x in domains}
+
+    def has(*names):
+        return any(n in d for n in names)
+
+    if has("ER"):
+        reductions = (ReductionState.KETO, ReductionState.KR, ReductionState.DH, ReductionState.ER)
+    elif has("DH"):
+        reductions = (ReductionState.KETO, ReductionState.KR, ReductionState.DH)
+    elif has("KR"):
+        reductions = (ReductionState.KETO, ReductionState.KR)
+    else:
+        reductions = (ReductionState.KETO,)
+    allow_cmet = has("CMT", "C-MET")  # backbone C-methyltransferase (not O-/N-MeT tailoring)
+    releases = [Release.HYDROLYSIS]
+    if has("TE"):
+        releases.append(Release.LACTONIZATION)
+    if has("PT"):
+        releases += [Release.ALDOL_AROMATIC, Release.DIHYDROISOCOUMARIN, Release.PT_NAPHTHALENE]
+    if len(releases) == 1:  # no release-informative domain -> stay permissive
+        releases = [Release.HYDROLYSIS, Release.LACTONIZATION, Release.ALDOL_AROMATIC,
+                    Release.DIHYDROISOCOUMARIN, Release.PT_NAPHTHALENE]
+    return Alphabet(reductions, tuple(releases), starters, allow_cmet)
+
+
+def infer_cluster(domains, min_cycles: int, max_cycles: int,
+                  target_cho: tuple[int, int, int] | None = None,
+                  msms: frozenset | None = None, starters: tuple[str, ...] = ("acetyl",),
+                  ladder: bool = True) -> EngineResult:
+    """End-to-end interface: a cluster's domain set + observables -> candidates + verdict.
+
+    Derives the program grammar from ``domains`` (L2), then runs observable-constrained inference
+    (L3/L4) and the reconstructibility verdict (L5).
+    """
+    obs = Observables(alphabet_from_domains(domains, starters), min_cycles, max_cycles,
+                      target_cho, msms)
+    return infer(obs, ladder=ladder)
