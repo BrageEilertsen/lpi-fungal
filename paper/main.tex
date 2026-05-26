@@ -616,6 +616,27 @@ the same inference and verdict stack---evidence that the architecture is grammar
 families differing in their program grammars and operator libraries while sharing one
 observable-constrained reconstructibility layer.
 
+\subsection{Compositional grammars and hybrid biosynthesis}
+\label{sec:hybrid}
+Biosynthetic families also \emph{compose}. A PKS--NRPS hybrid is modelled as a typed composition of
+the two grammars,
+\begin{equation}
+z_{\text{hybrid}} = z_{\text{PKS}} \circ h_{\text{handoff}} \circ z_{\text{NRPS}} \circ r_{\text{release}},
+\end{equation}
+where $h_{\text{handoff}}$ is an explicit amide-condensation operator joining the polyketide
+\emph{linear-acid checkpoint} (Section~\ref{sec:executor}) to the peptide N-terminus. The hybrid
+grammar does not re-implement either family: it composes the PKS generator with the NRPS monomer
+set, and the same adduct/ppm-tolerant mass recovery, MS/MS scorer, observable ladder, and three-state
+verdict run over the composed candidates unchanged (a minimal hybrid, acetoacetyl-glycine, collapses
+genome$\to$mass to a single \emph{verified} core through the identical stack). Crucially, the
+fungal tetramic-acid Dieckmann release---the step that converts the TenS polyketide--tyrosine
+intermediate into pretenellin~A---is declared as a \emph{typed but unimplemented} operator: requesting
+it returns an explicit out-of-grammar verdict naming the missing release operator, rather than a
+silent failure or a wrong structure. The scope boundary the rest of this paper describes in prose is
+thus made machine-checkable. The framework now spans \textbf{PKS, NRPS, and a minimal PKS--NRPS
+hybrid bridge} behind one inference-and-verdict interface; grammars are family-specific and
+composable, while observability and the reconstructibility verdict are shared.
+
 \section{Limitations}
 \label{sec:limits}
 

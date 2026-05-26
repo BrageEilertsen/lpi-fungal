@@ -15,7 +15,7 @@ from __future__ import annotations
 from rdkit import RDLogger
 
 from lpi.engine import contains, frag_fingerprint
-from lpi.grammars import NRPS, PKS
+from lpi.grammars import HYBRID, NRPS, PKS
 from lpi.observe import ADDUCTS, MSObservables, exact_mass, infer_ms, ion_mz
 
 RDLogger.DisableLog("rdApp.*")
@@ -24,6 +24,7 @@ _ORS = "Cc1cc(O)cc(O)c1C(=O)O"
 _OLI = "CCCCCc1cc(O)cc(O)c1C(=O)O"
 _DKP = "O=C1CNC(=O)CN1"
 _PHETYR = "O=C1NC(Cc2ccc(O)cc2)C(=O)NC1Cc1ccccc1"
+_ACAGLY = "CC(=O)CC(=O)NCC(=O)O"   # acetoacetyl-glycine: a minimal PKS->NRPS hybrid
 
 _NOISE = (33.3, 71.7, 150.5)   # deterministic in-source / contaminant peaks added to each spectrum
 _TAU = 0.7                      # MS/MS modified-cosine threshold (see the sweep for sensitivity)
@@ -34,6 +35,7 @@ CASES = [
     ("olivetolic acid", PKS, {"KS", "AT", "ACP", "KR", "DH", "ER", "PT", "cMT"}, _OLI, "[M+H]+", ("[M+H]+",), (3, 6), "normal"),
     ("cyclo(Gly-Gly)", NRPS, {"C", "A", "T", "TE"}, _DKP, "[M+H]+", ("[M+H]+",), (2, 2), "normal"),
     ("cyclo(Phe-Tyr)", NRPS, {"C", "A", "T", "TE"}, _PHETYR, "[M+H]+", ("[M+H]+",), (2, 2), "normal"),
+    ("acetoacetyl-Gly", HYBRID, {"KS", "AT", "ACP", "C", "A", "T"}, _ACAGLY, "[M+H]+", ("[M+H]+",), (1, 2), "normal"),
     ("mass withheld", NRPS, {"C", "A", "T", "TE"}, _DKP, None, (), (2, 3), "withhold"),
     ("wrong mass (+50 Da)", PKS, {"KS", "AT", "ACP", "PT", "TE"}, _ORS, "[M-H]-", ("[M-H]-",), (3, 3), "wrongmass"),
     ("wrong adduct (obs Na, search H)", PKS, {"KS", "AT", "ACP", "PT", "TE"}, _ORS, "[M+Na]+", ("[M+H]+",), (3, 3), "wrongadduct"),

@@ -6,12 +6,13 @@ of them with shared observability + verdict layers. ``REGISTRY`` maps a name to 
 from __future__ import annotations
 
 from lpi.grammars.base import Grammar
+from lpi.grammars.hybrid import HYBRID
 from lpi.grammars.nrps import NRPS
 from lpi.grammars.pks import PKS
 
-__all__ = ["Grammar", "PKS", "NRPS", "REGISTRY", "get"]
+__all__ = ["Grammar", "PKS", "NRPS", "HYBRID", "REGISTRY", "get"]
 
-REGISTRY: dict[str, Grammar] = {PKS.name: PKS, NRPS.name: NRPS}
+REGISTRY: dict[str, Grammar] = {PKS.name: PKS, NRPS.name: NRPS, HYBRID.name: HYBRID}
 
 
 def get(name: str) -> Grammar:

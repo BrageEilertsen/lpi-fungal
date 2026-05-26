@@ -208,7 +208,7 @@ def infer_ms(alphabet, ms: MSObservables, grammar: Grammar = PKS,
     # A candidate the crude single-bond fragmenter cannot fragment (no acyclic single bonds, e.g. a
     # rigid diketopiperazine) predicts an empty spectrum; that is missing evidence, not a mismatch,
     # so it is left unconstrained rather than spuriously rejected.
-    msms_applied = ms.msms_peaks is not None
+    msms_applied = bool(ms.msms_peaks)   # None or an empty spectrum -> no MS/MS constraint
     if msms_applied:
         cands_msms = []
         for c in cands_mass:
@@ -232,7 +232,8 @@ def _verdict(ms, grammar, n_genome, n_mass, n_final, msms_applied, censored):
         lb = " (lower bound; genome enumeration censored at the program cap)" if censored else ""
         if n_genome == 0:
             return (State.OUT_OF_GRAMMAR,
-                    f"no producible structure under the {g} grammar for the given step band", None)
+                    f"no producible structure under the {g} grammar for the given step band; "
+                    f"expand the {g} operator grammar (operators, releases, or step band)", None)
         if n_genome <= NEAR_UNIQUE_MAX:
             return (State.VERIFIED,
                     f"{n_genome} candidate(s) from the {g} grammar alone", None)
@@ -243,8 +244,10 @@ def _verdict(ms, grammar, n_genome, n_mass, n_final, msms_applied, censored):
     if n_mass == 0:
         adducts = ", ".join(ms.adducts) if ms.neutral_mass is None else "the given neutral mass"
         return (State.OUT_OF_GRAMMAR,
-                f"no legal {g} program matches the mass within {ms.ppm:g} ppm under "
-                f"{{{adducts}}}; check the adduct/charge assignment or expand the {g} grammar", None)
+                f"no legal {g} program matches the mass within {ms.ppm:g} ppm under {{{adducts}}}, "
+                f"relative to current observables -- check the adduct/charge assignment, the mass "
+                f"tolerance, the cluster-peak pairing, or expand the {g} operator grammar "
+                f"(e.g. a missing release operator)", None)
     if msms_applied and n_final == 0:
         return (State.UNDER_OBSERVED,
                 f"{n_mass} mass-consistent {g} candidate(s), but none clear MS/MS tau={ms.msms_tau:g}; "
