@@ -9,7 +9,7 @@ title + venue + year + DOI/PMID + URL; author names appear **only where confirme
 (the Cox papers). **No citation here is invented.**
 
 **What the curation replaced.** The realizability layer assigns each design a per-edit feasibility tier
-(`DOCUMENTED` / `PLAUSIBLE` / `SPECULATIVE`) — the entire cost basis the closed-loop planner inherits.
+(`DOCUMENTED` / `PLAUSIBLE` / `SPECULATIVE`) — the entire cost basis the experiment-selection planner inherits.
 These were class-level constants; they are now literature-grounded and the control axis is super-additive.
 
 ---
