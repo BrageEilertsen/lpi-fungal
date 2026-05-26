@@ -74,7 +74,7 @@ def _element_ok(mol: Chem.Mol) -> bool:
 def _scan_spec() -> OperatorSpec:
     # Permissive: the realistic fungal starters, every reduction state, C-MeT on, every
     # implemented release mode. (Search recovers the program from many alternatives.)
-    return OperatorSpec(starters=("acetyl", "propionyl"))
+    return OperatorSpec(starters=("acetyl", "propionyl", "hexanoyl"))
 
 
 def scan_target(bgc_id: str, name: str, smiles: str,

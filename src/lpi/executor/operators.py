@@ -20,6 +20,7 @@ STARTERS: dict[str, str] = {
     "acetyl": "CC(=O)S*",
     "propionyl": "CCC(=O)S*",
     "butyryl": "CCCC(=O)S*",
+    "hexanoyl": "CCCCCC(=O)S*",  # fatty-acyl starter (e.g. olivetolic acid, alkylresorcylics)
     "benzoyl": "c1ccccc1C(=O)S*",
 }
 

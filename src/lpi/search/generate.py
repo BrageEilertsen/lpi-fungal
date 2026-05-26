@@ -1,0 +1,109 @@
+"""Verifier-grounded candidate generator for genome mining.
+
+Given a cluster's catalytic *alphabet* (which reduction states, releases, starters, and
+C-MeT its domains permit) and a chain-length band, enumerate every program the alphabet
+allows, execute it with the sound deterministic executor, and return the distinct producible
+core scaffolds ranked by a parsimony prior. This turns the executor into a hypothesis
+generator: a short, ranked list of chemically-constructible cores to match against
+metabolomics -- useful at today's reconstructibility ceiling because it never needs to pin
+the exact per-cycle program, only to enumerate the plausible ones.
+
+Two-walls corollary: for an NR/aromatic alphabet the reduction is fixed (keto), so the
+candidate set is tiny and the truth ranks at/near the top; for an HR alphabet it is
+combinatorial (up to 4^N reduction patterns) -- the candidate-set size is itself the
+quantitative face of the per-cycle-reduction grammar wall.
+"""
+from __future__ import annotations
+
+import itertools
+from dataclasses import dataclass, field
+
+from rdkit import Chem, RDLogger
+
+from lpi.chem import mol as M
+from lpi.chem.program import Cycle, Program, ReductionState, Release
+from lpi.executor import core as _core
+
+RDLogger.DisableLog("rdApp.*")
+
+_STARTER_C = {"acetyl": 2, "propionyl": 3, "butyryl": 4, "hexanoyl": 6}
+
+
+@dataclass(frozen=True)
+class Alphabet:
+    """The catalytic moves a cluster's domains permit (the genome-mining input)."""
+
+    reductions: tuple[ReductionState, ...] = (
+        ReductionState.KETO, ReductionState.KR, ReductionState.DH, ReductionState.ER)
+    releases: tuple[Release, ...] = (Release.HYDROLYSIS,)
+    starters: tuple[str, ...] = ("acetyl",)
+    allow_cmet: bool = False
+
+
+@dataclass
+class Candidate:
+    smiles: str
+    program: Program
+    score: float
+
+
+@dataclass
+class GenResult:
+    candidates: list[Candidate] = field(default_factory=list)
+    programs_tried: int = 0
+    capped: bool = False
+
+
+def _score(prog: Program) -> float:
+    """Parsimony prior: prefer fewer/lighter reductions, fewer methyls, shorter chains."""
+    red = sum(c.reduction.rank for c in prog.cycles)
+    me = sum(1 for c in prog.cycles if c.c_methyl)
+    return -(red + me + 0.1 * len(prog.cycles))
+
+
+def generate(alphabet: Alphabet, min_cycles: int, max_cycles: int,
+             max_carbons: int = 40, program_cap: int = 20000) -> GenResult:
+    opts = [Cycle(reduction=r, c_methyl=me)
+            for r in alphabet.reductions
+            for me in ((False, True) if alphabet.allow_cmet else (False,))]
+    best: dict[str, Candidate] = {}
+    tried = 0
+    for starter in alphabet.starters:
+        sc = _STARTER_C.get(starter, 2)
+        for n in range(min_cycles, max_cycles + 1):
+            for combo in itertools.product(opts, repeat=n):
+                if sc + sum(3 if c.c_methyl else 2 for c in combo) > max_carbons:
+                    continue
+                for rel in alphabet.releases:
+                    tried += 1
+                    if tried > program_cap:
+                        return GenResult(_ranked(best), tried, capped=True)
+                    prog = Program(starter, combo, rel)
+                    try:
+                        smi = M.canonical_smiles(_core.exec(prog))
+                    except Exception:  # noqa: BLE001
+                        continue
+                    s = _score(prog)
+                    if smi not in best or s > best[smi].score:
+                        best[smi] = Candidate(smi, prog, s)
+    return GenResult(_ranked(best), tried, capped=False)
+
+
+def _ranked(best: dict[str, Candidate]) -> list[Candidate]:
+    return sorted(best.values(), key=lambda c: -c.score)
+
+
+def _flat(smi: str) -> str:
+    """Stereo-free canonical SMILES -- the executor is achiral by design, so candidate/target
+    comparison is at the constitutional (skeleton + connectivity) level."""
+    m = Chem.MolFromSmiles(smi)
+    return Chem.MolToSmiles(m, isomericSmiles=False) if m else smi
+
+
+def rank_of(result: GenResult, target_smiles: str) -> int | None:
+    """1-based rank of the target among ranked candidates (stereo-free), or None."""
+    tgt = _flat(target_smiles)
+    for i, c in enumerate(result.candidates, start=1):
+        if _flat(c.smiles) == tgt:
+            return i
+    return None

@@ -26,9 +26,13 @@ from lpi.chem.program import Release
 # Orsellinic-type C2->C7 aldol condensation + aromatization on a non-reduced
 # tetraketide acid: HOOC-CH2-CO-CH2-CO-CH2-CO-CH3 -> 2,4-dihydroxy-6-methylbenzoic
 # acid (orsellinic acid). One net dehydration; C7 keto-oxygen is the leaving water.
+# Generalised to any starter-derived terminal alkyl: R = methyl gives orsellinic acid,
+# R = pentyl gives olivetolic acid, etc. The C2->C7 aldol/aromatization is independent of
+# what hangs off C7's neighbour, so [CX4:8] matches a CH3 or a longer chain and carries it
+# through unchanged to the ring 6-substituent.
 _ORSELLINIC_ALDOL = (
-    "[OH][C:1](=[O:10])[CH2:2][C:3](=[O:11])[CH2:4][C:5](=[O:12])[CH2:6][C:7](=O)[CH3:8]"
-    ">>[OH][C:1](=[O:10])[c:2]1[c:3]([OH:11])[cH][c:5]([OH:12])[cH][c:7]1[CH3:8]"
+    "[OH][C:1](=[O:10])[CH2:2][C:3](=[O:11])[CH2:4][C:5](=[O:12])[CH2:6][C:7](=O)[CX4:8]"
+    ">>[OH][C:1](=[O:10])[c:2]1[c:3]([OH:11])[cH][c:5]([OH:12])[cH][c:7]1[C:8]"
 )
 
 # 6-MSA-type aldol on the singly-reduced tetraketide acid. Per Brage: encode the single

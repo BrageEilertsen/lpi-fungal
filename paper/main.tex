@@ -2,6 +2,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -28,7 +29,7 @@ clusters is hard, and a verifier-grounded path forward}
 \small \texttt{brageei@uio.no}\\
 \small \textit{Affiliation to be completed}}
 
-\date{May 2026 --- draft v0.2}
+\date{May 2026 --- draft v1.1}
 
 \begin{document}
 \maketitle
@@ -61,15 +62,19 @@ Finally we propose---and \emph{demonstrate}---a differential reformulation
 modules, a model predicts the per-step reduction chemistry well above chance and transfers to
 fungal cycles \emph{perfectly when the active domains are known} ($1.00$), while collapsing to
 $0.57$ when given only the synthase's fixed domain set---a clean quantification of the
-iteration-grammar wall. All tools, data, and analyses are open and reproducible from single
-commands.
+iteration-grammar wall. Finally we show this ceiling is not monolithic: it decomposes into a
+narrow highly-reducing per-cycle-reduction \emph{computability} wall ($\sim$9\% of products)
+and a broad, incrementally addressable aromatic-cyclization \emph{coverage} wall ($\sim$61\%;
+extending one closure moves exact reconstruction $8\!\to\!9/326$), and that the sound executor
+doubles as a constrained candidate generator for genome mining. All tools, data, and analyses
+are open and reproducible from single commands.
 \end{abstract}
 
 \section{Introduction}
 
-A single fungal antibiotic such as penicillin is not the product of one protein; it is
-assembled by a multidomain enzymatic factory---a non-ribosomal peptide synthetase (NRPS) or
-polyketide synthase (PKS)---encoded by a contiguous biosynthetic gene cluster (BGC). Genome
+Many fungal drugs---the cholesterol-lowering agent lovastatin, the antifungal griseofulvin---are
+polyketides: large carbon scaffolds assembled by a multidomain enzymatic factory, the polyketide
+synthase (PKS), encoded by a contiguous biosynthetic gene cluster (BGC). Genome
 sequencing has revealed that filamentous fungi carry vast numbers of such clusters, most of
 them \emph{cryptic}: no metabolite has ever been linked to them. They are widely regarded as
 one of the most promising untapped reservoirs of new bioactive chemistry.
@@ -176,6 +181,7 @@ flagged. The executor is a pure, deterministic function with a regression suite 
 
 \begin{figure}[t]
 \centering
+\resizebox{\linewidth}{!}{%
 \begin{tikzpicture}[node distance=6mm and 12mm,
   box/.style={draw,rounded corners,align=center,inner sep=4pt,minimum height=8mm,font=\small},
   >={Stealth[length=2mm]}]
@@ -189,7 +195,7 @@ flagged. The executor is a pure, deterministic function with a regression suite 
 \draw[->] (bgc)--(prog); \draw[->] (prog)--(exec); \draw[->] (exec)--(yhat);
 \draw[->] (y)--(beam); \draw[->] (beam)--(zstar);
 \draw[->] (beam.north) to[bend left=10] node[right,font=\scriptsize]{calls} (exec.south);
-\end{tikzpicture}
+\end{tikzpicture}}
 \caption{The executor (top) renders a program to a structure; the verifier (bottom)
 inverts it by beam-searching programs, executing each candidate and pruning any whose partial
 product cannot reach $y$, returning the exact consistent set \zstar{}.}
@@ -322,14 +328,23 @@ decarboxylation, reduction/desaturation) and a parsimony prior, the joint search
 verifier-pruned.
 
 Over the $106$ gene-budgeted, size-tractable clusters, \textbf{$7$ are exactly verified}, with a
-\emph{near-unique} $|\zstar|$ distribution $\{1\!:\!6,\,3\!:\!1\}$ (Figure~\ref{fig:diff},
-right inset uses the same data). Six are untailored cores; one (stipitatic acid) is genuinely
+\emph{near-unique} $|\zstar|$ distribution $\{1\!:\!6,\,3\!:\!1\}$ (Figure~\ref{fig:zstar}).
+Six are untailored cores; one (stipitatic acid) is genuinely
 tailoring-unlocked. The decisive result is the diagnosis of the $99$ non-verified clusters:
 \textbf{$95$ are PKS-core-unreachable} (no producible backbone) and only $4$ are tailoring
 gaps. Hence \emph{conditional on a producible PKS core ($11/106$), the joint search verifies
 $7$---$64\%$---near-uniquely}. The tailoring layer works where it can apply; the wall is
 PKS-core computability (the unimplemented PT-aromatic classes and complex scaffolds), not
 tailoring.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.42\linewidth]{fig3_zstar.png}
+\caption{Explanation multiplicity for the seven tailoring-latent-verified clusters: six are
+uniquely explained and one has three consistent explanations. Where the joint search succeeds it
+is near-unique---the regime in which a verifier-constrained objective is well posed.}
+\label{fig:zstar}
+\end{figure}
 
 \subsection{The genuine ceiling}
 A subset of products is unreconstructible \emph{in principle}, for three verifier-diagnosable
@@ -341,6 +356,16 @@ depsides}---aurofusarin, phomoxanthone~A, the bicoumarin kotanin, lichen depside
 membership is metric-dependent ($\sim\!17$ in the documented analysis), but the three classes
 are robust and are themselves a clean empirical statement about what ``BGC$\to$structure'' can
 mean for fungi.
+
+\paragraph{Where coverage should extend.} A structural classification of the $318$
+non-exact-reconstructible products locates the coverage frontier empirically. The unreachable set
+is dominated by small monocyclic aromatics ($\sim\!100$) and small aliphatics/lactones
+($\sim\!58$), together with $N$-containing PKS--NRPS hybrids and non-PKS skeletons ($\sim\!98$);
+the polycyclic anthrone/anthraquinone/xanthone class often invoked as the cyclization frontier is
+only $\sim\!16$ clusters, mostly large ($\mathrm{C}_{18\text{--}30}$) and largely coincident with
+the in-principle rearrangement ceiling above (sterigmatocystin, the cercosporin/elsinochrome
+perylenequinones). Extending the small-aromatic cyclization repertoire and modelling the PKS
+portion of hybrids would thus unlock substantially more than the higher PT-aromatic folds.
 
 \section{The conceptual result: grammar mismatch is the data deficit}
 \label{sec:concept}
@@ -354,6 +379,33 @@ This is why augmenting scarce fungal data with abundant bacterial data does not 
 bacterial data teaches a control flow that is structurally wrong for fungi. The exact-match
 $8/326$, the $304/326$ unknown subclasses, and the $95/99$ core-unreachable diagnosis are three
 faces of the same fact.
+
+\paragraph{Two orthogonal walls, not one.} The ceiling is not uniform, and conflating its parts
+overstates the computability claim. A structural subclass proxy (aromatic-carbon fraction and
+saturation, validated against the curated HR/NR/PR labels on the reduced-vs-aromatic axis) splits
+the $326$ products into three regimes. Non- and partially-reducing aromatics ($\sim\!61\%$) have an
+architecturally fixed reduction program---a non-reducing synthase makes an all-keto chain---so
+their only hard step is cyclization regiochemistry, which is deterministic and \emph{incrementally
+addressable by executor coverage}: generalising the resorcylic-aldol closure to an arbitrary
+starter alkyl, for instance, lifts exact reconstruction from $8$ to $9/326$ (olivetolic acid) with
+no loss of soundness. Highly-reducing polyketides ($\sim\!9\%$) cyclize trivially but carry the
+genuine computability wall---the per-cycle reduction program, i.e.\ the $100\%\!\to\!57\%$ gap,
+shown above to be neither positional nor bacteria-transferable. The remaining $\sim\!30\%$ are
+$N$-containing PKS--NRPS hybrids or non-PKS skeletons, a scope boundary rather than a wall. Hence
+``fungal BGC$\to$structure is uncomputable'' is too strong: the computability wall is the narrow
+highly-reducing slice, while the dominant aromatic fraction is a tractable coverage problem.
+Because the executor is a \emph{sound generator}, a cluster's catalytic alphabet moreover bounds a
+small enumerable set of producible cores---tiny when reduction is architecturally fixed,
+combinatorial for highly-reducing programs (a $\sim\!13\times$ candidate-set ratio in our curated
+test)---which can be ranked and matched against metabolomics, recasting the impossibility result as
+a constrained hypothesis generator for genome mining. Conditioning that generator on the two
+observables a metabologenomics pipeline actually supplies---the domain alphabet and the
+MS-measured molecular formula (which pins the reduction \emph{count})---collapses our curated
+reachable set to a median of \emph{one} candidate core (top-3 recall $9/10$); the per-cycle
+reduction combinatorics, and with them the $0.57$ grammar wall, largely dissolve once the mass
+is known. The wall is thus partly an artefact of blind BGC$\to$structure prediction: for cores
+within executor reach, BGC$+$mass is near-deterministic, and the binding constraint reverts to
+cyclization \emph{coverage}, not computability.
 
 \section{A path forward: differential learning, demonstrated}
 \label{sec:differential}
@@ -386,6 +438,20 @@ perfectly) but \textbf{$0.57$ given only the synthase's fixed domain set}. \emph
 $100\%\!\to\!57\%$ gap is the iteration grammar}: the same genes must do different chemistry on
 different cycles, and gene content cannot say which.
 
+\paragraph{The residual gap is not positional.} One might hope the missing per-cycle signal is the
+running intermediate's state, cheaply proxied by chain \emph{position} (cycle index, distance from
+the terminus)---available at mining time and, unlike the active-domain oracle, not a leak of which
+domains fired. It is not. Conditioning the bacteria-trained head on position does not beat the
+constant-domain wall on the $30$ fungal cycles (leave-one-synthase-out $0.53$ versus the wall's
+$0.57$; bacteria-trained zero-shot, $0.57$). The cause is mechanistic: bacterial per-step reduction
+is \emph{positionally flat}---a function of domain content, not of chain position, across all
+$1{,}091$ modules---so there is no positional gate for a bacteria-trained model (positional or
+geometric) to transfer. Within-fungal positional structure does exist but is subclass-specific and
+does not generalise across synthases (partially-reducing cycles benefit; highly-reducing cycles are
+hurt). The residual gap therefore demands \emph{sequence or structure} signal, not geometry imported
+from bacteria. This is a small-sample probe ($n=30$ cycles, $9$ synthases), but the
+bacterial-flatness result it rests on spans all $1{,}091$ modules.
+
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.95\linewidth]{fig5_differential.png}
@@ -402,9 +468,15 @@ carry the chemistry signal that gene content lacks?---is implemented as a frozen
 \citep{esm2} embedding with a tiny head, with two bacterial targets (KR stereo; inactive-domain
 detection) and the labelled set assembled ($1{,}039$ KR-bearing modules, $77$ present-but-inactive
 KRs, $331$ stereocentres). We report it honestly as \emph{built but blocked}: ClusterCAD's
-per-domain sequence endpoint returned valid data on a first call and then reliably failed for
-bulk retrieval, and we declined to substitute a heavier sequence-extraction pipeline. We claim
-no number for it; the test is specified, coded, and runnable once a sequence source is available.
+per-domain sequence endpoint returned valid data on a first call and then reliably failed
+(HTTP~404) for bulk retrieval. We further attempted to reconstruct the per-domain sequences from
+primary data---MIBiG locus accessions $\to$ NCBI protein translations $\to$ a Pfam ketoreductase
+profile (PF08659) via HMMER---but the label$\to$sequence join does not come clean: the
+structure-derived ClusterCAD labels count only confirmed $\mathrm{C_2}/\mathrm{C_3}$ extension
+modules, whereas the profile detects \emph{every} ketoreductase domain (loading modules, standalone
+tailoring short-chain dehydrogenases, contig neighbours), reconciling for only a handful of clusters
+without reimplementing ClusterCAD's module parser. We therefore claim no number for the head; a clean
+run awaits a ClusterCAD database export or domain calling on cluster-scoped sequences.
 
 \section{Related work}
 \label{sec:related}
@@ -456,7 +528,10 @@ structural-similarity proxies are unreliable for this question, and located the 
 PKS-core computability. The path forward is differential: per-step chemistry is learnable from
 abundant bacterial data and transfers to fungi perfectly when the active domains are known---and
 the residual $100\%\!\to\!57\%$ gap is a clean, quantitative target for future work on inducing
-the iteration program itself. The tools, benchmark, and analyses are open and reproducible.
+the iteration program itself---and a \emph{narrow} target: the ceiling decomposes into a small
+highly-reducing computability wall and a broad, coverage-addressable aromatic-cyclization wall, and
+the same sound executor serves as a constrained candidate generator, turning an impossibility
+result into a usable mining tool. The tools, benchmark, and analyses are open and reproducible.
 
 \paragraph{Reproducibility.} All results are produced by single commands over pinned
 dependencies; see Appendix~\ref{app:repro}.
