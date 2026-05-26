@@ -116,6 +116,9 @@ $51$--$68\%$ ceiling.
 \item The \textbf{differential-learning reformulation} ($\Delta\text{BGC}\!\to\!
 \Delta\text{structure}$, Section~\ref{sec:differential}), \emph{demonstrated} on bacterial
 ClusterCAD with a fungal transfer test.
+\item A \textbf{reconstructibility taxonomy} (Section~\ref{sec:concept}): a single accuracy score
+is replaced by four separable failure modes---operator coverage, hidden iterative control,
+tailoring under-constraint, and non-local pathway structure.
 \end{enumerate}
 
 All numbers in this paper are produced by the open code base by a single documented command
@@ -242,6 +245,25 @@ if nature uses an operator outside $\Theta$, an empty $Z^{\star}$ is correct rel
 even though the molecule is producible \emph{in vivo}. An empty consistent set is therefore a typed
 \emph{certificate of failure mode}---missing operator, hidden control, tailoring under-constraint,
 or non-local pathway---not a claim of biological impossibility.
+
+\begin{table}[h]
+\centering\small
+\caption{The engine's input/output contract: each observable and what it constrains. Rows
+distinguish retrospective verification (known product) from prospective mining (unknown product).}
+\label{tab:io}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Observable & Constrains & If absent / noisy \\
+\midrule
+domain alphabet & legal operators (grammar) & broad candidate set \\
+domain order / subclass & macro-grammar, release mode & wrong grammar \\
+accurate mass (formula) & reduction / edit budget & formula-isomer ambiguity \\
+MS/MS fragments & skeleton / isomer identity & residual isomers unresolved \\
+co-clustered tailoring genes & admissible edit families & over/under-constrained tailoring \\
+known product (benchmark only) & retrospective verification & prospective mining mode \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \section{A curated benchmark of fungal PKS programs}
 \label{sec:benchmark}
@@ -424,7 +446,7 @@ highly-reducing slice, while the dominant aromatic fraction is a tractable cover
 Because the executor is a \emph{sound generator}, a cluster's catalytic alphabet moreover bounds a
 small enumerable set of producible cores---tiny when reduction is architecturally fixed,
 combinatorial for highly-reducing programs (a $\sim\!13\times$ candidate-set ratio in our curated
-test)---which can be ranked and matched against metabolomics, recasting the impossibility result as
+test)---which can be ranked and matched against metabolomics, recasting the reconstructibility ceiling as
 a constrained hypothesis generator for genome mining. Conditioning that generator on the two
 observables a metabologenomics pipeline actually supplies---the domain alphabet and the
 MS-measured molecular formula (which pins the reduction \emph{count})---collapses our curated
@@ -556,24 +578,50 @@ alphabet$+$mass$+$MS/MS chain is shown as near-unique recovery on reachable core
 fragment-fingerprint \emph{separability} under a crude in-silico fragmenter; validation against
 real untargeted-metabolomics spectra (e.g.\ CFM-ID / GNPS), per-cluster domain alphabets from
 antiSMASH/fungiSMASH, and a learned candidate-ranking prior (data-limited at present) are the
-natural next steps.
+natural next steps. In clean form mass and MS/MS act as hard masks; in real metabolomics (adducts,
+isotopes, noisy or partial spectra) they become high-confidence constraints with explicit
+uncertainty, motivating an approximate verifier
+$Z^{\star}_{\epsilon}=\{\,z:d(\mathrm{Frag}(\mathrm{Exec}(z)),\,O_{\mathrm{MS/MS}})\le\epsilon\,\}$
+alongside the exact one.
 \end{itemize}
+
+\begin{table}[h]
+\centering\small
+\caption{Executor-coverage roadmap: operator extensions and the product classes they would
+unlock, turning ``partial coverage'' from a limitation into a prioritised programme.}
+\label{tab:roadmap}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Operator extension & Unlocks & Difficulty / risk \\
+\midrule
+more small-aromatic closures & many NR/PR aromatics & low \\
+PT-domain regiochemistry classes & larger aromatic folds & medium \\
+macrolactonization & resorcylic-acid lactones, macrocycles & medium \\
+PKS--NRPS handoff checkpoint & hybrid cores & high \\
+oxidative skeletal rearrangement & aflatoxin / sterigmatocystin & high (ambiguous) \\
+dimerization / depside coupling & non-local products & high (non-local) \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \section{Conclusion}
 
-The fungal BGC-to-molecule ceiling is, we have argued and measured, a grammar problem
+This work does not add another black-box BGC$\to$structure predictor; it builds a sound
+\emph{inverse compiler} for fungal polyketide programs and uses it to \emph{measure}
+reconstructibility relative to a grammar. The fungal BGC-to-molecule ceiling is, we have argued and measured, a grammar problem
 masquerading as a data problem---and grammar mismatch is itself the data deficit, because
 iteration makes the per-step core non-identifiable from gene content alone. We quantified the
 reconstructible fraction (exactly $8/326$; $7$ of the $106$ gene-budgeted clusters under a
 tailoring-latent model, but $64\%$ conditional on a producible core), showed that
-structural-similarity proxies are unreliable for this question, and located the wall precisely at
-PKS-core computability. The path forward is differential: per-step chemistry is learnable from
+structural-similarity proxies are unreliable for this question---similarity is not a
+reconstructibility metric, since reconstructibility is the existence of a legal program, not
+skeleton overlap---and located the wall precisely at PKS-core reconstructibility. The path forward is differential: per-step chemistry is learnable from
 abundant bacterial data and transfers to fungi perfectly when the active domains are known---and
 the residual $100\%\!\to\!57\%$ gap is a clean, quantitative target for future work on inducing
 the iteration program itself---and a \emph{narrow} target: the ceiling decomposes into a small
-highly-reducing computability wall and a broad, coverage-addressable aromatic-cyclization wall, and
-the same sound executor serves as a constrained candidate generator, turning an impossibility
-result into a usable mining tool. The tools, benchmark, and analyses are open and reproducible.
+highly-reducing control wall and a broad, coverage-addressable aromatic-cyclization wall, and
+the same sound executor serves as a constrained candidate generator, turning a negative result
+into a usable mining tool. The tools, benchmark, and analyses are open and reproducible.
 
 \paragraph{A program-synthesis view.} These results are one instance of a more general framing: a
 BGC is not a molecular blueprint but a \emph{constrained program space}. The product is the image
