@@ -55,8 +55,12 @@ def design_product(realiz: Realizability) -> DesignProduct | None:
 
 
 def _alphabet_and_len(realiz: Realizability, grammar: Grammar):
+    """The GENOME alphabet for the inference question: the nearest cluster's declared domain set (what the
+    genome offers) plus any domains the design's structural edits add -- NOT the program's required domains
+    (using those would leak the answer the observation is meant to infer, e.g. assuming an unfired ER is
+    absent). Matches the harness's alphabet derivation."""
     prog = realiz.target
-    domains = {"KS", "AT", "ACP"} | set(_target_domains(prog))
+    domains = {"KS", "AT", "ACP"} | set(realiz.nearest.domains) | set(_target_domains(prog))
     return grammar.alphabet_from_domains(domains, starters=(prog.starter,)), len(prog.cycles)
 
 
