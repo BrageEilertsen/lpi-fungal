@@ -29,7 +29,7 @@ clusters is hard, and a verifier-grounded path forward}
 \small \texttt{brageei@uio.no}\\
 \small \textit{Affiliation to be completed}}
 
-\date{May 2026 --- draft v1.1}
+\date{May 2026 --- draft v1.2}
 
 \begin{document}
 \maketitle
@@ -577,7 +577,9 @@ coverage, hidden per-cycle control, tailoring under-constraint, and non-local pa
 structure---and the field's single accuracy score aggregates distinct phenomena that this
 decomposition separates. Developing the typed operator library and observability model into a
 general verifier-grounded program-inference engine is the natural next step; the present paper is
-its polyketide case study, with a reference v0 (\code{lpi.engine}) released alongside.
+its polyketide case study, with a reference v0 (\code{lpi.engine}) released alongside: a single
+interface that maps a cluster's domain set and observables (accurate mass, MS/MS) to ranked
+candidate cores and a per-cluster reconstructibility verdict.
 
 \paragraph{Reproducibility.} All results are produced by single commands over pinned
 dependencies; see Appendix~\ref{app:repro}.
