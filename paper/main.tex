@@ -568,6 +568,53 @@ program synthesis \citep{dreamcoder} and on protein language models \citep{esm2}
 handled with RDKit \citep{rdkit}. Our distinguishing stance is to \emph{measure} exact
 reconstructibility and to ground every claim in a sound deterministic verifier.
 
+\section{Cross-grammar generalization: NRPS v0}
+\label{sec:crossgrammar}
+
+The program-synthesis view of Section~\ref{sec:concept}---a BGC is not a molecular blueprint but a
+constrained program space, $y=\mathrm{Exec}_{\Theta}(z;G)$---predicts that the engine should not be
+specific to polyketides: biosynthetic families differ in their program grammars and operator
+libraries $\Theta$, but the \emph{observability} layer (accurate mass, MS/MS) and the
+reconstructibility verdict are physical, not family-specific. We test this directly. Behind the same
+\code{infer\_cluster}$(G,O)\!\to\!(Z^{\star},\,\text{state},\,\text{next observable})$ interface we
+implement a minimal non-ribosomal peptide (NRPS) grammar: a pure, deterministic peptide executor
+(amide condensation of a small monomer set; linear and head-to-tail macrocyclic release) with an
+exact residue-formula prefilter, presented through the identical \code{Grammar} protocol as the PKS
+generator (Table~\ref{tab:crossgrammar}).
+
+\begin{table}[h]
+\centering\small
+\caption{One inference interface, two grammars. Verified candidate-set size after each observable
+rung, and the three-state verdict; the same mass / MS-MS / verdict machinery serves both families.}
+\label{tab:crossgrammar}
+\begin{tabular}{@{}llrrrl@{}}
+\toprule
+Cluster / product & Grammar & alphabet & $+$mass & $+$MS/MS & Verdict \\
+\midrule
+orsellinic acid     & PKS  & $2$    & $1$  & $1$ & verified \\
+olivetolic acid     & PKS  & $5012$ & $87$ & $1$ & verified \\
+cyclo(Gly--Gly)     & NRPS & $100$  & $1$  & $1$ & verified \\
+glycylglycine       & NRPS & $576$  & $1$  & $1$ & verified \\
+cyclo(Phe--Tyr)     & NRPS & $100$  & $1$  & $1$ & verified \\
+NRPS, mass withheld & NRPS & $788$  & ---  & --- & under-observed \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The same accurate-mass filter, MS/MS fragment fingerprint, observable ladder, and three-state
+verdict are reused \emph{without modification}; only the grammar-specific program generator changes,
+because the shared layer reads only candidate structures. The withheld-mass row is the engine in its
+operative mode: from the genome alone the peptide is \emph{under-observed}, and the verdict names the
+observable---accurate mass---that would collapse the candidate set.
+
+\paragraph{What this does and does not establish.} This is a proof of \emph{framework} generality,
+not of NRPS biochemical coverage. The NRPS v0 is deliberately conservative: eight proteinogenic
+monomers, an achiral backbone, two release modes, no adenylation-domain substrate-specificity model,
+and no PKS--NRPS hybrid bridge. The claim is precisely that a second biosynthetic grammar plugs into
+the same inference and verdict stack---evidence that the architecture is grammar-agnostic, with
+families differing in their program grammars and operator libraries while sharing one
+observable-constrained reconstructibility layer.
+
 \section{Limitations}
 \label{sec:limits}
 
