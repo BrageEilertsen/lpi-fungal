@@ -20,6 +20,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from lpi.chem import mol as M
+from lpi.chem.formula import enumerate_chno
 from lpi.executor import nrps as _nrps
 from lpi.executor.nrps import Release
 from lpi.search.generate import Candidate, GenResult
@@ -91,6 +92,12 @@ class NRPSGrammar:
                     if smi not in best or s > best[smi].score:
                         best[smi] = Candidate(smi, pep, s)
         return GenResult(_ranked(best), tried, capped=False)
+
+    def mass_prefilter_keys(self, neutral_mass: float, ppm: float,
+                            max_c: int = 60) -> list[tuple[int, int, int, int]]:
+        """Product (C, H, N, O) formulas within ``ppm`` of ``neutral_mass`` -- note the nitrogen,
+        which the peptide enumerator's exact prefilter requires."""
+        return enumerate_chno(neutral_mass, ppm, with_n=True, max_c=max_c)
 
 
 #: module singleton.

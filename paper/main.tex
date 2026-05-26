@@ -601,9 +601,10 @@ NRPS, mass withheld & NRPS & $788$  & ---  & --- & under-observed \\
 \end{tabular}
 \end{table}
 
-The same accurate-mass filter, MS/MS fragment fingerprint, observable ladder, and three-state
-verdict are reused \emph{without modification}; only the grammar-specific program generator changes,
-because the shared layer reads only candidate structures. The withheld-mass row is the engine in its
+Because the observability layer consumes only executed candidate structures, the same ppm-tolerant
+mass recovery, adduct model, MS/MS scorer, observable ladder, and three-state verdict operate
+unchanged across PKS and NRPS grammars; only the program generator is family-specific. The
+withheld-mass row is the engine in its
 operative mode: from the genome alone the peptide is \emph{under-observed}, and the verdict names the
 observable---accurate mass---that would collapse the candidate set.
 
@@ -643,9 +644,12 @@ real untargeted-metabolomics spectra (e.g.\ CFM-ID / GNPS), per-cluster domain a
 antiSMASH/fungiSMASH, and a learned candidate-ranking prior (data-limited at present) are the
 natural next steps. In clean form mass and MS/MS act as hard masks; in real metabolomics (adducts,
 isotopes, noisy or partial spectra) they become high-confidence constraints with explicit
-uncertainty, motivating an approximate verifier
-$Z^{\star}_{\epsilon}=\{\,z:d(\mathrm{Frag}(\mathrm{Exec}(z)),\,O_{\mathrm{MS/MS}})\le\epsilon\,\}$
-alongside the exact one.
+uncertainty; we \emph{implement} a matching approximate verifier
+$Z^{\star}_{\epsilon}=\{\,z:\mathrm{mass}(\mathrm{Exec}(z))\in[m-\epsilon,m+\epsilon],\,
+\mathrm{MS/MS}(z)\ge\tau\,\}$ as an adduct-aware, ppm-tolerant, tolerance-scored layer shared across
+grammars (built via a mass-window formula prefilter so the tolerance is genuine, not an exact
+verifier with a cosmetic window) alongside the exact one---validation against real spectra (above)
+being the open step.
 \end{itemize}
 
 \begin{table}[h]

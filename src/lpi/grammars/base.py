@@ -49,3 +49,10 @@ class Grammar(Protocol):
         """Enumerate alphabet-allowed programs, execute each with the family's sound
         executor, and return distinct producible structures as ranked candidates."""
         ...
+
+    def mass_prefilter_keys(self, neutral_mass: float, ppm: float) -> list[tuple[int, ...]]:
+        """The product molecular-formula keys (in this grammar's element convention) whose
+        monoisotopic mass falls within ``ppm`` of ``neutral_mass``. The tolerant mass observable
+        runs ``enumerate(target_cho=key)`` once per returned key and unions the results, giving a
+        sound ppm-tolerant candidate set without enumerating the full program space."""
+        ...

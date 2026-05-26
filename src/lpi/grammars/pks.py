@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from lpi.chem.formula import enumerate_chno
 from lpi.chem.program import ReductionState, Release
 from lpi.search.generate import Alphabet, GenResult, generate
 
@@ -62,6 +63,12 @@ class PKSGrammar:
     def enumerate(self, alphabet: Alphabet, min_len: int, max_len: int,
                   target_cho: tuple[int, int, int] | None = None) -> GenResult:
         return generate(alphabet, min_len, max_len, target_cho=target_cho)
+
+    def mass_prefilter_keys(self, neutral_mass: float, ppm: float,
+                            max_c: int = 40) -> list[tuple[int, int, int]]:
+        """Product (C, H, O) formulas within ``ppm`` of ``neutral_mass`` -- the sound,
+        tolerant mass prefilter (one exact enumeration is run per returned key)."""
+        return enumerate_chno(neutral_mass, ppm, with_n=False, max_c=max_c)
 
 
 #: module singleton; the engine's default grammar.
