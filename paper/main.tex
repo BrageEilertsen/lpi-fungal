@@ -402,10 +402,12 @@ a constrained hypothesis generator for genome mining. Conditioning that generato
 observables a metabologenomics pipeline actually supplies---the domain alphabet and the
 MS-measured molecular formula (which pins the reduction \emph{count})---collapses our curated
 reachable set to a median of \emph{one} candidate core (top-3 recall $9/10$); the per-cycle
-reduction combinatorics, and with them the $0.57$ grammar wall, largely dissolve once the mass
-is known. The wall is thus partly an artefact of blind BGC$\to$structure prediction: for cores
-within executor reach, BGC$+$mass is near-deterministic, and the binding constraint reverts to
-cyclization \emph{coverage}, not computability.
+reduction combinatorics, and with them the $0.57$ grammar wall, largely dissolve when the domain
+alphabet and the mass are combined (the mass alone leaves larger cores with formula-isomers to
+rank, so both observables matter). The wall is thus partly an artefact of blind BGC$\to$structure
+prediction: for small cores within executor reach, alphabet$+$mass is near-deterministic, and the
+binding constraints revert to cyclization \emph{coverage} and a candidate-ranking prior, not
+computability.
 
 \section{A path forward: differential learning, demonstrated}
 \label{sec:differential}

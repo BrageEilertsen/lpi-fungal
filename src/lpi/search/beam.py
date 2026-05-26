@@ -127,7 +127,7 @@ def linear_acid_formula(program: Program) -> tuple[int, int, int]:
     # base = acetic acid C2H4O2 for an acetyl starter; other starters offset by their
     # extra carbons/hydrogens (all saturated acyl starters: propionyl +CH2, butyryl +2CH2).
     base = {"acetyl": (2, 4, 2), "propionyl": (3, 6, 2), "butyryl": (4, 8, 2),
-            "benzoyl": (7, 6, 2)}.get(program.starter, (2, 4, 2))
+            "hexanoyl": (6, 12, 2), "benzoyl": (7, 6, 2)}.get(program.starter, (2, 4, 2))
     c, h, o = base
     for cyc in program.cycles:
         dc, dh, do = _CYCLE_DELTA[cyc.reduction]
@@ -155,7 +155,7 @@ def formula_feasible(target: tuple[int, int, int], spec: OperatorSpec,
     """
     ct, ht, ot = target
     _BASE = {"acetyl": (2, 4, 2), "propionyl": (3, 6, 2), "butyryl": (4, 8, 2),
-             "benzoyl": (7, 6, 2)}
+             "hexanoyl": (6, 12, 2), "benzoyl": (7, 6, 2)}
     allow_me = spec.allow_c_methyl
     for starter in spec.starters:
         cb, hb, ob = _BASE.get(starter, (2, 4, 2))

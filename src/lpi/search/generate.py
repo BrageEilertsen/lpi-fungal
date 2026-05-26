@@ -23,6 +23,7 @@ from rdkit import Chem, RDLogger
 from lpi.chem import mol as M
 from lpi.chem.program import Cycle, Program, ReductionState, Release
 from lpi.executor import core as _core
+from lpi.search.beam import _formula_cho, _formula_consistent, linear_acid_formula
 
 RDLogger.DisableLog("rdApp.*")
 
@@ -62,7 +63,16 @@ def _score(prog: Program) -> float:
 
 
 def generate(alphabet: Alphabet, min_cycles: int, max_cycles: int,
-             max_carbons: int = 40, program_cap: int = 20000) -> GenResult:
+             max_carbons: int = 40, program_cap: int = 20000,
+             target_cho: tuple[int, int, int] | None = None) -> GenResult:
+    """Enumerate alphabet-allowed programs, execute, and return distinct ranked cores.
+
+    If ``target_cho`` (the C,H,O of an MS-measured molecular formula) is given, programs whose
+    analytic released-acid formula cannot reach it are skipped BEFORE execution -- the same
+    prefilter the verifier uses (beam.linear_acid_formula / _formula_consistent) -- so the
+    per-cycle-reduction combinatorics never blow up: only on-mass programs are executed and
+    counted toward ``program_cap``. This is the genome-mining mode (cluster alphabet + MS mass).
+    """
     opts = [Cycle(reduction=r, c_methyl=me)
             for r in alphabet.reductions
             for me in ((False, True) if alphabet.allow_cmet else (False,))]
@@ -74,15 +84,21 @@ def generate(alphabet: Alphabet, min_cycles: int, max_cycles: int,
             for combo in itertools.product(opts, repeat=n):
                 if sc + sum(3 if c.c_methyl else 2 for c in combo) > max_carbons:
                     continue
+                lin = linear_acid_formula(Program(starter, combo)) if target_cho else None
                 for rel in alphabet.releases:
+                    if target_cho is not None and not _formula_consistent(lin, target_cho, rel):
+                        continue  # formula prefilter: never execute an off-mass program
                     tried += 1
                     if tried > program_cap:
                         return GenResult(_ranked(best), tried, capped=True)
                     prog = Program(starter, combo, rel)
                     try:
-                        smi = M.canonical_smiles(_core.exec(prog))
+                        mol = _core.exec(prog)
                     except Exception:  # noqa: BLE001
                         continue
+                    if target_cho is not None and _formula_cho(mol) != target_cho:
+                        continue  # exact formula (pins the actual waters lost on cyclization)
+                    smi = M.canonical_smiles(mol)
                     s = _score(prog)
                     if smi not in best or s > best[smi].score:
                         best[smi] = Candidate(smi, prog, s)
