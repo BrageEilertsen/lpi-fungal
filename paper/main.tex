@@ -53,7 +53,9 @@ fungal PKS in MIBiG~4.0, exact reconstruction reaches $8/326$---not a disappoint
 \emph{boundary} of the natural manifold the engine operates over (a tailoring-latent reformulation
 recovers $64\%$ conditional on a producible core)---and a cross-taxa transfer probe locates its one
 hard axis: per-cycle reduction chemistry transfers at $1.00$ within a fixed domain set but collapses
-to $0.57$ across the iteration program.
+to $0.57$ across the iteration program---bacterial modular and fungal iterative PKS thus instantiate two
+computational regimes of catalytic control: \emph{externalized} per-step state (one module per step,
+learnable) versus \emph{compressed}, state-dependent routing through one reusable manifold.
 
 Run \emph{backward}, the same engine becomes a design tool. We place a desired molecule on a
 \emph{realizability geometry} against the natural manifold, decomposed onto two axes that map to
@@ -622,6 +624,36 @@ spectra (e.g.\ CFM-ID / GNPS), and turning the curated edit tiers into \emph{obs
 probabilistic realizability}---success distributions fit to wet-lab build outcomes---so the
 design--build--test cycle, not only experiment selection, runs on the same spine. The reference
 implementation (\code{lpi.engine}) is released alongside.
+
+\paragraph{Future perspective: the iteration program as a partially observed dynamical control problem.}
+These results invite a reframing of the fungal problem itself. The per-cycle action may not be a function
+of the synthase alone---$a_t\sim P(a_t\mid G)$---but of the synthase \emph{and} an evolving substrate
+state, $a_t\sim P(a_t\mid G,s_t)$, where $s_t$ is the chain length, oxidation state, carrier-protein pose,
+and transient conformation the constant catalytic machinery presents to itself on cycle~$t$. Bacterial
+modular PKS \emph{externalize} this state into architecture---one module per step---whereas the fungal
+iterative synthase \emph{compresses} the entire policy into one reusable catalytic manifold with
+state-dependent routing: a non-equilibrium, trajectory-dependent object closer to a substrate-conditioned
+automaton than to a static sequence$\to$structure map. Crucially this is an
+\emph{architectural} claim, not a statistical null: an iterative synthase exposes no per-step observable
+by construction, and where one \emph{does} exist---bacterial modular PKS---the same predictor under the
+same executor nearly doubles ($0.50\!\to\!0.78$, \S\ref{sec:wall}), so the model class is not the limit.
+The fungal probes then \emph{corroborate} the boundary by elimination: the policy is recovered neither
+from chain position nor from the computable running substrate state, so the identifying signal lies in
+the conformational component of $s_t$ that a synthase-local view cannot, by construction, supply. This decomposes the problem into three layers: the sound executor (built
+here---and what makes the rest \emph{identifiable}, by bounding the combinatorics a learned model would
+otherwise drown in), a per-cycle policy $\pi_\theta(s_t)$, and a state-evolution model $s_{t+1}=F(s_t,a_t)$
+that structural-dynamics observables (MD ensembles, cryo-EM states, chain-length-conditioned docking)
+would supply. The requirement this hands such an effort is sharp: the policy cannot be learned from
+synthase-local static observables, so the next advance needs either a substantially larger corpus read at
+per-cycle resolution or direct partial observables of the conformational state. The first measurable
+breakthrough need not be complete product prediction---it would be a single per-cycle decision becoming
+predictable above $0.567$ once cycle-distinguishing state is injected, which the executor would then
+propagate, soundly, through the rest of the program. More broadly, the executor was not merely the
+infrastructure beneath these results but the \emph{instrument} that produced them: only exact
+program-space reasoning let us define the ambiguity, separate missing observability from model weakness,
+and construct the bacterial control cleanly. The deepest contribution is thus methodological---a
+verifier-grounded way to \emph{locate where biosynthetic information resides}---of which the fungal
+iteration-grammar boundary is the first application.
 
 \paragraph{Reproducibility.} All results are produced by single commands over pinned
 dependencies; see Appendix~\ref{app:repro}.
