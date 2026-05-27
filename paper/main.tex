@@ -37,7 +37,7 @@
 \small \texttt{brageei@uio.no}\\
 \small \textit{Affiliation to be completed}}
 
-\date{May 2026 --- draft for supervisor feedback}
+\date{May 2026}
 
 \begin{document}
 \maketitle
@@ -59,20 +59,24 @@ fungal PKS in MIBiG~4.0, exact reconstruction reaches $8/326$---not a disappoint
 \emph{boundary} of the natural manifold the engine operates over (a tailoring-latent reformulation
 recovers $64\%$ conditional on a producible core)---and a cross-taxa transfer probe locates its one
 hard axis: per-cycle reduction chemistry transfers at $1.00$ within a fixed domain set but collapses
-to $0.57$ across the iteration program---bacterial modular and fungal iterative PKS thus instantiate two
+to $0.567$ across the iteration program---bacterial modular and fungal iterative PKS thus instantiate two
 computational regimes of catalytic control: \emph{externalized} per-step state (one module per step,
 learnable) versus \emph{compressed}, state-dependent routing through one reusable manifold.
 
 Run \emph{backward}, the same engine becomes a design tool. We place a desired molecule on a
 \emph{realizability geometry} against the natural manifold, decomposed onto two axes that map to
 different wet-lab capabilities---\emph{structural} edits (domain content; mature bacterial
-modular-PKS precedent) and \emph{control} edits (the iteration program; the $0.57$ frontier)---scored
+modular-PKS precedent) and \emph{control} edits (the iteration program; the $0.567$ frontier)---scored
 by a literature-curated, super-additive cost that \emph{is} the field's measured engineering
 difficulty rather than an assumption we supply. Across the $1$-edit neighbourhood of the manifold the
 control axis dominates ($69$ frontier to $49$ engineerable), and an experiment-selection planner
 ranks the observation that would most collapse $Z^\star$ per unit cost. The same iteration-grammar
-wall is thus a prediction ceiling read one way and a design frontier read the other. Because
-structure elucidation in this field proceeds by heterologous expression and NMR with mass
+wall is thus a prediction ceiling read one way and a design frontier read the other---a symmetry we
+formalise as an \emph{identifiability--controllability duality} (Theorem~\ref{thm:duality},
+\S\ref{sec:duality}): the verifier's consistent set and the designer's specification space are one
+equivalence class, so prediction and design ambiguity are projections of a single observability quantity
+$\kappa_O$, a result that travels beyond fungal PKS with a falsifiable prediction on RiPP biosynthesis.
+Because structure elucidation in this field proceeds by heterologous expression and NMR with mass
 spectrometry as triage---the methodology of all seven verified products we curate from primary
 sources---we build a metabologenomics \emph{triage} tool whose three-state verdict names explicitly
 the clusters where triage suffices and those that must go to expression$+$NMR. The observability and
@@ -157,11 +161,16 @@ generator changing.
 \item A \textbf{realizability geometry for biosynthetic design} (Section~\ref{sec:design}): every
 target molecule scored by its edit distance to the natural manifold on two typed axes---%
 \emph{structural} (domain content, with bacterial modular-PKS precedent) and \emph{control} (the
-iteration program, the $0.57$ frontier)---under a \emph{literature-curated, super-additive} cost that
+iteration program, the $0.567$ frontier)---under a \emph{literature-curated, super-additive} cost that
 encodes the field's measured engineering difficulty, with a worked design neighbourhood, the
 control-axis dominance result ($69\!:\!49$), and an \textbf{experiment-selection planner} that ranks
 the next observation by expected collapse of $Z^\star$ per unit cost and names the
 elucidation-required designs.
+\item An \textbf{identifiability--controllability duality} (Theorem~\ref{thm:duality},
+\S\ref{sec:duality}): the inference resolution $Z^{\star}$ and the design resolution $D(y;O)$ are the
+same equivalence class $[z]_O$, so prediction ambiguity and design specification freedom are one
+quantity $\kappa_O$ at one observability frontier $\mathcal{F}_O$; instantiated on PKS, NRPS, and hybrid
+grammars and predicted to survive on RiPP (Corollary~\ref{cor:crossfamily}).
 \item A \textbf{three-state reconstructibility verdict} (\textsc{verified} / \textsc{under-observed}
 / \textsc{out-of-grammar}) in which the \textsc{under-observed} state names the next observable that
 would collapse $Z^\star$, resting on a failure-mode taxonomy (operator coverage, hidden iterative
@@ -402,12 +411,12 @@ known product (benchmark only) & retrospective verification & prospective mining
 \end{tabular}
 \end{table}
 
-\paragraph{The observable ladder.} The genome alone leaves the program highly uncertain (the $0.57$
+\paragraph{The observable ladder.} The genome alone leaves the program highly uncertain (the $0.567$
 per-cycle transfer); the domain alphabet bounds the legal operators; the MS-measured molecular
 formula pins the reduction \emph{count}. Conditioning the generator on the two observables a
 metabologenomics pipeline actually supplies---domain alphabet and mass---collapses our curated
 reachable set to a median of \emph{one} candidate core (top-3 recall $9/10$), so the per-cycle
-reduction combinatorics, and with them the $0.57$ grammar wall, largely dissolve once alphabet and
+reduction combinatorics, and with them the $0.567$ grammar wall, largely dissolve once alphabet and
 mass are combined. Mass alone is not always sufficient: for small cores within executor reach
 alphabet$+$mass is near-deterministic, but larger cores under a rich grammar retain formula-isomers,
 and these are \emph{fragmentation}-distinguishable (a crude single-bond-cleavage fingerprint already
@@ -534,8 +543,8 @@ that motivates this work. Rule-based detectors and product predictors---antiSMAS
 iterative program. ClusterCAD \citep{clustercad,clustercad2} is the modular-PKS intermediate
 database we both consume (for the cross-taxa transfer probe) and cite as the bacterial existence proof
 that colinear assembly lines are tabulable (the conceptual result of Section~\ref{sec:manifold}).
-MIBiG \citep{mibig} is our pair source; BGC family methods such as BiG-SLiCE /
-BiG-FAM \citep{bigslice} define the within-family neighbourhoods the cross-taxa transfer probe uses.
+MIBiG \citep{mibig} is our pair source; BGC family methods such as BiG-SLiCE
+\citep{bigslice} define the within-family neighbourhoods the cross-taxa transfer probe uses.
 Property/arrangement predictors such as CHAMOIS \citep{chamois} infer ontology-level chemistry,
 not exact iterative programs. Methodologically we draw on execution-guided, neurosymbolic
 program synthesis \citep{dreamcoder} and on protein language models \citep{esm2}; chemistry is
@@ -615,7 +624,7 @@ inverse compiler over that space serves three jobs on one spine $y=\mathrm{Exec}
 and assigns them to metabolome peaks, returning a typed verdict rather than a single accuracy score;
 run \emph{backward} it designs. The diagnostic half characterizes the natural manifold the engine
 operates over---exact reconstruction at $8/326$ is its \emph{boundary} (not a disappointment), the
-$100\%\!\to\!57\%$ cross-taxa collapse its one hard axis, and structural-similarity proxies are shown
+$1.00\!\to\!0.567$ cross-taxa collapse its one hard axis, and structural-similarity proxies are shown
 \emph{not} to be reconstructibility metrics. The contribution is what the backward direction buys: a
 \emph{realizability geometry} that scores any target molecule by its edit distance to that manifold
 along two axes---structural (documented domain engineering) and control (the iteration-program
@@ -626,7 +635,11 @@ executor can express. An experiment-selection planner then ranks the observation
 the candidate set per unit cost and, crucially, \emph{names its own limit}---the designs where mass
 and MS/MS triage suffice versus those that must go to expression$+$NMR. The same iteration-grammar
 wall is therefore a prediction ceiling read one way and a design frontier read the other: one
-measurement, a limitation and the contribution at once. We do not replace structure elucidation; we
+measurement, a limitation and the contribution at once. Formally these are projections of one
+observability quantity $\kappa_O$ on one frontier $\mathcal{F}_O$ (Theorem~\ref{thm:duality}), so the
+same engine, the same planner, and the same experiments serve both directions---and the same theorem
+predicts the architecture reproduces its results on any family meeting the soundness conditions of
+\S\ref{sec:guarantees}. We do not replace structure elucidation; we
 build the missing middle---the sound, cost-weighted layer between target-blind generative chemistry,
 enzyme-blind retrosynthesis, and undirected genome mining---on which other models compose without
 eroding soundness: a sequence policy reranking $Z^{\star}$ and, as the natural next composition, a
@@ -635,8 +648,8 @@ for the cheapest cluster-plus-edits route to a desired activity, each proposal a
 construction plan and a confirming experiment. We do not claim that pipeline here; we claim the substrate
 on which it becomes possible. The tools, benchmark, and analyses are open and reproducible.
 
-\paragraph{Outlook.} The architecture is grammar-agnostic---observability and the three-state verdict
-are shared across PKS, NRPS, and a typed hybrid---so deepening the family grammars (NRPS substrate
+\paragraph{Near-term extensions.} The architecture is grammar-agnostic---observability and the three-state
+verdict are shared across PKS, NRPS, and a typed hybrid---so deepening the family grammars (NRPS substrate
 specificity, the tetramic-acid release) and extending executor coverage widen the manifold without
 touching the shared layers. A learned, sequence-aware \emph{policy} fits the engine naturally as a
 soundness-preserving \emph{reranker} over the legal program set, and the controlled per-step/pooled
@@ -649,7 +662,8 @@ probabilistic realizability}---success distributions fit to wet-lab build outcom
 design--build--test cycle, not only experiment selection, runs on the same spine. The reference
 implementation (\code{lpi.engine}) is released alongside.
 
-\paragraph{Future perspective: the iteration program as a partially observed dynamical control problem.}
+\section{Outlook: the iteration program as a partially observed dynamical control problem}
+\label{sec:pomdp}
 These results invite a reframing of the fungal problem itself. The per-cycle action may not be a function
 of the synthase alone---$a_t\sim P(a_t\mid G)$---but of the synthase \emph{and} an evolving substrate
 state, $a_t\sim P(a_t\mid G,s_t)$, where $s_t$ is the chain length, oxidation state, carrier-protein pose,
@@ -678,9 +692,6 @@ program-space reasoning let us define the ambiguity, separate missing observabil
 and construct the bacterial control cleanly. The deepest contribution is thus methodological---a
 verifier-grounded way to \emph{locate where biosynthetic information resides}---of which the fungal
 iteration-grammar boundary is the first application.
-
-\paragraph{Reproducibility.} All results are produced by single commands over pinned
-dependencies; see Appendix~\ref{app:repro}.
 
 \appendix
 \section{Reproducibility}
@@ -729,13 +740,14 @@ strategy for biosynthetic gene cluster prediction (DeepBGC).
 \emph{Nucleic Acids Research}, 47(18):e110, 2019.
 \bibitem[Carroll et al.(2021)]{gecco} L.~M.~Carroll et al. Accurate de novo identification of
 biosynthetic gene clusters with GECCO. \emph{bioRxiv}, 2021.
-\bibitem[CLOCI(2024)]{cloci} CLOCI: unveiling cryptic fungal gene clusters with generalized
-detection. \emph{Nucleic Acids Research}, 52(16):e75, 2024.
+\bibitem[Konkel et al.(2024)]{cloci} Z. Konkel, L. Kubatko, and J.~C. Slot. CLOCI: unveiling cryptic
+fungal gene clusters with generalized detection. \emph{Nucleic Acids Research}, 52(16):e75, 2024.
 \bibitem[Zdouc et al.(2025)]{mibig} M.~M.~Zdouc, K.~Blin, et al. MIBiG 4.0: advancing
 biosynthetic gene cluster curation through global collaboration.
 \emph{Nucleic Acids Research}, 53(D1):D678--D690, 2025.
-\bibitem[Kautsar et al.(2021)]{bigslice} S.~A.~Kautsar et al. BiG-SLiCE / BiG-FAM: clustering
-biosynthetic gene clusters at scale. \emph{GigaScience / Nucleic Acids Research}, 2021.
+\bibitem[Kautsar et al.(2021)]{bigslice} S.~A.~Kautsar, J.~J.~J. van der Hooft, D. de Ridder, and
+M.~H. Medema. BiG-SLiCE: a highly scalable tool maps the diversity of 1.2 million biosynthetic gene
+clusters. \emph{GigaScience}, 10(1):giaa154, 2021.
 \bibitem[CHAMOIS(2025)]{chamois} Machine learning inference of natural product chemistry across
 biosynthetic gene cluster types (CHAMOIS). \emph{bioRxiv}, 2025.
 \url{https://doi.org/10.1101/2025.03.13.642868}.
@@ -750,8 +762,8 @@ program synthesis with wake-sleep library learning. \emph{PLDI}, 2021.
 \bibitem[Lin et al.(2023)]{esm2} Z.~Lin et al. Evolutionary-scale prediction of atomic-level
 protein structure with a language model (ESM-2/ESMFold). \emph{Science}, 379(6637):1123--1130,
 2023.
-\bibitem[Landrum(2023)]{rdkit} G.~Landrum et al. RDKit: open-source cheminformatics.
-\url{https://www.rdkit.org}.
+\bibitem[Landrum et al.(2025)]{rdkit} G.~Landrum et al. RDKit: open-source cheminformatics (version
+2025.09.6), 2025. \url{https://www.rdkit.org}.
 % --- design-section (§6) references: cox2023 \& fisch2011 verified; the remaining three carry
 % verified PMIDs/DOIs with author lists still to complete from data/curation/edit_precedent.md ---
 \bibitem[Cox(2023)]{cox2023} R.~J. Cox. Curiouser and curiouser: progress in understanding the
@@ -771,6 +783,8 @@ synthase. \emph{Science}, 277(5324):367--369, 1997. doi:10.1126/science.277.5324
 G. B\"{o}hm, U. Hanefeld, J. Cort\'{e}s, J. Staunton, and P.~F. Leadlay. A polylinker approach to
 reductive loop swaps in modular polyketide synthases. \emph{ChemBioChem}, 9(16):2740--2749, 2008.
 doi:10.1002/cbic.200800332.
+\bibitem[Yuzawa et al.(2018)]{yuzawa2018} S. Yuzawa, T.~W.~H. Backman, J.~D. Keasling, and L. Katz.
+Synthetic biology of polyketide synthases. \emph{J. Ind. Microbiol. Biotechnol.}, 45(7), 2018.
 % --- §10 duality, cross-family-prediction references (web-verified) ---
 \bibitem[Repka et al.(2017)]{repka2017} L.~M. Repka, J.~R. Chekan, S.~K. Nair, and W.~A. van der Donk.
 Mechanistic understanding of lanthipeptide biosynthetic enzymes. \emph{Chem. Rev.}, 117(8):5457--5520,

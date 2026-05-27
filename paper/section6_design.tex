@@ -25,7 +25,7 @@ edit distance to the nearest natural cluster on the manifold, decomposed into tw
   \item \textbf{Control} edits change the \emph{iteration program} with the domain set fixed: which cycle
   a present domain fires on (\code{reduction}, \code{c\_methyl}) or the iteration count
   (\code{cycle\_add}, \code{cycle\_remove}). This is the iteration-grammar frontier---precisely the
-  $100\%\!\to\!57\%$ wall of the cross-taxa transfer probe (\S\ref{sec:manifold}), now read as a design
+  $1.00\!\to\!0.567$ wall of the cross-taxa transfer probe (\S\ref{sec:manifold}), now read as a design
   dimension rather than a prediction limit.
 \end{itemize}
 A design at coordinate $(2,1)$ (two structural, one control edit) is a different proposition from one at
@@ -201,15 +201,14 @@ proven.'' Evaluated retrospectively against this curated corpus it routes correc
 core is flagged elucidation-required---and on the design neighbourhood it steers attention to
 engineerable and frontier designs over speculative ones.
 
-\subsection{The architectural moat and the same-wall symmetry}\label{sec:moat}
-Two claims carry the contribution. \textbf{First, it is architectural, not a capability we happen to
-have.} The control axis exists as a design dimension only for a sound executor that distinguishes
-per-cycle firing within a fixed domain set. ``Reprogram the ketoreductase at cycle~3'' is not a hard
-edit to a retrosynthesis tool (which works in chemical space), an enzyme-design tool (which works per
-protein), or a pathway tool (which ignores assembly-line grammar)---it is a sentence about an object none
-of them can represent. We are the missing layer between generative chemistry and protein design, and the
-cost on the axis is the field's measured difficulty (Eq.~\eqref{eq:cost}). \textbf{Second, the same wall
-has opposite valence in the two directions.} The $100\%\!\to\!57\%$ iteration-grammar collapse is, for
-\emph{prediction}, a ceiling---where reconstruction fails (\S\ref{sec:manifold}); for \emph{design}, it
-is the frontier---the dimension along which the interesting molecules live. One measurement, a limitation
-read one way and the contribution read the other.
+\subsection{The architectural moat}\label{sec:moat}
+The contribution is architectural, not a capability we happen to have: the control axis exists as a
+design dimension only for a sound executor that distinguishes per-cycle firing within a fixed domain set.
+``Reprogram the ketoreductase at cycle~3'' is not a hard edit to a retrosynthesis tool (which works in
+chemical space), an enzyme-design tool (which works per protein), or a pathway tool (which ignores
+assembly-line grammar)---it is a sentence about an object none of them can represent. We are the missing
+layer between generative chemistry and protein design, and the cost on the axis is the field's measured
+difficulty (Eq.~\eqref{eq:cost}). That the same iteration-grammar wall is a prediction ceiling read one
+way (\S\ref{sec:manifold}) and a design frontier read the other is no coincidence but a duality, stated
+and proved in \S\ref{sec:duality}: prediction ambiguity and design freedom are one observability
+quantity~$\kappa_O$.
