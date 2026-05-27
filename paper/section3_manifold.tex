@@ -58,7 +58,15 @@ precise form of Cox's observation that highly-reducing PKS programming is an eme
 ``will remain extremely difficult'' to predict rationally \citep{cox2023}: it is emergent from the
 interaction between the constant catalytic machinery and the changing substrate context across cycles. The
 0.57 is therefore not a placeholder for missing work; it is a structural ceiling for any predictor whose
-input is the synthase's fixed domain content.
+input is the synthase's fixed domain content. A positive/negative control on the same predictor isolates
+this. Over 141 colinear bacterial clusters, predicting each module's reduction from its \emph{own}
+per-module domains reaches \textbf{0.78}; predicting it from the synthase's single \emph{pooled} domain
+set---the condition a fungal iterative synthase is in by construction---collapses to \textbf{0.50} (the
+modal baseline), and the fungal $0.567$ sits in that pooled column. One predictor nearly doubles when
+given a per-step signal and falls to the wall when denied it: the deficit is the missing per-step
+\emph{input}, not the model. (Whole-program exact recovery is only $0.17$ even on bacteria, as per-module
+errors compound across the assembly line---which is why a per-step \emph{sequence} signal helps precisely
+where one exists, and cannot where it does not.)
 
 \paragraph{A sequence-level probe separates two questions.} The cross-taxa probe folded together two
 questions the sequence head now lets us separate: \emph{(i)}~does protein \emph{sequence} carry the

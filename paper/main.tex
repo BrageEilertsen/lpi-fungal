@@ -611,11 +611,15 @@ applies. The tools, benchmark, and analyses are open and reproducible.
 
 \paragraph{Outlook.} The architecture is grammar-agnostic---observability and the three-state verdict
 are shared across PKS, NRPS, and a typed hybrid---so deepening the family grammars (NRPS substrate
-specificity, the tetramic-acid release, a learned transition policy for the highly-reducing wall) and
-extending executor coverage widen the manifold without touching the shared layers. Two steps then
-close the loop the planner opens: validating the observability layer on real LC-MS/MS spectra
-(e.g.\ CFM-ID / GNPS), and turning the curated edit tiers into \emph{observation-updated probabilistic
-realizability}---success distributions fit to wet-lab build outcomes---so that the
+specificity, the tetramic-acid release) and extending executor coverage widen the manifold without
+touching the shared layers. A learned, sequence-aware \emph{policy} fits the engine naturally as a
+soundness-preserving \emph{reranker} over the legal program set, and the controlled per-step/pooled
+comparison of \S\ref{sec:wall} predicts where it pays off: on \emph{bacterial modular} PKS, where each
+module carries its own sequence (a companion demonstration), not on the fungal iterative wall, which is
+structural by construction---for fungi the policy ranks within $Z^{\star}$, it does not break the wall.
+Two further steps close the loop the planner opens: validating the observability layer on real LC-MS/MS
+spectra (e.g.\ CFM-ID / GNPS), and turning the curated edit tiers into \emph{observation-updated
+probabilistic realizability}---success distributions fit to wet-lab build outcomes---so the
 design--build--test cycle, not only experiment selection, runs on the same spine. The reference
 implementation (\code{lpi.engine}) is released alongside.
 
@@ -636,7 +640,9 @@ $7/106$), \code{make clustercad} and \code{make differential} (the cross-taxa tr
 PKS/NRPS/hybrid demo, the candidate-collapse observability benchmark, and the blind real-cluster
 6-MSA mining demo), \code{make figures}, and \code{make test} ($161$ tests); the realizability
 geometry and experiment-selection planner are reproduced by \code{scripts/worked\_design\_6msa.py}
-and \code{scripts/planner\_tree\_figure.py} (Figures~\ref{fig:worked}--\ref{fig:trees}). The tagged
+and \code{scripts/planner\_tree\_figure.py} (Figures~\ref{fig:worked}--\ref{fig:trees}); the per-step
+vs.\ pooled control behind the structural-wall claim (\S\ref{sec:wall}) by
+\code{scripts/explorations/bacterial\_control.py}. The tagged
 milestones (\texttt{lpi-v0.2-cross-grammar} through \texttt{lpi-v0.17-homology-clean}, including
 \texttt{v0.14-curated-cost-basis}, \texttt{v0.15-planner}, \texttt{v0.16-sequence-head}, and
 \texttt{v0.17-homology-clean}), per-result numbers, scripts, and commits are tabulated in the
