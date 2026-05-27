@@ -1,0 +1,159 @@
+% =====================================================================================
+% Section 6 -- the design contribution. The anchor section: written to stand alone (as if S3 has not
+% been drafted). Composed from the framing note's design paragraph, the realizability geometry, the
+% literature curation, the worked 6-MSA figure, and the experiment-selection planner.
+% =====================================================================================
+\section{Sound biosynthetic design over the iteration grammar}\label{sec:design}
+
+Running the executor forward turns a program into a structure; running the verifier inverse turns a
+structure into the set $\zstar$ of programs that could have produced it. Here we run the grammar
+\emph{backward}: given a desired, possibly non-natural target, we place it on a \emph{realizability
+geometry} relative to the natural manifold, and we rank the experiments that would confirm it. Two
+results make this more than a restatement of the diagnostic half. First, the design space decomposes
+onto two axes that map to fundamentally different wet-lab capabilities. Second---and this is what keeps
+the contribution honest---the cost on those axes is the field's \emph{measured} difficulty of fungal PKS
+engineering, curated from primary literature, not an assumption we supply.
+
+\subsection{The realizability geometry: two axes}\label{sec:realiz-geometry}
+A design target is a program $z_d$; its product is $y_d=\Exec_\Theta(z_d;G)$. We score $z_d$ by its
+edit distance to the nearest natural cluster on the manifold, decomposed into two typed axes:
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+  \item \textbf{Structural} edits change the \emph{domain content}: add a reductive domain
+  (\code{add\_reductive}), swap the starter or extender (\code{starter}, \code{extender}), reprogram the
+  release cyclase (\code{release}), or insert a methyltransferase de~novo (\code{add\_cmt}). These map
+  onto bacterial modular-PKS engineering.
+  \item \textbf{Control} edits change the \emph{iteration program} with the domain set fixed: which cycle
+  a present domain fires on (\code{reduction}, \code{c\_methyl}) or the iteration count
+  (\code{cycle\_add}, \code{cycle\_remove}). This is the iteration-grammar frontier---precisely the
+  $100\%\!\to\!57\%$ wall of the cross-taxa transfer probe (\S\ref{sec:manifold}), now read as a design
+  dimension rather than a prediction limit.
+\end{itemize}
+A design at coordinate $(2,1)$ (two structural, one control edit) is a different proposition from one at
+$(3,0)$: the first requires reprogramming the iteration itself, the second is documented domain
+engineering. Each target's most-realizable route is the minimum-cost edit path to a natural cluster, and
+its \emph{verdict}---\textsc{natural}, \textsc{engineerable}, \textsc{frontier}, or
+\textsc{speculative}---is read off that path. Crucially, the control axis \emph{only exists as a design
+dimension} for a machine that distinguishes per-cycle firing within a fixed domain set; a tool without
+the iteration grammar cannot represent the edit ``reprogram the ketoreductase at cycle~3,'' let alone
+cost it (\S\ref{sec:moat}).
+
+\subsection{A literature-grounded, super-additive cost}\label{sec:cost}
+The design enumeration bounds the cost model to the nine edit kinds that actually appear in the 1-edit
+neighbourhood, and we curated each from primary sources rather than scraping abstracts (two tier rulings
+turned on facts a search snippet stated incorrectly). The structural edits inherit the mature
+combinatorial-biosynthesis canon: acyltransferase/extender swaps and loading-module/starter swaps are
+documented \citep{atreview,science1997}, as are reductive-loop transplants \citep{reductiveloop}; de~novo
+C-methyltransferase insertion has no precedent (the methylation literature reprograms a \emph{present}
+C-MeT, never inserts one) and is scored \textsc{speculative}.
+
+The control edits are the unsolved frontier. Cox's review of iterative highly-reducing PKS programming
+\citep{cox2023} states plainly that rational efforts ``will remain extremely difficult'' because the
+programme is ``an emergent property\ldots highly unpredictable.'' Yet a \emph{single} edit beside a
+closely related cluster is achievable: domain swaps between the tenellin and desmethylbassianin synthases
+mapped methylation-pattern and chain-length changes cleanly \citep{fisch2011}. We encode exactly this
+shape. Structural edits sum linearly by tier; control edits are \textbf{super-additive}---quadratic in
+the number $k$ of control edits in a design:
+\begin{equation}
+\mathrm{cost}(z_d) \;=\; \underbrace{\textstyle\sum_{e\in\text{struct}} \tau(e)}_{\text{linear}}
+\;+\; \underbrace{\Big(\textstyle\sum_{e\in\text{ctrl}} \tau(e)\Big)\cdot k_{\text{ctrl}}}_{\sim k^2,\ \text{super-additive}},
+\label{eq:cost}
+\end{equation}
+where $\tau$ is the curated per-edit tier. Equation~\eqref{eq:cost} reduces to the linear tier cost at
+$k=1$ (the Fisch--Cox single-edit regime) and grows quadratically as edits stack (the Cox emergent
+regime). The cost model is therefore not asserted: it is the published difficulty landscape of fungal
+PKS engineering, written into the objective. This is the difference between ``we built a design engine''
+and ``we built a design engine whose cost model is the measured difficulty of the field.''
+
+\subsection{The worked neighbourhood of 6-MSA}\label{sec:worked}
+Figure~\ref{fig:worked} walks one clean template---the 6-methylsalicylic acid synthase, the cluster with
+a verified blind real-mass match (\S\ref{sec:mining})---end to end. Each row of its 1-edit neighbourhood
+is a build proposal carrying its $(\text{structural},\text{control})$ coordinate, realizability verdict,
+predicted monoisotopic mass, and the observable that would confirm it. The neighbourhood separates
+cleanly into an \textbf{engineerable} block (single structural edits---starter swaps such as
+acetyl$\to$hexanoyl at mass~244.13, release reprograms---all confirmable by accurate mass) and a
+\textbf{frontier} block (single control edits such as reprogramming the cycle-3 reduction), with
+coverage-limited out-of-grammar designs sunk below the headline. One row reads, ``one documented edit
+(acetyl$\to$hexanoyl) from the 6-MSA synthase, mass 244.13, verifiable by accurate mass''; another, ``one
+iteration-program edit (reprogram cycle-3 reduction), mass 172.07, needs MS/MS.'' Design distance, the
+predicted observable, and a verdict on whether triage suffices or structure elucidation is required---on
+the same line.
+
+\begin{figure}[t]
+\centering
+\fbox{\parbox{0.92\textwidth}{\small\itshape [Figure: the 1-edit design neighbourhood of 6-MSA, as a
+ranked build table. Source: \code{scripts/worked\_design\_6msa.py}. Columns: $(S,C)$ edit decomposition;
+verdict; predicted monoisotopic mass; verifying observable. Two labelled blocks (engineerable /
+frontier), executor-verifiable designs leading.]}}
+\caption{The worked 6-MSA design neighbourhood: design distance and verification plan on one line.}
+\label{fig:worked}
+\end{figure}
+
+\subsection{Control-axis dominance}\label{sec:dominance}
+Across the 1-edit neighbourhood of the natural manifold the control axis dominates: \textbf{69} designs
+lie on the frontier (involve a control edit) against \textbf{49} engineerable (structural-only), with 24
+speculative. That ratio is itself a product of the literature curation---the raw, uncurated count was a
+starker $93\!:\!34$, and grounding the edit costs (demoting release to a structural domain swap, raising
+de~novo C-MeT and iteration-count edits) softened it to a defensible margin. Fungal biosynthetic
+\emph{design} is mostly iteration-program editing: the axis only a sound per-cycle executor can express.
+
+\subsection{The experiment-selection planner}\label{sec:planner}
+Given a design, which experiment should one run next? The planner ranks each modelled observation $o$ by
+expected information gain per unit cost, weighted by realizability:
+\begin{equation}
+\mathrm{score}(o) \;=\; \mathbb{E}\!\left[\Delta|\zstar|\right]\cdot w_{\text{real}}\big/ c_{\text{obs}}(o),
+\qquad w_{\text{real}} = 1\big/\mathrm{cost}(\text{unresolved edits}),
+\label{eq:planner}
+\end{equation}
+with speculative designs hard-excluded ($w_{\text{real}}=0$). The two cost terms sit on different sides:
+observation cost $c_{\text{obs}}$ (accurate mass $1$, MS/MS $3$, in committed relative units) in the
+denominator, and the super-additive realizability cost of Eq.~\eqref{eq:cost} as the design-side weight.
+Because that weight is super-additive, resolving one of two stacked control edits drops the residual
+penalty non-linearly---so the planner reasons about the \emph{joint resolution state} of a design, not
+merely the most-uncertain edge. The planner's output is a decision tree over observation outcomes in
+which both children of every node are first-class: the refuted branch (the observation is inconsistent
+with the predicted product) carries as much information as the confirmed one.
+
+The planner returns a typed triage verdict. \textsc{Verified-by-triage}: the modelled observables
+collapse $|\zstar|$ to near-unique. \textsc{Elucidation-required}: the modelled observables are
+exhausted and $|\zstar|$ is still large---the design must go to structure elucidation.
+\textsc{Out-of-grammar}: a mass observation refutes every legal program. \emph{Naming the
+elucidation-required case is the contribution}: a triage tool that knows its own limits, and whose limits
+are typed and machine-checkable. Figure~\ref{fig:trees} contrasts two trees: 6-MSA collapses at accurate
+mass (a shallow tree---the planner doing its job), while the highly-reducing C$_{12}$ core BAB stays
+under-determined through mass and MS/MS ($4050\!\to\!25\!\to\!23$ candidates) and is routed to expression
+$+$ NMR (the planner naming its limit).
+
+\begin{figure}[t]
+\centering
+\fbox{\parbox{0.92\textwidth}{\small\itshape [Figure: two decision trees side by side. Source:
+\code{scripts/planner\_tree\_figure.py} $\to$ \code{results/planner\_tree\_\{6msa,bab\}.mmd}. Left:
+6-MSA, root decision (run mass?) $\to$ confirmed $\Rightarrow$ verified-by-triage; refuted $\Rightarrow$
+out-of-grammar. Right: BAB, mass $\to$ MS/MS exhausted $\Rightarrow$ elucidation-required; refuted leaves
+drawn first-class at each level.]}}
+\caption{The triage planner doing its job (6-MSA) and naming its own limit (BAB). Refuted branches are
+rendered first-class, not collapsed.}
+\label{fig:trees}
+\end{figure}
+
+This scoping is forced by the data, not chosen for modesty. All seven verified products in our corpus
+had their genome$\to$structure link established by heterologous expression (with knockout or native
+expression) and NMR, with accurate mass and MS/MS serving as triage and detection---never as the sole
+structure-determining observable. The planner is therefore a metabologenomics \emph{triage} tool: it
+answers ``which observation collapses $|\zstar|$ given the genome,'' not ``how is this structure
+proven.'' Evaluated retrospectively against this curated corpus it routes correctly---the small aromatics
+(orsellinic acid, 6-MSA, mellein, 6-hydroxymellein) verify by accurate mass, while the highly-reducing
+core is flagged elucidation-required---and on the design neighbourhood it steers attention to
+engineerable and frontier designs over speculative ones.
+
+\subsection{The architectural moat and the same-wall symmetry}\label{sec:moat}
+Two claims carry the contribution. \textbf{First, it is architectural, not a capability we happen to
+have.} The control axis exists as a design dimension only for a sound executor that distinguishes
+per-cycle firing within a fixed domain set. ``Reprogram the ketoreductase at cycle~3'' is not a hard
+edit to a retrosynthesis tool (which works in chemical space), an enzyme-design tool (which works per
+protein), or a pathway tool (which ignores assembly-line grammar)---it is a sentence about an object none
+of them can represent. We are the missing layer between generative chemistry and protein design, and the
+cost on the axis is the field's measured difficulty (Eq.~\eqref{eq:cost}). \textbf{Second, the same wall
+has opposite valence in the two directions.} The $100\%\!\to\!57\%$ iteration-grammar collapse is, for
+\emph{prediction}, a ceiling---where reconstruction fails (\S\ref{sec:manifold}); for \emph{design}, it
+is the frontier---the dimension along which the interesting molecules live. One measurement, a limitation
+read one way and the contribution read the other.
