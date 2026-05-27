@@ -60,24 +60,24 @@ interaction between the constant catalytic machinery and the changing substrate 
 0.57 is therefore not a placeholder for missing work; it is a structural ceiling for any predictor whose
 input is the synthase's fixed domain content.
 
-\paragraph{A sequence-level probe separates two questions.} The cross-taxa probe originally folded together
-two questions we can now separate: does protein \emph{sequence} carry per-step chemistry signal that the
-domain abstraction discards, and does that signal close the fungal wall? The first is testable on bacterial
-\emph{modular} PKS, where each module carries its own ketoreductase (KR) sequence: under homology-clean
-evaluation at 70\% sequence identity,\footnote{Leave-cluster-out by sequence-identity cluster; identity
+\paragraph{A sequence-level probe separates two questions.} The cross-taxa probe folded together two
+questions the sequence head now lets us separate: \emph{(i)}~does protein \emph{sequence} carry the
+per-step chemistry signal the domain abstraction discards, and \emph{(ii)}~would that signal, even if
+real, close the \emph{fungal} wall? \emph{(i)~Yes, empirically}, on bacterial \emph{modular} PKS, where
+each module carries its own ketoreductase (KR) sequence: under homology-clean evaluation at 70\%
+sequence identity,\footnote{Leave-cluster-out by sequence-identity cluster; identity
 computed via BLOSUM62 global alignment in Biopython, verified at self-identity $1.00$ and an observed
 cross-cluster identity floor of $0.35$. A strict 30\%-identity partition is undefined here: KR is a single
 conserved Rossmann-fold family with a $\sim$35\% pairwise-identity floor, so it cannot be split into
 remote-homolog folds --- the head's generalization across remote KR homologs is therefore not assessable
 on this dataset, a statement about the protein family rather than the method.} a frozen ESM-2 head
 extracts inactive-domain and stereochemistry signal at balanced accuracy $\sim$\textbf{0.85} (AUC $0.91$
-for inactive-domain detection), decisively above the chance baselines of $0.50$--$0.53$ that the domain
-cartoon is pinned to. The second question is answered structurally rather than empirically: a fungal
-iterative synthase reuses \emph{one} KR sequence across all its cycles, so a per-domain sequence head
-emits one prediction per synthase --- precisely the fixed-domain condition that yields $0.567$. The
-per-cycle signal is not in the constant sequence; the wall is structural, not a data gap. Sequence carries
-per-step chemistry where there is a per-step sequence (bacterial, modular) and cannot where there is not
-(fungal, iterative).
+for inactive-domain detection), decisively above the chance baselines of $0.50$--$0.53$ the domain
+cartoon is pinned to. \emph{(ii)~No, structurally}: a fungal iterative synthase reuses \emph{one} KR
+sequence across all its cycles, so a per-domain sequence head emits a single prediction per
+synthase---exactly the fixed-domain condition that yields $0.567$. Sequence carries per-step chemistry
+where there \emph{is} a per-step sequence (bacterial, modular) and cannot where there is not (fungal,
+iterative); the wall is structural, not a data gap.
 
 \medskip
 This manifold --- bounded by eight reachable cores, structured by the iteration-grammar wall, with a

@@ -51,15 +51,18 @@ The control edits are the unsolved frontier. Cox's review of iterative highly-re
 programme is ``an emergent property\ldots highly unpredictable.'' Yet a \emph{single} edit beside a
 closely related cluster is achievable: domain swaps between the tenellin and desmethylbassianin synthases
 mapped methylation-pattern and chain-length changes cleanly \citep{fisch2011}. We encode exactly this
-shape. Structural edits sum linearly by tier; control edits are \textbf{super-additive}---quadratic in
-the number $k$ of control edits in a design:
+shape. Structural edits sum linearly by tier; control edits are \textbf{super-additive}, growing
+quadratically in the number $k_{\text{ctrl}}$ of control edits in a design:
 \begin{equation}
 \mathrm{cost}(z_d) \;=\; \underbrace{\textstyle\sum_{e\in\text{struct}} \tau(e)}_{\text{linear}}
-\;+\; \underbrace{\Big(\textstyle\sum_{e\in\text{ctrl}} \tau(e)\Big)\cdot k_{\text{ctrl}}}_{\sim k^2,\ \text{super-additive}},
+\;+\; \underbrace{\Big(\textstyle\sum_{e\in\text{ctrl}} \tau(e)\Big)\cdot k_{\text{ctrl}}}_{\sim\, k_{\text{ctrl}}^2,\ \text{super-additive}},
 \label{eq:cost}
 \end{equation}
-where $\tau$ is the curated per-edit tier. Equation~\eqref{eq:cost} reduces to the linear tier cost at
-$k=1$ (the Fisch--Cox single-edit regime) and grows quadratically as edits stack (the Cox emergent
+where $\tau$ is the curated per-edit tier. The control term multiplies a sum \emph{already} taken over
+the $k_{\text{ctrl}}$ control edits by $k_{\text{ctrl}}$ again, so it scales as $k_{\text{ctrl}}^2$:
+one tier-$2$ control edit costs $2$, whereas two tier-$2$ control edits cost $(2{+}2)\cdot 2 = 8$, not
+$4$. Equation~\eqref{eq:cost} thus reduces to the linear tier cost at $k_{\text{ctrl}}=1$ (the
+Fisch--Cox single-edit regime) and grows quadratically as control edits stack (the Cox emergent
 regime). The cost model is therefore not asserted: it is the published difficulty landscape of fungal
 PKS engineering, written into the objective. This is the difference between ``we built a design engine''
 and ``we built a design engine whose cost model is the measured difficulty of the field.''
@@ -80,11 +83,32 @@ the same line.
 
 \begin{figure}[t]
 \centering
-\fbox{\parbox{0.92\textwidth}{\small\itshape [Figure: the 1-edit design neighbourhood of 6-MSA, as a
-ranked build table. Source: \code{scripts/worked\_design\_6msa.py}. Columns: $(S,C)$ edit decomposition;
-verdict; predicted monoisotopic mass; verifying observable. Two labelled blocks (engineerable /
-frontier), executor-verifiable designs leading.]}}
-\caption{The worked 6-MSA design neighbourhood: design distance and verification plan on one line.}
+\small
+\begin{tabular}{@{}clrl@{}}
+\toprule
+$(S,C)$ & 1-edit design from the 6-MSA synthase & mass\,(Da) & verified by \\
+\midrule
+\multicolumn{4}{@{}l}{\textsc{engineerable} --- structural-only, documented domain engineering ($9$ designs)}\\
+$(1,0)$ & starter swap acetyl$\to$hexanoyl       & $244.13$ & accurate mass \\
+$(1,0)$ & starter swap acetyl$\to$butyryl        & $216.10$ & accurate mass \\
+$(1,0)$ & starter swap acetyl$\to$propionyl      & $202.08$ & accurate mass \\
+$(1,0)$ & release reprogram (aromatic$\to$lactone) & $188.07$ & accurate mass \\
+\addlinespace[2pt]
+\multicolumn{4}{@{}l}{\textsc{frontier} --- $\ge\!1$ control edit, iteration-program editing ($12$ designs)}\\
+$(0,1)$ & reprogram cycle-3 reduction (keto$\to$DH) & $172.07$ & $+$\,MS/MS \\
+$(0,1)$ & cycle-2 reduction KR$\to$DH            & $170.06$ & accurate mass \\
+$(0,1)$ & cycle-1 reduction keto$\to$KR          & $190.08$ & accurate mass \\
+$(0,1)$ & add a fourth cycle ($+$cyc4)           & $230.08$ & accurate mass \\
+\bottomrule
+\end{tabular}
+\caption{The worked 6-MSA design neighbourhood (\code{scripts/worked\_design\_6msa.py}): each row is a
+build proposal carrying its $(\text{structural},\text{control})$ edit coordinate, predicted
+monoisotopic mass, and the observable that would confirm it. The two blocks are different \emph{kinds}
+of proposal at comparable cost: a $(1,0)$ starter swap (acetyl$\to$hexanoyl) is documented domain
+engineering a wet-lab builds today; a $(0,1)$ cycle-3 reduction reprogram is the iteration-grammar
+frontier---the axis only a sound per-cycle executor can express. Of the full neighbourhood, $9$ are
+engineerable, $12$ frontier, and $4$ speculative (de-novo C-MeT, shortened chain). Design distance and
+verification plan on one line.}
 \label{fig:worked}
 \end{figure}
 
@@ -125,13 +149,45 @@ $+$ NMR (the planner naming its limit).
 
 \begin{figure}[t]
 \centering
-\fbox{\parbox{0.92\textwidth}{\small\itshape [Figure: two decision trees side by side. Source:
-\code{scripts/planner\_tree\_figure.py} $\to$ \code{results/planner\_tree\_\{6msa,bab\}.mmd}. Left:
-6-MSA, root decision (run mass?) $\to$ confirmed $\Rightarrow$ verified-by-triage; refuted $\Rightarrow$
-out-of-grammar. Right: BAB, mass $\to$ MS/MS exhausted $\Rightarrow$ elucidation-required; refuted leaves
-drawn first-class at each level.]}}
-\caption{The triage planner doing its job (6-MSA) and naming its own limit (BAB). Refuted branches are
-rendered first-class, not collapsed.}
+\begin{minipage}[t]{0.40\textwidth}\centering
+{\small\textbf{6-MSA} --- triage suffices}\\[3pt]
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>={Stealth[length=1.6mm]},
+  dec/.style={draw,rounded corners=1pt,align=center,inner sep=2.5pt,fill=blue!6,font=\scriptsize},
+  ver/.style={draw,rounded corners=5pt,align=center,inner sep=2.5pt,fill=green!16,font=\scriptsize},
+  oog/.style={draw,align=center,inner sep=2.5pt,fill=black!10,font=\scriptsize},
+  el/.style={font=\tiny,inner sep=1pt}]
+\node[dec] (a0) {$|Z^\star|{=}125$ @ genome\\\textbf{run mass?}};
+\node[ver,below left=8mm and -8mm of a0] (a1) {$|Z^\star|{=}1$\\verified-by-triage};
+\node[oog,below right=8mm and -8mm of a0] (a2) {$|Z^\star|{=}125$\\out-of-grammar};
+\draw[->] (a0) -- node[el,above left=-1pt]{confirmed} (a1);
+\draw[->] (a0) -- node[el,above right=-1pt]{refuted} (a2);
+\end{tikzpicture}}
+\end{minipage}\hspace{0.03\textwidth}%
+\begin{minipage}[t]{0.55\textwidth}\centering
+{\small\textbf{BAB} (highly-reducing C$_{12}$) --- elucidation-required}\\[3pt]
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>={Stealth[length=1.6mm]},
+  dec/.style={draw,rounded corners=1pt,align=center,inner sep=2.5pt,fill=blue!6,font=\scriptsize},
+  elu/.style={draw,rounded corners=5pt,align=center,inner sep=2.5pt,fill=orange!22,font=\scriptsize},
+  oog/.style={draw,align=center,inner sep=2.5pt,fill=black!10,font=\scriptsize},
+  el/.style={font=\tiny,inner sep=1pt}]
+\node[dec] (b0) {$|Z^\star|{=}4050$ @ genome\\\textbf{run mass?}};
+\node[oog,right=10mm of b0] (b4) {$|Z^\star|{=}4050$\\out-of-grammar};
+\node[dec,below=8mm of b0] (b1) {$|Z^\star|{=}25$ @ mass\\\textbf{run MS/MS?}};
+\node[elu,below left=8mm and -10mm of b1] (b2) {$|Z^\star|{=}23$\\elucidation-required};
+\node[oog,below right=8mm and -10mm of b1] (b3) {$|Z^\star|{=}25$\\out-of-grammar};
+\draw[->] (b0) -- node[el,left]{confirmed} (b1);
+\draw[->] (b0) -- node[el,above]{refuted} (b4);
+\draw[->] (b1) -- node[el,above left=-1pt]{confirmed} (b2);
+\draw[->] (b1) -- node[el,above right=-1pt]{refuted} (b3);
+\end{tikzpicture}}
+\end{minipage}
+\caption{The triage planner doing its job (6-MSA, left: accurate mass collapses $|Z^\star|$ to a unique
+core $\Rightarrow$ \textsc{verified-by-triage}) and naming its own limit (BAB, right: mass then MS/MS
+leave $|Z^\star|$ at $23$ $\Rightarrow$ \textsc{elucidation-required}, routed to expression$+$NMR).
+Refuted branches (\textsc{out-of-grammar}) are rendered first-class at every node, not collapsed.
+Source: \code{scripts/planner\_tree\_figure.py}.}
 \label{fig:trees}
 \end{figure}
 
