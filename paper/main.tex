@@ -642,8 +642,8 @@ enzyme-blind retrosynthesis, and undirected genome mining---on which other model
 eroding soundness: a sequence policy reranking $Z^{\star}$ and, as the natural next composition, a
 bioactivity predictor filtering it, yielding \emph{target-directed} natural-product discovery---a search
 for the cheapest cluster-plus-edits route to a desired activity, each proposal arriving with a
-construction plan and a confirming experiment. We do not claim that pipeline here; we claim the substrate
-on which it becomes possible. The tools, benchmark, and analyses are open and reproducible.
+construction plan and a confirming experiment. \emph{We do not claim that pipeline here}; we claim the
+substrate on which it becomes possible. The tools, benchmark, and analyses are open and reproducible.
 
 \paragraph{Near-term extensions.} The architecture is grammar-agnostic---observability and the three-state
 verdict are shared across PKS, NRPS, and a typed hybrid---so deepening the family grammars (NRPS substrate
@@ -683,17 +683,12 @@ synthase-local static observables, so the next advance needs either a substantia
 per-cycle resolution or direct partial observables of the conformational state. The first measurable
 breakthrough need not be complete product prediction---it would be a single per-cycle decision becoming
 predictable above $0.567$ once cycle-distinguishing state is injected, which the executor would then
-propagate, soundly, through the rest of the program. More broadly, the executor was not merely the
-infrastructure beneath these results but the \emph{instrument} that produced them: only exact
-program-space reasoning let us define the ambiguity, separate missing observability from model weakness,
-and construct the bacterial control cleanly. The deepest contribution is thus methodological---a
-verifier-grounded way to \emph{locate where biosynthetic information resides}---of which the fungal
-iteration-grammar boundary is the first application.
+propagate, soundly, through the rest of the program.
 
 \appendix
 \section{Reproducibility}
 \label{app:repro}
-\small
+\small\sloppy
 Python~$3.12$, RDKit~$2025.9.6$; optional \texttt{torch}/\texttt{transformers} for the
 cross-taxa transfer and ESM-2 components. Each result maps to one command:
 \code{make data} (the $326$ pairs), \code{make roundtrip} (executor gate),
