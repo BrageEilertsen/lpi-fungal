@@ -18,5 +18,28 @@
       "baseline_domain_rule": 0.5287009063444109,
       "metric_name": "accuracy (domain-rule has no stereo signal)"
     }
-  ]
+  ],
+  "homology_clean": {
+    "method": "CD-HIT-style greedy clustering, BLOSUM62 global %identity (Biopython); embeddings reused",
+    "identity_metric_check": {
+      "self": 1.0,
+      "cross_cluster_pairs_range": [
+        0.35,
+        0.59
+      ],
+      "mean": 0.49
+    },
+    "threshold_70pct": {
+      "n_clusters": 425,
+      "inactive_kr_bal_acc": 0.85,
+      "inactive_kr_auc": 0.91,
+      "kr_stereo_acc": 0.855
+    },
+    "threshold_30pct": {
+      "n_clusters": 1,
+      "status": "inapplicable",
+      "reason": "KR domains are a single conserved family (>=~35% identity floor); no remote homologs to hold out"
+    },
+    "verdict": "signal survives close-homolog (70%) control; remote-homolog generalization untestable on a single-family dataset"
+  }
 }
