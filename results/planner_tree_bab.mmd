@@ -1,0 +1,11 @@
+graph TD
+  %% BAB -- experiment-selection planner
+  n0{"|Z*|=4050 @ genome<br/>run mass?"}
+  n1{"|Z*|=25 @ mass<br/>run msms?"}
+  n2[["|Z*|=23 @ mass+msms<br/>elucidation-required"]]
+  n1 -->|"confirmed p=1.00"| n2
+  n3{{"|Z*|=25 @ mass<br/>out-of-grammar"}}
+  n1 -->|"refuted p=0.00"| n3
+  n0 -->|"confirmed p=1.00"| n1
+  n4{{"|Z*|=4050 @ genome<br/>out-of-grammar"}}
+  n0 -->|"refuted p=0.00"| n4

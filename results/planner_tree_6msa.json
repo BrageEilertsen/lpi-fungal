@@ -1,0 +1,32 @@
+{
+  "observables": [],
+  "z_star": 125,
+  "verdict": null,
+  "recommend": "mass",
+  "branches": [
+    {
+      "outcome": "confirmed",
+      "probability": 1.0,
+      "child": {
+        "observables": [
+          "mass"
+        ],
+        "z_star": 1,
+        "verdict": "verified-by-triage",
+        "recommend": null,
+        "branches": []
+      }
+    },
+    {
+      "outcome": "refuted",
+      "probability": 0.0,
+      "child": {
+        "observables": [],
+        "z_star": 125,
+        "verdict": "out-of-grammar",
+        "recommend": null,
+        "branches": []
+      }
+    }
+  ]
+}

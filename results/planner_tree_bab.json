@@ -1,0 +1,60 @@
+{
+  "observables": [],
+  "z_star": 4050,
+  "verdict": null,
+  "recommend": "mass",
+  "branches": [
+    {
+      "outcome": "confirmed",
+      "probability": 1.0,
+      "child": {
+        "observables": [
+          "mass"
+        ],
+        "z_star": 25,
+        "verdict": null,
+        "recommend": "msms",
+        "branches": [
+          {
+            "outcome": "confirmed",
+            "probability": 1.0,
+            "child": {
+              "observables": [
+                "mass",
+                "msms"
+              ],
+              "z_star": 23,
+              "verdict": "elucidation-required",
+              "recommend": null,
+              "branches": []
+            }
+          },
+          {
+            "outcome": "refuted",
+            "probability": 0.0,
+            "child": {
+              "observables": [
+                "mass"
+              ],
+              "z_star": 25,
+              "verdict": "out-of-grammar",
+              "recommend": null,
+              "branches": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "outcome": "refuted",
+      "probability": 0.0,
+      "child": {
+        "observables": [],
+        "z_star": 4050,
+        "verdict": "out-of-grammar",
+        "recommend": null,
+        "branches": []
+      }
+    }
+  ]
+}

@@ -10,6 +10,14 @@ Build order (see PLANNER_SKETCH.md): item 1 = the resolution-state lattice with 
 probabilistic transitions (this package's ``state`` module); items 2-5 = estimator, objective, planner,
 decision-tree output. Scored against the retrospective harness (scripts/validation_harness.py).
 """
+from lpi.planner.plan import (
+    TRIAGE_OBSERVATIONS,
+    TriagePlan,
+    TriageVerdict,
+    next_edit_to_resolve,
+    rank_designs,
+    triage,
+)
 from lpi.planner.state import (
     OBSERVATION_COSTS,
     DesignState,
@@ -20,6 +28,7 @@ from lpi.planner.state import (
     transition,
     uninformative_forward_model,
 )
+from lpi.planner.tree import Branch, TreeNode, decision_tree, to_dict, to_json, to_mermaid
 
 __all__ = [
     "Resolution",
@@ -30,4 +39,16 @@ __all__ = [
     "transition",
     "available_transitions",
     "uninformative_forward_model",
+    "TriageVerdict",
+    "TriagePlan",
+    "TRIAGE_OBSERVATIONS",
+    "triage",
+    "next_edit_to_resolve",
+    "rank_designs",
+    "TreeNode",
+    "Branch",
+    "decision_tree",
+    "to_dict",
+    "to_json",
+    "to_mermaid",
 ]

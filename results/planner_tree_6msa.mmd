@@ -1,0 +1,7 @@
+graph TD
+  %% 6-MSA -- experiment-selection planner
+  n0{"|Z*|=125 @ genome<br/>run mass?"}
+  n1(["|Z*|=1 @ mass<br/>verified-by-triage"])
+  n0 -->|"confirmed p=1.00"| n1
+  n2{{"|Z*|=125 @ genome<br/>out-of-grammar"}}
+  n0 -->|"refuted p=0.00"| n2

@@ -64,18 +64,31 @@ def _alphabet_and_len(realiz: Realizability, grammar: Grammar):
     return grammar.alphabet_from_domains(domains, starters=(prog.starter,)), len(prog.cycles)
 
 
+_ZSTAR_CACHE: dict[tuple, int] = {}
+
+
 def z_star(realiz: Realizability, prod: DesignProduct, use_mass: bool, use_msms: bool,
            grammar: Grammar = PKS) -> int:
     """|Z*|: the number of grammar-legal programs consistent with the genome alphabet and the chosen
     observables of the design's own product. Reuses the sound verifier. Monotone non-increasing as
     observables are added. (The genome-only rung is the full program space and may be censored for large
-    alphabets; for the small reachable designs it is exact.)"""
+    alphabets; for the small reachable designs it is exact.)
+
+    Memoized on (target, grammar, observables): z_star is a pure function of these (the verifier is
+    deterministic), and the tree/planner call it repeatedly on the same design -- so the genome
+    enumeration runs once per design, not once per node."""
+    key = (repr(realiz.target), grammar.name, use_mass, use_msms)
+    cached = _ZSTAR_CACHE.get(key)
+    if cached is not None:
+        return cached
     alpha, n = _alphabet_and_len(realiz, grammar)
     ms = MSObservables(
         neutral_mass=prod.mass if use_mass else None,
         msms_peaks=tuple(sorted(prod.msms)) if (use_msms and prod.msms) else None,
     )
-    return len(infer_ms(alpha, ms, grammar, max(1, n - 1), n + 1, ladder=False).candidates)
+    result = len(infer_ms(alpha, ms, grammar, max(1, n - 1), n + 1, ladder=False).candidates)
+    _ZSTAR_CACHE[key] = result
+    return result
 
 
 def delta_z(realiz: Realizability, prod: DesignProduct, current: frozenset[str], obs_kind: str,
