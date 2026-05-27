@@ -109,7 +109,16 @@ the natural manifold and ranks the experiments that would confirm it (Section~\r
 this sense the framework is \emph{neuro-symbolic}: symbolic execution and verification enforce mass
 balance, legal reaction structure, and observable consistency, while learned models are reserved for
 the genuinely high-dimensional pieces---sequence-dependent activity, stereochemistry, and hidden
-transition policies. This stance answers a field diagnosis rather than ignoring it: Cox's review of
+transition policies. More than a predictor, the executor is then a \emph{substrate on which other
+models compose soundly}: a learned sequence policy can rerank within the legal set $Z^{\star}$, a
+bioactivity model can filter it, and wet-lab build outcomes can update the realization cost---each
+inheriting the executor's soundness rather than eroding it. This is the middle the field lacks:
+generative chemistry yields molecules with no construction plan or feasibility guarantee,
+retrosynthesis searches reactions to commercial reagents but ignores enzyme space, and genome mining
+asks only what nature already makes. An executable, cost-weighted definition of biosynthetically
+realizable space---each point carrying a construction program $z$ and a verifying observable---is what
+a \emph{target-directed} search over makeable chemistry requires. This stance answers a field
+diagnosis rather than ignoring it: Cox's review of
 iterative highly-reducing PKS programming finds it an emergent property and rational engineering
 ``extremely difficult,'' naming machine learning as the way forward \citep{cox2023}---which we read
 as a design \emph{constraint}, not an endorsement, requiring the architecture to stay \emph{sound}
@@ -608,8 +617,13 @@ the candidate set per unit cost and, crucially, \emph{names its own limit}---the
 and MS/MS triage suffice versus those that must go to expression$+$NMR. The same iteration-grammar
 wall is therefore a prediction ceiling read one way and a design frontier read the other: one
 measurement, a limitation and the contribution at once. We do not replace structure elucidation; we
-build the sound triage layer between generative chemistry and protein design, and it knows where it
-applies. The tools, benchmark, and analyses are open and reproducible.
+build the missing middle---the sound, cost-weighted layer between target-blind generative chemistry,
+enzyme-blind retrosynthesis, and undirected genome mining---on which other models compose without
+eroding soundness: a sequence policy reranking $Z^{\star}$ and, as the natural next composition, a
+bioactivity predictor filtering it, yielding \emph{target-directed} natural-product discovery---a search
+for the cheapest cluster-plus-edits route to a desired activity, each proposal arriving with a
+construction plan and a confirming experiment. We do not claim that pipeline here; we claim the substrate
+on which it becomes possible. The tools, benchmark, and analyses are open and reproducible.
 
 \paragraph{Outlook.} The architecture is grammar-agnostic---observability and the three-state verdict
 are shared across PKS, NRPS, and a typed hybrid---so deepening the family grammars (NRPS substrate
