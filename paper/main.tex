@@ -15,6 +15,12 @@
 \usepackage{microtype}
 \usepackage{enumitem}
 \usepackage[round]{natbib}
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem*{remark}{Remark}
 
 \graphicspath{{../results/figures/}{./figures/}}
 
@@ -514,6 +520,10 @@ composable, while observability and the reconstructibility verdict are shared.
 \input{section6_design}
 % =====================================================================================
 
+% =====================================================================================
+\input{section_duality}
+% =====================================================================================
+
 \section{Related work}
 \label{sec:related}
 
@@ -761,6 +771,12 @@ synthase. \emph{Science}, 277(5324):367--369, 1997. doi:10.1126/science.277.5324
 G. B\"{o}hm, U. Hanefeld, J. Cort\'{e}s, J. Staunton, and P.~F. Leadlay. A polylinker approach to
 reductive loop swaps in modular polyketide synthases. \emph{ChemBioChem}, 9(16):2740--2749, 2008.
 doi:10.1002/cbic.200800332.
+% --- §10 duality, cross-family-prediction references (web-verified) ---
+\bibitem[Repka et al.(2017)]{repka2017} L.~M. Repka, J.~R. Chekan, S.~K. Nair, and W.~A. van der Donk.
+Mechanistic understanding of lanthipeptide biosynthetic enzymes. \emph{Chem. Rev.}, 117(8):5457--5520,
+2017. doi:10.1021/acs.chemrev.6b00591.
+\bibitem[Donia et al.(2008)]{donia2008} M.~S. Donia, J. Ravel, and E.~W. Schmidt. A global assembly line
+for cyanobactins. \emph{Nat. Chem. Biol.}, 4:341--343, 2008. doi:10.1038/nchembio.84.
 \end{thebibliography}
 
 \end{document}
