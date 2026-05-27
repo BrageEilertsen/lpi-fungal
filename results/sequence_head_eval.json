@@ -1,0 +1,22 @@
+{
+  "bacterial": [
+    {
+      "target": "inactive-KR detection",
+      "n": 1039,
+      "head_metric": 0.8602134467062165,
+      "head_auc": 0.9205894383529001,
+      "baseline_majority": 0.5,
+      "baseline_domain_rule": 0.5,
+      "metric_name": "balanced-accuracy (majority/rule=0.5)"
+    },
+    {
+      "target": "KR stereochemistry (R/S)",
+      "n": 331,
+      "head_metric": 0.8493577163037458,
+      "head_auc": NaN,
+      "baseline_majority": 0.5287009063444109,
+      "baseline_domain_rule": 0.5287009063444109,
+      "metric_name": "accuracy (domain-rule has no stereo signal)"
+    }
+  ]
+}
