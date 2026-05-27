@@ -1,0 +1,86 @@
+% =====================================================================================
+% Section 3 -- characterizing the natural manifold. Drafted AFTER section 6, inheriting its phrasing
+% (boundary condition / frontier where designs live). Threads forward to section 6; the diagnostic
+% results are the characterization of the manifold the design engine operates over, not standalone
+% findings. Folds in the iteration-grammar wall's STRUCTURAL explanation and the bacterial sequence-head
+% result (homology-clean) from the exploration session.
+% =====================================================================================
+\section{Characterizing the natural manifold}\label{sec:manifold}
+
+The natural fungal PKS manifold has \textbf{eight exactly-reachable cores}, a \textbf{0.57 control-axis
+ceiling with a structural mechanistic explanation}, and a \textbf{tailoring-permissive interior with 64\%
+conditional reconstructibility} --- this section characterizes its shape. We read these results not as a
+catalogue of where prediction fails but as the geometry the design contribution of \S\ref{sec:design}
+operates over: the boundary of what nature builds, the axis along which it is hard to read, and the
+interior where it is tractable once a core is in hand.
+
+\subsection{The boundary: eight exactly-reachable cores}\label{sec:boundary}
+Running the verifier inverse over all 326 fungal PKS entries in MIBiG~4.0, exact reconstruction reaches
+\textbf{8/326} under the implemented operator grammar. This is a lower bound --- the missing operators are
+enumerable (PT multi-ring aromatic closures, oxidative rearrangements), and adding coverage moves the
+number up --- but the more important reading is that 8/326 is not a disappointing accuracy. It is the
+\emph{boundary condition} of the natural manifold: the set of cores the current sound grammar can place
+exactly, the edge from which \S\ref{sec:design} measures design distance. ``Only 8'' is the wrong frame;
+``the manifold's boundary is here, and it is sharp'' is the right one.
+
+\subsection{Similarity is not a reconstructibility metric}\label{sec:proxy}
+A natural temptation is to soften the boundary with a structural-similarity proxy --- count a core
+``reconstructed'' if a predicted skeleton embeds in the product. We show this proxy is \emph{unreliable}:
+it swings from 8 to 160 reconstructed cores as a single nuisance parameter (the allowed ring-closure
+slack) is varied, and it admits non-PKS false positives (a de-heteroatomed alkaloid skeleton can embed in
+a polyketide chain). Similarity is therefore not a reconstructibility metric; we keep exact match as the
+airtight signal and use the tailoring-latent reformulation below as the principled relaxation, not a
+tunable proxy.
+
+\subsection{The tailoring-permissive interior}\label{sec:interior}
+Most MIBiG products are a PKS core plus post-PKS tailoring, so exact core-match understates
+reconstructibility. Moving tailoring into the latent --- $z=(z_{\mathrm{PKS}},z_{\mathrm{tail}})$ with a
+gene- and formula-budgeted edit applier --- the joint search exactly reconstructs \textbf{7/106}
+annotated clusters overall, but the decisive number is conditional: of the 99 failures, \textbf{95 are
+PKS-core-unreachable} (no producible backbone), and among the clusters where a core \emph{is} producible
+the tailoring search succeeds near-uniquely at \textbf{64\%}. The bottleneck is PKS-core cyclization
+coverage, not tailoring. So the manifold's interior is \emph{tailoring-permissive}: once a core is in
+reach, the decorations are near-uniquely reconstructible, and the residual hardness is concentrated on the
+core, not the periphery.
+
+\subsection{The hard axis: the iteration-grammar wall, structurally explained}\label{sec:wall}
+The manifold's one genuinely hard axis is per-cycle control. A cross-taxa transfer probe makes it
+quantitative: the per-step reduction chemistry is learnable from abundant bacterial modular data and
+transfers to fungal cycles \emph{perfectly} when each cycle's active reductive domains are given
+($1.00$), but collapses to \textbf{0.567} when only the synthase's fixed domain set is given --- the
+iteration-grammar wall. The wall decomposes into a narrow highly-reducing per-cycle-reduction control wall
+($\sim$9\% of products) and a broad, coverage-addressable aromatic-cyclization wall ($\sim$61\%).
+
+\paragraph{Why the wall is structural, not a data gap.} A fungal iterative synthase reuses one set of
+catalytic domains across every cycle; the per-cycle outcome is fixed by the chain-length and substrate
+context the enzyme sees on that pass, not by any per-cycle change in the (constant) machinery. This is the
+precise form of Cox's observation that highly-reducing PKS programming is an emergent property that
+``will remain extremely difficult'' to predict rationally \citep{cox2023}: it is emergent from the
+interaction between the constant catalytic machinery and the changing substrate context across cycles. The
+0.57 is therefore not a placeholder for missing work; it is a structural ceiling for any predictor whose
+input is the synthase's fixed domain content.
+
+\paragraph{A sequence-level probe separates two questions.} The cross-taxa probe originally folded together
+two questions we can now separate: does protein \emph{sequence} carry per-step chemistry signal that the
+domain abstraction discards, and does that signal close the fungal wall? The first is testable on bacterial
+\emph{modular} PKS, where each module carries its own ketoreductase (KR) sequence: under homology-clean
+evaluation at 70\% sequence identity,\footnote{Leave-cluster-out by sequence-identity cluster; identity
+computed via BLOSUM62 global alignment in Biopython, verified at self-identity $1.00$ and an observed
+cross-cluster identity floor of $0.35$. A strict 30\%-identity partition is undefined here: KR is a single
+conserved Rossmann-fold family with a $\sim$35\% pairwise-identity floor, so it cannot be split into
+remote-homolog folds --- the head's generalization across remote KR homologs is therefore not assessable
+on this dataset, a statement about the protein family rather than the method.} a frozen ESM-2 head
+extracts inactive-domain and stereochemistry signal at balanced accuracy $\sim$\textbf{0.85} (AUC $0.91$
+for inactive-domain detection), decisively above the chance baselines of $0.50$--$0.53$ that the domain
+cartoon is pinned to. The second question is answered structurally rather than empirically: a fungal
+iterative synthase reuses \emph{one} KR sequence across all its cycles, so a per-domain sequence head
+emits one prediction per synthase --- precisely the fixed-domain condition that yields $0.567$. The
+per-cycle signal is not in the constant sequence; the wall is structural, not a data gap. Sequence carries
+per-step chemistry where there is a per-step sequence (bacterial, modular) and cannot where there is not
+(fungal, iterative).
+
+\medskip
+This manifold --- bounded by eight reachable cores, structured by the iteration-grammar wall, with a
+defined tailoring-permissive interior --- is the object the design contribution of \S\ref{sec:design}
+operates over. Its hard axis is exactly the axis along which the interesting designs live (\S\ref{sec:moat}),
+which is why the same measurement reads as a prediction ceiling here and a design frontier there.
