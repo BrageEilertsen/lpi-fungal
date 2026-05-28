@@ -1,0 +1,52 @@
+Phase D3 / D2-POSE: marginal-likelihood with POSE features
+======================================================================
+corpus (filtered to conformational): 16 assets
+  POSE rows attached: 661
+  assets dropped (no POSE for any candidate): 9
+  GOLD=9, SILVER=7
+  canonical-program cycles: 62
+
+[A] Full-corpus training (sanity)
+  step=   0  NLML=  74.231  mean_silver_ent=2.195  citrinin_H=0.692  strob_H=3.997  asperlin_H=1.586
+  step= 100  NLML=  29.935  mean_silver_ent=1.149  citrinin_H=0.691  strob_H=2.555  asperlin_H=0.462
+  step= 200  NLML=  26.595  mean_silver_ent=0.992  citrinin_H=0.687  strob_H=2.351  asperlin_H=0.278
+  step= 300  NLML=  24.824  mean_silver_ent=0.949  citrinin_H=0.682  strob_H=2.341  asperlin_H=0.175
+  step= 400  NLML=  23.638  mean_silver_ent=0.940  citrinin_H=0.680  strob_H=2.360  asperlin_H=0.137
+  step= 500  NLML=  22.718  mean_silver_ent=0.938  citrinin_H=0.680  strob_H=2.374  asperlin_H=0.120
+  step= 600  NLML=  21.970  mean_silver_ent=0.933  citrinin_H=0.682  strob_H=2.372  asperlin_H=0.110
+
+  full-corpus -- canonical acc=0.613 (62 cycles), agreed acc=0.786 (42 cycles)
+
+======================================================================
+[B] LOSO eval over 16 BGC assets (POSE features)
+
+  LOSO[ 1/16] curated:6-hydroxymellein                 canon=0.750( 4) H_held=0.000
+  LOSO[ 2/16] curated:6-methylsalicylic acid           canon=0.667( 3) H_held=0.000
+  LOSO[ 3/16] curated:LovB dihydromonacolin L nonaketi canon=0.125( 8) H_held=0.000
+  LOSO[ 4/16] curated:mellein                          canon=0.500( 4) H_held=0.000
+  LOSO[ 5/16] curated:tenellin polyketide backbone (Te canon=0.500( 4) H_held=0.000
+  LOSO[ 6/16] BGC0001275                               canon=0.667( 3) H_held=0.000
+  LOSO[ 7/16] BGC0001276                               canon=0.667( 3) H_held=0.000
+  LOSO[ 8/16] BGC0001606                               canon=0.250( 4) H_held=0.000
+  LOSO[ 9/16] BGC0002191                               canon=0.000( 4) H_held=0.000
+  LOSO[10/16] BGC0001338                               canon=0.000( 5) H_held=0.003
+  LOSO[11/16] BGC0000161                               canon=0.333( 3) H_held=0.519
+  LOSO[12/16] BGC0002180                               canon=0.750( 4) H_held=0.411
+  LOSO[13/16] BGC0001909                               canon=0.000( 3) H_held=2.401
+  LOSO[14/16] BGC0002065                               canon=0.000( 3) H_held=2.314
+  LOSO[15/16] BGC0002238                               canon=0.750( 4) H_held=0.398
+  LOSO[16/16] BGC0001273                               canon=0.000( 3) H_held=1.517
+
+======================================================================
+PHASE D3-POSE BASELINE:
+  LOSO acc canonical: 0.3548  (n_cycles=62)
+  LOSO acc agreed:    0.3571  (n_cycles=42)
+
+Phase D2 baseline (no POSE) for comparison:
+  LOSO acc canonical: 0.4432 (n=88)
+  LOSO acc agreed:    0.5156 (n=64)
+  citrinin entropy held at log(2)=0.693 throughout training
+
+If citrinin entropy in this run dropped meaningfully below 0.693,
+structural information broke the sequence-blind-spot. If it stuck,
+static representations are insufficient -- MD/wet-lab mandate.
