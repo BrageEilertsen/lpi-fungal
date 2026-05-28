@@ -1,0 +1,327 @@
+bgc_id,compound_name,formula,formula_source,mass,organism,subclass,C,H,O,z_star_alphabet_plus_mass,tier,runtime_s,cycle_lo,cycle_hi
+BGC0000003,AF-toxin,C22H32O9,mibig,440.20463260399987,Alternaria alternata,unknown,22,32,9,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000004,aflatoxin G1,C17H12O7,mibig,328.058302724,Aspergillus oryzae,unknown,17,12,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000005,aflatoxin,C17H12O7,mibig,328.058302724,Aspergillus parasiticus,unknown,17,12,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000006,aflatoxin B1,C17H12O6,smiles_recovery,nan,Aspergillus flavus,unknown,17,12,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000007,aflatoxin G1,C17H12O7,mibig,328.058302724,Aspergillus flavus,unknown,17,12,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000008,aflatoxin B1,C17H12O6,smiles_recovery,nan,Aspergillus flavus,unknown,17,12,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000009,aflatoxin B1,C17H12O6,smiles_recovery,nan,Aspergillus nomius,unknown,17,12,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000010,aflatoxin,C17H12O7,mibig,328.058302724,Aspergillus flavus,unknown,17,12,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000011,Sterigmatocystin,C18H12O6,mibig,324.0634,Aspergillus ochraceoroseus,unknown,18,12,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000012,alternapyrone,C28H44O3,mibig,428.3290452679999,Alternaria solani,unknown,28,44,3,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000013,alternariol,C14H10O5,mibig,258.05282342000004,Aspergillus nidulans FGSC A4,unknown,14,10,5,-1,TIMEOUT,30.0,5,8
+BGC0000022,asperfuranone,C19H24O5,mibig,332.162373868,Aspergillus nidulans FGSC A4,unknown,19,24,5,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000027,ankaflavin,C23H30O5,mibig,386.2093240599999,Monascus pilosus,unknown,23,30,5,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000030,bikaverin,C20H14O8,mibig,382.0688674079999,Fusarium fujikuroi IMI 58289,unknown,20,14,8,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000037,cichorine,C10H11NO3,mibig,193.073893212,Aspergillus nidulans FGSC A4,unknown,10,11,3,-1,NON_CHO (N),0.0,0,0
+BGC0000039,compactin,C23H36O6,mibig,408.2511888719999,Penicillium citrinum,unknown,23,36,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000045,dehydrocurvularin,C16H18O5,mibig,290.115423676,Aspergillus terreus,unknown,16,18,5,-1,TIMEOUT,30.0,6,9
+BGC0000046,depudecin,C11H16O4,mibig,212.104858992,Alternaria brassicicola,unknown,11,16,4,99,DISCARD_>30,0.925900936126709,3,6
+BGC0000048,dothistromin,C18H12O9,mibig,372.0481319639999,Dothistroma septosporum,unknown,18,12,9,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000057,F9775A,C21H16O8,mibig,396.0845174719999,Aspergillus nidulans FGSC A4,NR,21,16,8,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000062,Fumonisin B1,C34H59NO15,mibig,721.3885,Fusarium verticillioides,unknown,34,59,15,-1,NON_CHO (N),0.0,0,0
+BGC0000063,hydroxyl-Fumonisin C1,C33H57NO16,smiles_recovery,nan,Fusarium oxysporum,unknown,33,57,16,-1,NON_CHO (N),0.0,0,0
+BGC0000064,fusarin C,C22H29NO5,mibig,387.20457302799997,Fusarium verticillioides,unknown,22,29,5,-1,NON_CHO (N),0.0,0,0
+BGC0000070,griseofulvin,C17H17ClO6,mibig,352.071365944,Penicillium aethiopicum,unknown,17,17,6,-1,NON_CHO (Cl),0.0,0,0
+BGC0000076,hypothemycin,C19H22O8,mibig,378.13146766399984,Hypomyces subiculosus,unknown,19,22,8,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000077,hypothemycin,C19H22O8,mibig,378.13146766399984,Hypomyces subiculosus,unknown,19,22,8,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000088,lovastatin,C24H36O5,mibig,404.2562742519999,Aspergillus terreus,unknown,24,36,5,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000089,lovastatin,C24H36O5,mibig,404.2562742519999,Aspergillus terreus,unknown,24,36,5,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000098,monacolin K,C24H36O5,mibig,404.2562742519999,Monascus pilosus,unknown,24,36,5,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000099,monascorubrin,C23H26O5,mibig,382.1780239319999,Talaromyces marneffei,unknown,23,26,5,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000101,emodin,C15H10O5,mibig,270.05282342,Aspergillus nidulans FGSC A4,NR,15,10,5,-1,TIMEOUT,30.0,5,8
+BGC0000104,mycophenolic acid,C17H20O6,mibig,320.12598836,Penicillium brevicompactum,unknown,17,20,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000120,patulin,C7H6O4,mibig,154.026608672,Penicillium expansum,NR,7,6,4,0,UNREACHABLE,0.007943868637084961,1,4
+BGC0000121,Pestheic Acid,C18H15ClO8,smiles_recovery,nan,Pestalotiopsis fici,unknown,18,15,8,-1,NON_CHO (Cl),0.0,0,0
+BGC0000129,pyripyropene A,C31H37NO10,mibig,583.2417463839998,Aspergillus fumigatus Af293,unknown,31,37,10,-1,NON_CHO (N),0.0,0,0
+BGC0000134,radicicol,C18H17ClO6,mibig,364.071365944,Pochonia chlamydosporia,unknown,18,17,6,-1,NON_CHO (Cl),0.0,0,0
+BGC0000146,solanapyrone D,C18H22O4,mibig,302.15180918399994,Alternaria solani,unknown,18,22,4,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000152,sterigmatocystin,C18H12O6,mibig,324.063388104,Aspergillus nidulans,unknown,18,12,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000154,stipitatic acid,C8H6O5,mibig,182.021523292,Talaromyces stipitatus ATCC 10500,unknown,8,6,5,0,UNREACHABLE,0.06842899322509766,2,5
+BGC0000155,T-toxin,C41H68O13,mibig,768.4659922360001,Bipolaris maydis,unknown,41,68,13,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000156,TAN-1612,C21H18O9,mibig,414.0950821559999,Aspergillus niger,unknown,21,18,9,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000160,terreic acid,C7H6O4,mibig,154.026608672,Aspergillus terreus NIH2624,unknown,7,6,4,0,UNREACHABLE,0.007901191711425781,1,4
+BGC0000161,isoterrein,C8H10O3,mibig,154.06299418,Aspergillus terreus NIH2624,unknown,8,10,3,3,SILVER_2_3,0.08958005905151367,2,5
+BGC0000168,viridicatumtoxin,C30H31NO10,mibig,565.1947961919999,Penicillium aethiopicum,unknown,30,31,10,-1,NON_CHO (N),0.0,0,0
+BGC0000170,yanuthone D,C28H38O8,mibig,502.25666817599983,Aspergillus niger ATCC 1015,unknown,28,38,8,-1,OUT_OF_RANGE,0.0,0,0
+BGC0000684,asperthecin,C15H10O8,mibig,318.03756727999996,Aspergillus nidulans FGSC A4,unknown,15,10,8,-1,TIMEOUT,30.0,5,8
+BGC0000959,aspyridone A,C19H23NO4,mibig,329.162708216,Aspergillus nidulans FGSC A4,unknown,19,23,4,-1,NON_CHO (N),0.0,0,0
+BGC0000968,chaetoglobosin A,C34H40N2O5,mibig,556.29372238,Penicillium expansum,unknown,34,40,5,-1,NON_CHO (N),0.0,0,0
+BGC0000977,cyclopiazonic acid,C20H20N2O3,mibig,336.1473924999999,Aspergillus oryzae,unknown,20,20,3,-1,NON_CHO (N),0.0,0,0
+BGC0000983,cytochalasin E,C28H33NO7,mibig,495.2257023959999,Aspergillus clavatus NRRL 1,NR,28,33,7,-1,NON_CHO (N),0.0,0,0
+BGC0000992,fusaridione A,C27H31NO4,mibig,433.225308472,Fusarium heterosporum,unknown,27,31,4,-1,NON_CHO (N),0.0,0,0
+BGC0001026,NG-391,C22H27NO7,mibig,417.178752204,Metarhizium anisopliae,unknown,22,27,7,-1,NON_CHO (N),0.0,0,0
+BGC0001030,ochratoxin A,C20H18ClNO6,mibig,403.0822649759999,Penicillium nordicum,unknown,20,18,6,-1,"NON_CHO (Cl,N)",0.0,0,0
+BGC0001035,pneumocandin B0,C50H80N8O17,mibig,1064.5641431000001,Glarea lozoyensis ATCC 20868,NR,50,80,17,-1,NON_CHO (N),0.0,0,0
+BGC0001037,pseurotin,C22H25NO8,mibig,431.15801675999995,Aspergillus fumigatus Af293,NR,22,25,8,-1,NON_CHO (N),0.0,0,0
+BGC0001049,tenellin,C21H23NO5,mibig,369.157622836,Beauveria bassiana,NR,21,23,5,-1,NON_CHO (N),0.0,0,0
+BGC0001057,zearalenone,C18H22O5,mibig,318.1467238039999,Fusarium graminearum,unknown,18,22,5,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001067,Fumagillin,C26H34O7,mibig,458.2305,Aspergillus fumigatus Af293,NR,26,34,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001118,endocrocin,C16H10O7,mibig,314.04265265999993,Aspergillus fumigatus Af293,NR,16,10,7,-1,TIMEOUT,30.0,6,9
+BGC0001121,orsellinic acid,C8H8O4,mibig,168.042258736,Aspergillus nidulans FGSC A4,NR,8,8,4,1,GOLD_unique,0.06970405578613281,2,5
+BGC0001122,dihydroisoflavipucine,C12H17NO4,mibig,239.115758024,Aspergillus terreus NIH2624,unknown,12,17,4,-1,NON_CHO (N),0.0,0,0
+BGC0001124,pyranonigrin E,C18H21NO4,mibig,315.147058152,Aspergillus niger ATCC 1015,unknown,18,21,4,-1,NON_CHO (N),0.0,0,0
+BGC0001136,desmethylbassianin,C22H23NO5,mibig,381.157622836,Beauveria bassiana,NR,22,23,5,-1,NON_CHO (N),0.0,0,0
+BGC0001141,4-epi-15-epi-brefeldin A,C16H24O4,mibig,280.167459248,Penicillium brefeldianum,NR,16,24,4,2065,DISCARD_>30,25.17853093147278,6,9
+BGC0001143,azanigerone A,C19H22O7,mibig,362.1365530439999,Aspergillus niger ATCC 1015,unknown,19,22,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001144,neosartoricin B,C24H26O8,mibig,442.4640000029,Trichophyton tonsurans CBS 112818,unknown,24,26,8,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001158,bikaverin,C20H14O8,mibig,382.0688674079999,Botrytis cinerea,unknown,20,14,8,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001187,xenolozoyenone,C17H23NO4,mibig,305.162708216,Glarea lozoyensis,NR,17,23,4,-1,NON_CHO (N),0.0,0,0
+BGC0001190,fusaric acid,C10H13NO2,mibig,179.094628656,Fusarium verticillioides 7600,unknown,10,13,2,-1,NON_CHO (N),0.0,0,0
+BGC0001205,communesin A,C28H32N4O2,mibig,456.252526264,Penicillium expansum,unknown,28,32,2,-1,NON_CHO (N),0.0,0,0
+BGC0001218,fumosorinone,C29H35NO5,mibig,477.25152321999997,Cordyceps fumosorosea,unknown,29,35,5,-1,NON_CHO (N),0.0,0,0
+BGC0001219,shanorellin,C9H10O4,mibig,182.0579088,Chaetomium globosum CBS 148.51,unknown,9,10,4,0,UNREACHABLE,0.0753011703491211,2,5
+BGC0001242,oxyjavanicin,C15H14O7,mibig,306.073952788,Fusarium fujikuroi,unknown,15,14,7,-1,TIMEOUT,30.0,5,8
+BGC0001243,botryenalol,C17H26O4,mibig,294.183109312,Botrytis cinerea,unknown,17,26,4,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001244,(-)-Mellein,C10H10O3,mibig,178.06299418,Parastagonospora nodorum,unknown,10,10,3,0,UNREACHABLE,0.675839900970459,3,6
+BGC0001245,lasiodiplodin,C17H24O4,mibig,292.167459248,Lasiodiplodia theobromae,unknown,17,24,4,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001246,trans-resorcylide,C16H18O5,mibig,290.115423676,Sarocladium zeae,unknown,16,18,5,-1,TIMEOUT,30.0,6,9
+BGC0001247,cercosporin,C29H26O10,mibig,534.1525970319999,Cercospora nicotianae,unknown,29,26,10,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001252,UNII-YC2Q1O94PT,C19H30O6,mibig,354.2042386799999,Alternaria alternata,unknown,19,30,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001253,ACT-Toxin I,C26H39NO10,mibig,525.2573964479998,Alternaria alternata,unknown,26,39,10,-1,NON_CHO (N),0.0,0,0
+BGC0001254,ACT-Toxin II,C26H39NO9,mibig,509.26248182799986,Alternaria alternata,unknown,26,39,9,-1,NON_CHO (N),0.0,0,0
+BGC0001255,equisetin,C22H31NO4,mibig,373.225308472,Fusarium heterosporum,unknown,22,31,4,-1,NON_CHO (N),0.0,0,0
+BGC0001257,"1,3,6,8-tetrahydroxynaphthalene",C10H8O4,mibig,192.042258736,Nodulisporium sp. ATCC74245,unknown,10,8,4,0,UNREACHABLE,0.5884931087493896,3,6
+BGC0001258,"1,3,6,8-tetrahydroxynaphthalene",C10H8O4,mibig,192.042259,Glarea lozoyensis,unknown,10,8,4,0,UNREACHABLE,0.5964562892913818,3,6
+BGC0001259,elsinochrome A,C30H24O10,mibig,544.1369469679998,Elsinoe fawcettii,unknown,30,24,10,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001262,AK-toxin I,C23H27NO6,mibig,413.18383758399995,Alternaria alternata,unknown,23,27,6,-1,NON_CHO (N),0.0,0,0
+BGC0001264,betaenone A,C21H34O5,mibig,366.2406241879999,Phoma betae,unknown,21,34,5,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001265,melanin,C18H10N2O4,mibig,318.06405679999995,Bipolaris oryzae,unknown,18,10,4,-1,NON_CHO (N),0.0,0,0
+BGC0001266,grayanic acid,C23H26O7,mibig,414.1678531719999,Cladonia grayi,unknown,23,26,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001268,fusarin C,C22H29NO5,mibig,387.20457302799997,Fusarium fujikuroi,unknown,22,29,5,-1,NON_CHO (N),0.0,0,0
+BGC0001269,gibberellin A3,C19H22O6,mibig,346.1416384239999,Sphaceloma manihoticola,unknown,19,22,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001270,gibberellin A7,C19H22O5,mibig,330.1467238039999,Fusarium fujikuroi,unknown,19,22,5,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001271,emericellin,C25H28O5,mibig,408.1936739959999,Aspergillus nidulans FGSC A4,unknown,25,28,5,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001272,elsinochrome B,C30H26O10,mibig,546.1525970319999,Elsinoe fawcettii,unknown,30,26,10,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001273,asperlactone,C9H12O4,mibig,184.073558864,Aspergillus ochraceus,unknown,9,12,4,9,SILVER_6_10,0.08675098419189453,2,5
+BGC0001275,6-methylsalicyclic acid,C8H8O3,mibig,152.047344116,Glarea lozoyensis,unknown,8,8,3,1,GOLD_unique,0.07434892654418945,2,5
+BGC0001276,6-methylsalicyclic acid,C8H8O3,mibig,152.047344116,Aspergillus terreus,unknown,8,8,3,1,GOLD_unique,0.07392406463623047,2,5
+BGC0001280,betaenone C,C21H34O5,mibig,366.2406241879999,Phoma betae,unknown,21,34,5,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001281,ustilagic acid,C36H64O18,mibig,784.4092652080002,Ustilago maydis 521,unknown,36,64,18,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001304,aflavarin,C24H22O9,mibig,454.1263822839998,Aspergillus flavus NRRL3357,unknown,24,22,9,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001305,fujikurin B,C12H18O5,mibig,242.115423676,Fusarium fujikuroi IMI 58289,unknown,12,18,5,196,DISCARD_>30,5.7186150550842285,4,7
+BGC0001309,usnic acid,C18H16O7,mibig,344.0896028519999,Cladonia uncialis,unknown,18,16,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001338,citrinin,C13H14O5,mibig,250.084123548,Monascus ruber,unknown,13,14,5,2,SILVER_2_3,5.2333948612213135,4,7
+BGC0001339,squalestatin S1,C35H46O13,mibig,674.293841532,Phoma sp. MF5453,unknown,35,46,13,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001340,byssochlamic acid,C18H20O6,mibig,332.12598835999995,Byssochlamys fulva,unknown,18,20,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001358,leucinostatin A,C62H111N11O13,mibig,1217.8362826119996,Purpureocillium lilacinum,unknown,62,111,13,-1,NON_CHO (N),0.0,0,0
+BGC0001360,mycophenolic acid,C12H14Br2N2OS,mibig,391.91935826799994,Penicillium roqueforti FM164,unknown,12,14,1,-1,"NON_CHO (Br,N,S)",0.0,0,0
+BGC0001373,sordarin,C27H40O8,mibig,492.27231823999983,Sordaria araneosa,unknown,27,40,8,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001385,byssochlamic acid,C18H20O6,mibig,332.12598835999995,Byssochlamys fulva,unknown,18,20,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001390,LL-Z1272beta,C23H32O3,mibig,356.23514488399996,Stachybotrys bisbyi,unknown,23,32,3,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001400,citreoviridin,C23H30O6,mibig,402.2042386799999,Aspergillus terreus NIH2624,unknown,23,30,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001401,melleolide F,C23H30O6,mibig,402.2042386799999,Armillaria mellea,unknown,23,30,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001403,trypacidin,C18H16O7,mibig,344.0896028519999,Aspergillus fumigatus Af293,unknown,18,16,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001404,sorbicillin,C14H16O3,mibig,232.109944372,Penicillium rubens Wisconsin 54-1255,unknown,14,16,3,-1,TIMEOUT,30.0,5,8
+BGC0001405,chaetoviridin E,C23H25ClO6,mibig,432.1339662,Chaetomium globosum CBS 148.51,unknown,23,25,6,-1,NON_CHO (Cl),0.0,0,0
+BGC0001445,leporin B,C22H25NO3,mibig,351.18344366,Aspergillus flavus NRRL3357,NR,22,25,3,-1,NON_CHO (N),0.0,0,0
+BGC0001446,asparasone A,C18H14O8,mibig,358.06886740799996,Aspergillus flavus NRRL3357,NR,18,14,8,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001449,ucs1025a,C20H25NO5,mibig,359.1732728999999,Thermothelomyces thermophilus,NR,20,25,5,-1,NON_CHO (N),0.0,0,0
+BGC0001450,macrophorin A,C22H32O4,mibig,360.23005950399994,Penicillium terrestre,NR,22,32,4,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001466,wortmanamide,C21H37NO4,mibig,367.27225866399993,Talaromyces wortmannii,unknown,21,37,4,-1,NON_CHO (N),0.0,0,0
+BGC0001489,6-hydroxymellein,C10H10O4,mibig,194.0579088,Cladonia uncialis subsp. uncialis,unknown,10,10,4,0,UNREACHABLE,0.6019470691680908,3,6
+BGC0001508,andrastin A,C28H38O7,mibig,486.2617535559999,Penicillium roqueforti,unknown,28,38,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001541,cercosporin,C29H26O10,mibig,534.1525970319999,Cercospora beticola,unknown,29,26,10,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001542,cercosporin,C29H26O10,mibig,534.1525970319998,Cercospora zeina,unknown,29,26,10,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001544,chlorflavonin,C18H15ClO7,mibig,378.05063049999995,Aspergillus campestris IBT 28561,unknown,18,15,7,-1,NON_CHO (Cl),0.0,0,0
+BGC0001557,cornexistin,C16H20O6,mibig,308.12598835999995,Paecilomyces divaricatus,unknown,16,20,6,-1,TIMEOUT,30.0,6,9
+BGC0001563,curvupallide-B,C14H17NO5,mibig,279.11067264400003,Cochliobolus pallescens,unknown,14,17,5,-1,NON_CHO (N),0.0,0,0
+BGC0001578,duclauxin,C29H22O11,mibig,546.1162115239999,Talaromyces stipitatus ATCC 10500,unknown,29,22,11,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001600,fusarielin H,C25H38O3,mibig,386.28209507599996,Fusarium graminearum,unknown,25,38,3,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001606,gibepyrone-A,C10H12O2,mibig,164.083729624,Fusarium fujikuroi IMI 58289,unknown,10,12,2,1,GOLD_unique,0.7211630344390869,3,6
+BGC0001616,himeic acid A,C22H29NO8,mibig,435.1893168879999,Aspergillus japonicus,unknown,22,29,8,-1,NON_CHO (N),0.0,0,0
+BGC0001626,isoindolinone,C8H7NO,mibig,133.052763844,Stachybotrys chlorohalonata IBT 40285,unknown,8,7,1,-1,NON_CHO (N),0.0,0,0
+BGC0001677,mycophenolic acid,C17H20O6,mibig,320.12598836,Penicillium roqueforti,unknown,17,20,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001708,novofumigatonin,C25H32O8,mibig,460.2097179839999,Aspergillus novofumigatus IBT 16806,unknown,25,32,8,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001720,oosporein,C14H10O8,mibig,306.03756727999996,Beauveria bassiana ARSEF 2860,unknown,14,10,8,-1,TIMEOUT,30.0,5,8
+BGC0001722,aspernidine A,C24H33NO4,mibig,399.240959,Aspergillus nidulans FGSC A4,unknown,24,33,4,-1,NON_CHO (N),0.0,0,0
+BGC0001729,paraherquonin,C24H28O7,mibig,428.1835032359999,Penicillium brasilianum,unknown,24,28,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001738,phomasetin,C25H35NO4,mibig,413.2566086,Pyrenochaetopsis sp.,unknown,25,35,4,-1,NON_CHO (N),0.0,0,0
+BGC0001741,phyllostictine A,C17H27NO5,mibig,325.188922964,Phyllosticta cirsii,unknown,17,27,5,-1,NON_CHO (N),0.0,0,0
+BGC0001749,epipyriculol,C14H16O4,mibig,248.104858992,Pyricularia oryzae 70-15,unknown,14,16,4,-1,TIMEOUT,30.0,5,8
+BGC0001793,swainsonine,C8H15NO3,mibig,173.10519334,Chaetothyriaceae sp.,unknown,8,15,3,-1,NON_CHO (N),0.0,0,0
+BGC0001794,swainsonine,C8H15NO3,mibig,173.10519334,Alternaria oxytropis,unknown,8,15,3,-1,NON_CHO (N),0.0,0,0
+BGC0001827,xenovulene A,C22H30O4,mibig,358.21440943999994,Sarocladium sp. 'schorii',unknown,22,30,4,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001857,burnettramic acid A,C41H71NO12,mibig,769.4976267120003,Aspergillus sp. CLMG-2019a,unknown,41,71,12,-1,NON_CHO (N),0.0,0,0
+BGC0001865,elsinochrome C,C30H28O10,mibig,548.1682470959998,Parastagonospora nodorum SN15,unknown,30,28,10,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001866,viriditoxin,C34H30O14,mibig,662.163556,Byssochlamys spectabilis,unknown,34,30,14,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001874,α-cyclopiazonic acid,C20H20N2O3,mibig,336.384,Aspergillus flavus,unknown,20,20,3,-1,NON_CHO (N),0.0,0,0
+BGC0001881,pyrichalasin H,C31H41NO6,mibig,523.293388,Pyricularia grisea,NR,31,41,6,-1,NON_CHO (N),0.0,0,0
+BGC0001886,Secalonic acid B,C32H30O14,mibig,638.1636,Claviceps purpurea 20.1,unknown,32,30,14,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001899,abscisic acid,C15H20O4,mibig,264.136159,Leptosphaeria maculans JN3,unknown,15,20,4,-1,TIMEOUT,30.0,5,8
+BGC0001906,"2-acetyl-1,3,6,8-tetrahydroxynaphthalene",C12H10O5,mibig,234.05,Daldinia eschscholzii IFB-TL01,unknown,12,10,5,0,UNREACHABLE,5.070627212524414,4,7
+BGC0001909,strobilurin A,C16H18O3,smiles_recovery,nan,Strobilurus tenacellus,unknown,16,18,3,7,SILVER_6_10,24.664973258972168,6,9
+BGC0001913,phomoidride,C31H38O10,mibig,570.246497,fungal sp. ATCC 74256,unknown,31,38,10,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001923,ascochlorin,C23H29ClO4,mibig,404.175437,Acremonium egyptiacum,unknown,23,29,4,-1,NON_CHO (Cl),0.0,0,0
+BGC0001926,chrodrimanin B,C25H30O7,mibig,442.199153,Talaromyces verruculosus,unknown,25,30,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0001966,BII-rafflesfungin,C44H75N9O17,mibig,1001.528,Phoma sp.,unknown,44,75,17,-1,NON_CHO (N),0.0,0,0
+BGC0001982,pyrichalasin H,C31H41NO6,mibig,523.293388,Pyricularia grisea,unknown,31,41,6,-1,NON_CHO (N),0.0,0,0
+BGC0001988,neosartorin,C34H32O15,mibig,680.17412,Aspergillus novofumigatus IBT 16806,unknown,34,32,15,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002030,viriditoxin,C34H30O14,mibig,662.163556,Byssochlamys spectabilis,unknown,34,30,14,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002035,ilicicolin H,C27H31NO4,mibig,433.225308,Neonectria sp. DH2,unknown,27,31,4,-1,NON_CHO (N),0.0,0,0
+BGC0002062,agnestin A,C15H12O6,smiles_recovery,nan,Paecilomyces divaricatus,unknown,15,12,6,-1,TIMEOUT,30.0,5,8
+BGC0002063,cryptosporioptide B,C38H34O18,mibig,779.1823,Cryptosporiopsis sp. 8999,NR,38,34,18,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002065,strobilurin A,C16H18O3,smiles_recovery,nan,Strobilurus tenacellus,unknown,16,18,3,7,SILVER_6_10,24.668099880218506,6,9
+BGC0002066,harzianopyridone,C14H19NO5,smiles_recovery,nan,Trichoderma harzianum,NR,14,19,5,-1,NON_CHO (N),0.0,0,0
+BGC0002067,atpenin B,C15H23NO5,smiles_recovery,nan,Penicillium oxalicum 114-2,NR,15,23,5,-1,NON_CHO (N),0.0,0,0
+BGC0002093,ilicicolin H,C27H31NO4,smiles_recovery,nan,Talaromyces variabilis,unknown,27,31,4,-1,NON_CHO (N),0.0,0,0
+BGC0002139,burnettiene A,C32H42O7,mibig,537.286,Aspergillus burnettii FRR 5400,NR,32,42,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002154,"1,3,5,8-tetrahydroxynapthalene",C10H8O4,smiles_recovery,nan,Pyricularia oryzae 70-15,unknown,10,8,4,0,UNREACHABLE,0.588543176651001,3,6
+BGC0002155,nectriapyrone C,C11H14O4,smiles_recovery,nan,Pyricularia oryzae 70-15,unknown,11,14,4,25,BRONZE_11_30,0.7239351272583008,3,6
+BGC0002158,tenuazonic acid,C10H15NO3,smiles_recovery,nan,Pyricularia oryzae 70-15,unknown,10,15,3,-1,NON_CHO (N),0.0,0,0
+BGC0002161,scytalone,C10H10O4,smiles_recovery,nan,Pestalotiopsis fici W106-1,unknown,10,10,4,0,UNREACHABLE,0.5968530178070068,3,6
+BGC0002165,betaenone C,C21H34O5,smiles_recovery,nan,Parastagonospora nodorum SN15,unknown,21,34,5,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002168,decumbenone a,C16H24O4,smiles_recovery,nan,Aspergillus stellatus,unknown,16,24,4,2065,DISCARD_>30,24.136019945144653,6,9
+BGC0002169,acurin A,C21H27NO5,smiles_recovery,nan,Aspergillus aculeatus ATCC 16872,unknown,21,27,5,-1,NON_CHO (N),0.0,0,0
+BGC0002170,4-methyl-5-dimethyltetradecahexaene-β-ketolactone,C22H28O3,smiles_recovery,nan,Aspergillus stellatus,unknown,22,28,3,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002171,pyrophen,C16H17NO4,smiles_recovery,nan,Aspergillus niger ATCC 1015,unknown,16,17,4,-1,NON_CHO (N),0.0,0,0
+BGC0002175,YWA1,C14H12O6,smiles_recovery,nan,Aspergillus oryzae RIB40,unknown,14,12,6,-1,TIMEOUT,30.0,5,8
+BGC0002177,ustilaginoidin N,C29H22O10,smiles_recovery,nan,Ustilaginoidea virens,unknown,29,22,10,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002180,(+)-asperlin,C10H12O5,smiles_recovery,nan,Aspergillus nidulans FGSC A4,unknown,10,12,5,5,SILVER_4_5,0.5974271297454834,3,6
+BGC0002185,gregatin A,C16H20O4,smiles_recovery,nan,Penicillium sp.,unknown,16,20,4,352,DISCARD_>30,24.008550882339478,6,9
+BGC0002186,fusaristatin A,C36H58N4O7,smiles_recovery,nan,Fusarium graminearum PH-1,unknown,36,58,7,-1,NON_CHO (N),0.0,0,0
+BGC0002187,monorden D,C18H19ClO5,smiles_recovery,nan,Pochonia chlamydosporia 170,unknown,18,19,5,-1,NON_CHO (Cl),0.0,0,0
+BGC0002188,W493 B,C45H73N7O11,smiles_recovery,nan,Fusarium pseudograminearum CS3096,unknown,45,73,11,-1,NON_CHO (N),0.0,0,0
+BGC0002190,sorbicillin,C14H16O3,smiles_recovery,nan,Acremonium chrysogenum ATCC 11550,unknown,14,16,3,-1,TIMEOUT,30.0,5,8
+BGC0002191,prolipyrone B,C10H10O5,smiles_recovery,nan,Fusarium graminearum PH-1,unknown,10,10,5,1,GOLD_unique,0.5961956977844238,3,6
+BGC0002192,FR901512,C21H28O6,smiles_recovery,nan,fungal sp. No.14919,unknown,21,28,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002194,epipyrone A,C34H44O10,smiles_recovery,nan,Epicoccum nigrum,unknown,34,44,10,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002197,terrestric acid,C11H14O4,smiles_recovery,nan,Penicillium crustosum,unknown,11,14,4,25,BRONZE_11_30,0.7240619659423828,3,6
+BGC0002200,aurovertin E,C23H30O7,smiles_recovery,nan,Calcarisporium arbuscula,unknown,23,30,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002203,beauverolide Ba,C31H49N3O5,mibig,543.36722,Beauveria bassiana ARSEF 2860,unknown,31,49,5,-1,NON_CHO (N),0.0,0,0
+BGC0002204,flavichalasine F,C25H39NO5,smiles_recovery,nan,Aspergillus flavipes,unknown,25,39,5,-1,NON_CHO (N),0.0,0,0
+BGC0002205,phomacin D,C25H37NO4,smiles_recovery,nan,Parastagonospora nodorum SN15,unknown,25,37,4,-1,NON_CHO (N),0.0,0,0
+BGC0002206,harziphilone,C15H18O4,smiles_recovery,nan,Trichoderma guizhouense,unknown,15,18,4,-1,TIMEOUT,30.0,5,8
+BGC0002209,ustethylin A,C11H14O5,smiles_recovery,nan,Aspergillus ustus,unknown,11,14,5,17,BRONZE_11_30,0.6330151557922363,3,6
+BGC0002210,pyranoviolin A,C13H15NO5,smiles_recovery,nan,Aspergillus violaceofuscus,unknown,13,15,5,-1,NON_CHO (N),0.0,0,0
+BGC0002212,Orsellinic acid,C8H8O4,mibig,168.15,Moniliophthora roreri MCA 2997,unknown,8,8,4,1,GOLD_unique,0.06865310668945312,2,5
+BGC0002214,methyl (2S)-4-methyl-2-(octanoylamino)pentanoate,C15H29NO3,smiles_recovery,271.214752,Hydnomerulius pinastri MD-312,unknown,15,29,3,-1,NON_CHO (N),0.0,0,0
+BGC0002222,zopfiellin,C21H26O7,smiles_recovery,nan,Diffractella curvata,unknown,21,26,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002223,scytalidin,C22H28O7,mibig,404.183504,Scytalidium album,unknown,22,28,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002224,zopfiellin,C21H26O7,mibig,390.167855,Diffractella curvata,unknown,21,26,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002229,aculin A,C26H33NO7,smiles_recovery,nan,Aspergillus aculeatus ATCC 16872,unknown,26,33,7,-1,NON_CHO (N),0.0,0,0
+BGC0002230,tolypyridone C,C21H25NO4,smiles_recovery,nan,Tolypocladium sp. 49Y,unknown,21,25,4,-1,NON_CHO (N),0.0,0,0
+BGC0002231,fusaric acid,C10H13NO2,smiles_recovery,nan,Fusarium verticillioides 7600,unknown,10,13,2,-1,NON_CHO (N),0.0,0,0
+BGC0002233,trichoxide,C18H26O4,smiles_recovery,nan,Trichoderma virens Gv29-8,unknown,18,26,4,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002234,flavoglaucin,C19H28O3,smiles_recovery,nan,Aspergillus ruber CBS 135680,unknown,19,28,3,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002235,"12,13-dihydroxymagnaporthepyrone",C16H20O5,mibig,278.3,Pyricularia oryzae 70-15,unknown,16,20,5,-1,TIMEOUT,30.0,6,9
+BGC0002236,8-methyldiaporthin,C14H16O5,smiles_recovery,nan,Aspergillus oryzae RIB40,unknown,14,16,5,-1,TIMEOUT,30.0,5,8
+BGC0002237,dichlorodiaporthin,C13H12Cl2O5,smiles_recovery,nan,Aspergillus oryzae RIB40,unknown,13,12,5,-1,NON_CHO (Cl),0.0,0,0
+BGC0002238,"2,4'-dihydroxy-3'-methoxypropiophenone",C10H12O4,smiles_recovery,nan,Aspergillus oryzae RIB40,unknown,10,12,4,7,SILVER_6_10,0.6219542026519775,3,6
+BGC0002239,pyrrocidine A,C31H37NO4,smiles_recovery,nan,Acremonium sp.,unknown,31,37,4,-1,NON_CHO (N),0.0,0,0
+BGC0002240,BAB,C12H16O3,smiles_recovery,nan,Metarhizium anisopliae,unknown,12,16,3,49,DISCARD_>30,6.000274896621704,4,7
+BGC0002241,ywa1,C14H12O6,smiles_recovery,nan,Byssochlamys sp. IMV 00236,unknown,14,12,6,-1,TIMEOUT,30.0,5,8
+BGC0002243,biruloquinone,C17H10O7,smiles_recovery,nan,Cladonia macilenta KoLRI003786,unknown,17,10,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002244,pestalotiollide B,C21H22O7,smiles_recovery,nan,Neopestalotiopsis clavispora,unknown,21,22,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002247,chaetoconvosins B,C30H37NO6,smiles_recovery,nan,Amesia nigricolor,unknown,30,37,6,-1,NON_CHO (N),0.0,0,0
+BGC0002249,phaeospelide A,C34H50O8,smiles_recovery,nan,Arthrinium phaeospermum,unknown,34,50,8,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002250,triticone A,C14H15NO5,smiles_recovery,nan,Pyrenophora tritici-repentis Pt-1C-BFP,unknown,14,15,5,-1,NON_CHO (N),0.0,0,0
+BGC0002253,waikikiamide A,C41H39N3O9,smiles_recovery,nan,Aspergillus sp. FM242,unknown,41,39,9,-1,NON_CHO (N),0.0,0,0
+BGC0002254,notoamide F,C27H31N3O4,smiles_recovery,nan,Aspergillus sp. FM242,unknown,27,31,4,-1,NON_CHO (N),0.0,0,0
+BGC0002255,lijiquinone,C23H26O5,smiles_recovery,nan,Ascomycota sp. F53,unknown,23,26,5,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002257,rufoschweinitzin,C30H30O8,smiles_recovery,nan,Xylaria schweinitzii,unknown,30,30,8,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002258,shimalactone A,C29H40O4,smiles_recovery,nan,Aspergillus stellatus,unknown,29,40,4,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002259,beauveriolide I,C27H41N3O5,smiles_recovery,nan,Cordyceps militaris CM01,unknown,27,41,5,-1,NON_CHO (N),0.0,0,0
+BGC0002261,lucilactaene,C22H27NO6,smiles_recovery,nan,Fusarium sp.,unknown,22,27,6,-1,NON_CHO (N),0.0,0,0
+BGC0002262,sporothriolide,C13H18O4,smiles_recovery,nan,Hypomontagnella monticulosa,unknown,13,18,4,276,DISCARD_>30,7.168806076049805,4,7
+BGC0002263,spiromarmycin,C19H24O6,smiles_recovery,nan,Spiromastix sp. SCSIO F190,unknown,19,24,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002265,atranorin,C19H18O8,mibig,374.10016753,Stereocaulon alpinum,unknown,19,18,8,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002266,calidoustene A,C21H28O6,smiles_recovery,nan,Aspergillus calidoustus,unknown,21,28,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002268,"CJ-16,173",C19H19NO4,smiles_recovery,nan,Penicillium sp.,unknown,19,19,4,-1,NON_CHO (N),0.0,0,0
+BGC0002269,MCA17-1,C14H15NO5,smiles_recovery,nan,Calcarisporium arbuscula,unknown,14,15,5,-1,NON_CHO (N),0.0,0,0
+BGC0002270,swainsonine,C8H15NO3,smiles_recovery,nan,Metarhizium robertsii ARSEF 23,unknown,8,15,3,-1,NON_CHO (N),0.0,0,0
+BGC0002275,pyrophen,C16H17NO4,smiles_recovery,nan,Aspergillus niger CBS 101883,unknown,16,17,4,-1,NON_CHO (N),0.0,0,0
+BGC0002281,sambutoxin,C28H39NO4,smiles_recovery,nan,Fusarium commune,unknown,28,39,4,-1,NON_CHO (N),0.0,0,0
+BGC0002304,varicidin A,C21H29NO5,smiles_recovery,nan,Talaromyces variabilis,unknown,21,29,5,-1,NON_CHO (N),0.0,0,0
+BGC0002375,cladosporiumin I,C13H17NO3,smiles_recovery,nan,Cladosporium sp. SW67,unknown,13,17,3,-1,NON_CHO (N),0.0,0,0
+BGC0002427,subglutinol A,C27H38O4,smiles_recovery,nan,Metarhizium robertsii ARSEF 23,unknown,27,38,4,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002428,FDDP-D,C29H42O7,mibig,502.2931,Fusarium graminearum PH-1,unknown,29,42,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002429,higginsianin B,C27H40O4,mibig,428.2927,Colletotrichum higginsianum IMI 349063,unknown,27,40,4,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002483,usnic acid,C18H16O7,smiles_recovery,nan,Cladonia uncialis subsp. uncialis,unknown,18,16,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002502,fumonisin B3,C34H59NO14,smiles_recovery,nan,Fusarium fujikuroi,unknown,34,59,14,-1,NON_CHO (N),0.0,0,0
+BGC0002505,xenoacremone A,C29H35NO5,smiles_recovery,nan,Xenoacremonium sp. BF-2018a,unknown,29,35,5,-1,NON_CHO (N),0.0,0,0
+BGC0002507,sporandol,C28H26O8,smiles_recovery,nan,Chrysosporium merdarium,unknown,28,26,8,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002511,biruloquinone,C17H10O7,smiles_recovery,nan,Cladonia macilenta KoLRI003786,unknown,17,10,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002513,6-methylcristazarin,C14H14O6,mibig,278.079,Cladonia metacorallifera KoLRI002260,unknown,14,14,6,-1,TIMEOUT,30.0,5,8
+BGC0002515,solanapyrone A,C18H22O4,smiles_recovery,nan,Ascochyta rabiei,unknown,18,22,4,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002516,prephenalenone,C14H12O6,smiles_recovery,nan,Fusarium neocosmosporiellum,unknown,14,12,6,-1,TIMEOUT,30.0,5,8
+BGC0002525,fusarubin,C15H14O7,smiles_recovery,nan,Fusarium sp.,unknown,15,14,7,-1,TIMEOUT,30.0,5,8
+BGC0002537,emeridone F,C25H28O6,smiles_recovery,nan,Aspergillus sp.,unknown,25,28,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002538,chaetolivacine A,C29H35NO2,smiles_recovery,nan,Chaetomium olivaceum,unknown,29,35,2,-1,NON_CHO (N),0.0,0,0
+BGC0002546,cytoglobosin X,C32H42N2O5,smiles_recovery,nan,Chaetomium globosum,unknown,32,42,5,-1,NON_CHO (N),0.0,0,0
+BGC0002555,emerimicin V,C78H122N16O19,smiles_recovery,nan,Acremonium sp.,unknown,78,122,19,-1,NON_CHO (N),0.0,0,0
+BGC0002592,geodin,C17H12Cl2O7,smiles_recovery,nan,Aspergillus terreus NIH2624,unknown,17,12,7,-1,NON_CHO (Cl),0.0,0,0
+BGC0002593,lecanoric acid,C16H14O7,smiles_recovery,nan,Pseudevernia furfuracea,unknown,16,14,7,-1,TIMEOUT,30.0,6,9
+BGC0002594,orcinol,C7H8O2,smiles_recovery,nan,Fusarium graminearum PH-1,unknown,7,8,2,0,UNREACHABLE,0.014231681823730469,1,4
+BGC0002595,orsellinic acid,C8H8O4,smiles_recovery,nan,Taiwanofungus camphoratus,unknown,8,8,4,1,GOLD_unique,0.0684363842010498,2,5
+BGC0002596,lecanoric acid,C16H14O7,smiles_recovery,nan,Claviceps purpurea 20.1,unknown,16,14,7,-1,TIMEOUT,30.0,6,9
+BGC0002598,ochratoxin A,C20H18ClNO6,smiles_recovery,nan,Aspergillus westerdijkiae,unknown,20,18,6,-1,"NON_CHO (Cl,N)",0.0,0,0
+BGC0002603,chevalone E,C26H38O4,smiles_recovery,nan,Aspergillus versicolor,unknown,26,38,4,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002604,sartorypyrone A,C28H40O5,smiles_recovery,nan,Aspergillus felis,unknown,28,40,5,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002605,ochratoxin A,C20H18ClNO6,smiles_recovery,nan,Aspergillus carbonarius,unknown,20,18,6,-1,"NON_CHO (Cl,N)",0.0,0,0
+BGC0002606,ochratoxin A,C20H18ClNO6,smiles_recovery,nan,Aspergillus niger,unknown,20,18,6,-1,"NON_CHO (Cl,N)",0.0,0,0
+BGC0002607,ochratoxin A,C20H18ClNO6,smiles_recovery,nan,Aspergillus westerdijkiae,unknown,20,18,6,-1,"NON_CHO (Cl,N)",0.0,0,0
+BGC0002608,ochratoxin A,C20H18ClNO6,smiles_recovery,nan,Aspergillus steynii,unknown,20,18,6,-1,"NON_CHO (Cl,N)",0.0,0,0
+BGC0002609,ochratoxin A,C20H18ClNO6,smiles_recovery,nan,Aspergillus welwitschiae,unknown,20,18,6,-1,"NON_CHO (Cl,N)",0.0,0,0
+BGC0002614,subglutinol A,C27H38O4,smiles_recovery,nan,Penicillium shearii,unknown,27,38,4,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002616,mycophenolic acid,C17H20O6,smiles_recovery,nan,Penicillium roqueforti,unknown,17,20,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002619,mycophenolic acid,C17H20O6,smiles_recovery,nan,Penicillium brevicompactum,unknown,17,20,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002709,aurofusarin,C30H18O12,smiles_recovery,nan,Fusarium graminearum PH-1,unknown,30,18,12,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002731,nanangenine A,C15H22O5,smiles_recovery,nan,Aspergillus nanangensis,unknown,15,22,5,-1,TIMEOUT,30.0,5,8
+BGC0002745,verrucosidin,C24H32O6,smiles_recovery,nan,Penicillium polonicum,unknown,24,32,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002749,aspcandine,C12H10N2O3,mibig,230.0691,Aspergillus candidus,unknown,12,10,3,-1,NON_CHO (N),0.0,0,0
+BGC0002758,Azanidulone,C11H10O4,mibig,206.0579,Aspergillus nidulans FGSC A4,unknown,11,10,4,0,UNREACHABLE,0.5931048393249512,3,6
+BGC0002759,brevione E,C28H34O7,smiles_recovery,nan,Penicillium bialowiezense CBS 227.28,unknown,28,34,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002812,Colletochlorin A,C18H25ClO5,mibig,356.1391,Colletotrichum higginsianum IMI 349063,unknown,18,25,5,-1,NON_CHO (Cl),0.0,0,0
+BGC0002845,Sartorypyrone A,C28H40O5,mibig,456.2876,Aspergillus fumigatus Af293,unknown,28,40,5,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002847,olivetolic acid,C12H16O4,mibig,nan,Metarhizium robertsii ARSEF23,unknown,12,16,4,87,DISCARD_>30,5.757381916046143,4,7
+BGC0002848,CJ-20557,C19H20O7,mibig,360.1209,Aspergillus duricaulis  CBS 481.65,unknown,19,20,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002849,Luteodienoside A,C23H38O13,mibig,522.2312,Aspergillus luteorubrus  MST-FP2246,unknown,23,38,13,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002852,"3,6-dialkyl-α-pyrone",C10H12O3,mibig,180.07866,Pestalotiopsis sp BRIP 39872,unknown,10,12,3,4,SILVER_4_5,0.6715269088745117,3,6
+BGC0002864,Mollicellin Z ,C21H22O6,mibig,370.1416,Ovatospora sp. SCSIO SY280D,unknown,21,22,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002867,chlorogeumsanol B,C23H29Cl1O7,mibig,452.16018,Penicillium  meliponae  MMSRG-058,unknown,23,29,7,-1,NON_CHO (Cl),0.0,0,0
+BGC0002872,Zaragozic acid A,C35H46O14,mibig,690.2888,Curvularia lunata ATCC 74067,unknown,35,46,14,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002874,cristazarin,C13H12O6,mibig,264.0633881,Cladonia metacorallifera KoLRI002260,unknown,13,12,6,0,UNREACHABLE,5.14883017539978,4,7
+BGC0002877,Cordypyrone A,C22H28O3,mibig,340.2038, Cordyceps Cordyceps militaris CM01,unknown,22,28,3,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002883,biruloquinone,C17H10O7,mibig,nan,Cladonia macilenta KoLRI003786,unknown,17,10,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002887,radicicol,C18H17ClO6,mibig,364.0714,Colletotrichum graminicola M1.001,unknown,18,17,6,-1,NON_CHO (Cl),0.0,0,0
+BGC0002891,arthripenoid C,C30H44O9,mibig,nan,Arthrinium sp. NF2194,unknown,30,44,9,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002904,fumonisin B2,C34H59NO14,mibig,705.839,  ,unknown,34,59,14,-1,NON_CHO (N),0.0,0,0
+BGC0002911,naringenin,C15H12O5,mibig,272.06847348,Pestalotiopsis fici W106-1,unknown,15,12,5,-1,TIMEOUT,30.0,5,8
+BGC0002930,6'-O-demethyl-dihydroaustalide K,C24H32O5,mibig,400.2,Penicillium arizonense IBT 12289,unknown,24,32,5,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002936,Gyrophoric acid,C24H20O10,mibig,468.4,Umbilicaria deusta ,unknown,24,20,10,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002953,11'-O-desmethyl fendlerol,C26H40O7,smiles_recovery,nan,Annulohypoxylon moriforme CBS 123579,unknown,26,40,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002966,luteodienoside A,C25H38O13,mibig,522.231,Aspergillus luteorubrus MST-FP2246,unknown,25,38,13,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002970,xylariolide D,C10H14O3,mibig,nan,Penicillium  crustosum PRB-2,unknown,10,14,3,25,BRONZE_11_30,0.7433793544769287,3,6
+BGC0002971,Fugralin A,C12H20O4,mibig,nan,Fusarium  graminearum  PH-1 ,unknown,12,20,4,316,DISCARD_>30,6.132344961166382,4,7
+BGC0002980,sphingofungin B,C20H39NO6,mibig,389.2777,Aspergillus fumigatus A1163,unknown,20,39,6,-1,NON_CHO (N),0.0,0,0
+BGC0002984,Brefeldin A,C16H24O4,mibig,280.1675,Dactylonectria  alcacerensis  CT-6,unknown,16,24,4,2065,DISCARD_>30,26.681195974349976,6,9
+BGC0002987,scirpilin A,C26H36O2,mibig,380.3,Fusarium  scirpi CGMCC 3.3656,unknown,26,36,2,-1,OUT_OF_RANGE,0.0,0,0
+BGC0002993,Oxopyrrolidine A,C24H29NO5,mibig,411.2046,Penicillium oxalicum MEFC104,unknown,24,29,5,-1,NON_CHO (N),0.0,0,0
+BGC0002998,ilicicolinal,C23H31ClO3,smiles_recovery,nan,Neonectria discophora SNB-CN63,unknown,23,31,3,-1,NON_CHO (Cl),0.0,0,0
+BGC0002999,(2S)-annullatin A,C17H22O4,smiles_recovery,nan,Penicillium roqueforti FM164,unknown,17,22,4,-1,OUT_OF_RANGE,0.0,0,0
+BGC0003006,Rasfonin,C25H38O6,mibig,434.2668,Cephalotrichum gorgonifer NG_p51,unknown,25,38,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0003011,Eupenifeldin,C33H40O7,mibig,548.2774,Phaeosphaeriaceae sp. CF-150626,unknown,33,40,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0003013,agonodepside A,C23H26O5,mibig,382.4,Aspergillus sp. SCSIO SX7S7,unknown,23,26,5,-1,OUT_OF_RANGE,0.0,0,0
+BGC0003017,Macrollin A,C21H29NO3,mibig,343.2147,Macrophomina phaseolina MS6,unknown,21,29,3,-1,NON_CHO (N),0.0,0,0
+BGC0003018,sclerotiorin,C21H23ClO5,smiles_recovery,nan,Penicillium Sclerotiorum SNB-CN111,unknown,21,23,5,-1,NON_CHO (Cl),0.0,0,0
+BGC0003028,Terrestric acid,C11H14O4,mibig,210.0892,Penicillium crustosum PRB-2,unknown,11,14,4,25,BRONZE_11_30,0.7454378604888916,3,6
+BGC0003032,soppiline A,C21H34O3,mibig,334.2508,Penicillium soppii Okera-1 / IBT 18220,unknown,21,34,3,-1,OUT_OF_RANGE,0.0,0,0
+BGC0003093,Phomoxanthone A,C38H38O16,mibig,750.216,Diaporthe sp. SYSU-MS4722,unknown,38,38,16,-1,OUT_OF_RANGE,0.0,0,0
+BGC0003094,Roseopurpurin C,C18H20O7,mibig,348.1209,Phaeosphaeria sp. TTI001159,unknown,18,20,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0003099,"7-But-15-enyl-6,8-dihydroxy-3(R)-pent-11-enylisochroman-1-one",C18H22O4,mibig,302.1518,Fusarium mangiferae MRC7560,unknown,18,22,4,-1,OUT_OF_RANGE,0.0,0,0
+BGC0003108,pycnidione,C33H40O7,mibig,548.28,Leptobacillium sp. CF-236968,unknown,33,40,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0003109,stachysalicyloid C,C16H20O2,mibig,244.33,Stachybotrys sp. g12,unknown,16,20,2,10,SILVER_6_10,27.600425958633423,6,9
+BGC0003113,multiformin A,C24H26O6,mibig,410.0,Jackrogersella multiformis CBS 119016,unknown,24,26,6,-1,OUT_OF_RANGE,0.0,0,0
+BGC0003115,orsellinoxypropanoic acid,C11H12O6,mibig,240.21,Penicillium crustosum  PRB-2,unknown,11,12,6,0,UNREACHABLE,0.6042280197143555,3,6
+BGC0003118,Multiforisin H,C13H16O6,mibig,268.0947,hypomontagnella monticulosa MUCL 54604,unknown,13,16,6,29,BRONZE_11_30,5.4336998462677,4,7
+BGC0003120,Minutellin A,C27H30O7,mibig,466.1992,Jackrogersella minutella CBS 135445,unknown,27,30,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0003126,kotanin,C24H22O8,mibig,438.1314,Aspergillus niger CBS 513.88,unknown,24,22,8,-1,OUT_OF_RANGE,0.0,0,0
+BGC0003142,FDDP D,C29H42O7,mibig,502.29305,Fusarium graminearum PH-1,unknown,29,42,7,-1,OUT_OF_RANGE,0.0,0,0
+BGC0003144,Physodic acid,C26H30O8,mibig,470.52,Pseudevernia furfuracea Physodic,unknown,26,30,8,-1,OUT_OF_RANGE,0.0,0,0
+BGC0003145,macrophasetin A,C22H31NO3,mibig,357.2304,Macrophomina phaseolina MS6,unknown,22,31,3,-1,NON_CHO (N),0.0,0,0
+BGC0003147,Taslactam C,C10H15NO3,mibig,197.10519,Tolypocladium album RK99-F33,unknown,10,15,3,-1,NON_CHO (N),0.0,0,0
+BGC0003149,Taslactam D,C10H15NO3,mibig,197.10519,Fusarium oxysporum MN25,unknown,10,15,3,-1,NON_CHO (N),0.0,0,0
+BGC0003150,Ascochitine,C15H16O5,mibig,276.0998,Ascochyta  viciae-villosae ONG-16-641 (aka. AV22),unknown,15,16,5,-1,TIMEOUT,30.0,5,8
+BGC0003151,Annullatin D,C17H22O4,smiles_recovery,nan,Penicillium roqueforti FM164,unknown,17,22,4,-1,OUT_OF_RANGE,0.0,0,0
+BGC0003154,cyclopiazonic acid,C20H20N2O3,smiles_recovery,nan,Aspergillus flavus NRRL 3357,unknown,20,20,3,-1,NON_CHO (N),0.0,0,0
