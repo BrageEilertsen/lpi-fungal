@@ -1,0 +1,46 @@
+Phase D3 ABLATION: POSE-only (no POSITION, no SUBSTRATE)
+  feature dims: 5  features: ['pocket_contact_count_5A', 'pocket_polar_contacts', 'pocket_hydrophobic_contacts', 'ligand_sasa_buried_fraction', 'pocket_volume_A3']
+======================================================================
+corpus (conformational-only): 16 assets, 661 POSE rows attached
+  canonical cycles: 62
+
+[A] Full-corpus training
+  step=   0  NLML=  80.630  mean_silver_ent=2.200  citrinin_H=0.693  strob_H=4.055  asperlin_H=1.604
+  step= 100  NLML=  52.826  mean_silver_ent=2.021  citrinin_H=0.674  strob_H=3.567  asperlin_H=1.339
+  step= 200  NLML=  52.127  mean_silver_ent=1.989  citrinin_H=0.668  strob_H=3.500  asperlin_H=1.326
+  step= 300  NLML=  52.070  mean_silver_ent=1.984  citrinin_H=0.666  strob_H=3.491  asperlin_H=1.324
+  step= 400  NLML=  52.066  mean_silver_ent=1.983  citrinin_H=0.666  strob_H=3.489  asperlin_H=1.324
+  step= 500  NLML=  52.066  mean_silver_ent=1.982  citrinin_H=0.666  strob_H=3.488  asperlin_H=1.323
+  step= 600  NLML=  52.066  mean_silver_ent=1.982  citrinin_H=0.666  strob_H=3.488  asperlin_H=1.323
+
+  full-corpus -- canonical acc=0.484 (62), agreed acc=0.500 (42)
+
+[B] LOSO eval over 16 assets (POSE-only)
+  LOSO[ 1/16] curated:6-hydroxymellein                 canon=0.750( 4) H_held=0.000
+  LOSO[ 2/16] curated:6-methylsalicylic acid           canon=0.667( 3) H_held=0.000
+  LOSO[ 3/16] curated:LovB dihydromonacolin L nonaketi canon=0.000( 8) H_held=0.000
+  LOSO[ 4/16] curated:mellein                          canon=0.500( 4) H_held=0.000
+  LOSO[ 5/16] curated:tenellin polyketide backbone (Te canon=0.250( 4) H_held=0.000
+  LOSO[ 6/16] BGC0001275                               canon=0.667( 3) H_held=0.000
+  LOSO[ 7/16] BGC0001276                               canon=0.667( 3) H_held=0.000
+  LOSO[ 8/16] BGC0001606                               canon=0.000( 4) H_held=0.000
+  LOSO[ 9/16] BGC0002191                               canon=0.000( 4) H_held=0.000
+  LOSO[10/16] BGC0001338                               canon=0.000( 5) H_held=0.638
+  LOSO[11/16] BGC0000161                               canon=0.333( 3) H_held=1.066
+  LOSO[12/16] BGC0002180                               canon=0.000( 4) H_held=1.256
+  LOSO[13/16] BGC0001909                               canon=0.333( 3) H_held=3.431
+  LOSO[14/16] BGC0002065                               canon=0.333( 3) H_held=3.431
+  LOSO[15/16] BGC0002238                               canon=0.250( 4) H_held=1.778
+  LOSO[16/16] BGC0001273                               canon=0.333( 3) H_held=2.060
+
+======================================================================
+PHASE D3 POSE-ONLY ABLATION:
+  LOSO acc canonical: 0.2742 (n=62)
+  LOSO acc agreed:    0.2857 (n=42)
+
+Reference comparisons on the SAME n=62 conformational corpus:
+  D2 substrate-only (n=62): canonical=0.2903  citrinin_H=~0.692
+  D3 POSITION+SUBSTRATE+POSE (n=62): canonical=0.3548  citrinin_H_held=0.003
+
+If citrinin H still drops to near 0 with POSE alone, the structural
+channel is fully orthogonal. If H stays high, POSE complements SUBSTRATE.
