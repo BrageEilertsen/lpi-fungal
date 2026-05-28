@@ -9,9 +9,15 @@
     "O": 4,
     "mass": 168.042258736,
     "tier": "GOLD_unique",
+    "z_star_size_inventory": 1,
     "z_star_size": 1,
+    "grammar_starters": [
+      "acetyl"
+    ],
     "cycle_lo": 2,
     "cycle_hi": 5,
+    "inventory_cycle_lo": 2,
+    "inventory_cycle_hi": 5,
     "candidates": [
       {
         "smiles": "Cc1cc(O)cc(O)c1C(=O)O",
@@ -54,9 +60,15 @@
     "O": 3,
     "mass": 152.047344116,
     "tier": "GOLD_unique",
+    "z_star_size_inventory": 1,
     "z_star_size": 1,
+    "grammar_starters": [
+      "acetyl"
+    ],
     "cycle_lo": 2,
     "cycle_hi": 5,
+    "inventory_cycle_lo": 2,
+    "inventory_cycle_hi": 5,
     "candidates": [
       {
         "smiles": "Cc1cccc(O)c1C(=O)O",
@@ -99,9 +111,15 @@
     "O": 3,
     "mass": 152.047344116,
     "tier": "GOLD_unique",
+    "z_star_size_inventory": 1,
     "z_star_size": 1,
+    "grammar_starters": [
+      "acetyl"
+    ],
     "cycle_lo": 2,
     "cycle_hi": 5,
+    "inventory_cycle_lo": 2,
+    "inventory_cycle_hi": 5,
     "candidates": [
       {
         "smiles": "Cc1cccc(O)c1C(=O)O",
@@ -144,9 +162,15 @@
     "O": 2,
     "mass": 164.083729624,
     "tier": "GOLD_unique",
+    "z_star_size_inventory": 1,
     "z_star_size": 1,
+    "grammar_starters": [
+      "acetyl"
+    ],
     "cycle_lo": 3,
     "cycle_hi": 6,
+    "inventory_cycle_lo": 3,
+    "inventory_cycle_hi": 6,
     "candidates": [
       {
         "smiles": "CC=CC=CC=CC=CC(=O)O",
@@ -196,9 +220,15 @@
     "O": 5,
     "mass": NaN,
     "tier": "GOLD_unique",
+    "z_star_size_inventory": 1,
     "z_star_size": 1,
+    "grammar_starters": [
+      "acetyl"
+    ],
     "cycle_lo": 3,
     "cycle_hi": 6,
+    "inventory_cycle_lo": 3,
+    "inventory_cycle_hi": 6,
     "candidates": [
       {
         "smiles": "CC(=O)Cc1cc(O)cc(O)c1C(=O)O",
@@ -248,9 +278,15 @@
     "O": 4,
     "mass": 168.15,
     "tier": "GOLD_unique",
+    "z_star_size_inventory": 1,
     "z_star_size": 1,
+    "grammar_starters": [
+      "acetyl"
+    ],
     "cycle_lo": 2,
     "cycle_hi": 5,
+    "inventory_cycle_lo": 2,
+    "inventory_cycle_hi": 5,
     "candidates": [
       {
         "smiles": "Cc1cc(O)cc(O)c1C(=O)O",
@@ -293,9 +329,15 @@
     "O": 4,
     "mass": NaN,
     "tier": "GOLD_unique",
+    "z_star_size_inventory": 1,
     "z_star_size": 1,
+    "grammar_starters": [
+      "acetyl"
+    ],
     "cycle_lo": 2,
     "cycle_hi": 5,
+    "inventory_cycle_lo": 2,
+    "inventory_cycle_hi": 5,
     "candidates": [
       {
         "smiles": "Cc1cc(O)cc(O)c1C(=O)O",
@@ -338,9 +380,15 @@
     "O": 5,
     "mass": 250.084123548,
     "tier": "SILVER_2_3",
+    "z_star_size_inventory": 2,
     "z_star_size": 2,
+    "grammar_starters": [
+      "acetyl"
+    ],
     "cycle_lo": 4,
     "cycle_hi": 7,
+    "inventory_cycle_lo": 4,
+    "inventory_cycle_hi": 7,
     "candidates": [
       {
         "smiles": "CC=CC(=O)C(C)c1cc(O)cc(O)c1C(=O)O",
@@ -431,9 +479,15 @@
     "O": 3,
     "mass": 154.06299418,
     "tier": "SILVER_2_3",
+    "z_star_size_inventory": 3,
     "z_star_size": 3,
+    "grammar_starters": [
+      "acetyl"
+    ],
     "cycle_lo": 2,
     "cycle_hi": 5,
+    "inventory_cycle_lo": 2,
+    "inventory_cycle_hi": 5,
     "candidates": [
       {
         "smiles": "CC(=O)CC=CC=CC(=O)O",
@@ -530,9 +584,15 @@
     "O": 3,
     "mass": 180.07866,
     "tier": "SILVER_4_5",
+    "z_star_size_inventory": 4,
     "z_star_size": 4,
+    "grammar_starters": [
+      "acetyl"
+    ],
     "cycle_lo": 3,
     "cycle_hi": 6,
+    "inventory_cycle_lo": 3,
+    "inventory_cycle_hi": 6,
     "candidates": [
       {
         "smiles": "CC(=O)CC=CC=CC=CC(=O)O",
@@ -673,9 +733,15 @@
     "O": 5,
     "mass": NaN,
     "tier": "SILVER_4_5",
+    "z_star_size_inventory": 5,
     "z_star_size": 5,
+    "grammar_starters": [
+      "acetyl"
+    ],
     "cycle_lo": 3,
     "cycle_hi": 6,
+    "inventory_cycle_lo": 3,
+    "inventory_cycle_hi": 6,
     "candidates": [
       {
         "smiles": "CC(O)Cc1cc(O)cc(O)c1C(=O)O",
@@ -849,168 +915,99 @@
     "O": 3,
     "mass": NaN,
     "tier": "SILVER_6_10",
-    "z_star_size": 7,
-    "cycle_lo": 6,
-    "cycle_hi": 9,
+    "z_star_size_inventory": 7,
+    "z_star_size": 67,
+    "grammar_starters": [
+      "benzoyl"
+    ],
+    "cycle_lo": 3,
+    "cycle_hi": 6,
+    "inventory_cycle_lo": 6,
+    "inventory_cycle_hi": 9,
     "candidates": [
       {
-        "smiles": "CC(=O)CC=CC=CC=CC=CC=CC=CC(=O)O",
+        "smiles": "CC(=CC(C)C(=O)c1ccccc1)C=C(C)C(=O)O",
         "program": {
-          "starter": "acetyl",
+          "starter": "benzoyl",
           "cycles": [
             {
               "reduction": "keto",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             },
             {
               "reduction": "dh",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             },
             {
               "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             }
           ],
           "release": "hydrolysis",
-          "n_cycles": 7
+          "n_cycles": 3
         },
-        "score": -12.7
+        "score": -7.3
       },
       {
-        "smiles": "CC=CC(=O)CC=CC=CC=CC=CC=CC(=O)O",
+        "smiles": "CC(=CC(C)C(=O)C(C)=Cc1ccccc1)C(=O)O",
         "program": {
-          "starter": "acetyl",
+          "starter": "benzoyl",
           "cycles": [
             {
               "reduction": "dh",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             },
             {
               "reduction": "keto",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             },
             {
               "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             }
           ],
           "release": "hydrolysis",
-          "n_cycles": 7
+          "n_cycles": 3
         },
-        "score": -12.7
+        "score": -7.3
       },
       {
-        "smiles": "CC=CC=CC(=O)CC=CC=CC=CC=CC(=O)O",
+        "smiles": "CC(=Cc1ccccc1)C=C(C)C(=O)C(C)C(=O)O",
         "program": {
-          "starter": "acetyl",
+          "starter": "benzoyl",
           "cycles": [
             {
               "reduction": "dh",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             },
             {
               "reduction": "dh",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             },
             {
               "reduction": "keto",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             }
           ],
           "release": "hydrolysis",
-          "n_cycles": 7
+          "n_cycles": 3
         },
-        "score": -12.7
+        "score": -7.3
       },
       {
-        "smiles": "CC=CC=CC=CC(=O)CC=CC=CC=CC(=O)O",
+        "smiles": "CC(CC=CC=CCC(=O)c1ccccc1)C(=O)O",
         "program": {
-          "starter": "acetyl",
+          "starter": "benzoyl",
           "cycles": [
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
             {
               "reduction": "keto",
               "c_methyl": false,
@@ -1027,41 +1024,21 @@
               "extender": "malonyl"
             },
             {
-              "reduction": "dh",
-              "c_methyl": false,
+              "reduction": "er",
+              "c_methyl": true,
               "extender": "malonyl"
             }
           ],
           "release": "hydrolysis",
-          "n_cycles": 7
+          "n_cycles": 4
         },
-        "score": -12.7
+        "score": -8.4
       },
       {
-        "smiles": "CC=CC=CC=CC=CC(=O)CC=CC=CC(=O)O",
+        "smiles": "CC(=CC=CCC(=O)c1ccccc1)CCC(=O)O",
         "program": {
-          "starter": "acetyl",
+          "starter": "benzoyl",
           "cycles": [
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
             {
               "reduction": "keto",
               "c_methyl": false,
@@ -1074,45 +1051,25 @@
             },
             {
               "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
               "c_methyl": false,
               "extender": "malonyl"
             }
           ],
           "release": "hydrolysis",
-          "n_cycles": 7
+          "n_cycles": 4
         },
-        "score": -12.7
+        "score": -8.4
       },
       {
-        "smiles": "CC=CC=CC=CC=CC=CC(=O)CC=CC(=O)O",
+        "smiles": "CC(=CCCC=CCC(=O)c1ccccc1)C(=O)O",
         "program": {
-          "starter": "acetyl",
+          "starter": "benzoyl",
           "cycles": [
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
             {
               "reduction": "keto",
               "c_methyl": false,
@@ -1122,17 +1079,833 @@
               "reduction": "dh",
               "c_methyl": false,
               "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
             }
           ],
           "release": "hydrolysis",
-          "n_cycles": 7
+          "n_cycles": 4
         },
-        "score": -12.7
+        "score": -8.4
       },
       {
-        "smiles": "CC=CC=CC=CC=CC=CC=CC(=O)CC(=O)O",
+        "smiles": "CC(C=CC(=O)O)CC=CCC(=O)c1ccccc1",
         "program": {
-          "starter": "acetyl",
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CCCC(=O)O)=CCC(=O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CCC(=O)c1ccccc1)CCC=CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=CCCCC(=O)c1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)O)=CCCCC(=O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC=CC(=O)O)CCC(=O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC=CCCC(=O)O)C(=O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CCCC=CC(=O)O)C(=O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(CCC=CC=CC(=O)O)C(=O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=CC=CCC(O)c1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)O)=CC=CCC(O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC=CC(=O)O)=CCC(O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC=CC=CC(=O)O)C(O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "kr",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(CC=CCC(=O)C=Cc1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CCC(=O)C=Cc1ccccc1)CCC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CCCCC(=O)C=Cc1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)O)CCC(=O)C=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CCCC(=O)O)C(=O)C=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(CCC=CC(=O)O)C(=O)C=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=CCC(O)C=Cc1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)O)=CCC(O)C=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC=CC(=O)O)C(O)C=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(CCC(=O)C=CC=Cc1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(CCC(=O)O)C(=O)C=CC=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CCC(O)C=CC=Cc1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)O)C(O)C=CC=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C(=O)O)C(O)C=CC=CC=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
           "cycles": [
             {
               "reduction": "dh",
@@ -1150,8 +1923,1047 @@
               "extender": "malonyl"
             },
             {
+              "reduction": "kr",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=CC=Cc1ccccc1)C(O)CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
               "reduction": "dh",
               "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C(=O)O)C(=O)CCC=CC=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(CC=CC=Cc1ccccc1)C(=O)CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=Cc1ccccc1)C(=O)CCCC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=Cc1ccccc1)C(O)CC=CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(O)CC(=O)O)=CC=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=Cc1ccccc1)CCC(=O)CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CCC(=O)CCC=Cc1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)O)C(=O)CCC=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C(=O)O)C(=O)C=CCCC=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CCCC=Cc1ccccc1)C(=O)CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(CC=Cc1ccccc1)C(=O)CC=CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)CC(=O)O)CC=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=Cc1ccccc1)C(=O)CC=CCCC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=Cc1ccccc1)C(=O)CCCC=CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=Cc1ccccc1)C(O)CC=CC=CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)CCCC(=O)O)=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(O)CC=CC(=O)O)=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC=CC(O)CC(=O)O)=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CCCC(=O)CC(=O)O)=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=Cc1ccccc1)CCC(=O)CC=CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=Cc1ccccc1)CCC=CC(=O)CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=CCC(=O)CCc1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)O)=CCC(=O)CCc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC=CC(=O)O)C(=O)CCc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CCC(=O)C=CCCc1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)O)C(=O)C=CCCc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C(=O)O)C(=O)C=CC=CCCc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=CCCc1ccccc1)C(=O)CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CCCc1ccccc1)C(=O)CC=CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)CC(=O)O)=CCCc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(Cc1ccccc1)C(=O)CC=CC=CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)CC=CC(=O)O)Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC=CC(=O)CC(=O)O)Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": true,
               "extender": "malonyl"
             },
             {
@@ -1171,15 +2983,14 @@
             }
           ],
           "release": "hydrolysis",
-          "n_cycles": 7
+          "n_cycles": 4
         },
-        "score": -12.7
+        "score": -8.4
       }
     ],
     "family": "strobilurin_A",
-    "chemistry_notes": "C16H18O3. Phenyl ring + diene + methoxy ester. Phenyl ring is derived from phenylalanine -> cinnamoyl-CoA / benzoyl-CoA, NOT a polyketide cyclization. True starter is benzoyl in vivo.",
+    "chemistry_notes": "C16H18O3. Phenyl ring + diene + methoxy ester. Phenyl ring derived from phenylalanine -> benzoyl-CoA in vivo. STARTER_OVERRIDE applied: re-enumerated with starters=(benzoyl,); cycle bounds shifted to match the +7-carbon contribution of the benzoyl starter. Inventory's |Z*|=7 under acetyl is superseded by the new, biologically authentic candidate set.",
     "caveats": [
-      "true starter is benzoyl (or cinnamoyl); inventory grammar tried acetyl only so the engine's |Z*|=7 candidates are mass-consistent but biologically wrong. Phase D run should EITHER re-enumerate with benzoyl starter OR exclude this cluster",
       "formula_source: smiles_recovery"
     ]
   },
@@ -1193,168 +3004,99 @@
     "O": 3,
     "mass": NaN,
     "tier": "SILVER_6_10",
-    "z_star_size": 7,
-    "cycle_lo": 6,
-    "cycle_hi": 9,
+    "z_star_size_inventory": 7,
+    "z_star_size": 67,
+    "grammar_starters": [
+      "benzoyl"
+    ],
+    "cycle_lo": 3,
+    "cycle_hi": 6,
+    "inventory_cycle_lo": 6,
+    "inventory_cycle_hi": 9,
     "candidates": [
       {
-        "smiles": "CC(=O)CC=CC=CC=CC=CC=CC=CC(=O)O",
+        "smiles": "CC(=CC(C)C(=O)c1ccccc1)C=C(C)C(=O)O",
         "program": {
-          "starter": "acetyl",
+          "starter": "benzoyl",
           "cycles": [
             {
               "reduction": "keto",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             },
             {
               "reduction": "dh",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             },
             {
               "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             }
           ],
           "release": "hydrolysis",
-          "n_cycles": 7
+          "n_cycles": 3
         },
-        "score": -12.7
+        "score": -7.3
       },
       {
-        "smiles": "CC=CC(=O)CC=CC=CC=CC=CC=CC(=O)O",
+        "smiles": "CC(=CC(C)C(=O)C(C)=Cc1ccccc1)C(=O)O",
         "program": {
-          "starter": "acetyl",
+          "starter": "benzoyl",
           "cycles": [
             {
               "reduction": "dh",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             },
             {
               "reduction": "keto",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             },
             {
               "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             }
           ],
           "release": "hydrolysis",
-          "n_cycles": 7
+          "n_cycles": 3
         },
-        "score": -12.7
+        "score": -7.3
       },
       {
-        "smiles": "CC=CC=CC(=O)CC=CC=CC=CC=CC(=O)O",
+        "smiles": "CC(=Cc1ccccc1)C=C(C)C(=O)C(C)C(=O)O",
         "program": {
-          "starter": "acetyl",
+          "starter": "benzoyl",
           "cycles": [
             {
               "reduction": "dh",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             },
             {
               "reduction": "dh",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             },
             {
               "reduction": "keto",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
+              "c_methyl": true,
               "extender": "malonyl"
             }
           ],
           "release": "hydrolysis",
-          "n_cycles": 7
+          "n_cycles": 3
         },
-        "score": -12.7
+        "score": -7.3
       },
       {
-        "smiles": "CC=CC=CC=CC(=O)CC=CC=CC=CC(=O)O",
+        "smiles": "CC(CC=CC=CCC(=O)c1ccccc1)C(=O)O",
         "program": {
-          "starter": "acetyl",
+          "starter": "benzoyl",
           "cycles": [
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
             {
               "reduction": "keto",
               "c_methyl": false,
@@ -1371,41 +3113,21 @@
               "extender": "malonyl"
             },
             {
-              "reduction": "dh",
-              "c_methyl": false,
+              "reduction": "er",
+              "c_methyl": true,
               "extender": "malonyl"
             }
           ],
           "release": "hydrolysis",
-          "n_cycles": 7
+          "n_cycles": 4
         },
-        "score": -12.7
+        "score": -8.4
       },
       {
-        "smiles": "CC=CC=CC=CC=CC(=O)CC=CC=CC(=O)O",
+        "smiles": "CC(=CC=CCC(=O)c1ccccc1)CCC(=O)O",
         "program": {
-          "starter": "acetyl",
+          "starter": "benzoyl",
           "cycles": [
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
             {
               "reduction": "keto",
               "c_methyl": false,
@@ -1418,45 +3140,25 @@
             },
             {
               "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
               "c_methyl": false,
               "extender": "malonyl"
             }
           ],
           "release": "hydrolysis",
-          "n_cycles": 7
+          "n_cycles": 4
         },
-        "score": -12.7
+        "score": -8.4
       },
       {
-        "smiles": "CC=CC=CC=CC=CC=CC(=O)CC=CC(=O)O",
+        "smiles": "CC(=CCCC=CCC(=O)c1ccccc1)C(=O)O",
         "program": {
-          "starter": "acetyl",
+          "starter": "benzoyl",
           "cycles": [
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
-            {
-              "reduction": "dh",
-              "c_methyl": false,
-              "extender": "malonyl"
-            },
             {
               "reduction": "keto",
               "c_methyl": false,
@@ -1466,17 +3168,833 @@
               "reduction": "dh",
               "c_methyl": false,
               "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
             }
           ],
           "release": "hydrolysis",
-          "n_cycles": 7
+          "n_cycles": 4
         },
-        "score": -12.7
+        "score": -8.4
       },
       {
-        "smiles": "CC=CC=CC=CC=CC=CC=CC(=O)CC(=O)O",
+        "smiles": "CC(C=CC(=O)O)CC=CCC(=O)c1ccccc1",
         "program": {
-          "starter": "acetyl",
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CCCC(=O)O)=CCC(=O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CCC(=O)c1ccccc1)CCC=CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=CCCCC(=O)c1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)O)=CCCCC(=O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC=CC(=O)O)CCC(=O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC=CCCC(=O)O)C(=O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CCCC=CC(=O)O)C(=O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(CCC=CC=CC(=O)O)C(=O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=CC=CCC(O)c1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)O)=CC=CCC(O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC=CC(=O)O)=CCC(O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC=CC=CC(=O)O)C(O)c1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "kr",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(CC=CCC(=O)C=Cc1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CCC(=O)C=Cc1ccccc1)CCC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CCCCC(=O)C=Cc1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)O)CCC(=O)C=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CCCC(=O)O)C(=O)C=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(CCC=CC(=O)O)C(=O)C=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=CCC(O)C=Cc1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)O)=CCC(O)C=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC=CC(=O)O)C(O)C=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(CCC(=O)C=CC=Cc1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(CCC(=O)O)C(=O)C=CC=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CCC(O)C=CC=Cc1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)O)C(O)C=CC=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C(=O)O)C(O)C=CC=CC=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
           "cycles": [
             {
               "reduction": "dh",
@@ -1494,8 +4012,1047 @@
               "extender": "malonyl"
             },
             {
+              "reduction": "kr",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=CC=Cc1ccccc1)C(O)CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
               "reduction": "dh",
               "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C(=O)O)C(=O)CCC=CC=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(CC=CC=Cc1ccccc1)C(=O)CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=Cc1ccccc1)C(=O)CCCC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=Cc1ccccc1)C(O)CC=CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(O)CC(=O)O)=CC=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=Cc1ccccc1)CCC(=O)CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CCC(=O)CCC=Cc1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)O)C(=O)CCC=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C(=O)O)C(=O)C=CCCC=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CCCC=Cc1ccccc1)C(=O)CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(CC=Cc1ccccc1)C(=O)CC=CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)CC(=O)O)CC=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=Cc1ccccc1)C(=O)CC=CCCC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=Cc1ccccc1)C(=O)CCCC=CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=Cc1ccccc1)C(O)CC=CC=CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)CCCC(=O)O)=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(O)CC=CC(=O)O)=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC=CC(O)CC(=O)O)=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "kr",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CCCC(=O)CC(=O)O)=Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=Cc1ccccc1)CCC(=O)CC=CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=Cc1ccccc1)CCC=CC(=O)CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=CCC(=O)CCc1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)O)=CCC(=O)CCc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC=CC(=O)O)C(=O)CCc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CCC(=O)C=CCCc1ccccc1)C(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)O)C(=O)C=CCCc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C(=O)O)C(=O)C=CC=CCCc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": true,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CC=CCCc1ccccc1)C(=O)CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(=CCCc1ccccc1)C(=O)CC=CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)CC(=O)O)=CCCc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(Cc1ccccc1)C(=O)CC=CC=CC(=O)O",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC(=O)CC=CC(=O)O)Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": true,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "keto",
+              "c_methyl": false,
+              "extender": "malonyl"
+            },
+            {
+              "reduction": "dh",
+              "c_methyl": false,
+              "extender": "malonyl"
+            }
+          ],
+          "release": "hydrolysis",
+          "n_cycles": 4
+        },
+        "score": -8.4
+      },
+      {
+        "smiles": "CC(C=CC=CC(=O)CC(=O)O)Cc1ccccc1",
+        "program": {
+          "starter": "benzoyl",
+          "cycles": [
+            {
+              "reduction": "er",
+              "c_methyl": true,
               "extender": "malonyl"
             },
             {
@@ -1515,15 +5072,15 @@
             }
           ],
           "release": "hydrolysis",
-          "n_cycles": 7
+          "n_cycles": 4
         },
-        "score": -12.7
+        "score": -8.4
       }
     ],
     "family": "strobilurin_A",
-    "chemistry_notes": "same chemistry as BGC0001909",
+    "chemistry_notes": "same chemistry as BGC0001909; STARTER_OVERRIDE applied",
     "caveats": [
-      "same starter caveat as BGC0001909 (formula_source: smiles_recovery)"
+      "formula_source: smiles_recovery"
     ]
   },
   "BGC0002238": {
@@ -1536,9 +5093,15 @@
     "O": 4,
     "mass": NaN,
     "tier": "SILVER_6_10",
+    "z_star_size_inventory": 7,
     "z_star_size": 7,
+    "grammar_starters": [
+      "acetyl"
+    ],
     "cycle_lo": 3,
     "cycle_hi": 6,
+    "inventory_cycle_lo": 3,
+    "inventory_cycle_hi": 6,
     "candidates": [
       {
         "smiles": "CCCc1cc(O)cc(O)c1C(=O)O",
@@ -1774,9 +5337,15 @@
     "O": 4,
     "mass": 184.073558864,
     "tier": "SILVER_6_10",
+    "z_star_size_inventory": 9,
     "z_star_size": 9,
+    "grammar_starters": [
+      "acetyl"
+    ],
     "cycle_lo": 2,
     "cycle_hi": 5,
+    "inventory_cycle_lo": 2,
+    "inventory_cycle_hi": 5,
     "candidates": [
       {
         "smiles": "CC(=O)CC(=O)CC=C(C)C(=O)O",
@@ -2027,9 +5596,15 @@
     "O": 2,
     "mass": 244.33,
     "tier": "SILVER_6_10",
+    "z_star_size_inventory": 10,
     "z_star_size": 10,
+    "grammar_starters": [
+      "acetyl"
+    ],
     "cycle_lo": 6,
     "cycle_hi": 9,
+    "inventory_cycle_lo": 6,
+    "inventory_cycle_hi": 9,
     "candidates": [
       {
         "smiles": "CC=CC=CC=CC=CC=C(C)C=C(C)C(=O)O",
