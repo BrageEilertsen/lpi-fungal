@@ -1,0 +1,18 @@
+Loaded 30 HR+PR cycles across 9 synthases.
+  conformational (POSE features non-null): 23
+  substrate-only (POSE NaN): 7
+
+=== full-30 (all 9 HR+PR synthases)  (n=30, k_synth=9) ===
+  majority               0.233  [boot mean 0.353, 95% CI 0.000-0.658]
+  POSITION               0.600  [boot mean 0.615, 95% CI 0.333-0.867]  lift vs majority +0.367
+  SUBSTRATE_prefix       0.467  [boot mean 0.578, 95% CI 0.267-0.822]  lift vs majority +0.233
+  POSE                   0.391  [boot mean 0.479, 95% CI 0.067-0.851]  lift vs majority +0.158
+  POSE_plus_SUBSTRATE    0.348  [boot mean 0.501, 95% CI 0.067-0.857]  lift vs majority +0.114
+
+=== conf-23 (5 ACP-anchored synthases)  (n=23, k_synth=5) ===
+  majority               0.217  [boot mean 0.327, 95% CI 0.000-0.667]
+  POSITION               0.348  [boot mean 0.536, 95% CI 0.292-0.850]  lift vs majority +0.130
+  SUBSTRATE_prefix       0.304  [boot mean 0.503, 95% CI 0.190-0.895]  lift vs majority +0.087
+  POSE                   0.391  [boot mean 0.484, 95% CI 0.227-0.842]  lift vs majority +0.174
+  POSE_plus_SUBSTRATE    0.348  [boot mean 0.508, 95% CI 0.217-0.851]  lift vs majority +0.130
+
