@@ -48,14 +48,20 @@ mkdir -p structures
 for fasta in *_kr_acp.fasta; do
   slug="$(basename "${fasta}" _kr_acp.fasta)"
   outdir="structures/${slug}"
+  # Skip if a rank-1 PDB already exists in the structures dir (lets us layer
+  # incremental D3 folds onto Phase B's existing 6 didomain outputs without
+  # re-folding them).
+  if compgen -G "${outdir}/*_rank_001_*.pdb" > /dev/null; then
+    echo "=== SKIP ${slug} (already folded; rank-1 PDB present) ==="
+    continue
+  fi
   mkdir -p "${outdir}"
   echo "=== folding ${slug} -> ${outdir} ==="
+  # No --templates: hhsearch isn't in the venv's path; no --amber/--use-gpu-relax:
+  # avoids the pdbfixer dep crash and the unrelaxed PDB is fine for Vina docking.
   colabfold_batch \
     --num-models 1 \
     --num-recycle 3 \
-    --templates \
-    --amber \
-    --use-gpu-relax \
     --rank plddt \
     --random-seed 0 \
     "${fasta}" "${outdir}"
