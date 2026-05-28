@@ -32,5 +32,7 @@ data/policy/docking/*/cycle_*/complex.pdb
 data/policy/_synthetic_dry_run.pdb
 data/raw/uniprot_cache/
 
-# arXiv submission tarball (derived; regenerate from paper/ sources)
+# Derived submission artifacts (regenerate from paper/ sources)
 /arxiv_submission.tar.gz
+/arxiv_submission/
+/submission/
