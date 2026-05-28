@@ -92,7 +92,16 @@ def _session():
     return s
 
 
+_DOMLOOKUP = "https://clustercad.jbei.org/pks/domainLookup"
+# The endpoint is AJAX-ONLY: it returns 404 unless the request carries the X-Requested-With header
+# jQuery adds automatically. THAT missing header (not a dead endpoint) was the original "permanent
+# 404" blocker -- verified 2026-05-27: same id returns 404 plain / 200 with the header.
+_XHR_HEADERS = {"X-Requested-With": "XMLHttpRequest", "Referer": "https://clustercad.jbei.org/pks/"}
+
+
 def fetch_domain_sequence(domainid: str, session=None, offline: bool = False) -> str | None:
+    """Fetch a domain's amino-acid sequence via the ClusterCAD AJAX endpoint. Caches per id; backs off
+    on 429/503; 404/other is not retried. The caller paces requests politely (>= 1 s apart)."""
     DOMSEQ_CACHE.mkdir(parents=True, exist_ok=True)
     cache = DOMSEQ_CACHE / f"{domainid}.json"
     if cache.exists():
@@ -100,17 +109,22 @@ def fetch_domain_sequence(domainid: str, session=None, offline: bool = False) ->
     if offline:
         return None
     s = session or _session()
-    for _ in range(3):
+    backoff = 2.0
+    for _ in range(4):
         try:
-            r = s.get(f"https://clustercad.jbei.org/pks/domainLookup/?domainid={domainid}",
-                      timeout=30)
+            r = s.get(_DOMLOOKUP, params={"domainid": domainid}, headers=_XHR_HEADERS, timeout=30)
             if r.status_code == 200 and r.text.strip().startswith("{"):
                 j = r.json()
                 cache.write_text(json.dumps(j))
-                time.sleep(0.3)
                 return j.get("AAsequence") or None
+            if r.status_code in (429, 503):       # server stressed -> exponential backoff
+                time.sleep(backoff)
+                backoff = min(backoff * 2, 30.0)
+                continue
+            return None                            # 404 / other -> not retryable
         except Exception:  # noqa: BLE001
-            time.sleep(1.0)
+            time.sleep(backoff)
+            backoff = min(backoff * 2, 30.0)
     return None
 
 

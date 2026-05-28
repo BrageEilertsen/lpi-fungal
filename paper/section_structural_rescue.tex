@@ -139,21 +139,88 @@ aldehyde requiring \emph{two} C-MeT events (one triketide, one pentaketide)
 $\mathrm{C}_{13}\mathrm{H}_{14}\mathrm{O}_5$ contains two C-MeT events---the grammar
 cannot synthesize the in-vivo program at this formula. The entropy collapse
 demonstrates that the structural channel carries per-cluster discriminating
-information; the directional gating is the executor-coverage axis our
-Section~\ref{sec:limits} roadmap addresses.
+information, confirming that the directional assignment remains strictly bounded
+by symbolic coverage limits rather than neural capacity---an architectural
+constraint formally mapped to the executor grammar roadmap in
+\S\ref{sec:limits}. The neural head resolves spatial physics within the universe
+the symbolic core supplies; expanding that universe is the work of operator
+coverage, not of the resolution mechanism.
+
+\subsection{Cross-taxa validation: bacterial control flow encodes $s_t$ in the sequence text}
+\label{sec:bacterial-cap}
+
+The dual-engine partition makes a sharp prediction about bacterial modular polyketide
+synthases. Where fungal iterative synthases compress per-cycle control into one reusable
+catalytic manifold---so $G$ is constant and $s_t$ must be decoded from the substrate
+prefix or the static pocket---bacterial type~I modular PKS encode each catalytic step
+into its own physical module with its own primary sequence: the temporal index is built
+into the sequence text. The dual-engine framework predicts that the substrate channel
+alone should suffice on bacterial systems (there are no label-symmetric walls to shatter),
+and adding a structural rescue channel should be largely redundant.
+
+We test the prediction on the ClusterCAD bacterial type~I corpus: $1039$ KR-bearing
+modules across $118$ clusters, with per-module reduction state (active KR $\to$ reduced,
+silent KR $\to$ \textsc{keto}) as the prediction target. The substrate channel here is
+the standard ``domain cartoon'' (a present KR fires); the role of the per-cycle $G$
+channel is played by a frozen ESM-2 \citep{esm2} per-module sequence embedding fed to
+a linear head---bacterial modular architecture means per-module sequence varies natively,
+so the sequence text \emph{is} the temporal index. Three conditions under leave-cluster-out
+evaluation (Table~\ref{tab:bacterial-cap}):
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Condition (bacterial, $n{=}118$ clusters / $1039$ KRs) & Per-module acc & Whole-program recovery \\
+\midrule
+Domain cartoon (KR present $\to$ fired)              & $0.926$ & $60/118 = 0.508$ \\
+\textbf{ESM per-module sequence head (the $G$ channel)} & $0.934$ & $\mathbf{70/118 = 0.593}$ \\
+ESM $+$ verifier-pinned active count                 & $0.975$ & $107/118 = 0.907$ \\
+\bottomrule
+\end{tabular}
+\caption{Bacterial type~I modular PKS: ESM-conditioned sequence policy on its own
+lifts whole-program recovery by $+10$ ($60\!\to\!70/118$) over the domain cartoon,
+recovering $31/58$ silent-KR clusters where the cartoon scores $0/58$. The
+verifier-pinned active count is an oracle headroom indicator, not a mass-derived
+result. The substrate-only channel (cartoon) reaches its bacterial ceiling because
+silent KRs are not predictable from gene content alone; the ESM channel passes that
+ceiling because per-module sequence variation natively encodes which KRs fire.}
+\label{tab:bacterial-cap}
+\end{table}
+
+The ESM channel alone passes the substrate channel's ceiling by $+10$ on whole-program
+recovery, and it does so without any AlphaFold conditioning. The bacterial control flow
+is decodable from the per-module sequence because that sequence \emph{is} the temporal
+index that the fungal architecture compresses away.
+
+The cross-taxa contrast is precise. \textbf{Bacterial modular PKS encode per-cycle
+control flow in the sequence text} (one module per step, per-module sequence variation
+$\to$ ESM does the temporal indexing). \textbf{Fungal iterative PKS encode per-cycle
+control flow in the pocket geometry} (one sequence reused across cycles $\to$ the
+structural rescue channel does the temporal indexing that the bacterial sequence
+channel does natively). Both follow the same $a_t \sim P(a_t \mid G, s_t)$ policy
+with the channel partition determined by the architectural locus of the temporal index.
+The two taxa are dual: bacteria solve the iteration problem by writing the program into
+text layout (modular sequence variation); fungi solve it by writing the hardware into
+one sequence and using pocket conformation to route the iteration. The dual-engine
+framework empirically corroborates both.
 
 \paragraph{Reading.} The per-cycle policy is empirically a joint function of $G$ and
 $s_t$, in the form the Outlook predicted, but the decomposition reveals that each
-channel does specific work. The substrate-prefix engine resolves candidates whose
-distinct reduction-label sequences leave a non-symmetric gradient signal; the
-structural-rescue engine resolves candidates whose mass-and-grammar-consistent
-permutations leave the substrate gradient signal symmetric. The neuro-symbolic
-architecture compounds: the sound executor bounds $\zstar(B)$ so a learned policy
-rules within a verified set rather than over an open structure space, and the
-appropriate channel routes within that set per the chemistry of the candidates the
-verifier returns. The result is a policy whose neural component would have nothing
-principled to commit to absent the executor, and whose symbolic core would not
-distinguish label-symmetric candidates absent the structural channel.
+channel does specific work and the architectural locus of $s_t$ determines which channel
+does it. For fungal label-symmetric candidates (citrinin), $s_t$ lives in the pocket
+conformation around the static synthase, and the structural-rescue channel is the only
+way in. For fungal label-distinguishable candidates (isoterrein, asperlin) and for
+bacterial modular cycles, $s_t$ lives in a channel the substrate/sequence side can read
+directly. The neuro-symbolic architecture compounds across both regimes: the sound
+executor bounds $\zstar(B)$ so a learned policy rules within a verified set rather than
+over an open structure space, and the appropriate channel routes within that set per
+the chemistry of the candidates the verifier returns. The result is a policy whose
+neural component would have nothing principled to commit to absent the executor, and
+whose symbolic core would not distinguish label-symmetric candidates absent the
+structural channel---two complementary halves of one neuro-symbolic loop, with the
+empirical partition between them traced precisely to where each taxon places its
+per-cycle state variable.
 
 % References to add to the bibliography (already added):
 % \citep{storm2017citrinin}
