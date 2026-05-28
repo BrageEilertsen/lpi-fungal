@@ -13,20 +13,13 @@ Properties:
   - |Z*|=1 case collapses to standard cross-entropy (the curated GOLD tier).
   - |Z*|>1 case (SILVER) splits gradient across candidates by current model prob;
     candidates that share substructure with the GOLD set accumulate probability.
-  - log-sum-exp keeps things numerically stable across the per-candidate product
-    (each cycle's log-prob can be very negative; the exp before sum needs care).
+  - logsumexp keeps the marginal numerically stable across the per-candidate product.
 
-This script is the SCAFFOLD: it loads the data, builds the per-cycle feature tables
-for every candidate program (running the executor's _apply_reduction loop to derive
-the substrate-prefix features for the SILVER candidates), validates the loss formula
-on the 30 curated cycles (where Z*=1, the loss should equal standard cross-entropy
-loss to within numerical precision), and reports the corpus statistics.
+PyTorch backbone (Brage's call): keeps the loss function + data pipelines invariant
+when we swap the linear policy for a structural neural network head in Phase D3.
 
-Training (gradient optimization of theta) is the next step -- see ``train_run`` at
-the bottom; it's a stub here.
-
-Run:
-    PYTHONPATH=src .venv/bin/python scripts/policy/train_weak.py
+Phase D2 baseline: POSITION + SUBSTRATE features only, no POSE (those come in D3).
+This isolates sample-size as the single variable changed from the n=23 Phase C run.
 """
 from __future__ import annotations
 
@@ -37,62 +30,50 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-# Inline logsumexp to avoid a scipy dep -- the only place we use it is over a
-# 1-D vector of candidate log-probabilities per BGC.
-def logsumexp(x: np.ndarray | list[float]) -> float:
-    a = np.asarray(x, dtype=float)
-    m = a.max()
-    if not np.isfinite(m):
-        return float(m)
-    return float(m + np.log(np.exp(a - m).sum()))
+import torch
+import torch.nn as nn
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
-from lpi.chem.program import Cycle, Extender, Program, ReductionState as Rs, Release  # noqa: E402
 from lpi.data.curated import load_all  # noqa: E402
-from lpi.executor import operators as op  # noqa: E402
-from lpi.executor.core import _apply_reduction  # noqa: E402
 
-INTERMEDIATES = ROOT / "data" / "policy" / "intermediates.parquet"
 GROUND_TRUTH = ROOT / "data" / "policy" / "ground_truth_programs.json"
+OUT_LOG = ROOT / "results" / "phase_d_train_weak.log"
 
-# Action space: per-cycle reduction state (4-way categorical). We start here; C-MeT
-# (binary) and extender (binary) can be added as additional heads later.
+torch.manual_seed(0xC0FFEE)
+
+# Action space: per-cycle reduction state (4-way categorical).
 REDUCTION_LABELS = ["keto", "kr", "dh", "er"]
 LABEL_INDEX = {l: i for i, l in enumerate(REDUCTION_LABELS)}
 N_ACTIONS = len(REDUCTION_LABELS)
 
-# Carbons contributed by each starter (matches extract_phase_d_programs.STARTER_CARBONS).
 STARTER_C = {"acetyl": 2, "propionyl": 3, "butyryl": 4, "hexanoyl": 6, "benzoyl": 7}
 
 
 # ---- Per-cycle feature extraction ------------------------------------------------
 
+FEATURE_NAMES = ["t", "frac", "sub_hr", "chain_c", "oxid_sum", "n_red", "prev"]
+N_FEAT = len(FEATURE_NAMES)
+
+
 @dataclass
 class CycleFeat:
-    """Features at a single cycle of a candidate program -- the policy's input s_t."""
     bgc: str
     cand_idx: int
     cycle_t: int
     n_cycles: int
-    # POSITION
     t: int
     frac: float
-    sub_hr: int  # 1 if HR else 0 (PR / NR)
-    # SUBSTRATE_prefix
+    sub_hr: int
     chain_c: int
     oxid_sum: int
     n_red: int
-    prev: int  # previous cycle's reduction rank, -1 if t=1
-    # The action label at this cycle (for training)
-    label: int  # REDUCTION_LABELS index
+    prev: int
+    label: int
 
 
-def cycle_features_for_program(bgc: str, cand_idx: int, prog: dict,
-                               sub_hr: int) -> list[CycleFeat]:
-    """Walk a candidate program, extracting per-cycle features that match the existing
-    substrate_state_probe + intermediates.parquet definitions."""
+def cycle_features_for_program(bgc: str, cand_idx: int, prog: dict, sub_hr: int) -> list[CycleFeat]:
     starter = prog["starter"]
     cycles = prog["cycles"]
     N = len(cycles)
@@ -117,26 +98,18 @@ def cycle_features_for_program(bgc: str, cand_idx: int, prog: dict,
     return feats
 
 
-# ---- Dataset assembly ------------------------------------------------------------
-
 @dataclass
 class BGCAsset:
-    """One training example: a BGC with its Z*(B) -- multiple candidates, each a list
-    of per-cycle features. The marginal-likelihood loss sums over candidates."""
     bgc: str
-    candidates: list[list[CycleFeat]]   # candidates[k] = per-cycle features of z_k
+    candidates: list[list[CycleFeat]]
     n_z_star: int
+    parsimony_best_idx: int  # the candidate with the most-parsimonious score
 
 
 def build_corpus() -> list[BGCAsset]:
-    """Assemble the Phase D corpus: 9 curated HR/PR synthases (Z*=1 each) + the 16
-    inventory GOLD/SILVER BGCs (Z*=candidate set from ground_truth_programs.json).
-
-    Each BGC contributes ONE BGCAsset; SILVER assets have >1 candidate; GOLD assets
-    have exactly 1 (so the loss collapses to standard cross-entropy on them)."""
     assets: list[BGCAsset] = []
 
-    # Curated 9 HR/PR -- their program IS the unique Z* member.
+    # Curated 9 HR/PR -- |Z*|=1, the unique curated program.
     for e in load_all():
         if e.subclass not in ("HR", "PR"):
             continue
@@ -151,154 +124,252 @@ def build_corpus() -> list[BGCAsset]:
             bgc=f"curated:{e.name}", cand_idx=0, prog=prog_dict,
             sub_hr=1 if e.subclass == "HR" else 0,
         )
-        assets.append(BGCAsset(bgc=f"curated:{e.name}", candidates=[feats], n_z_star=1))
+        assets.append(BGCAsset(bgc=f"curated:{e.name}", candidates=[feats],
+                               n_z_star=1, parsimony_best_idx=0))
 
-    # Inventory GOLD/SILVER -- multiple candidates per BGC (the Z* set).
-    if GROUND_TRUTH.exists():
-        gt = json.loads(GROUND_TRUTH.read_text())
-        for bgc, v in gt.items():
-            cand_feats: list[list[CycleFeat]] = []
-            # subclass: infer from family. Aromatic (orsellinic, 6-MSA, citrinin) ~ PR/NR;
-            # polyene / fatty-acid-like (strobilurin, asperlin) ~ HR. We use sub_hr as a
-            # soft feature; exact tag isn't critical for the per-cycle reduction policy.
-            family = v.get("family", "") or ""
-            sub_hr = 1 if any(t in family for t in ("strobilurin", "asperlin",
-                                                     "asperlactone", "gibepyrone")) else 0
-            for k, c in enumerate(v["candidates"]):
-                feats = cycle_features_for_program(bgc=bgc, cand_idx=k,
-                                                   prog=c["program"], sub_hr=sub_hr)
-                cand_feats.append(feats)
-            assets.append(BGCAsset(bgc=bgc, candidates=cand_feats, n_z_star=len(cand_feats)))
+    # Inventory GOLD/SILVER from ground_truth_programs.json.
+    gt = json.loads(GROUND_TRUTH.read_text())
+    for bgc, v in gt.items():
+        family = (v.get("family") or "").lower()
+        sub_hr = 1 if any(t in family for t in (
+            "strobilurin", "asperlin", "asperlactone", "gibepyrone")) else 0
+        cand_feats: list[list[CycleFeat]] = []
+        scores: list[float] = []
+        for k, c in enumerate(v["candidates"]):
+            feats = cycle_features_for_program(bgc=bgc, cand_idx=k,
+                                               prog=c["program"], sub_hr=sub_hr)
+            cand_feats.append(feats)
+            scores.append(c.get("score", -np.inf))
+        best = int(np.argmax(scores)) if scores else 0
+        assets.append(BGCAsset(bgc=bgc, candidates=cand_feats,
+                               n_z_star=len(cand_feats), parsimony_best_idx=best))
     return assets
 
 
-# ---- Feature matrix + simple linear policy ---------------------------------------
-
-FEATURE_NAMES = ["t", "frac", "sub_hr", "chain_c", "oxid_sum", "n_red", "prev"]
-
-
-def feature_vec(cf: CycleFeat) -> np.ndarray:
-    return np.array([getattr(cf, n) for n in FEATURE_NAMES], dtype=float)
+def feat_tensor(feats: list[CycleFeat]) -> torch.Tensor:
+    return torch.tensor([[getattr(f, n) for n in FEATURE_NAMES] for f in feats],
+                        dtype=torch.float32)
 
 
-def feature_matrix(features: list[CycleFeat]) -> np.ndarray:
-    return np.vstack([feature_vec(f) for f in features])
+def label_tensor(feats: list[CycleFeat]) -> torch.Tensor:
+    return torch.tensor([f.label for f in feats], dtype=torch.long)
 
 
-# Policy: simple linear logistic over per-cycle features -> 4-way action probabilities.
-# theta has shape (N_FEATURES + 1 bias) * N_ACTIONS, reshapable to (D+1, A).
-N_FEAT = len(FEATURE_NAMES)
+# ---- The policy ------------------------------------------------------------------
+
+class LinearPolicy(nn.Module):
+    """Per-cycle linear logistic: feature_vec -> 4 reduction-action logits."""
+    def __init__(self):
+        super().__init__()
+        self.linear = nn.Linear(N_FEAT, N_ACTIONS)
+
+    def forward(self, feats: torch.Tensor) -> torch.Tensor:
+        return self.linear(feats)  # (T, A) logits
 
 
-def reshape_theta(theta: np.ndarray) -> np.ndarray:
-    return theta.reshape(N_FEAT + 1, N_ACTIONS)
+# ---- The marginal-likelihood loss ------------------------------------------------
 
-
-def log_softmax(z: np.ndarray) -> np.ndarray:
-    """Numerically-safe log_softmax along the last axis."""
-    z = z - z.max(axis=-1, keepdims=True)
-    return z - np.log(np.exp(z).sum(axis=-1, keepdims=True))
-
-
-def candidate_log_prob(theta_W: np.ndarray, feats: list[CycleFeat]) -> float:
-    """Log P(z | theta) = Sum_t log pi_theta(z_t | s_t) -- the inner product term."""
+def candidate_logprob(policy: LinearPolicy, feats: list[CycleFeat]) -> torch.Tensor:
+    """log P(z | theta) = Sum_t log_softmax(logits)[label_t]. Scalar tensor."""
     if not feats:
+        return torch.tensor(0.0)
+    X = feat_tensor(feats)
+    y = label_tensor(feats)
+    logits = policy(X)
+    log_probs = torch.log_softmax(logits, dim=-1)
+    return log_probs.gather(-1, y.unsqueeze(-1)).squeeze(-1).sum()
+
+
+def nlml_loss_one(policy: LinearPolicy, asset: BGCAsset) -> torch.Tensor:
+    """-log Sum_z P(z | theta) for a single BGC asset. Scalar tensor."""
+    log_p_cands = torch.stack([candidate_logprob(policy, c) for c in asset.candidates])
+    return -torch.logsumexp(log_p_cands, dim=0)
+
+
+def nlml_loss(policy: LinearPolicy, assets: list[BGCAsset]) -> torch.Tensor:
+    return torch.stack([nlml_loss_one(policy, a) for a in assets]).sum()
+
+
+# ---- Diagnostics: candidate posterior entropy on SILVER assets -------------------
+
+def silver_candidate_entropy(policy: LinearPolicy, asset: BGCAsset) -> float:
+    """Shannon entropy (nats) of the posterior over Z*(B) under current policy."""
+    if asset.n_z_star <= 1:
         return 0.0
-    X = feature_matrix(feats)
-    X_aug = np.hstack([X, np.ones((X.shape[0], 1))])  # bias column
-    logits = X_aug @ theta_W   # (T, A)
-    log_probs = log_softmax(logits)
-    labels = np.array([f.label for f in feats])
-    return float(log_probs[np.arange(len(labels)), labels].sum())
+    with torch.no_grad():
+        log_p = torch.stack([candidate_logprob(policy, c) for c in asset.candidates])
+        log_post = log_p - torch.logsumexp(log_p, dim=0)
+        p = log_post.exp()
+        # Numerically safe entropy: sum -p log p, treat 0*log0 = 0
+        ent = -(p * log_post).sum().item()
+    return ent
 
 
-def nlml_loss(theta: np.ndarray, corpus: list[BGCAsset]) -> float:
-    """The Phase D2 objective: Sum_B - log Sum_z P(z | B; theta), with log-sum-exp."""
-    W = reshape_theta(theta)
-    total = 0.0
-    for asset in corpus:
-        # log P(z) for each candidate
-        log_p_cands = np.array([candidate_log_prob(W, c) for c in asset.candidates])
-        # logsumexp over candidates -> log Sum_z P(z)
-        log_marginal = logsumexp(log_p_cands)
-        total -= log_marginal
-    return total
+# ---- Training loop ---------------------------------------------------------------
+
+def train_full_batch(assets: list[BGCAsset], n_steps: int = 600, lr: float = 0.05,
+                     log_lines: list[str] | None = None) -> LinearPolicy:
+    """Full-batch AdamW. With 32 params + 88-cycle corpus, the gradient is
+    deterministic and fast; stochastic mini-batching adds noise without benefit."""
+    policy = LinearPolicy()
+    opt = torch.optim.AdamW(policy.parameters(), lr=lr, weight_decay=1e-4)
+    silver_assets = [a for a in assets if a.n_z_star > 1]
+
+    for step in range(n_steps + 1):
+        opt.zero_grad()
+        loss = nlml_loss(policy, assets)
+        if step < n_steps:
+            loss.backward()
+            opt.step()
+        # Diagnostics every 100 steps + at end
+        if step % 100 == 0 or step == n_steps:
+            ents = {a.bgc: silver_candidate_entropy(policy, a) for a in silver_assets}
+            mean_ent = float(np.mean(list(ents.values()))) if ents else 0.0
+            citrinin = next((v for k, v in ents.items() if "0001338" in k), float("nan"))
+            strob = next((v for k, v in ents.items() if "0001909" in k), float("nan"))
+            asperlin = next((v for k, v in ents.items() if "0002180" in k), float("nan"))
+            line = (f"  step={step:>4}  NLML={loss.item():>8.3f}  "
+                    f"mean_silver_ent={mean_ent:.3f}  "
+                    f"citrinin_H={citrinin:.3f}  strob_H={strob:.3f}  "
+                    f"asperlin_H={asperlin:.3f}")
+            print(line, flush=True)
+            if log_lines is not None:
+                log_lines.append(line)
+    return policy
 
 
-# ---- Validation: |Z*|=1 case must equal standard cross-entropy --------------------
+# ---- LOSO eval -------------------------------------------------------------------
 
-def validate_zstar_one_collapse(corpus: list[BGCAsset]) -> None:
-    """Sanity check: for assets with |Z*|=1, the marginal log-likelihood equals the
-    single-candidate log-prob to numerical precision (the |Z*|=1 collapse)."""
-    rng = np.random.default_rng(0)
-    theta = rng.normal(size=(N_FEAT + 1) * N_ACTIONS) * 0.1
-    W = reshape_theta(theta)
-    issues = 0
-    for a in corpus:
-        if a.n_z_star != 1:
+def per_cycle_accuracy(policy: LinearPolicy, assets: list[BGCAsset]
+                       ) -> tuple[float, float, int, int]:
+    """Returns (acc_canonical, acc_agreed, n_canonical, n_agreed) at the per-cycle level.
+
+    acc_canonical: per-cycle accuracy using the parsimony-best candidate per asset as
+                   the ground-truth program (the "best biological guess" for SILVER).
+    acc_agreed:    per-cycle accuracy restricted to cycles where ALL candidates in
+                   Z*(B) agree on the reduction label (drops the ambiguous cycles).
+                   GOLD assets contribute all their cycles; SILVER assets contribute
+                   only the consensus cycles.
+    """
+    pred_canon = 0; total_canon = 0
+    pred_agreed = 0; total_agreed = 0
+    for a in assets:
+        # canonical
+        feats = a.candidates[a.parsimony_best_idx]
+        if feats:
+            with torch.no_grad():
+                logits = policy(feat_tensor(feats))
+                preds = logits.argmax(dim=-1)
+                labels = label_tensor(feats)
+                pred_canon += int((preds == labels).sum().item())
+                total_canon += int(labels.numel())
+        # agreed: only cycles where all candidates have the same label at that t
+        if a.n_z_star == 0 or not a.candidates[0]:
             continue
-        lp_single = candidate_log_prob(W, a.candidates[0])
-        lp_marginal = logsumexp([candidate_log_prob(W, c) for c in a.candidates])
-        if not np.isclose(lp_single, lp_marginal, atol=1e-10):
-            print(f"  MISMATCH on {a.bgc}: single={lp_single}, marginal={lp_marginal}")
-            issues += 1
-    print(f"  |Z*|=1 collapse check: {issues} mismatches over "
-          f"{sum(1 for a in corpus if a.n_z_star==1)} GOLD assets.")
+        T = min(len(c) for c in a.candidates)
+        for t in range(T):
+            labels_at_t = {c[t].label for c in a.candidates}
+            if len(labels_at_t) == 1:  # consensus
+                feats_canon_t = a.candidates[a.parsimony_best_idx][t]
+                with torch.no_grad():
+                    logit = policy(feat_tensor([feats_canon_t]))
+                    pred = int(logit.argmax(dim=-1).item())
+                pred_agreed += int(pred == feats_canon_t.label)
+                total_agreed += 1
+    acc_c = pred_canon / total_canon if total_canon else float("nan")
+    acc_a = pred_agreed / total_agreed if total_agreed else float("nan")
+    return acc_c, acc_a, total_canon, total_agreed
 
 
-# ---- Main: assemble corpus, dry-run loss, report stats ----------------------------
+def loso_eval(assets: list[BGCAsset], n_steps: int = 600, lr: float = 0.05,
+              log_lines: list[str] | None = None) -> dict:
+    """Leave-one-BGC-out: 25 folds. Returns canonical + agreed-cycle accuracies."""
+    canon_correct = 0; canon_total = 0
+    agreed_correct = 0; agreed_total = 0
+    per_fold = []
+    for i, held in enumerate(assets):
+        train = [a for j, a in enumerate(assets) if j != i]
+        policy = train_full_batch(train, n_steps=n_steps, lr=lr, log_lines=None)
+        ac, aa, nc, na = per_cycle_accuracy(policy, [held])
+        canon_correct += int(ac * nc) if not np.isnan(ac) else 0
+        canon_total += nc
+        agreed_correct += int(aa * na) if not np.isnan(aa) else 0
+        agreed_total += na
+        per_fold.append((held.bgc, ac, aa, nc, na))
+        if log_lines is not None:
+            log_lines.append(f"  LOSO[{i+1:>2}/{len(assets)}] {held.bgc[:40]:<40} "
+                             f"canon={ac if not np.isnan(ac) else 0:.3f}({nc:>2}) "
+                             f"agreed={aa if not np.isnan(aa) else 0:.3f}({na:>2})")
+    acc_canon = canon_correct / canon_total if canon_total else float("nan")
+    acc_agreed = agreed_correct / agreed_total if agreed_total else float("nan")
+    return dict(acc_canonical=acc_canon, acc_agreed=acc_agreed,
+                n_canonical=canon_total, n_agreed=agreed_total,
+                per_fold=per_fold)
+
+
+# ---- Main ------------------------------------------------------------------------
 
 def main() -> None:
+    log_lines: list[str] = []
+
+    log_lines.append("Phase D2: weak-supervision marginal-likelihood training")
+    log_lines.append("=" * 70)
+
     corpus = build_corpus()
-
-    n_assets = len(corpus)
     n_gold = sum(1 for a in corpus if a.n_z_star == 1)
-    n_silver = n_assets - n_gold
+    n_silver = sum(1 for a in corpus if a.n_z_star > 1)
+    n_cycles_canon = sum(len(a.candidates[a.parsimony_best_idx]) for a in corpus)
     n_cands_total = sum(a.n_z_star for a in corpus)
-    n_cycles_total = sum(sum(len(c) for c in a.candidates) for a in corpus)
-    n_unique_cycles = sum(len(a.candidates[0]) for a in corpus)  # one "true" cycle count per BGC
 
-    print(f"Phase D corpus assembled:")
-    print(f"  total BGC assets: {n_assets}  (GOLD={n_gold}, SILVER={n_silver})")
-    print(f"  candidate programs (sum over Z* sets): {n_cands_total}")
-    print(f"  cycles per asset (taking |Z*|=1 candidate): {n_unique_cycles}")
-    print(f"  total per-candidate per-cycle feature rows: {n_cycles_total}")
-    print()
-    print("Sample asset breakdown:")
-    for tag in ("curated:", "BGC0001121", "BGC0001338", "BGC0001909"):
-        for a in corpus:
-            if a.bgc.startswith(tag):
-                ncycs = len(a.candidates[0])
-                print(f"  {a.bgc[:50]:<50} |Z*|={a.n_z_star:>3}  n_cycles={ncycs}")
-                break
+    log_lines.append(f"corpus: {len(corpus)} BGC assets (GOLD={n_gold}, SILVER={n_silver})")
+    log_lines.append(f"  cycles (parsimony-best per BGC): {n_cycles_canon}")
+    log_lines.append(f"  candidate programs (sum over Z*): {n_cands_total}")
+    log_lines.append("")
 
-    print()
-    print("Validating |Z*|=1 collapse to cross-entropy...")
-    validate_zstar_one_collapse(corpus)
+    # ---- Full-corpus training -------------------------------------------
+    log_lines.append("[A] FULL-CORPUS TRAINING (sanity: NLML should drop monotonically)")
+    log_lines.append(f"    AdamW, lr=0.05, weight_decay=1e-4, full-batch, 600 steps")
+    log_lines.append("")
+    for line in log_lines:
+        print(line)
 
-    print()
-    print("Dry-run loss at theta=0:")
-    theta0 = np.zeros((N_FEAT + 1) * N_ACTIONS)
-    loss0 = nlml_loss(theta0, corpus)
-    n_assets_contributing = sum(1 for a in corpus if any(len(c) > 0 for c in a.candidates))
-    # At theta=0, log_softmax = log(1/A) = -log(A) per step. Expected loss:
-    #   For Z*=1 asset with T cycles: -log P(z) = T * log(A)
-    #   For Z*=K asset: -log Sum_z P(z) = -log(K * (1/A)^T_min) approx
-    #   (if all candidates have same T): = -log(K) + T * log(A) = T*log A - log K
-    # So total loss ~ Sum_B T_B * log(A) - Sum_B log |Z*(B)|
-    expected_simple = sum(len(a.candidates[0]) for a in corpus) * np.log(N_ACTIONS)
-    expected_marg_bonus = sum(np.log(a.n_z_star) for a in corpus)
-    expected = expected_simple - expected_marg_bonus
-    print(f"  loss(theta=0) = {loss0:.4f}")
-    print(f"  expected      = {expected:.4f}  "
-          f"(= Sum_B T_B * log(A) - Sum_B log|Z*|; assumes equal-length candidates)")
-    print(f"  diff = {loss0 - expected:+.4f}  (small residual = candidates differ in T)")
+    policy_full = train_full_batch(corpus, log_lines=log_lines)
+    ac_full, aa_full, nc_full, na_full = per_cycle_accuracy(policy_full, corpus)
+    line = (f"\n  on full corpus -- canonical acc={ac_full:.3f} ({nc_full} cycles), "
+            f"agreed acc={aa_full:.3f} ({na_full} cycles)")
+    print(line)
+    log_lines.append(line)
 
+    # ---- LOSO eval -------------------------------------------------------
+    log_lines.append("")
+    log_lines.append("=" * 70)
+    log_lines.append("[B] LEAVE-ONE-BGC-OUT EVAL (25 folds)")
+    log_lines.append("")
+    print(log_lines[-3]); print(log_lines[-2]); print(log_lines[-1])
+    loso = loso_eval(corpus, log_lines=log_lines)
+
+    log_lines.append("")
+    log_lines.append("=" * 70)
+    summary = (f"PHASE D2 BASELINE (POSITION+SUBSTRATE only, n_BGC=25, "
+               f"n_cycles_canonical={loso['n_canonical']}, "
+               f"n_cycles_agreed={loso['n_agreed']}):")
+    log_lines.append(summary)
+    log_lines.append(f"  LOSO accuracy (canonical / parsimony-best ground truth): "
+                     f"{loso['acc_canonical']:.4f}")
+    log_lines.append(f"  LOSO accuracy (agreed-cycles only):                       "
+                     f"{loso['acc_agreed']:.4f}")
+    log_lines.append("")
+    log_lines.append("Reference comparisons:")
+    log_lines.append("  Phase C n=23 paired bootstrap mean: POSITION=0.532, SUBSTRATE=0.503")
+    log_lines.append("  substrate_state_probe n=30 LOSO:    POSITION=0.60,  SUBSTRATE=0.47")
+    log_lines.append("  the 0.567 wall:                     constant-domain LOSO baseline")
     print()
-    print("Ready for training. Next step:")
-    print("  - optimize theta via scipy.optimize.minimize(nlml_loss, theta0, jac=...)")
-    print("  - or torch + autograd for cleaner gradient + the planned POSE feature add")
-    print("  - LOSO at the BGC level; paired bootstrap vs POSITION baseline")
+    for line in log_lines[-9:]:
+        print(line)
+
+    OUT_LOG.parent.mkdir(parents=True, exist_ok=True)
+    OUT_LOG.write_text("\n".join(log_lines) + "\n")
+    print(f"\nwrote {OUT_LOG.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

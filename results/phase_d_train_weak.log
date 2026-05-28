@@ -1,0 +1,57 @@
+Phase D2: weak-supervision marginal-likelihood training
+======================================================================
+corpus: 25 BGC assets (GOLD=16, SILVER=9)
+  cycles (parsimony-best per BGC): 88
+  candidate programs (sum over Z*): 190
+
+[A] FULL-CORPUS TRAINING (sanity: NLML should drop monotonically)
+    AdamW, lr=0.05, weight_decay=1e-4, full-batch, 600 steps
+
+  step=   0  NLML= 197.862  mean_silver_ent=1.903  citrinin_H=0.692  strob_H=3.114  asperlin_H=1.344
+  step= 100  NLML=  58.981  mean_silver_ent=1.744  citrinin_H=0.691  strob_H=2.776  asperlin_H=1.491
+  step= 200  NLML=  54.605  mean_silver_ent=1.511  citrinin_H=0.689  strob_H=2.493  asperlin_H=1.406
+  step= 300  NLML=  52.487  mean_silver_ent=1.369  citrinin_H=0.688  strob_H=2.379  asperlin_H=1.307
+  step= 400  NLML=  51.408  mean_silver_ent=1.289  citrinin_H=0.688  strob_H=2.337  asperlin_H=1.182
+  step= 500  NLML=  50.819  mean_silver_ent=1.237  citrinin_H=0.688  strob_H=2.316  asperlin_H=1.059
+  step= 600  NLML=  50.486  mean_silver_ent=1.200  citrinin_H=0.688  strob_H=2.302  asperlin_H=0.957
+
+  on full corpus -- canonical acc=0.614 (88 cycles), agreed acc=0.734 (64 cycles)
+
+======================================================================
+[B] LEAVE-ONE-BGC-OUT EVAL (25 folds)
+
+  LOSO[ 1/25] curated:3-hydroxybutyric acid (KR-only d canon=0.000( 1) agreed=0.000( 1)
+  LOSO[ 2/25] curated:6-hydroxymellein                 canon=0.500( 4) agreed=0.500( 4)
+  LOSO[ 3/25] curated:6-methylsalicylic acid           canon=0.667( 3) agreed=0.667( 3)
+  LOSO[ 4/25] curated:hexanoic acid (fully-reduced tri canon=1.000( 2) agreed=1.000( 2)
+  LOSO[ 5/25] curated:LovB dihydromonacolin L nonaketi canon=0.125( 8) agreed=0.125( 8)
+  LOSO[ 6/25] curated:2-methylbutyric acid (LovF diket canon=0.000( 1) agreed=0.000( 1)
+  LOSO[ 7/25] curated:mellein                          canon=0.250( 4) agreed=0.250( 4)
+  LOSO[ 8/25] curated:octanoic acid (fully-reduced tet canon=1.000( 3) agreed=1.000( 3)
+  LOSO[ 9/25] curated:tenellin polyketide backbone (Te canon=0.250( 4) agreed=0.250( 4)
+  LOSO[10/25] BGC0001121                               canon=1.000( 3) agreed=1.000( 3)
+  LOSO[11/25] BGC0001275                               canon=0.667( 3) agreed=0.667( 3)
+  LOSO[12/25] BGC0001276                               canon=0.667( 3) agreed=0.667( 3)
+  LOSO[13/25] BGC0001606                               canon=0.000( 4) agreed=0.000( 4)
+  LOSO[14/25] BGC0002191                               canon=0.750( 4) agreed=0.750( 4)
+  LOSO[15/25] BGC0002212                               canon=1.000( 3) agreed=1.000( 3)
+  LOSO[16/25] BGC0002595                               canon=1.000( 3) agreed=1.000( 3)
+  LOSO[17/25] BGC0001338                               canon=0.800( 5) agreed=0.800( 5)
+  LOSO[18/25] BGC0000161                               canon=0.333( 3) agreed=0.000( 0)
+  LOSO[19/25] BGC0002852                               canon=0.250( 4) agreed=0.000( 0)
+  LOSO[20/25] BGC0002180                               canon=0.500( 4) agreed=0.000( 0)
+  LOSO[21/25] BGC0001909                               canon=0.000( 3) agreed=0.000( 0)
+  LOSO[22/25] BGC0002065                               canon=0.000( 3) agreed=0.000( 0)
+  LOSO[23/25] BGC0002238                               canon=0.250( 4) agreed=0.000( 0)
+  LOSO[24/25] BGC0001273                               canon=0.333( 3) agreed=0.000( 0)
+  LOSO[25/25] BGC0003109                               canon=0.167( 6) agreed=0.167( 6)
+
+======================================================================
+PHASE D2 BASELINE (POSITION+SUBSTRATE only, n_BGC=25, n_cycles_canonical=88, n_cycles_agreed=64):
+  LOSO accuracy (canonical / parsimony-best ground truth): 0.4432
+  LOSO accuracy (agreed-cycles only):                       0.5156
+
+Reference comparisons:
+  Phase C n=23 paired bootstrap mean: POSITION=0.532, SUBSTRATE=0.503
+  substrate_state_probe n=30 LOSO:    POSITION=0.60,  SUBSTRATE=0.47
+  the 0.567 wall:                     constant-domain LOSO baseline
