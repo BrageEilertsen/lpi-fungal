@@ -30,7 +30,7 @@ Transfer footprint: ~15 KB up (6 FASTAs + SLURM), ~1 MB down (6 PDB folds + scor
 
 ```bash
 # from FungalFold root, set your EX3 credentials and push:
-EX3_USER=brageei EX3_HOST=login.ex3.simula.no bash scripts/policy/ex3/transfer.sh up
+EX3_USER=$USER EX3_HOST=your.cluster.edu bash scripts/policy/ex3/transfer.sh up
 ssh $EX3_USER@$EX3_HOST 'cd ~/lpi-af2 && sbatch af2_run.slurm'
 ```
 
@@ -41,7 +41,7 @@ Resources are set: `--partition=a100q --gres=gpu:1 --cpus-per-task=4 --mem-per-g
 ### 2. Pull AF2 outputs + normalize
 
 ```bash
-EX3_USER=brageei EX3_HOST=login.ex3.simula.no bash scripts/policy/ex3/transfer.sh down
+EX3_USER=$USER EX3_HOST=your.cluster.edu bash scripts/policy/ex3/transfer.sh down
 PYTHONPATH=src .venv/bin/python scripts/policy/ex3/normalize_af2_outputs.py
 ```
 
@@ -71,7 +71,7 @@ brew install autodock-vina open-babel
 pip install meeko    # also pulls AutoDockTools deps
 ```
 
-If the macOS install gives trouble (legacy AutoDockTools is the usual headache), the same script runs unchanged on EX3 — just upload the FungalFold tree there too and run from a CPU partition. Trade-off is your call; I'll prep either path if you want.
+If the macOS install gives trouble (legacy AutoDockTools is the usual headache), the same script runs unchanged on a CPU partition of the cluster — upload the FungalFold tree there and run from CPU.
 
 The 6 substrate-only proxy cycles (3-HB, hexanoic ×2, octanoic ×3) are skipped automatically — their manifests have null `protein_pdb_path`.
 
@@ -97,7 +97,7 @@ Phase C harness then joins descriptors + intermediates and runs LOSO over the 9 
 
 ## Honest scope reminders
 
-- **KR+ACP didomain ≠ full synthase.** AF2 will give a plausible local fold but the inter-domain context (KS, AT, DH) is missing. Justification: Brage's decision 2 (KR-only scope); per-cycle reduction signal lives at the KR pocket.
+- **KR+ACP didomain ≠ full synthase.** AF2 will give a plausible local fold but the inter-domain context (KS, AT, DH) is missing. Justification: the project's KR-only scope decision; per-cycle reduction signal lives at the KR pocket.
 - **6-OH-mellein assignment is provisional.** AUW31183.1 (the small "PKS-like" protein) carries the KR domain; AUW31184.1 (the larger "type I PKS" in BGC0001489) does not. Treating AUW31183 as the 6-OH-mellein synthase pending paper-level confirmation.
 - **3 proxy synthases (3-HB, hexanoic, octanoic) have no real protein.** They stay in the substrate-only arm. Conformational scope = 24 / 30 HR+PR cycles.
 - **Single-pose Vina, not ensemble.** Static covalent dock; the dynamic-conformation hypothesis (Tier 3 MD) is the next escalation if Tier 1 is null.
