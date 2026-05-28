@@ -20,7 +20,10 @@ constrained mode, $|\zstar|\le 10$. An RDKit-driven SMILES-to-formula recovery p
 rescues the $112$ MIBiG entries without a registered formula; the tractable inventory
 fixes at $74$ clusters and the $|\zstar|$ histogram is bi-modal with an empty middle at
 $|\zstar|\in[11,24]$ across all $74$---a structural cliff in the natural manifold
-(\S\ref{sec:manifold}) that survives the recovery and is not a data-hygiene artifact.
+(\S\ref{sec:manifold}) that survives the recovery and is not a data-hygiene artifact. These
+$|\zstar|$ are at the $20{,}000$-program enumeration cap; the exhaustion-certified, uncapped
+per-cluster values for the producible cores---a few of which land inside the nominal
+$[11,24]$ gap once the cap is lifted---are reported in \S\ref{sec:pomdp}.
 Of the $74$, $7$ land at $|\zstar|=1$ (joining the curated $30$) and $9$ at
 $2\le|\zstar|\le 10$ contribute the silver tier. A verifier-constrained marginal-
 likelihood loss \(\mathcal{L}(\theta)= -\sum_B \log \sum_{z\in \zstar(B)} \pi_\theta(z\mid B)\)
