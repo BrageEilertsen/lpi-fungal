@@ -687,7 +687,14 @@ synthase-local static observables, so the next advance needs either a substantia
 per-cycle resolution or direct partial observables of the conformational state. The first measurable
 breakthrough need not be complete product prediction---it would be a single per-cycle decision becoming
 predictable above $0.567$ once cycle-distinguishing state is injected, which the executor would then
-propagate, soundly, through the rest of the program.
+propagate, soundly, through the rest of the program. We take a first empirical step along this axis
+in \S\ref{sec:structural-rescue}: AlphaFold2-conditioned pocket descriptors injected alongside the
+substrate-prefix index resolve the label-symmetric C-methylation degeneracy in citrinin from
+$H=\log 2$ to $H=0.01$ on held-out evaluation, with a complementary substrate channel cleanly
+resolving label-distinguishable cases (isoterrein, asperlin) on the same corpus. The two engines do
+specific work: the substrate counter localizes which cycle is being asked about, the structural
+channel routes within that cycle's pocket-substrate geometry, and the executor bounds the set
+within which either can rule.
 
 \appendix
 \section{Reproducibility}

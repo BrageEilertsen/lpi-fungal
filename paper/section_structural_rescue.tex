@@ -14,16 +14,16 @@ loss decomposes into \emph{two complementary resolution engines}, each precisely
 applicable to a different chemical regime of the candidate set.
 
 \paragraph{The corpus.} We extend the curated $30$-cycle HR/PR set (\S\ref{sec:benchmark})
-by mining MIBiG fungal PKS clusters whose engine-derived $|Z^\ast|$ at the
+by mining MIBiG fungal PKS clusters whose engine-derived $|\zstar|$ at the
 metabologenomics observable set (alphabet $+$ molecular formula) lands in the
-constrained mode, $|Z^\ast|\le 10$. An RDKit-driven SMILES-to-formula recovery pass
+constrained mode, $|\zstar|\le 10$. An RDKit-driven SMILES-to-formula recovery pass
 rescues the $112$ MIBiG entries without a registered formula; the tractable inventory
-fixes at $74$ clusters and the $|Z^\ast|$ histogram is bi-modal with an empty middle at
-$|Z^\ast|\in[11,24]$ across all $74$---a structural cliff in the natural manifold
+fixes at $74$ clusters and the $|\zstar|$ histogram is bi-modal with an empty middle at
+$|\zstar|\in[11,24]$ across all $74$---a structural cliff in the natural manifold
 (\S\ref{sec:manifold}) that survives the recovery and is not a data-hygiene artifact.
-Of the $74$, $7$ land at $|Z^\ast|=1$ (joining the curated $30$) and $9$ at
-$2\le|Z^\ast|\le 10$ contribute the silver tier. A verifier-constrained marginal-
-likelihood loss \(\mathcal{L}(\theta)= -\sum_B \log \sum_{z\in Z^\ast(B)} \pi_\theta(z\mid B)\)
+Of the $74$, $7$ land at $|\zstar|=1$ (joining the curated $30$) and $9$ at
+$2\le|\zstar|\le 10$ contribute the silver tier. A verifier-constrained marginal-
+likelihood loss \(\mathcal{L}(\theta)= -\sum_B \log \sum_{z\in \zstar(B)} \pi_\theta(z\mid B)\)
 collapses to standard cross-entropy on the gold and decomposes weight over candidate
 trajectories on silver.
 
@@ -43,10 +43,10 @@ indicator, running chain length and oxidation counts, previous cycle's reduction
 \paragraph{Two engines, one policy.} Three feature regimes on the same $n=62$
 conformational sub-corpus reveal a precise partition (Table~\ref{tab:rescue},
 Fig.~\ref{fig:rescue}A). The partition is governed not by cluster identity but by the
-\emph{symmetry of the reduction-label sequence across the candidates in $Z^\ast(B)$}.
+\emph{symmetry of the reduction-label sequence across the candidates in $\zstar(B)$}.
 
 \emph{Substrate-Prefix Engine (label-distinguishable candidates).} When the candidates
-in $Z^\ast(B)$ differ in their per-cycle reduction labels---e.g., isoterrein's three
+in $\zstar(B)$ differ in their per-cycle reduction labels---e.g., isoterrein's three
 candidates $(\mathrm{dh},\mathrm{dh},\mathrm{keto})$, $(\mathrm{dh},\mathrm{keto},\mathrm{dh})$,
 $(\mathrm{keto},\mathrm{dh},\mathrm{dh})$ that differ in the cycle index of each DH event,
 or asperlin's $5$ candidates that differ similarly---substrate-prefix features alone
@@ -71,15 +71,15 @@ structural channel is not merely helpful but architecturally necessary.
 
 \begin{table}[h]
 \centering\small
-\begin{tabular}{lccc}
+\begin{tabular}{@{}lccc@{}}
 \toprule
 & \multicolumn{3}{c}{Held-out candidate entropy $H_{\mathrm{held}}$ (nats)} \\
 \cmidrule(lr){2-4}
 Silver asset & Substrate-prefix & Pose only & Substrate $+$ pose \\
 \midrule
-citrinin   ($|Z^\ast|{=}2$, $\log 2{=}0.69$)   & $0.69$\textsuperscript{*} & $0.64$ & $\mathbf{0.01}$ \\
-isoterrein ($|Z^\ast|{=}3$, $\log 3{=}1.10$)   & $\mathbf{0.05}$           & $1.07$ & $0.50$ \\
-asperlin   ($|Z^\ast|{=}5$, $\log 5{=}1.61$)   & $\mathbf{0.38}$           & $1.26$ & $0.45$ \\
+citrinin   ($|\zstar|{=}2$, $\log 2{=}0.69$)   & $0.69$\textsuperscript{*} & $0.64$ & $\mathbf{0.01}$ \\
+isoterrein ($|\zstar|{=}3$, $\log 3{=}1.10$)   & $\mathbf{0.05}$           & $1.07$ & $0.50$ \\
+asperlin   ($|\zstar|{=}5$, $\log 5{=}1.61$)   & $\mathbf{0.38}$           & $1.26$ & $0.45$ \\
 \bottomrule
 \end{tabular}
 \caption{The dual-engine partition. Bold = the resolving regime for each asset.
@@ -112,10 +112,10 @@ actively rejected at $\le 0.001$.}
 \label{fig:rescue}
 \end{figure}
 
-\paragraph{Directional gating: when the in-vivo program is in $Z^\ast(B)$.}
-The two engines establish that the policy commits within $Z^\ast(B)$; whether the
+\paragraph{Directional gating: when the in-vivo program is in $\zstar(B)$.}
+The two engines establish that the policy commits within $\zstar(B)$; whether the
 committed candidate matches in-vivo biology depends on whether the in-vivo program is
-in $Z^\ast(B)$ at all---a question of executor coverage (\S\ref{sec:limits}), not of
+in $\zstar(B)$ at all---a question of executor coverage (\S\ref{sec:limits}), not of
 the resolution mechanism. The corpus contains both regimes.
 
 For \emph{isoterrein}, whose biosynthesis proceeds through a linear partially-reducing
@@ -135,7 +135,7 @@ For \emph{citrinin}, where the structural-rescue engine commits with posterior $
 to a specific candidate, the literature establishes a different fact:
 heterologous-expression studies of CitS yield a \emph{trimethylated} pentaketide
 aldehyde requiring \emph{two} C-MeT events (one triketide, one pentaketide)
-\citep{storm2017citrinin}. Neither of the two candidates in $Z^\ast$ at
+\citep{storm2017citrinin}. Neither of the two candidates in $\zstar$ at
 $\mathrm{C}_{13}\mathrm{H}_{14}\mathrm{O}_5$ contains two C-MeT events---the grammar
 cannot synthesize the in-vivo program at this formula. The entropy collapse
 demonstrates that the structural channel carries per-cluster discriminating
@@ -148,7 +148,7 @@ channel does specific work. The substrate-prefix engine resolves candidates whos
 distinct reduction-label sequences leave a non-symmetric gradient signal; the
 structural-rescue engine resolves candidates whose mass-and-grammar-consistent
 permutations leave the substrate gradient signal symmetric. The neuro-symbolic
-architecture compounds: the sound executor bounds $Z^\ast(B)$ so a learned policy
+architecture compounds: the sound executor bounds $\zstar(B)$ so a learned policy
 rules within a verified set rather than over an open structure space, and the
 appropriate channel routes within that set per the chemistry of the candidates the
 verifier returns. The result is a policy whose neural component would have nothing
