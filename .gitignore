@@ -21,3 +21,13 @@ results/scratch/
 
 # wandb (Phase 2, optional)
 wandb/
+
+# Phase A/B/C policy pipeline: 3D coordinate data is regeneratable from the
+# tracked scripts + EX3 chain; keep parquet metadata + manifests but skip the
+# large raw PDB/SDF/MSA outputs.
+data/policy/structures/*/
+data/policy/docking/*/cycle_*/ligand.sdf
+data/policy/docking/*/cycle_*/placed.sdf
+data/policy/docking/*/cycle_*/complex.pdb
+data/policy/_synthetic_dry_run.pdb
+data/raw/uniprot_cache/

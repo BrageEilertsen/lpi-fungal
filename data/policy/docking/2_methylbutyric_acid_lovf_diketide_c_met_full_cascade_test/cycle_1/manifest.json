@@ -1,0 +1,27 @@
+{
+  "synthase": "2-methylbutyric acid (LovF diketide; C-MeT + full-cascade test)",
+  "bgc": "LovF (lovastatin diketide synthase)",
+  "subclass": "HR",
+  "cycle_t": 1,
+  "n_cycles": 1,
+  "label_reduction": "er",
+  "label_cmet": true,
+  "label_extender": "malonyl",
+  "starter": "acetyl",
+  "smiles_predict_state": "*SC(=O)C(C)C(C)=O",
+  "smiles_post_reduce": "*SC(=O)C(C)CC",
+  "ligand_sdf_path": "data/policy/docking/2_methylbutyric_acid_lovf_diketide_c_met_full_cascade_test/cycle_1/ligand.sdf",
+  "ligand_attachment_atom_idx": 0,
+  "protein_pdb_path": null,
+  "covalent_complex_pdb_path": "data/policy/poses/2_methylbutyric_acid_lovf_diketide_c_met_full_cascade_test/cycle_1.pdb",
+  "acp_serine_resid": null,
+  "active_catalytic_domain": "KR",
+  "covalent_bond": {
+    "ligand_atom_idx": 0,
+    "protein_atom": "ACP_SER:OG",
+    "bond_order": 1,
+    "notes": "covalent attachment via phosphopantetheine arm; sentinel '*' stands in for the pant arm endpoint that bonds to ACP serine OG"
+  },
+  "notes": "Phase A stub: protein and pose PDB paths are placeholders. Drop AF3 apo prediction into {protein_pdb_path} and the covalent co-fold (or docked complex) into {covalent_complex_pdb_path} to activate.",
+  "acp_exclusion_reason": "ACP-Ser candidate at residue 353 (motif GVDS) has pLDDT 45.5 < floor 50.0 -- covalent anchor unreliable, cycle falls back to substrate-only arm"
+}

@@ -1,0 +1,31 @@
+{
+  "synthase": "LovB dihydromonacolin L nonaketide",
+  "bgc": "LovB (+ LovC trans-ER, LovG trans-TE); lovastatin nonaketide synthase",
+  "subclass": "HR",
+  "cycle_t": 2,
+  "n_cycles": 8,
+  "label_reduction": "er",
+  "label_cmet": false,
+  "label_extender": "malonyl",
+  "starter": "acetyl",
+  "smiles_predict_state": "*SC(=O)CC(=O)CCC",
+  "smiles_post_reduce": "*SC(=O)CCCCC",
+  "ligand_sdf_path": "data/policy/docking/lovb_dihydromonacolin_l_nonaketide/cycle_2/ligand.sdf",
+  "ligand_attachment_atom_idx": 0,
+  "protein_pdb_path": "data/policy/structures/lovb/apo.pdb",
+  "covalent_complex_pdb_path": "data/policy/poses/lovb_dihydromonacolin_l_nonaketide/cycle_2.pdb",
+  "acp_serine_resid": 233,
+  "active_catalytic_domain": "KR",
+  "covalent_bond": {
+    "ligand_atom_idx": 0,
+    "protein_atom": "ACP_SER:OG",
+    "bond_order": 1,
+    "notes": "covalent attachment via phosphopantetheine arm; sentinel '*' stands in for the pant arm endpoint that bonds to ACP serine OG"
+  },
+  "notes": "Phase A stub: protein and pose PDB paths are placeholders. Drop AF3 apo prediction into {protein_pdb_path} and the covalent co-fold (or docked complex) into {covalent_complex_pdb_path} to activate.",
+  "acp_motif": "FDSV",
+  "acp_plddt": 85.56,
+  "placed_sdf_path": "data/policy/docking/lovb_dihydromonacolin_l_nonaketide/cycle_2/placed.sdf",
+  "complex_pdb_path": "data/policy/docking/lovb_dihydromonacolin_l_nonaketide/cycle_2/complex.pdb",
+  "placement_method": "deterministic_acp_anchor_pocket_axis"
+}

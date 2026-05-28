@@ -1,0 +1,26 @@
+{
+  "synthase": "octanoic acid (fully-reduced tetraketide; full-cascade proxy)",
+  "bgc": "fully-reducing proxy",
+  "subclass": "HR",
+  "cycle_t": 3,
+  "n_cycles": 3,
+  "label_reduction": "er",
+  "label_cmet": false,
+  "label_extender": "malonyl",
+  "starter": "acetyl",
+  "smiles_predict_state": "*SC(=O)CC(=O)CCCCC",
+  "smiles_post_reduce": "*SC(=O)CCCCCCC",
+  "ligand_sdf_path": "data/policy/docking/octanoic_acid_fully_reduced_tetraketide_full_cascade_proxy/cycle_3/ligand.sdf",
+  "ligand_attachment_atom_idx": 0,
+  "protein_pdb_path": "data/policy/structures/octanoic_acid_fully_reduced_tetraketide_full_cascade_proxy/apo.pdb",
+  "covalent_complex_pdb_path": "data/policy/poses/octanoic_acid_fully_reduced_tetraketide_full_cascade_proxy/cycle_3.pdb",
+  "acp_serine_resid": null,
+  "active_catalytic_domain": "KR",
+  "covalent_bond": {
+    "ligand_atom_idx": 0,
+    "protein_atom": "ACP_SER:OG",
+    "bond_order": 1,
+    "notes": "covalent attachment via phosphopantetheine arm; sentinel '*' stands in for the pant arm endpoint that bonds to ACP serine OG"
+  },
+  "notes": "Phase A stub: protein and pose PDB paths are placeholders. Drop AF3 apo prediction into {protein_pdb_path} and the covalent co-fold (or docked complex) into {covalent_complex_pdb_path} to activate."
+}
