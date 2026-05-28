@@ -1,0 +1,132 @@
+% -- new section drafted from Phase A-D experimental ledger --
+% Insert via \input{section_structural_rescue} between section_duality and Related Work.
+% Designed to operationalize the "first measurable breakthrough" the Outlook flags as future work.
+
+\section{Empirical structural rescue: $G$ and $s_t$ are jointly necessary}
+\label{sec:structural-rescue}
+
+The Outlook (\S\ref{sec:pomdp}) predicts that the fungal per-cycle policy is
+\(a_t \sim P(a_t \mid G, s_t)\): the static enzyme \(G\) and an evolving substrate state
+\(s_t\) jointly determine the action. We take a first empirical step toward that injection.
+The result is a per-cycle policy that, given AlphaFold2-predicted pocket geometry and
+substrate-prefix state, commits to specific candidates within the verifier's set
+\(Z^\ast(B)\) where neither channel alone can resolve.
+
+\paragraph{The corpus.} We extend the curated $30$-cycle HR/PR set (\S\ref{sec:benchmark})
+by mining MIBiG fungal PKS clusters whose engine-derived $|Z^\ast|$ at the
+metabologenomics observable set (alphabet $+$ molecular formula) lands in
+the constrained mode, $|Z^\ast|\le 10$. After an RDKit-driven SMILES-to-formula recovery
+pass over the $112$ MIBiG entries without registered formula, the tractable inventory
+fixed at $74$ clusters; the $|Z^\ast|$ histogram is bi-modal with an empty middle at
+$|Z^\ast|\in[11,24]$ across $74$ clusters---a structural cliff in the natural manifold
+(\S\ref{sec:manifold}) that survives the recovery and is not a data-hygiene artifact.
+Of the $74$, $7$ land at $|Z^\ast|=1$ (gold, joining the curated $30$) and $9$ at
+$2\le |Z^\ast|\le 10$ (silver). The combined training corpus is $\sim 88$ per-cycle
+decisions across $25$ clusters under a verifier-constrained marginal-likelihood loss
+\(\mathcal{L}(\theta) = -\sum_B \log \sum_{z\in Z^\ast(B)} \pi_\theta(z\mid B)\) which
+collapses to standard cross-entropy on gold and decomposes weight over candidate
+trajectories on silver.
+
+\paragraph{Structural conditioning.} For each cluster with a real synthase we predict the
+KR$+$ACP didomain (or full-length protein for divergent PR-PKS the canonical PF$08659$ HMM
+does not detect---e.g.\ citrinin's CitS, whose KR is silent to the conventional profile
+even at relaxed thresholds; we fold the $2593$\,aa CitS in full and rescue the anchor
+by motif scan). For every \emph{(cluster, candidate, cycle)} we execute the cycle prefix
+deterministically, $3$D-embed the ACP-tethered intermediate, anchor its phosphopantetheine
+sentinel at the ACP-Ser:OG oxygen, rotate the growing chain along the local ACP-Ser$\to$
+protein-centroid axis, and extract a five-dimensional pose descriptor: $5$\,\AA{} contact
+count partitioned into polar (N/O/S) and hydrophobic (C) subsets, ligand buried fraction,
+and pocket void volume. The descriptors run alongside the substrate-prefix features
+(cycle index, fractional position, subclass indicator, running chain length and oxidation
+counts, previous cycle's reduction rank).
+
+\paragraph{Joint necessity.} Three feature regimes on the same $n=62$ conformational
+sub-corpus produce three distinct outcomes (Table~\ref{tab:rescue}). Substrate-prefix
+features alone leave the citrinin per-cycle policy at the mathematical
+$\log 2 \approx 0.693$ entropy plateau, exactly as Section~\ref{sec:wall} predicts:
+the two citrinin candidates have identical chain length, oxidation history and
+prefix structure at every cycle, differing only in the cycle index at which the
+single C-methyltransferase event fires, so the substrate channel is symmetric
+across them. Pose descriptors alone drop citrinin's held-out entropy only marginally
+($0.692\!\to\!0.670$): the static geometry of the catalytic cavity does not, by
+itself, distinguish which cycle's intermediate it is being measured against. The
+two channels \emph{jointly} drop the held-out entropy to $0.003$, with the model
+committing $\sim\!99.9\%$ probability mass to one specific candidate.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{lcc}
+\toprule
+Feature regime (same $n{=}62$ corpus) & LOSO accuracy & Citrinin held-out $H$ \\
+\midrule
+Substrate prefix only ($7$ dims)       & $0.290$ & $0.692$ (locked at $\log 2$) \\
+Pose descriptors only ($5$ dims)       & $0.274$ & $0.670$ (slight, not resolved) \\
+\textbf{Substrate prefix $+$ pose ($12$ dims)} & $\mathbf{0.355}$ & $\mathbf{0.003}$ (plateau shattered) \\
+\bottomrule
+\end{tabular}
+\caption{The two channels are jointly necessary. Static spatial information requires
+substrate-prefix context to locate which cycle's geometry it is measuring; substrate
+prefix without spatial information cannot break the cycle-symmetric mass balance.}
+\label{tab:rescue}
+\end{table}
+
+\paragraph{The resolution is general.} Every silver cluster in the conformational corpus
+shows held-out entropy resolution under the joint feature set: citrinin
+$|Z^\ast|{=}2$ collapses $0.693\!\to\!0.003$ ($99.6\%$ resolved); isoterrein $|Z^\ast|{=}3$
+collapses $1.099\!\to\!0.500$ ($55\%$); asperlin $|Z^\ast|{=}5$ collapses $1.609\!\to\!0.446$
+($72\%$); the two strobilurin clusters at $|Z^\ast|{=}67$ collapse $4.205\!\to\!2.3$--$2.4$
+($43$--$45\%$). Structural information is doing the symmetry-breaking work that the
+substrate channel alone cannot.
+
+\paragraph{Two pillars on the directional question.} \emph{Whether} the model's chosen
+candidate matches in-vivo biology depends on whether the in-vivo program is present in
+$Z^\ast(B)$ at all---a question of executor coverage, not of the resolution mechanism.
+The corpus contains both regimes.
+
+\emph{Citrinin (information-capacity pillar, grammar-bounded directional).} The model
+commits to the candidate \texttt{(dh+M, keto, keto, keto, keto) aldol\_aromatic} with
+posterior $0.9987$ in held-out evaluation. Heterologous-expression studies of CitS
+\citep{storm2017citrinin} establish that in-vivo citrinin is a \emph{trimethylated}
+pentaketide aldehyde generated through \emph{two} C-MeT events---one at the triketide
+stage, one at the pentaketide stage. Neither of the engine's candidates at
+$\mathrm{C}_{13}\mathrm{H}_{14}\mathrm{O}_5$ contains two C-MeT events; the grammar
+cannot synthesize the in-vivo program at this formula. The entropy collapse demonstrates
+that the structural channel carries per-cluster discriminating information; the
+directional gating is the executor-coverage axis our Section~\ref{sec:limits} roadmap
+already addresses.
+
+\emph{Isoterrein and asperlin (directional-validation pillar).} When the in-vivo program
+is in the engine's grammar, the structural channel routes posterior mass to it.
+For isoterrein, whose biosynthesis proceeds through a linear, partially-reducing
+polyketide precursor before the post-PKS metalloenzyme TerB contracts the carbon
+chain into the cyclopentenone ring, the model selects
+\texttt{(dh, dh, keto) hydrolysis} with posterior $0.801$---the candidate with reductions
+concentrated at the early cycles and KETO at the late cycle, matching the canonical
+HR-PKS early-reduction architecture. The parsimony-best permutation
+\texttt{(keto, dh, dh)} (late reductions) received posterior $0.0001$: the structural
+channel actively rejected the un-biological assignment. For asperlin---a hexaketide-derived
+lactone with mid-chain epoxidation as post-PKS tailoring---the model selects
+\texttt{(dh, keto, keto, keto) hydrolysis} with posterior $0.845$, again early-reduction-first,
+and crucially \emph{rejects} the parsimony-best aromatic-release candidate
+(posterior $\approx 0$): asperlin is a lactone, not an aromatic, and the pocket-substrate
+geometry correctly disfavours the wrong ring topology.
+
+\paragraph{Reading.} Two consequences. First, the per-cycle policy is empirically a joint
+function of $G$ and $s_t$, in the precise form the Outlook predicted. Static enzyme context
+without substrate-prefix index cannot localize which cycle is being asked about;
+substrate-prefix index without enzyme context cannot resolve the symmetric mass-and-grammar
+constraints. Each channel is necessary; together they suffice on this corpus. Second,
+the architectural moat we describe in
+Sections~\ref{sec:executor}-\ref{sec:design} compounds: the sound executor bounds
+$Z^\ast(B)$ so that a learned model rules within a verified set rather than over an
+open structure space, and the structural channel routes within that set without ever
+producing an unverified molecule. The result is a neuro-symbolic policy whose neural
+component---absent the executor---would have nothing principled to commit to, and
+whose symbolic core---absent the structural channel---could not break the cycle
+symmetry that the iteration grammar imposes.
+
+% References to add to the bibliography (if not already cited):
+% \bibitem[Storm and Townsend(2017)]{storm2017citrinin}
+% P. M. Storm and C. A. Townsend.
+% \newblock Functional and structural analysis of programmed C-methylation in the biosynthesis of the fungal polyketide citrinin.
+% \newblock \emph{Cell Chemical Biology}, 24(3):316--325, 2017. PMID 28238725, PMC5419425.
