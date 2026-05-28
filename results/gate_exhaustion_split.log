@@ -1,0 +1,58 @@
+Exhaustion-segregated Gate-3 frontier (exact-where-enumerated)
+(32 producible clusters; caps base=20000 mid=80000 top=160000)
+  classification: 19 methylating (HR-type), 13 non-methylating (aromatic NR/PR)
+  exhaustion: methylating 19 EXACT / 0 BOUND; non-methylating 13 EXACT / 0 BOUND
+
+========================================================================
+CERTIFIED FRONTIER -- methylating subpop, EXACT (uncapped) clusters
+========================================================================
+  19 clusters, Z* fully enumerated (capped=False):
+    clean=15855  Gate-2=4969  Gate-3=807
+    Gate-3/(clean+Gate-3) = 4.84%   <-- EXACT, certified by enumeration
+    Gate-3/all decisions  = 3.73%
+
+========================================================================
+NOT YET CERTIFIED -- methylating clusters still capped at 160000
+========================================================================
+  (none -- every methylating cluster exhausted; the frontier is EXACT corpus-wide)
+
+========================================================================
+AROMATIC FLOOR -- non-methylating subpop
+========================================================================
+  13 EXACT clusters (aromatic NR/PR interior; no C-MeT firing possible):
+    clean=99  Gate-2=25  Gate-3=0
+    Gate-3/(clean+Gate-3) = 0.00%   <-- EXACT floor (label-symmetry structurally impossible without C-MeT)
+
+========================================================================
+PER-CLUSTER (methylating subpop)
+========================================================================
+  bgc            status     cap  |Z*| clean   G2  G3  G3/(cln+G3)
+  BGC0001141      EXACT  160000  4114  4636 1453 231        4.7%
+  BGC0002168      EXACT  160000  4114  4636 1453 231        4.7%
+  BGC0002984      EXACT  160000  4114  4636 1453 231        4.7%
+  BGC0002185      EXACT  160000   378   532  181  39        6.8%
+  BGC0002262      EXACT   20000   276   320  105  16        4.8%
+  BGC0003109      EXACT  160000    22    47    6  10       17.5%
+  BGC0001305      EXACT   20000   196   217   71   9        4.0%
+  BGC0002971      EXACT   20000   316   336   93   9        2.6%
+  BGC0003118      EXACT   20000    29    53   10   6       10.2%
+  BGC0002240      EXACT   20000    49    65   20   5        7.1%
+  BGC0000046      EXACT   20000    99   107   33   4        3.6%
+  BGC0002847      EXACT   20000    87   105   39   4        3.7%
+  BGC0002209      EXACT   20000    17    24    6   3       11.1%
+  BGC0002155      EXACT   20000    25    31   11   2        6.1%
+  BGC0002197      EXACT   20000    25    31   11   2        6.1%
+  BGC0003028      EXACT   20000    25    31   11   2        6.1%
+  BGC0001273      EXACT   20000     9    10    3   1        9.1%
+  BGC0001338      EXACT   20000     2     8    0   1       11.1%
+  BGC0002970      EXACT   20000    25    30   10   1        3.2%
+
+========================================================================
+HEADLINE
+========================================================================
+  The conformational frontier is characterized EXACTLY on both ends, by
+  complete enumeration -- no cap asterisk:
+    aromatic / non-methylating interior:  Gate-3 = 0.0%  (exact floor)
+    methylating (HR-type) subclass:       Gate-3 = 4.8%  (exact)
+  Gate-3 is a LOCALIZED property of the highly-reducing subclass, near-absent
+  over the aromatic cores -- both numbers measured, not bounded.

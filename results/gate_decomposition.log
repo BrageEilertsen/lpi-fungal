@@ -1,0 +1,72 @@
+Branching decomposition (STRICT TRIE) -- uncapped-certified recompute
+(32 clusters with producible core, from 326 MIBiG scanned)
+
+==============================================================================
+REGIME: alphabet+mass
+==============================================================================
+  ALL producible: 32 clusters, 12049 decisions
+    clean 8843 (73.4%) | Gate-2 2613 (21.7%) | Gate-3 593 (4.9%)
+    Gate-3 / all decisions:        4.9%
+    Gate-3 / (clean+Gate-3) [O-inv]: 6.3%
+
+  UNCAPPED only (CERTIFIABLE -- Z* fully enumerated): 25 clusters, 1924 decisions
+    clean 1423 (74.0%) | Gate-2 436 (22.7%) | Gate-3 65 (3.4%)
+    Gate-3 / all decisions:        3.4%
+    Gate-3 / (clean+Gate-3) [O-inv]: 4.4%
+
+  CAPPED only (Z* truncated at program_cap -- explosive HR clusters): 7 clusters, 10125 decisions
+    clean 7420 (73.3%) | Gate-2 2177 (21.5%) | Gate-3 528 (5.2%)
+    Gate-3 / all decisions:        5.2%
+    Gate-3 / (clean+Gate-3) [O-inv]: 6.6%
+
+  CITRININ UNIT TEST (BGC0001338): clean=8 gate2=0 gate3=1 capped=False -> PASS (1 Gate-3, 0 Gate-2)
+
+  Per-cluster (|Z*|<=30):
+  bgc           N  |Z*| clean  G2  G3  cap
+  BGC0001121    3     1     3   0   0     
+  BGC0001275    3     1     3   0   0     
+  BGC0001276    3     1     3   0   0     
+  BGC0001606    4     1     4   0   0     
+  BGC0002191    4     1     4   0   0     
+  BGC0002212    3     1     3   0   0     
+  BGC0002595    3     1     3   0   0     
+  BGC0001338    5     2     8   0   1     
+  BGC0000161    3     3     4   2   0     
+  BGC0002852    4     4     7   3   0     
+  BGC0002180    4     5    10   3   0     
+  BGC0001909    7     7    22   6   0    Y
+  BGC0002065    7     7    22   6   0    Y
+  BGC0002238    4     7    11   5   0     
+  BGC0001273    3     9    10   3   1     
+  BGC0003109    6    10    16   0   9    Y
+  BGC0002209    4    17    24   6   3     
+  BGC0002155    4    25    31  11   2     
+  BGC0002197    4    25    31  11   2     
+  BGC0002970    4    25    30  10   1     
+  BGC0003028    4    25    31  11   2     
+  BGC0003118    5    29    53  10   6     
+
+==============================================================================
+HEADLINE
+==============================================================================
+  The CERTIFIABLE figure is on the uncapped subset (Z* fully enumerated):
+    Gate-3 / all decisions:          3.4% (uncapped)   vs  4.9% (all, capped-contaminated)
+    Gate-3 / (clean+Gate-3) [O-inv]: 4.4% (uncapped)   vs  6.3% (all)
+    clean (free labels): 1423/1924 = 74.0% (uncapped)
+
+  The CAP bites hardest inside the explosive HR clusters -- exactly where
+  C-MeT label-symmetry (Gate-3) lives. So the capped-contaminated 'all'
+  figure is NOT a random-slice estimate; the uncapped subset is the honest one.
+
+  O-DEPENDENCE (alphabet-only prior run, all 32 capped): Gate-2 exploded
+  2613 -> 28138 (~10x) while Gate-3 stayed chemistry-bounded. Gate-2 is
+  combinatorial in the grammar; Gate-3 is an O-invariant of the chemistry.
+  => the Gate-3 / (clean+Gate-3) ratio is the O-stable denominator; the raw
+  Gate-3 / all-decisions fraction drifts with whatever O you ran at.
+
+  TWO INDEPENDENT RESULTS, kept in separate sentences:
+  (1) THINNESS: the conformational frontier is a small fraction of decisions.
+  (2) SOLVABILITY: whether that thin frontier is simulable (AF2/MD) or
+      measurable-only (cryo-EM) is the citrinin hinge experiment, unsettled.
+  A 5% frontier that needs cryo-EM is still a wall, just a thin one. Thinness
+  sized != biology delivered.

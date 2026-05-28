@@ -678,13 +678,48 @@ by construction, and where one \emph{does} exist---bacterial modular PKS---the s
 same executor nearly doubles ($0.50\!\to\!0.78$, \S\ref{sec:wall}), so the model class is not the limit.
 The fungal probes then \emph{corroborate} the boundary by elimination: the policy is recovered neither
 from chain position nor from the computable running substrate state, so the identifying signal lies in
-the conformational component of $s_t$ that a synthase-local view cannot, by construction, supply. This decomposes the problem into three layers: the sound executor (built
-here---and what makes the rest \emph{identifiable}, by bounding the combinatorics a learned model would
-otherwise drown in), a per-cycle policy $\pi_\theta(s_t)$, and a state-evolution model $s_{t+1}=F(s_t,a_t)$
-that structural-dynamics observables (MD ensembles, cryo-EM states, chain-length-conditioned docking)
-would supply. The requirement this hands such an effort is sharp: the policy cannot be learned from
-synthase-local static observables, so the next advance needs either a substantially larger corpus read at
-per-cycle resolution or direct partial observables of the conformational state. The first measurable
+the conformational component of $s_t$ that a synthase-local view cannot, by construction, supply. This casts the problem as a partially-observed control problem in which three of the four objects are
+already known exactly. The state-evolution model $s_{t+1}=F(s_t,a_t)$ \emph{is the executor}: applying
+an operator to the ACP-tethered intermediate is literally $F$, symbolic and exact, not a dynamics model
+to be supplied later. The emission $y=\mathrm{readout}(s_N)$ is known, and the consistent set \zstar{}
+is computable by the verifier. The lone unknown in the entire system is one function, the per-cycle
+policy $\pi_\theta(a\mid s,\phi(G))$---so \emph{the dynamics is the contribution, and only the policy is
+open}.
+
+Over the producible-core subset (\S\ref{sec:manifold})---the cores the current grammar reaches
+exactly---we can size and locate where that open policy is hardest. Walking the consistent set
+\zstar{} as a prefix trie sorts every branch-resolving decision into three kinds: a \emph{clean
+trunk}, where the cycle's action is fixed given the prefix and the executor manufactures a free
+label; \emph{Gate-2} branches, where candidates differ in reduction state and a running substrate
+count resolves them; and \emph{Gate-3} branches, where candidates share a reduction trajectory and
+differ only in the mass-neutral position of a C-methylation---the label-symmetric directions no
+synthase-local static view can break. Across $24$ distinct inference problems (distinct formula and
+cycle-range---three same-formula natural products the formula-level model cannot separate are
+necessarily one problem), each enumerated to completion, Gate-3 is not a uniform tax but a localized
+one, threefold. Over the non-methylating aromatic interior it is \emph{exactly zero}---no Gate-3
+among the $87$ decisions---because without a C-MeT firing label-symmetry is structurally impossible.
+Within the methylating, highly-reducing subclass it is single-digit: the mean methylating chemistry
+routes $7.0\%$ of its clean-or-Gate-3 decisions through Gate-3 (median $6.1\%$, range $2.6$--$17.5\%$
+across the $15$ distinct chemistries; the \zstar-pooled figure is $5.0\%$, weighted toward the single
+large enumeration and reported only for comparability). And within that subclass Gate-3 concentrates
+in the \emph{low-combinatorial} clusters: Gate-2 grows with enumeration size while Gate-3 stays
+chemistry-bounded, so the ratio falls as the absolute count rises (Spearman $-0.61$ and $+0.80$ over
+the $15$ methylating chemistries)---the within-corpus echo of the asymmetry by which Gate-2 is
+combinatorial in the oxidation grammar and Gate-3 is an invariant of the chemistry. The frontier thus
+has a mapped structure---absent over aromatics, single-digit over HR, sharpest in the small
+methylation-ambiguous clusters---and citrinin, at $11.1\%$, sits above that subclass's median: the
+modal sharp case, not a convenient one, which is why \S\ref{sec:structural-rescue} stages the entire
+label-symmetric resolution on it.
+
+What structural-dynamics observables (MD ensembles, cryo-EM states, chain-length-conditioned
+docking) would supply is not $F$ but a coordinate of the policy's \emph{input} $\phi(G)$: the active-site
+conformation that breaks the label-symmetric directions a synthase-local static view cannot. The requirement
+this hands such an effort is sharp: those label-symmetric decisions cannot be learned from
+synthase-local static observables, so closing them needs either a larger corpus read at per-cycle
+resolution---and because the marginal-likelihood loss (\S\ref{sec:structural-rescue}) factorizes over the
+common prefix of \zstar{}, the executor manufactures clean per-cycle labels from terminal-only
+observations, so the training signal scales with total branch-resolved cycles, not with cluster
+count---or direct partial observables of the conformational coordinate. The first measurable
 breakthrough need not be complete product prediction---it would be a single per-cycle decision becoming
 predictable above $0.567$ once cycle-distinguishing state is injected, which the executor would then
 propagate, soundly, through the rest of the program. We take a first empirical step along this axis
@@ -695,6 +730,23 @@ resolving label-distinguishable cases (isoterrein, asperlin) on the same corpus.
 specific work: the substrate counter localizes which cycle is being asked about, the structural
 channel routes within that cycle's pocket-substrate geometry, and the executor bounds the set
 within which either can rule.
+
+This measurement holds within boundaries that must stay sharp, because it has the same shape as the
+coverage boundary one level up: exact over what is reachable, silent about what is not. The figures
+are exact rather than cap-limited---every producible \zstar{} enumerated to completion---so the
+smallness is measured, not assumed. But it is measured only over the cores the grammar can build:
+out-of-grammar chemistry does not surface as Gate-3, it is absent from the producible set entirely,
+so were the genuinely pocket-hard cases to fall disproportionately outside the coverage boundary
+(\S\ref{sec:limits}), the in-grammar frontier would look exactly this thin while a larger one stayed
+hidden. Citrinin is the tell: its full two-methylation biology is out-of-grammar, yet its in-grammar
+shadow already yields one of the sharpest Gate-3 ratios in the corpus ($11.1\%$, above the
+methylating median)---so the pocket-hardest chemistries may be precisely those displaced past the
+coverage boundary, where their Gate-3 is invisible. And a small, located, in-grammar frontier is
+still not a solved one: whether those label-symmetric decisions are recoverable from a \emph{simulated}
+pocket (AF2/MD) or only a \emph{measured} one (cryo-EM) is the citrinin hinge of
+\S\ref{sec:structural-rescue}, and it is unsettled. The conformational frontier over reachable cores
+is sized, placed, and thin; that does not deliver the biology, nor does it yet bound the frontier of
+the cores the grammar cannot build.
 
 \appendix
 \section{Reproducibility}
