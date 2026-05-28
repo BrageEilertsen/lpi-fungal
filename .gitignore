@@ -31,3 +31,6 @@ data/policy/docking/*/cycle_*/placed.sdf
 data/policy/docking/*/cycle_*/complex.pdb
 data/policy/_synthetic_dry_run.pdb
 data/raw/uniprot_cache/
+
+# arXiv submission tarball (derived; regenerate from paper/ sources)
+/arxiv_submission.tar.gz

@@ -1,5 +1,5 @@
 PY ?= .venv/bin/python
-EMAIL ?= brageei@uio.no
+EMAIL ?= your-email@example.com   # NCBI Entrez requires a contact email; override e.g. make data EMAIL=you@inst.edu
 MIBIG_URL = https://dl.secondarymetabolites.org/mibig/mibig_json_4.0.tar.gz
 MIBIG_DIR = data/raw/mibig_json_4.0
 
