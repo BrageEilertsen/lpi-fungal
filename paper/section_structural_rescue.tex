@@ -1,9 +1,4 @@
-% -- §11: empirical structural rescue, dual-engine framing --
-% Insert via \input{section_structural_rescue} between section_duality and Related Work.
-% Operationalizes the "first measurable breakthrough" the Outlook (\S\ref{sec:pomdp}) flags
-% as future work, and reveals the precise mechanism partition that governs it.
-
-\section{Empirical structural rescue: a dual-engine resolution paradigm}
+\section{Empirical degeneracy resolution: a dual-engine policy over the candidate set}
 \label{sec:structural-rescue}
 
 The Outlook (\S\ref{sec:pomdp}) predicts that the fungal per-cycle policy is
@@ -59,7 +54,7 @@ dominant mass on the biologically authentic pathway. The pose
 channel adds geometric noise to an architecture the substrate counter has already
 decoded.
 
-\emph{Geometric Rescue Engine (label-symmetric candidates).} When the candidates share
+\emph{Geometric Resolution Engine (label-symmetric candidates).} When the candidates share
 an \emph{identical} reduction-label sequence and differ only in the cycle index of a
 mass-budget-neutral event---e.g., citrinin's two candidates both reduce to
 $(\mathrm{dh},\mathrm{keto},\mathrm{keto},\mathrm{keto},\mathrm{keto})$ and differ only
@@ -69,9 +64,12 @@ likelihood gradient is symmetric under $(\text{cand}_1\leftrightarrow\text{cand}
 held-out entropy under the substrate channel locks at $0.69 = \log 2$ to numerical
 precision. The pose channel alone barely moves it ($0.64$); the static cavity geometry
 without temporal context cannot localize which cycle's geometry it is measuring. The
-two channels \emph{jointly} drop the entropy to $0.01$ with the model committing
-${\sim}99.9\%$ probability mass to one specific candidate. This is the regime where the
-structural channel is not merely helpful but architecturally necessary.
+two channels \emph{jointly} drop the entropy to $0.01$, the model committing
+${\sim}99.9\%$ of its mass to one of the two candidates. The structural channel supplies the
+only signal that can break this label-symmetry---the substrate channel provably cannot---but
+both candidates lie outside the grammar's reach at this formula (the in-vivo citrinin program
+requires two C-MeT events; see below), so this is disambiguation \emph{within} $\zstar$, not
+recovery of the authentic product.
 
 \begin{table}[h]
 \centering\small
@@ -90,8 +88,9 @@ asperlin   ($|\zstar|{=}5$, $\log 5{=}1.61$)   & $\mathbf{0.38}$           & $1.
 \textsuperscript{*}Citrinin's substrate-prefix entropy locks at exactly $\log 2$
 because its two candidates share an identical reduction-label sequence and differ
 only in C-MeT cycle index; the marginal-likelihood gradient is symmetric under
-candidate exchange. The pose channel is architecturally necessary precisely
-where the substrate channel hits this symmetry wall.}
+candidate exchange. The pose channel supplies the only signal that resolves this
+symmetry wall (the substrate channel provably cannot)---a disambiguation among
+in-grammar candidates, not recovery of the out-of-grammar authentic product.}
 \label{tab:rescue}
 \end{table}
 
@@ -103,8 +102,9 @@ where the substrate channel hits this symmetry wall.}
 feature regimes. The substrate-prefix channel resolves assets with
 label-distinguishable reduction sequences (isoterrein to $0.05$, asperlin to $0.38$). For label-symmetric
 candidates sharing identical reduction trajectories (citrinin), the sequence channel
-encounters a permanent symmetry wall ($\log 2$), which is cleanly shattered
-($H_{\mathrm{held}}\to 0.01$) only upon the introduction of $3$D pose cavity descriptors.
+encounters a permanent symmetry wall ($\log 2$) that only $3$D pose cavity descriptors
+resolve ($H_{\mathrm{held}}\to 0.01$)---disambiguating the two in-grammar candidates, not
+recovering the authentic product, which is out-of-grammar at this formula.
 \textbf{(B)}~Joint posterior probability distributions for isoterrein and asperlin. The
 multi-channel framework consistently routes mass to the biologically authentic pathway:
 isoterrein's $(\mathrm{dh},\mathrm{dh},\mathrm{keto})$ early-reduction TerA polyene
@@ -135,7 +135,7 @@ posterior ${\sim}0$: asperlin is a lactone, not an aromatic, and the substrate-p
 weighting under marginal-likelihood training correctly disfavours the wrong ring
 topology. Both are directional positives.
 
-For \emph{citrinin}, where the structural-rescue engine commits with posterior $0.999$
+For \emph{citrinin}, where the geometric resolution engine commits with posterior $0.999$
 to a specific candidate, the literature establishes a different fact:
 heterologous-expression studies of CitS yield a \emph{trimethylated} pentaketide
 aldehyde requiring \emph{two} C-MeT events (one triketide, one pentaketide)
@@ -159,8 +159,8 @@ catalytic manifold---so $G$ is constant and $s_t$ must be decoded from the subst
 prefix or the static pocket---bacterial type~I modular PKS encode each catalytic step
 into its own physical module with its own primary sequence: the temporal index is built
 into the sequence text. The dual-engine framework predicts that the substrate channel
-alone should suffice on bacterial systems (there are no label-symmetric walls to shatter),
-and adding a structural rescue channel should be largely redundant.
+alone should suffice on bacterial systems (there are no label-symmetric walls to break),
+and adding a structural channel should be largely redundant.
 
 We test the prediction on the ClusterCAD bacterial type~I corpus: $1039$ KR-bearing
 modules across $118$ clusters, with per-module reduction state (active KR $\to$ reduced,
@@ -195,13 +195,18 @@ ceiling because per-module sequence variation natively encodes which KRs fire.}
 The ESM channel alone passes the substrate channel's ceiling by $+10$ on whole-program
 recovery, and it does so without any AlphaFold conditioning. The bacterial control flow
 is decodable from the per-module sequence because that sequence \emph{is} the temporal
-index that the fungal architecture compresses away.
+index that the fungal architecture compresses away. This recovery is of the
+\emph{authentic} program: the true per-module reduction pattern lies within the candidate
+set, so here resolution \emph{is} recovery---the directional-positive regime of isoterrein
+and asperlin above---whereas citrinin is the contrasting case, its authentic product
+out-of-grammar, where the same machinery can only disambiguate candidates none of which is
+biological.
 
 The cross-taxa contrast is precise. \textbf{Bacterial modular PKS encode per-cycle
 control flow in the sequence text} (one module per step, per-module sequence variation
 $\to$ ESM does the temporal indexing). \textbf{Fungal iterative PKS encode per-cycle
 control flow in the pocket geometry} (one sequence reused across cycles $\to$ the
-structural rescue channel does the temporal indexing that the bacterial sequence
+structural channel does the temporal indexing that the bacterial sequence
 channel does natively). Both follow the same $a_t \sim P(a_t \mid G, s_t)$ policy
 with the channel partition determined by the architectural locus of the temporal index.
 The two taxa are dual: bacteria solve the iteration problem by writing the program into
@@ -213,7 +218,7 @@ framework empirically corroborates both.
 $s_t$, in the form the Outlook predicted, but the decomposition reveals that each
 channel does specific work and the architectural locus of $s_t$ determines which channel
 does it. For fungal label-symmetric candidates (citrinin), $s_t$ lives in the pocket
-conformation around the static synthase, and the structural-rescue channel is the only
+conformation around the static synthase, and the structural channel is the only
 way in. For fungal label-distinguishable candidates (isoterrein, asperlin) and for
 bacterial modular cycles, $s_t$ lives in a channel the substrate/sequence side can read
 directly. The neuro-symbolic architecture compounds across both regimes: the sound
@@ -225,6 +230,3 @@ whose symbolic core would not distinguish label-symmetric candidates absent the
 structural channel---two complementary halves of one neuro-symbolic loop, with the
 empirical partition between them traced precisely to where each taxon places its
 per-cycle state variable.
-
-% References to add to the bibliography (already added):
-% \citep{storm2017citrinin}

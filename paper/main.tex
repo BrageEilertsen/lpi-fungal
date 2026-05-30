@@ -279,7 +279,7 @@ polyketides. Single-mode cyclization---lactonization, the small-aromatic aldol (
 6-MSA) and the mellein dihydroisocoumarin---is implemented; the five-class PT-domain
 regiochemistry of large NR-PKS and the lovastatin Diels--Alder are deliberately scoped out and
 flagged. The executor is a pure, deterministic function validated within the project's regression
-suite ($116$ tests).
+suite ($161$ tests).
 
 \begin{figure}[t]
 \centering
@@ -386,9 +386,6 @@ Tenellin backbone (TenS) & HR & acetyl $+$ 4 cycles ($+$NRPS) & Phase-2 trace \\
 \end{tabular}
 \end{table}
 
-% --- §3 (characterizing the manifold) supersedes the old three-tier reconstruction and the
-% "grammar mismatch is the data deficit" sections; the wall decomposition and the conceptual
-% result are folded into the manifold characterization. ---
 \input{section3_manifold}
 
 \section{Mining: genome and metabolome}
@@ -462,11 +459,6 @@ unique candidate is exactly 6-methylsalicylic acid (rank~$1$). A real EI-MS spec
 EI rather than LC-MS/MS it serves as a mass sanity reference, not a fragmentation rung, and since
 the mass alone is already decisive we report the MS/MS rung as not applied rather than simulate it.
 This is one clean real-cluster case, not a benchmark.
-
-% --- The cross-taxa transfer probe (1.00 with active domains / 0.567 from the fixed domain set)
-% and its structural explanation, plus the homology-clean bacterial ESM-2 sequence result, now live
-% in §3.4 of the manifold characterization (section3_manifold.tex). The stale "blocked on data
-% access" paragraph and Appendix B are removed: the experiment was run (XHR-header fix). ---
 
 \section{Generality across grammars}
 \label{sec:crossgrammar}
@@ -587,7 +579,7 @@ design--build--test loop the planner opens. With that scope fixed once, the spec
 \item \textbf{Partial executor coverage.} Single-mode cyclization plus a tetraketide-aromatic and
 a PT-naphthalene class (skeleton-correct; hydroxyl regiochemistry flagged) are implemented; the
 remaining PT-aromatic classes, the Diels--Alder, and macrolactonization are not. Thus the
-$95/99$ core-unreachable count is partly executor coverage and partly true rearrangement.
+$205$ in-scope cores the grammar does not reach (\S\ref{sec:census}) are partly executor coverage and partly true rearrangement.
 \item \textbf{Additive-only tailoring.} The $\sim\!12$ edit types are additive and the joint
 verifier is ``exact-by-budget'' (skeleton embedding $+$ $\Delta$-formula $+$ gene/parsimony
 budget), threshold-free but not yet full atom-by-atom positional reconstruction (positions affect
@@ -808,10 +800,16 @@ Python~$3.12$, RDKit~$2025.9.6$; optional \texttt{torch}/\texttt{transformers} f
 cross-taxa transfer and ESM-2 components. Each result maps to one command:
 \code{make data} (the $326$ pairs), \code{make roundtrip} (executor gate),
 \code{make search} (the verifier and \zstar{}), \code{make reachability} (exact-match $9/326$),
+\code{make census} (the \S\ref{sec:census}/Appendix~\ref{app:census} census: partition, set-cover,
+MECE, and the cap-lifted $0$-of-$91$ re-scan), \code{make two-walls} (the \S\ref{sec:wall}
+$\sim$9\%/61\% subclass wall split),
 \code{make corematch} (the core-match sensitivity), \code{make phase0c} (tailoring-latent
 $7/107$), \code{make seqhead} (the bacterial sequence-head table of \S\ref{sec:structural-rescue};
 read-only over the committed ESM-2 embedding cache---regenerating embeddings needs the pinned
-\texttt{esm2\_t6\_8M} and may differ at the last digit), \code{make clustercad} and
+\texttt{esm2\_t6\_8M} and may differ at the last digit),
+\code{make structural-rescue} (the \S\ref{sec:structural-rescue} dual-engine
+Table~\ref{tab:rescue}/Fig.~\ref{fig:rescue}), \code{make gate-frontier} (the \S\ref{sec:pomdp}
+Gate-3 frontier: $24$ distinct keys, $|\zstar|$ Spearman), \code{make clustercad} and
 \code{make differential} (the cross-taxa transfer probe),
 \code{make crossgrammar}, \code{make observability}, and \code{make realdemo} (the cross-grammar
 PKS/NRPS/hybrid demo, the candidate-collapse observability benchmark, and the blind real-cluster
@@ -819,15 +817,29 @@ PKS/NRPS/hybrid demo, the candidate-collapse observability benchmark, and the bl
 geometry and experiment-selection planner are reproduced by \code{scripts/worked\_design\_6msa.py}
 and \code{scripts/planner\_tree\_figure.py} (Figures~\ref{fig:worked}--\ref{fig:trees}); the per-step
 vs.\ pooled control behind the structural-wall claim (\S\ref{sec:wall}) by
-\code{scripts/explorations/bacterial\_control.py}. The tagged
-milestones (\texttt{lpi-v0.2-cross-grammar} through \texttt{lpi-v0.17-homology-clean}, including
-\texttt{v0.14-curated-cost-basis}, \texttt{v0.15-planner}, \texttt{v0.16-sequence-head}, and
-\texttt{v0.17-homology-clean}), per-result numbers, scripts, and commits are available in the public
+\code{scripts/explorations/bacterial\_control.py}.
+
+The results-producing targets fall into two reproduction tiers. The structural results regenerate
+end-to-end from a clean clone (\code{reachability}, \code{census}, \code{two-walls}, \code{corematch},
+\code{phase0c}, \code{crossgrammar}, \code{observability}, \code{realdemo}); the sequence- and
+pose-conditioned results instead reproduce from \emph{committed} model intermediates---\code{seqhead}
+over the ESM-2 embedding cache, \code{structural-rescue} over the AlphaFold2 pose descriptors, and
+\code{gate-frontier} over the inference inventory---shipped so the expensive fold/embedding step need
+not rerun; the learned heads (\code{seqhead}, \code{structural-rescue}) matched to the last digit on the
+reference build, and a different \texttt{torch}/BLAS build may differ in the final digit. (\code{data},
+\code{figures}, and \code{test} are infrastructure, not results-bearing.)
+
+The tagged
+milestones (\texttt{lpi-v0.2-cross-grammar} through the submission tag \texttt{lpi-v0.23-journal}, including
+\texttt{v0.14-curated-cost-basis}, \texttt{v0.15-planner}, and \texttt{v0.16-sequence-head}),
+per-result numbers, scripts, and commits are available in the public
 repository: \url{https://github.com/BrageEilertsen/lpi-fungal}.
 
-% --- Former Appendix B ("ESM-2 sequence head: built, blocked on data access") removed. The data
-% blocker (ClusterCAD AJAX endpoint) was resolved via an X-Requested-With header; the experiment was
-% run and its homology-clean result (0.85 balanced accuracy at 70% identity) is reported in §3.4. ---
+\paragraph{Software development.} The implementation and the experiments reported here were developed
+with an AI coding assistant (Claude Code). The paper's guarantees are properties of the artifact, not of
+how it was written: the executor is sound by construction (\S\ref{sec:executor}) and the verifier returns
+the exact consistent set $\zstar$ (\S\ref{sec:verifier}), so every reported number reproduces from the
+single documented commands above. Experimental design and scientific interpretation are the author's.
 
 \section{The coverage census (full $326$)}\label{app:census}
 \small
@@ -935,8 +947,8 @@ biosynthetic gene cluster curation through global collaboration.
 \bibitem[Kautsar et al.(2021)]{bigslice} S.~A.~Kautsar, J.~J.~J. van der Hooft, D. de Ridder, and
 M.~H. Medema. BiG-SLiCE: a highly scalable tool maps the diversity of 1.2 million biosynthetic gene
 clusters. \emph{GigaScience}, 10(1):giaa154, 2021.
-\bibitem[CHAMOIS(2025)]{chamois} Machine learning inference of natural product chemistry across
-biosynthetic gene cluster types (CHAMOIS). \emph{bioRxiv}, 2025.
+\bibitem[Larralde et al.(2025)]{chamois} M.~Larralde et al. Machine learning inference of natural
+product chemistry across biosynthetic gene cluster types (CHAMOIS). \emph{bioRxiv}, 2025.
 \url{https://doi.org/10.1101/2025.03.13.642868}.
 \bibitem[Ma et al.(2009)]{ma2009} S.~M.~Ma, J.~W.-H.~Li, J.~C.~Vederas, Y.~Tang, et al. Complete
 reconstitution of a highly reducing iterative PKS (lovastatin nonaketide synthase LovB/LovC).
@@ -954,8 +966,6 @@ protein structure with a language model (ESM-2/ESMFold). \emph{Science}, 379(663
 2023.
 \bibitem[Landrum et al.(2025)]{rdkit} G.~Landrum et al. RDKit: open-source cheminformatics (version
 2025.09.6), 2025. \url{https://www.rdkit.org}.
-% --- design-section (§6) references: cox2023 \& fisch2011 verified; the remaining three carry
-% verified PMIDs/DOIs with author lists still to complete from data/curation/edit_precedent.md ---
 \bibitem[Cox(2023)]{cox2023} R.~J. Cox. Curiouser and curiouser: progress in understanding the
 programming of iterative highly-reducing polyketide synthases. \emph{Nat. Prod. Rep.}, 40:9--27, 2023.
 doi:10.1039/D2NP00007E.
@@ -975,13 +985,11 @@ reductive loop swaps in modular polyketide synthases. \emph{ChemBioChem}, 9(16):
 doi:10.1002/cbic.200800332.
 \bibitem[Yuzawa et al.(2018)]{yuzawa2018} S. Yuzawa, T.~W.~H. Backman, J.~D. Keasling, and L. Katz.
 Synthetic biology of polyketide synthases. \emph{J. Ind. Microbiol. Biotechnol.}, 45(7), 2018.
-% --- §10 duality, cross-family-prediction references (web-verified) ---
 \bibitem[Repka et al.(2017)]{repka2017} L.~M. Repka, J.~R. Chekan, S.~K. Nair, and W.~A. van der Donk.
 Mechanistic understanding of lanthipeptide biosynthetic enzymes. \emph{Chem. Rev.}, 117(8):5457--5520,
 2017. doi:10.1021/acs.chemrev.6b00591.
 \bibitem[Donia et al.(2008)]{donia2008} M.~S. Donia, J. Ravel, and E.~W. Schmidt. A global assembly line
 for cyanobactins. \emph{Nat. Chem. Biol.}, 4:341--343, 2008. doi:10.1038/nchembio.84.
-% --- §11 structural-rescue references ---
 \bibitem[Storm and Townsend(2017)]{storm2017citrinin} P.~M. Storm and C.~A. Townsend.
 Functional and structural analysis of programmed C-methylation in the biosynthesis of the fungal polyketide
 citrinin. \emph{Cell Chemical Biology}, 24(3):316--325, 2017. doi:10.1016/j.chembiol.2017.02.005.

@@ -45,7 +45,7 @@ def subclass(nC, arom_c, nO, nN, nH):
 
 def main():
     pairs = pd.read_parquet("data/processed/fungal_pks_pairs.parquet")
-    reach = pd.read_csv("results/reachability_v2.csv").set_index("bgc_id")["status"].to_dict()
+    reach = pd.read_csv("results/reachability.csv").set_index("bgc_id")["status"].to_dict()
     by_sub = Counter()
     reach_by_sub = Counter()
     cyc_limited = Counter()  # aromatic + unreachable = cyclization-limited

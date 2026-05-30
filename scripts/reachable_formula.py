@@ -28,7 +28,7 @@ GENERIC = Alphabet(
 
 
 def main():
-    reach = pd.read_csv("results/reachability_v2.csv")
+    reach = pd.read_csv("results/reachability.csv")
     pairs = pd.read_parquet("data/processed/fungal_pks_pairs.parquet").set_index("bgc_id")
     rows = []
     for _, r in reach[reach.status == "reachable"].iterrows():

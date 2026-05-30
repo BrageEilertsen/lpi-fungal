@@ -58,3 +58,15 @@ clean:
 
 seqhead:
 	PYTHONPATH=src $(PY) scripts/explorations/bacterial_esm_demo.py > results/seqhead.log
+
+census:
+	PYTHONPATH=src $(PY) scripts/coverage/oog_census.py
+
+structural-rescue:
+	PYTHONPATH=src $(PY) scripts/policy/render_structural_rescue_figure.py
+
+two-walls:
+	PYTHONPATH=src $(PY) scripts/two_walls.py
+
+gate-frontier:
+	PYTHONPATH=src $(PY) scripts/policy/gate_frontier_dedup.py
