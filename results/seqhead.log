@@ -1,0 +1,14 @@
+Bacterial ESM head -- sequence policy vs domain cartoon
+(118 clusters, 1039 KR-modules; 77 silent KRs; leave-cluster-out)
+
+  LEAKAGE-PROOF CONTRAST (headline):
+    whole-program recovery:  cartoon 60/118 = 0.508  ->  ESM 70/118 = 0.593   (+10, sequence alone)
+    silent-KR clusters:      cartoon 0/58  ->  ESM 31/58   (gene content cannot distinguish a silent from an active KR)
+
+  Per-module accuracy (context, NOT the headline -- dominated by the active majority):
+    (1) domain cartoon              0.926  [= 962/1039, the active-majority null: 'predict all fired']
+    (2) ESM policy alone            0.934
+    (3) ESM + oracle active count   0.975  [oracle = TRUE count; mass constrains the total, not the per-module pattern; headroom, NOT a mass result]
+
+  Evaluation: leave-cluster-out, not homology-partitioned. Beating the all-fired null is
+  sub-homology signal -- active-vs-silent turns on local catalytic motifs, not fold identity.

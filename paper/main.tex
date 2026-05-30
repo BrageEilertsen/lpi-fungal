@@ -52,13 +52,19 @@ directions. \emph{Forward}, a deterministic executor renders a program to a stru
 \emph{inverse}, a beam verifier returns the exact set $Z^\star$ of legal programs consistent with the
 observables, as a typed verdict---\textsc{verified}, \textsc{under-observed} (naming the next
 observable that would collapse $Z^\star$), or \textsc{out-of-grammar}. Run inverse across all $326$
-fungal PKS in MIBiG~4.0, exact reconstruction reaches $8/326$---not a disappointment but the
+fungal PKS in MIBiG~4.0, exact reconstruction reaches $9/326$---not a disappointment but the
 \emph{boundary} of the natural manifold the engine operates over (a tailoring-latent reformulation
-recovers $64\%$ conditional on a producible core)---and a cross-taxa transfer probe locates its one
+verifies $7/107$ clusters; where a core is producible, tailoring resolves near-uniquely)---and a cross-taxa transfer probe locates its one
 hard axis: per-cycle reduction chemistry transfers at $1.00$ within a fixed domain set but collapses
 to $0.567$ across the iteration program---bacterial modular and fungal iterative PKS thus instantiate two
 computational regimes of catalytic control: \emph{externalized} per-step state (one module per step,
-learnable) versus \emph{compressed}, state-dependent routing through one reusable manifold.
+learnable) versus \emph{compressed}, state-dependent routing through one reusable manifold. A corpus-wide coverage census then makes that boundary
+defensible rather than asserted: a cap-lifted re-scan shows it genuine ($0$ of $91$ large cores
+reachable, not a scan artifact), and the out-of-grammar remainder sorts onto a \emph{sound-expressibility}
+ladder on which $178$ of the $205$ in-scope cores ($87\%$) touch a family whose sound expressibility is
+unproven---so sound extension with no new regiochemistry adds no further buildable core, and ``unsolved''
+becomes a located map of which
+gaps are buildable, which are open research, and which need a different grammar.
 
 Run \emph{backward}, the same engine becomes a design tool. We place a desired molecule on a
 \emph{realizability geometry} against the natural manifold, decomposed onto two axes that map to
@@ -143,9 +149,9 @@ engine into a design tool, and cross-grammar demonstrations. Our contributions a
 deterministic executor and beam verifier returning the exact consistent program set \zstar{}
 behind one observable-constrained interface (Sections~\ref{sec:executor}--\ref{sec:verifier}).
 \item A \textbf{deterministic reconstructibility analysis} of fungal iterative PKS over MIBiG~4.0
-(Section~\ref{sec:manifold}): exact-match $8/326$, a core-match \emph{sensitivity} showing
-structural-similarity proxies are unreliable, and a tailoring-latent reformulation ($7/106$;
-$64\%$ conditional on a producible core), with a curated literature benchmark
+(Section~\ref{sec:manifold}): exact-match $9/326$, a core-match \emph{sensitivity} showing
+structural-similarity proxies are unreliable, and a tailoring-latent reformulation ($7/107$ verified
+near-uniquely; where a core is producible, tailoring resolves near-uniquely), with a curated literature benchmark
 (Section~\ref{sec:benchmark}) and a cross-taxa transfer probe of the iteration-grammar wall
 (Section~\ref{sec:manifold}).
 \item A \textbf{shared metabolomics observability layer} (Section~\ref{sec:mining}): an
@@ -172,6 +178,15 @@ grammars and predicted to survive on RiPP (Corollary~\ref{cor:crossfamily}).
 / \textsc{out-of-grammar}) in which the \textsc{under-observed} state names the next observable that
 would collapse $Z^\star$, resting on a failure-mode taxonomy (operator coverage, hidden iterative
 control, tailoring under-constraint, non-local structure) that replaces a single accuracy score.
+\item A \textbf{located coverage map and sound-expressibility criterion}
+(\S\ref{sec:census}, \S\ref{sec:limits}, Appendix~\ref{app:census}): a corpus-wide census partitions the
+$326$ into reachable ($9$), in-scope CHO ($205$), and heteroatom scope-boundary ($112$), a cap-lifted
+re-scan confirming the boundary is genuine ($0/91$ large cores reachable); a structural-proxy set-cover
+(an explicit upper bound) shows $178$ of $205$ ($87\%$) touch a family whose sound expressibility is
+unproven; and a single criterion---an operator is soundly expressible iff its formula-invariant degree
+of freedom is a computable function of recoverable cluster features---places each missing operator on a
+cost ladder (rung~$0$--$4$), making the limitations a theory of which gaps are buildable, which are open
+research, and which are soundly inexpressible.
 \end{enumerate}
 
 \begin{figure}[t]
@@ -598,21 +613,58 @@ verifier with a cosmetic window) alongside the exact one---validation against re
 being the open step.
 \end{itemize}
 
+\paragraph{A theory of where the hardness lives: sound expressibility on a cost ladder.} The roadmap
+below is not a TODO list but a placement of each missing operator on one criterion: \textbf{an operator
+is soundly expressible from $\varphi$ iff the formula-invariant degree of freedom it must resolve is a
+computable function of the recoverable cluster features $\varphi(B)$.} Soundness (mass) is free by
+construction; $\simeq$-correctness is the bite; the DOF is exactly where the two diverge---ring-oxygen
+position for aromatics, ring size for macrolactones. Fixing $\varphi$ as the cluster (the stated problem
+is BGC$\to$product) places each class on a cost ladder beneath a scope prior: \textbf{rung~0}, the
+determinant is \emph{trans}-acting and so outside cluster-$\varphi$---a scope failure no per-cluster
+operator repairs; \textbf{rung~1}, fixed by the linear precursor (free); \textbf{rung~2}, a sequence-keyed
+rule (the PT-clade regiochemistry, classified and prospectively verified from sequence
+\citep{ptregio}); \textbf{rung~3}, recoverable only through fold/dynamics (AF2$\to$MD/QM) at escalating,
+possibly ruinous cost (the label-symmetric Gate-3 frontier of \S\ref{sec:pomdp} is the measured rung-3
+instance); \textbf{rung~4}, \emph{soundly inexpressible}---no function of any cluster feature
+exists, reached only by an intrinsic product \emph{mixture} (a within-enzyme collision: one sequence, one
+substrate, $\ge2$ products) or an \emph{extra-genomic} determinant. The impossibility bar is thus high
+and narrow: a \emph{trans} enzyme encoded elsewhere in the genome is rung~0, and kinetic/dynamic selection
+is a costly rung~3, so the honest ceiling is ``expressible at escalating cost almost everywhere,'' with a
+small, characterized floor. (Citrinin's two-C-methylation program, by contrast, is a \emph{coverage}
+gap---out-of-grammar at its formula, \S\ref{sec:pomdp}---not a within-grammar rung-4 mixture; the two
+must not blur.) This is what makes the census of \S\ref{sec:census} a map rather than a tally:
+aromatic cyclization is a \emph{resolved} rung-2 class (the predictive PT map places orsellinic and 6-MSA
+among the reachable nine); macrolactonization---the dominant in-scope family ($176/205$)---is
+\emph{located} but not resolved (rung~0 passes for the \emph{cis} resorcylic-acid-lactone thioesterases,
+and the rung-4 mixture route is closed by the regiospecific zearalenone TE, leaving rungs~2--3 at a cost
+not yet measured); and the $178$ of $205$ ($87\%$) that touch a hard family are exactly the
+rung-2/3-and-open operators, while the rung-2 closures generalize cleanly---the orsellinic C2$\to$C7
+closure extends to a pentyl starter, building olivetolic acid's $\beta$-resorcylic core (now among the
+reachable nine; Table~\ref{tab:crossgrammar})---so sound, no-new-regiochemistry extension adds no further
+core beyond the nine. The
+discriminators that assign a rung---cis-vs-trans annotation (rung~0), the within-enzyme collision
+(rung~4), and a structure-vs-sequence experiment with the chain regressed out (rung~2-vs-3)---each carry
+catalogued false-read failure modes (deposition bias, phylogenetic confounding, static-fold blindness),
+so a rung is a verdict to be earned per class, not read off structure (Appendix~\ref{app:census}).
+
 \begin{table}[h]
 \centering\small
-\caption{Executor-coverage roadmap: operator extensions and the product classes they would
-unlock, turning ``partial coverage'' from a limitation into a prioritised programme.}
+\caption{Executor-coverage roadmap, placed on the sound-expressibility ladder
+(\S\ref{sec:limits}, Appendix~\ref{app:census}): each operator extension carries the \emph{kind} of
+hardness (its rung), not a vague difficulty label---turning ``partial coverage'' from a limitation into a
+prioritised programme with a theory of which gaps are buildable, which are open research, and which
+belong to a different grammar.}
 \label{tab:roadmap}
-\begin{tabular}{@{}lll@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.29\textwidth}>{\raggedright\arraybackslash}p{0.36\textwidth}@{}}
 \toprule
-Operator extension & Unlocks & Difficulty / risk \\
+Operator extension & Unlocks & Sound-expressibility rung \\
 \midrule
-more small-aromatic closures & many NR/PR aromatics & low \\
-PT-domain regiochemistry classes & larger aromatic folds & medium \\
-macrolactonization & resorcylic-acid lactones, macrocycles & medium \\
-PKS--NRPS handoff checkpoint & hybrid cores & high \\
-oxidative skeletal rearrangement & aflatoxin / sterigmatocystin & high (ambiguous) \\
-dimerization / depside coupling & non-local products & high (non-local) \\
+more small-aromatic closures & many NR/PR aromatics & rung 2 (resolved; sequence-keyed) \\
+PT-domain regiochemistry classes & larger aromatic folds & rung 2 (predictive, PT-clade) \\
+macrolactonization & resorcylic-acid lactones, macrocycles & rung 2--3 (located; cost open) \\
+oxidative skeletal rearrangement & aflatoxin / sterigmatocystin & rung 3 / open (soundness unproven) \\
+PKS--NRPS handoff checkpoint & hybrid cores & scope boundary (different grammar) \\
+dimerization / depside coupling & non-local products & non-local scope (off the per-program ladder; unassessed) \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -624,7 +676,7 @@ inverse compiler over that space serves three jobs on one spine $y=\mathrm{Exec}
 \emph{forward} it renders programs to structures; run \emph{inverse} it reconstructs known products
 and assigns them to metabolome peaks, returning a typed verdict rather than a single accuracy score;
 run \emph{backward} it designs. The diagnostic half characterizes the natural manifold the engine
-operates over---exact reconstruction at $8/326$ is its \emph{boundary} (not a disappointment), the
+operates over---exact reconstruction at $9/326$ is its \emph{boundary}---the sharp edge of the current grammar's reach, not a low score---the
 $1.00\!\to\!0.567$ cross-taxa collapse its one hard axis, and structural-similarity proxies are shown
 \emph{not} to be reconstructibility metrics. The contribution is what the backward direction buys: a
 \emph{realizability geometry} that scores any target molecule by its edit distance to that manifold
@@ -725,8 +777,8 @@ predictable above $0.567$ once cycle-distinguishing state is injected, which the
 propagate, soundly, through the rest of the program. We take a first empirical step along this axis
 in \S\ref{sec:structural-rescue}: AlphaFold2-conditioned pocket descriptors injected alongside the
 substrate-prefix index resolve the label-symmetric C-methylation degeneracy in citrinin from
-$H=\log 2$ to $H=0.01$ on held-out evaluation, with a complementary substrate channel cleanly
-resolving label-distinguishable cases (isoterrein, asperlin) on the same corpus. The two engines do
+$H=\log 2$ to $H=0.01$ on held-out evaluation, with a complementary substrate channel resolving the
+label-distinguishable cases (isoterrein to $0.05$, asperlin to $0.38$) on the same corpus. The two engines do
 specific work: the substrate counter localizes which cycle is being asked about, the structural
 channel routes within that cycle's pocket-substrate geometry, and the executor bounds the set
 within which either can rule.
@@ -755,9 +807,12 @@ the cores the grammar cannot build.
 Python~$3.12$, RDKit~$2025.9.6$; optional \texttt{torch}/\texttt{transformers} for the
 cross-taxa transfer and ESM-2 components. Each result maps to one command:
 \code{make data} (the $326$ pairs), \code{make roundtrip} (executor gate),
-\code{make search} (the verifier and \zstar{}), \code{make reachability} (exact-match $8/326$),
+\code{make search} (the verifier and \zstar{}), \code{make reachability} (exact-match $9/326$),
 \code{make corematch} (the core-match sensitivity), \code{make phase0c} (tailoring-latent
-$7/106$), \code{make clustercad} and \code{make differential} (the cross-taxa transfer probe),
+$7/107$), \code{make seqhead} (the bacterial sequence-head table of \S\ref{sec:structural-rescue};
+read-only over the committed ESM-2 embedding cache---regenerating embeddings needs the pinned
+\texttt{esm2\_t6\_8M} and may differ at the last digit), \code{make clustercad} and
+\code{make differential} (the cross-taxa transfer probe),
 \code{make crossgrammar}, \code{make observability}, and \code{make realdemo} (the cross-grammar
 PKS/NRPS/hybrid demo, the candidate-collapse observability benchmark, and the blind real-cluster
 6-MSA mining demo), \code{make figures}, and \code{make test} ($161$ tests); the realizability
@@ -773,6 +828,83 @@ repository: \url{https://github.com/BrageEilertsen/lpi-fungal}.
 % --- Former Appendix B ("ESM-2 sequence head: built, blocked on data access") removed. The data
 % blocker (ClusterCAD AJAX endpoint) was resolved via an X-Requested-With header; the experiment was
 % run and its homology-clean result (0.85 balanced accuracy at 70% identity) is reported in §3.4. ---
+
+\section{The coverage census (full $326$)}\label{app:census}
+\small
+These tables support \S\ref{sec:census}: the partition (Table~\ref{app:tab:partition}), the set-cover
+concentration (Table~\ref{app:tab:cover}), and the mutually-exclusive entanglement decomposition
+(Table~\ref{app:tab:mece}). Three caveats govern every count. Counts are \emph{exact over the executor's
+reach}---a boundary of the current sound grammar's reach, never a biological limit on the manifold. The
+corpus is the \emph{MIBiG-deposited} manifold, biased toward well-studied (often heavily tailored)
+compounds. And the set-cover and operator-class views are structural-feature \emph{proxies} and explicit
+\emph{upper bounds} on recovery (a core counts as proxy-recovered when all its tagged operator classes
+are present---necessary, not sufficient), not measured recovery; the steepness measures how few chemical
+\emph{families} the demand falls into, not how few operators a solution needs. The operator-class
+tagger counts heterocyclic (lactone) rings, not only all-carbon rings: an all-carbon-only tagger
+miscounts the resorcylic-acid-lactone family as clean-aromatic rather than
+aromatic-plus-macrolactonization (entangled), inflating the clean single-class count, so the
+heterocycle-aware tagger used throughout is the conservative choice (fewer clean, more entangled). It
+counts $22$ clean single-class aromatic cores and $97/205$ ($47\%$) entangled.
+
+\begin{table}[h]\centering\small
+\begin{tabular}{lrl}
+\toprule
+class & cores & kind of hardness \\
+\midrule
+reachable (exact)            & $9$   & built today \\
+CHO, in-scope                & $205$ & add a polyketide tailoring operator (\S\ref{sec:limits}) \\
+\quad confirmed unreachable  & $202$ & \\
+\quad inconclusive (budget)  & $3$   & reachability not exhaustively confirmed \\
+heteroatom, scope boundary   & $112$ & a different grammar (NRPS-hybrid / halogenase) \\
+\midrule
+total                        & $326$ & MIBiG-deposited, study-biased \\
+\bottomrule
+\end{tabular}
+\caption{The coverage partition (certified). Counts are exact over the executor's reach; the corpus is
+the MIBiG-deposited manifold.}
+\label{app:tab:partition}
+\end{table}
+
+\begin{table}[h]\centering\small
+\begin{tabular}{rlr}
+\toprule
+\#operator classes & + class added & cumulative proxy-recovered (of $205$) \\
+\midrule
+1 & non\_aromatic\_ring/rearrangement  & $83$  \,($40\%$) \\
+2 & aromatic\_cyclization              & $158$ \,($77\%$) \\
+3 & oxidative\_tailoring               & $186$ \,($91\%$) \\
+4 & prenylation                        & $196$ \,($96\%$) \\
+5 & other\_formula                     & $202$ \,($99\%$) \\
+6 & other\_topology                    & $205$ \,($100\%$) \\
+\bottomrule
+\end{tabular}
+\caption{In-scope recovery, greedy set-cover. \textbf{Structural-proxy upper bound}, not measured
+recovery: concentration into a few coarse families is the signal; the per-step counts are not a count of
+buildable operators. The dominant family is non-aromatic ring / macrolactonization, not aromatic
+cyclization.}
+\label{app:tab:cover}
+\end{table}
+
+\begin{table}[h]\centering\small
+\begin{tabular}{lrr}
+\toprule
+operator-class set & cores & \% of $205$ \\
+\midrule
+clean aromatic (aromatic cyclization only)              & $22$  & $11$ \\
+single hard (rearrangement / oxidation / formula only)  & $83$  & $40$ \\
+single soft (topology / prenylation only)               & $3$   & $1$  \\
+aromatic $+$ hard (entangled)                           & $85$  & $41$ \\
+other entangled (two classes)                           & $12$  & $6$  \\
+\midrule
+total                                                   & $205$ & $100$ \\
+\bottomrule
+\end{tabular}
+\caption{Canonical mutually-exclusive decomposition of the $205$ in-scope cores by operator-class set
+(structural-proxy tags). Hard $=$ \{rearrangement, oxidation, formula change\}. The $11/87/47\%$ views in
+the text are overlapping projections of this one partition: clean single-class aromatic $22$;
+touch-a-hard-family $178=83+85+10$; entangled across $\ge2$ classes $97=85+12$.}
+\label{app:tab:mece}
+\end{table}
 
 \begin{thebibliography}{99}\small
 \bibitem[Riedling et al.(2024)]{riedling2024} O.~Riedling, A.~K.~Walker, et al.
@@ -812,6 +944,9 @@ reconstitution of a highly reducing iterative PKS (lovastatin nonaketide synthas
 \bibitem[Crawford et al.(2009)]{crawford2009} J.~M.~Crawford et al. Structural basis for
 biosynthetic programming of fungal aromatic polyketide cyclization (the product-template domain).
 \emph{Nature}, 461:1139--1143, 2009.
+\bibitem[Li et al.(2010)]{ptregio} Y.~Li, W.~Xu, and Y.~Tang. Classification, prediction, and
+verification of the regioselectivity of fungal polyketide synthase product template domains.
+\emph{J. Biol. Chem.}, 285(30):22764--22773, 2010. doi:10.1074/jbc.M110.128504.
 \bibitem[Ellis et al.(2021)]{dreamcoder} K.~Ellis et al. DreamCoder: bootstrapping inductive
 program synthesis with wake-sleep library learning. \emph{PLDI}, 2021.
 \bibitem[Lin et al.(2023)]{esm2} Z.~Lin et al. Evolutionary-scale prediction of atomic-level

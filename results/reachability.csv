@@ -274,7 +274,7 @@ BGC0002758,Azanidulone,11,unreachable,0,
 BGC0002759,brevione E,28,too_large,0,
 BGC0002812,Colletochlorin A,0,skip_element,0,
 BGC0002845,Sartorypyrone A,28,too_large,0,
-BGC0002847,olivetolic acid,12,unreachable,0,
+BGC0002847,olivetolic acid,12,reachable,2,"Program(starter='acetyl', cycles=(Cycle(reduction=<ReductionState.ER: 'er'>, c_methyl=False, extender=<Extender.MALONYL: 'malonyl'>), Cycle(reduction=<ReductionState.ER: 'er'>, c_methyl=False, extender=<Extender.MALONYL: 'malonyl'>), Cycle(reduction=<ReductionState.KETO: 'keto'>, c_methyl=False, extender=<Extender.MALONYL: 'malonyl'>), Cycle(reduction=<ReductionState.KETO: 'keto'>, c_methyl=False, extender=<Extender.MALONYL: 'malonyl'>), Cycle(reduction=<ReductionState.KETO: 'keto'>, c_methyl=False, extender=<Extender.MALONYL: 'malonyl'>)), release=<Release.ALDOL_AROMATIC: 'aldol_aromatic'>)"
 BGC0002848,CJ-20557,19,unreachable,0,
 BGC0002849,Luteodienoside A,23,too_large,0,
 BGC0002852,"3,6-dialkyl-α-pyrone",10,unreachable,0,

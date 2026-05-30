@@ -3,45 +3,77 @@
 % (boundary condition / frontier where designs live). Threads forward to section 6; the diagnostic
 % results are the characterization of the manifold the design engine operates over, not standalone
 % findings. Folds in the iteration-grammar wall's STRUCTURAL explanation and the bacterial sequence-head
-% result (homology-clean) from the exploration session.
+% result (leave-cluster-out) from the exploration session.
 % =====================================================================================
 \section{Characterizing the natural manifold}\label{sec:manifold}
 
-The natural fungal PKS manifold has \textbf{eight exactly-reachable cores}, a \textbf{0.567 control-axis
-ceiling with a structural mechanistic explanation}, and a \textbf{tailoring-permissive interior with 64\%
-conditional reconstructibility} --- this section characterizes its shape. We read these results not as a
+The natural fungal PKS manifold has \textbf{nine exactly-reachable cores}, a \textbf{0.567 control-axis
+ceiling with a structural mechanistic explanation}, an \textbf{interior whose residual hardness sits on
+the core, not the tailoring}, and---characterizing the out-of-grammar remainder---a
+\textbf{corpus-wide coverage census} that sorts each gap onto a sound-expressibility ladder
+(\S\ref{sec:census}) --- this section characterizes its shape. We read these results not as a
 catalogue of where prediction fails but as the geometry the design contribution of \S\ref{sec:design}
 operates over: the boundary of what nature builds, the axis along which it is hard to read, and the
-interior where it is tractable once a core is in hand.
+interior, where decorations are near-uniquely recovered once a core is in hand.
 
-\subsection{The boundary: eight exactly-reachable cores}\label{sec:boundary}
-The natural manifold has \textbf{eight exactly-reachable cores}, defining its boundary: of the 326 fungal
-PKS entries in MIBiG~4.0, exactly eight are placed exactly by the sound grammar run inverse. This count is
-a lower bound --- the missing operators are enumerable (PT multi-ring aromatic closures, oxidative
-rearrangements), so coverage moves it up --- and it is a \emph{boundary condition}, not an accuracy: the
+\subsection{The boundary: nine exactly-reachable cores}\label{sec:boundary}
+The natural manifold has \textbf{nine exactly-reachable cores}, defining its boundary: of the 326 fungal
+PKS entries in MIBiG~4.0, exactly nine are placed exactly by the sound grammar run inverse. This count is
+a lower bound \emph{in principle}---some missing operators are enumerable, so coverage could move it
+up---but the census of \S\ref{sec:census} shows that increment is zero for sound, no-new-regiochemistry
+extension (olivetolic acid, the one such core, is now among the reachable nine), the rest gated on
+operators whose soundness is unproven (\S\ref{sec:limits}); it is a
+\emph{boundary condition}, not an accuracy: the
 set of cores the current sound grammar places exactly, the edge from which \S\ref{sec:design} measures
-design distance. ``Only 8'' is the wrong frame; ``the manifold's boundary is here, and it is sharp'' is
+design distance. ``Only 9'' is the wrong frame; ``the manifold's boundary is here, and it is sharp'' is
 the right one.
+
+\subsection{The coverage census: the boundary is genuine, and the remainder is mostly entangled}
+\label{sec:census}
+The nine is a \emph{boundary} only if the unreached remainder is genuinely out of grammar rather than
+merely unscanned, and a \emph{useful} boundary only if we can say what \emph{kind} of operator each gap
+needs. Both are settled over the full $326$ (tables in Appendix~\ref{app:census}). \textbf{The partition:}
+nine cores are reachable; $205$ are CHO chemistry a polyketide grammar could in principle reach (the
+\emph{in-scope} gap); $112$ carry non-CHO atoms (N, halogen, S) and belong to a different grammar
+(NRPS-hybrid / halogenase --- a \emph{scope boundary}, not a coverage failure), nitrogen dominating
+($98$ of $112$). \textbf{The boundary is not a scan artifact:} the reachability search caps at
+$C{\le}20$ for tractability, so re-scanning all $94$ larger cores with the cap lifted to $C80$ reached
+\emph{zero} of the $91$ conclusively tested (three exhausted the reduced budget, held inconclusive). The
+size cap was concealing no reachable core, so $9/326$ is a real boundary of the grammar's reach, not a
+tractability limit --- which forecloses the most immediate objection to ``only nine.'' \textbf{The
+in-scope remainder is mostly entangled:} a structural-proxy set-cover --- an explicit \emph{upper bound}
+on recovery, since a core counts as proxy-recovered when all its tagged operator classes are present
+(necessary, not sufficient) --- is concentrated into a few coarse families but dominated by
+non-aromatic-ring/macrolactonization ($176/205$), not aromatic cyclization, and overwhelmingly
+entangled: $178$ of the $205$ in-scope cores ($87\%$) touch a family whose sound expressibility is
+unproven (\S\ref{sec:limits}), and sound extension with \emph{no} new regiochemistry adds no further
+buildable core beyond the nine: the one clean single-class aromatic an already-encoded closure reaches
+--- olivetolic acid, whose $\beta$-resorcylic core the generalized C2$\to$C7 closure builds (now among
+the reachable nine, the \textsc{verified} cross-grammar build of Table~\ref{tab:crossgrammar}) --- is
+already inside the boundary, and the other clean aromatics need PT closures not yet encoded (new
+regiochemistry). So ``coverage moves the nine up'' is true in principle yet empty in practice today for
+sound, no-new-regiochemistry extension: the gain is zero, and the rest is the located research problem
+of \S\ref{sec:limits}, not scheduled
+engineering.
 
 \subsection{Similarity is not a reconstructibility metric}\label{sec:proxy}
 A natural temptation is to soften the boundary with a structural-similarity proxy --- count a core
 ``reconstructed'' if a predicted skeleton embeds in the product. We show this proxy is \emph{unreliable}:
-it swings from 8 to 160 reconstructed cores as a single nuisance parameter (the allowed ring-closure
+it swings from 9 to 160 reconstructed cores as a single nuisance parameter (the allowed ring-closure
 slack) is varied, and it admits non-PKS false positives (a de-heteroatomed alkaloid skeleton can embed in
 a polyketide chain). Similarity is therefore not a reconstructibility metric; we keep exact match as the
 airtight signal and use the tailoring-latent reformulation below as the principled relaxation, not a
 tunable proxy.
 
-\subsection{The tailoring-permissive interior}\label{sec:interior}
+\subsection{The interior: bounded by core reachability}\label{sec:interior}
 Most MIBiG products are a PKS core plus post-PKS tailoring, so exact core-match understates
 reconstructibility. Moving tailoring into the latent --- $z=(z_{\mathrm{PKS}},z_{\mathrm{tail}})$ with a
-gene- and formula-budgeted edit applier --- the joint search exactly reconstructs \textbf{7/106}
-annotated clusters overall, but the decisive number is conditional: of the 99 failures, \textbf{95 are
-PKS-core-unreachable} (no producible backbone), and among the clusters where a core \emph{is} producible
-the tailoring search succeeds near-uniquely at \textbf{64\%}. The bottleneck is PKS-core cyclization
-coverage, not tailoring. So the manifold's interior is \emph{tailoring-permissive}: once a core is in
-reach, the decorations are near-uniquely reconstructible, and the residual hardness is concentrated on the
-core, not the periphery.
+gene- and formula-budgeted edit applier --- the joint search exactly reconstructs \textbf{7/107}
+annotated clusters (whole products including tailoring; a different target and denominator from the
+\emph{nine} exact cores over all $326$, \S\ref{sec:boundary}). Two reproducible facts shape the interior:
+only $9/326$ cores are built exactly (\S\ref{sec:boundary}), and wherever a core is producible the
+tailoring search verifies near-uniquely (small $|Z^{\star}|$). The residual hardness therefore sits on
+core cyclization, with tailoring near-unique once a core is in hand.
 
 \subsection{The hard axis: the iteration-grammar wall, structurally explained}\label{sec:wall}
 The manifold's one genuinely hard axis is per-cycle control. A cross-taxa transfer probe makes it
@@ -71,24 +103,21 @@ where one exists, and cannot where it does not.)
 \paragraph{A sequence-level probe separates two questions.} The cross-taxa probe folded together two
 questions the sequence head now lets us separate: \emph{(i)}~does protein \emph{sequence} carry the
 per-step chemistry signal the domain abstraction discards, and \emph{(ii)}~would that signal, even if
-real, close the \emph{fungal} wall? \emph{(i)~Yes, empirically}, on bacterial \emph{modular} PKS, where
-each module carries its own ketoreductase (KR) sequence: under homology-clean evaluation at 70\%
-sequence identity,\footnote{Leave-cluster-out by sequence-identity cluster; identity
-computed via BLOSUM62 global alignment in Biopython, verified at self-identity $1.00$ and an observed
-cross-cluster identity floor of $0.35$. A strict 30\%-identity partition is undefined here: KR is a single
-conserved Rossmann-fold family with a $\sim$35\% pairwise-identity floor, so it cannot be split into
-remote-homolog folds --- the head's generalization across remote KR homologs is therefore not assessable
-on this dataset, a statement about the protein family rather than the method.} a frozen ESM-2 head
-extracts inactive-domain and stereochemistry signal at balanced accuracy $\sim$\textbf{0.85} (AUC $0.91$
-for inactive-domain detection), decisively above the chance baselines of $0.50$--$0.53$ the domain
-cartoon is pinned to. \emph{(ii)~No, structurally}: a fungal iterative synthase reuses \emph{one} KR
+real, close the \emph{fungal} wall? \emph{(i)~Yes}, on bacterial \emph{modular} PKS, where each module carries its own ketoreductase (KR)
+sequence: a frozen ESM-2 head reads inactive-domain signal gene content cannot. The domain cartoon can
+only predict that a present KR fired, so it recovers \emph{none} of the silent-KR clusters, while the
+sequence head recovers them from sequence alone (\S\ref{sec:structural-rescue}, leave-cluster-out).
+Beating the ``every present KR fired'' null is sub-homology signal by construction --- distinguishing an
+active from a silent KR, both present, turns on local catalytic-motif differences, not fold identity ---
+so no homology-clean partition is needed (and, in a single conserved Rossmann fold with a $\sim$35\%
+identity floor, none is well-defined). \emph{(ii)~No, structurally}: a fungal iterative synthase reuses \emph{one} KR
 sequence across all its cycles, so a per-domain sequence head emits a single prediction per
 synthase---exactly the fixed-domain condition that yields $0.567$. Sequence carries per-step chemistry
 where there \emph{is} a per-step sequence (bacterial, modular) and cannot where there is not (fungal,
 iterative); the wall is structural, not a data gap.
 
 \medskip
-This manifold --- bounded by eight reachable cores, structured by the iteration-grammar wall, with a
-defined tailoring-permissive interior --- is the object the design contribution of \S\ref{sec:design}
+This manifold --- bounded by nine reachable cores, structured by the iteration-grammar wall, with an
+interior bounded by core reachability (tailoring near-unique where a core is in hand) --- is the object the design contribution of \S\ref{sec:design}
 operates over. Its hard axis is exactly the axis along which the interesting designs live (\S\ref{sec:moat}),
 which is why the same measurement reads as a prediction ceiling here and a design frontier there.

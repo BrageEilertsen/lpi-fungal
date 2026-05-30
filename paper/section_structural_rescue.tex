@@ -53,8 +53,9 @@ in $\zstar(B)$ differ in their per-cycle reduction labels---e.g., isoterrein's t
 candidates $(\mathrm{dh},\mathrm{dh},\mathrm{keto})$, $(\mathrm{dh},\mathrm{keto},\mathrm{dh})$,
 $(\mathrm{keto},\mathrm{dh},\mathrm{dh})$ that differ in the cycle index of each DH event,
 or asperlin's $5$ candidates that differ similarly---substrate-prefix features alone
-route posterior mass cleanly: held-out entropy drops to $0.05$ for isoterrein and
-$0.38$ for asperlin (against $\log 3=1.10$ and $\log 5=1.61$ ceilings). The pose
+concentrate posterior mass: held-out entropy drops to $0.05$ for isoterrein and
+$0.38$ for asperlin (against $\log 3=1.10$ and $\log 5=1.61$ ceilings), each placing its
+dominant mass on the biologically authentic pathway. The pose
 channel adds geometric noise to an architecture the substrate counter has already
 decoded.
 
@@ -99,8 +100,8 @@ where the substrate channel hits this symmetry wall.}
 \includegraphics[width=\linewidth]{figure_structural_rescue.pdf}
 \caption{\textbf{The dual mechanisms of neuro-symbolic resolution.}
 \textbf{(A)}~Held-out candidate distribution entropy ($H_{\mathrm{held}}$) across three
-feature regimes. The substrate-prefix channel effortlessly resolves assets with
-label-distinguishable reduction sequences (isoterrein, asperlin). For label-symmetric
+feature regimes. The substrate-prefix channel resolves assets with
+label-distinguishable reduction sequences (isoterrein to $0.05$, asperlin to $0.38$). For label-symmetric
 candidates sharing identical reduction trajectories (citrinin), the sequence channel
 encounters a permanent symmetry wall ($\log 2$), which is cleanly shattered
 ($H_{\mathrm{held}}\to 0.01$) only upon the introduction of $3$D pose cavity descriptors.
@@ -178,14 +179,14 @@ Condition (bacterial, $n{=}118$ clusters / $1039$ KRs) & Per-module acc & Whole-
 \midrule
 Domain cartoon (KR present $\to$ fired)              & $0.926$ & $60/118 = 0.508$ \\
 \textbf{ESM per-module sequence head (the $G$ channel)} & $0.934$ & $\mathbf{70/118 = 0.593}$ \\
-ESM $+$ verifier-pinned active count                 & $0.975$ & $107/118 = 0.907$ \\
+ESM $+$ oracle active count (headroom)               & $0.975$ & $107/118 = 0.907$ \\
 \bottomrule
 \end{tabular}
 \caption{Bacterial type~I modular PKS: ESM-conditioned sequence policy on its own
 lifts whole-program recovery by $+10$ ($60\!\to\!70/118$) over the domain cartoon,
-recovering $31/58$ silent-KR clusters where the cartoon scores $0/58$. The
-verifier-pinned active count is an oracle headroom indicator, not a mass-derived
-result. The substrate-only channel (cartoon) reaches its bacterial ceiling because
+recovering $31/58$ silent-KR clusters where the cartoon scores $0/58$. The oracle
+active count (row~3) uses the true count---which accurate mass constrains in total but
+cannot uniquely pin per module---so it is a headroom indicator, not an achieved result. The substrate-only channel (cartoon) reaches its bacterial ceiling because
 silent KRs are not predictable from gene content alone; the ESM channel passes that
 ceiling because per-module sequence variation natively encodes which KRs fire.}
 \label{tab:bacterial-cap}

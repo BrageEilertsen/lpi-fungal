@@ -3,7 +3,7 @@ EMAIL ?= your-email@example.com   # NCBI Entrez requires a contact email; overri
 MIBIG_URL = https://dl.secondarymetabolites.org/mibig/mibig_json_4.0.tar.gz
 MIBIG_DIR = data/raw/mibig_json_4.0
 
-.PHONY: phase0 phase1 data roundtrip search test mibig crossgrammar observability realdemo clean
+.PHONY: phase0 phase1 data roundtrip search test mibig crossgrammar observability realdemo seqhead clean
 
 phase0: data roundtrip test
 phase1: search test
@@ -55,3 +55,6 @@ test:
 
 clean:
 	rm -rf .pytest_cache **/__pycache__
+
+seqhead:
+	PYTHONPATH=src $(PY) scripts/explorations/bacterial_esm_demo.py > results/seqhead.log
