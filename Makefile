@@ -62,6 +62,15 @@ seqhead:
 census:
 	PYTHONPATH=src $(PY) scripts/coverage/oog_census.py
 
+coverage-sweep:
+	PYTHONPATH=src $(PY) scripts/coverage/theta_sweep.py
+
+kappa-check:
+	PYTHONPATH=src $(PY) scripts/coverage/kappa_monotonicity.py
+
+design-tag:
+	PYTHONPATH=src $(PY) scripts/coverage/design_tag.py
+
 structural-rescue:
 	PYTHONPATH=src $(PY) scripts/policy/render_structural_rescue_figure.py
 
@@ -70,3 +79,11 @@ two-walls:
 
 gate-frontier:
 	PYTHONPATH=src $(PY) scripts/policy/gate_frontier_dedup.py
+
+design-sensitivity:
+	PYTHONPATH=src $(PY) scripts/coverage/design_sensitivity.py
+
+kappa-certificate: kappa-check	## alias: reproduces the beta=8000->5e4 kappa inversion-and-restore (Prop 16.4c)
+
+homology-stratify:
+	PYTHONPATH=src $(PY) scripts/coverage/homology_stratify.py

@@ -1,0 +1,35 @@
+Rec 4: silent-KR recovery vs out-of-cluster sequence identity (alignment-derived)
+
+embedding 1039 KR sequences (ESM-2)...
+leave-cluster-out ESM head (out-of-fold P(active))...
+
+UNIT RECONCILIATION
+  CLUSTER level (the paper's number): 31/58 silent-KR clusters fully recovered  (paper / seqhead.log: 31/58)
+  DOMAIN  level (this analysis):      58/77 silent KR domains called inactive
+  bridge: a fully-recovered cluster has every module correct, so its 36 silent domains are a SUBSET of the 58 called-inactive  -> subset holds: True
+          the other 22 called-inactive domains sit in clusters that failed on a different module (correct silent call, cluster not fully recovered).
+  NB the two '58's are unrelated: 58 = silent-KR cluster denominator; 58 = called-inactive domain count. Label both explicitly when cited.
+
+aligning 77 silent KR DOMAINS to out-of-cluster references (k-mer top-8 prefilter -> NW)...
+
+  [per silent-KR DOMAIN]  identity to nearest other-cluster KR   domains   called-inactive   recall
+     0-29 %                                   0              0      0.00
+    30-39 %                                   0              0      0.00
+    40-49 %                                   7              7      1.00
+    50-69 %                                  32             25      0.78
+    70-100%                                  38             26      0.68
+   overall (domain): 58/77 = 0.75
+
+  [per CLUSTER]  binned by its silent KRs' max out-of-cluster identity   clusters   recovered   rate
+     0-29 %                                           0           0    0.00
+    30-39 %                                           0           0    0.00
+    40-49 %                                           5           4    0.80
+    50-69 %                                          23          12    0.52
+    70-100%                                          30          15    0.50
+
+  FRAMING (conservative):
+   Homology leakage predicts recall RISING with identity. Across the well-populated bins
+   (50-69%, 70-100%; n>=20) recall shows NO positive association with identity (if anything the reverse) -- so the recovery is not
+   near-twin memorization. No significance is attached to the magnitude of the decrease.
+   Boundary tested: KR domains share a conserved fold -- the lowest occupied bin is 40%+ (no silent KR below it), consistent with the ~35% identity floor; very-distant transfer is
+   not in the corpus to test, so this BOUNDS leakage rather than probing arbitrary distance.

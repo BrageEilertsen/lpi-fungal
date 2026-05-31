@@ -1,0 +1,54 @@
+Theta-sweep reproduction (Sec 16.2a / 16.4a) -- reusing lpi.search.reachability.scan_parquet
+
+[1/3] starter sweep (base beam 4000/60000)...
+
+=== Starter sweep {acetyl} -> {acetyl,propionyl,hexanoyl}  (releases = REL0) ===
+  A: R=9 U=0 X=317 reach=9     B: R=8 U=1 X=317 reach=9
+  transition matrix (row=state under A, col=state under B):
+    R -> R:8   U:1   X:0
+    U -> R:0   U:0   X:0
+    X -> R:0   U:0   X:317
+  Lemma-16.3 forbidden cells empty? YES
+    R->U (1): BGC0002847:olivetolic acid
+  [OK] |R| A: got 9, expect 9
+  [OK] |R| B: got 8, expect 8
+  [OK] reach A: got 9, expect 9
+  [OK] reach B: got 9, expect 9
+  [OK] R->U demotions: got 1, expect 1
+
+[2/3] release sweep (base beam 4000/60000)...
+
+=== Release sweep aromatic-only -> all-four  (starter = acetyl) ===
+  A: R=6 U=0 X=320 reach=6     B: R=9 U=0 X=317 reach=9
+  transition matrix (row=state under A, col=state under B):
+    R -> R:6   U:0   X:0
+    U -> R:0   U:0   X:0
+    X -> R:3   U:0   X:317
+  Lemma-16.3 forbidden cells empty? YES
+    X->R (3): BGC0001244:(-)-Mellein, BGC0001489:6-hydroxymellein, BGC0002240:BAB
+  [OK] |R| A: got 6, expect 6
+  [OK] |R| B: got 9, expect 9
+  [OK] reach A: got 6, expect 6
+  [OK] reach B: got 9, expect 9
+  [OK] X->R gains: got 3, expect 3
+  [OK] R->U demotions: got 0, expect 0
+
+[3/3] R_terminal climb, 4-starter universe REL0 -> REL0+PT (heavy beam 8000/200000)...
+
+=== R_terminal: 4-starter universe  REL0 -> REL0 + PT_NAPHTHALENE ===
+  A: R=8 U=1 X=317 reach=9     B: R=11 U=1 X=314 reach=12
+  transition matrix (row=state under A, col=state under B):
+    R -> R:8   U:0   X:0
+    U -> R:0   U:1   X:0
+    X -> R:3   U:0   X:314
+  Lemma-16.3 forbidden cells empty? YES
+    X->R (3): BGC0001257:1,3,6,8-tetrahydroxynaphthalene, BGC0001258:1,3,6,8-tetrahydroxynaphthalene, BGC0002154:1,3,5,8-tetrahydroxynapthalene
+  [OK] R_term A (REL0): got 8, expect 8
+  [OK] R_term B (+PT): got 11, expect 11
+  [OK] reach A: got 9, expect 9
+  [OK] reach B: got 12, expect 12
+  [OK] X->R gains: got 3, expect 3
+  [OK] R->U demotions: got 0, expect 0
+
+============================================================
+ALL SWEEPS REPRODUCE: YES

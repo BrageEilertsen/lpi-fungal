@@ -1,0 +1,23 @@
+Prop 16.4c: kappa-monotonicity completeness certificate (methylmalonyl extender)
+
+Scanning all cores under Theta_A (malonyl) and Theta_B (+methylmalonyl) at beam=8000 ...
+
+  core (bgc_id)      name                kA(mal)  kB(+mmal)  Lemma 16.3
+  BGC0001121         orsellinic acid           1          1  OK (kB >= kA)
+  BGC0001244         (-)-Mellein               1          1  OK (kB >= kA)
+  BGC0001275         6-methylsalicyclic        1          1  OK (kB >= kA)
+  BGC0001276         6-methylsalicyclic        1          1  OK (kB >= kA)
+  BGC0001489         6-hydroxymellein          1          1  OK (kB >= kA)
+  BGC0002212         Orsellinic acid           1          1  OK (kB >= kA)
+  BGC0002240         BAB                       1          0  VIOLATION -> Theta_B beam-incomplete (Prop 16.4c)
+  BGC0002595         orsellinic acid           1          1  OK (kB >= kA)
+  BGC0002847         olivetolic acid           3          2  VIOLATION -> Theta_B beam-incomplete (Prop 16.4c)
+
+  inversions at beam=8000: 2  (expect 2 -- olivetolic 3->2, BAB 1->0)
+
+Re-searching flagged cores at beam=50000 (max_exec=1e6) -- expect monotonicity restored:
+  [OK] BGC0002240 (BAB): kA=1  kB@8000=0  kB@50000=1  -> RESTORED (kB>=kA)
+  [OK] BGC0002847 (olivetolic acid): kA=3  kB@8000=2  kB@50000=3  -> RESTORED (kB>=kA)
+
+============================================================
+Prop 16.4c REPRODUCES (2 inversions flagged @8000, both restored @50000): YES

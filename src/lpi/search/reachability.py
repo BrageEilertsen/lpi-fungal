@@ -78,7 +78,8 @@ def _scan_spec() -> OperatorSpec:
 
 
 def scan_target(bgc_id: str, name: str, smiles: str,
-                beam_width: int = 4000, max_executions: int = 60000) -> ReachRow:
+                beam_width: int = 4000, max_executions: int = 60000,
+                spec: OperatorSpec | None = None) -> ReachRow:
     # With the formula prefilter + feasibility gate, executor calls are rare; beam_width
     # 4000 is exhaustive for the C<=20 exact-match range. (An earlier, smaller beam caused
     # false-negatives on mellein / 6-hydroxymellein -- fixed.)
@@ -99,7 +100,8 @@ def scan_target(bgc_id: str, name: str, smiles: str,
     # Target-level formula feasibility: if no program's product formula can equal this
     # target, it is provably unreachable -- skip the (expensive) structural search.
     from lpi.search.beam import _formula_cho
-    spec = _scan_spec()
+    if spec is None:
+        spec = _scan_spec()  # default = the base reachability universe (Theta_0)
     if not formula_feasible(_formula_cho(mol), spec, max_cycles=carbons // 2 + 1):
         return ReachRow(bgc_id, name, smiles, carbons, "unreachable")
 
@@ -112,7 +114,9 @@ def scan_target(bgc_id: str, name: str, smiles: str,
     return ReachRow(bgc_id, name, smiles, carbons, status)
 
 
-def scan_parquet(parquet_path: Path, progress: bool = False) -> ReachReport:
+def scan_parquet(parquet_path: Path, progress: bool = False,
+                 spec: OperatorSpec | None = None,
+                 beam_width: int = 4000, max_executions: int = 60000) -> ReachReport:
     import sys
 
     import pandas as pd
@@ -125,7 +129,8 @@ def scan_parquet(parquet_path: Path, progress: bool = False) -> ReachReport:
         if not smi:
             rows.append(ReachRow(r["bgc_id"], str(r.get("compound_name")), "", 0, "parse_error"))
             continue
-        row = scan_target(r["bgc_id"], str(r.get("compound_name")), smi)
+        row = scan_target(r["bgc_id"], str(r.get("compound_name")), smi,
+                          beam_width=beam_width, max_executions=max_executions, spec=spec)
         rows.append(row)
         if progress and (i % 25 == 0 or row.status in ("reachable", "budget")):
             print(f"[{i + 1}/{total}] {row.bgc_id} {row.status} "
