@@ -337,6 +337,20 @@ even though the molecule is producible \emph{in vivo}. An empty consistent set i
 \emph{certificate of failure mode}---missing operator, hidden control, tailoring under-constraint,
 or non-local pathway---not a claim of biological impossibility; the approximate verifier
 $Z^{\star}_{\epsilon}$ inherits the same relativity, now also to $\epsilon$ and the allowed adducts.
+
+A further relativity is \emph{internal} to $\Theta$, and we state it explicitly. Some operators encode
+characterised regiochemistry by construction: the aromatic releases apply a fixed cyclisation
+fold---the C2--C7 aldol of the orsellinic/6-MSA type, or the dihydroisocoumarin composite---by
+pattern-match to the chain, not by reading the fold-selecting product-template (PT) domain from
+sequence. A poly-$\beta$-keto chain generally admits more than one regiochemically valid fold (the
+orsellinic-type tetraketide admits the attested C2--C7 and C1--C6 PT regiochemistries~\citep{ptregio},
+of which $\Theta$ encodes the characterised one), so the corresponding \textsc{verified} verdicts are
+determined \emph{relative to that curated fold} rather than by observation of the register. That fold
+is the grammar's encoding of characterised enzymology, justified for the aromatic members of the
+reachable set---cores whose regiochemistry is experimentally established---and so curation-conditional
+rather than observation-determined. The one reachable core released without a cyclisation---BAB, a
+hydrolysis-released linear acid---carries no such condition.
+
 Because the operator library is modular, extending the engine to complex polycyclic cascades,
 trans-acting tailoring events, or additional release chemistries does not require changing the
 shared verifier or observability layers; it requires registering new typed operators in the
@@ -710,7 +724,9 @@ modality assignment and the cost-axis label agree on every edit tested---$0$ of 
 (\S\ref{sec:modality-cells}). \textbf{Pre-registered (design):} the $(\text{trajectory},\text{trajectory})$
 cell---the product-neutral iteration-grammar degeneracy the duality points at---is empty by construction in
 the reachable neighbourhood, because the chemistry that would populate it lies beyond current coverage; its
-first occupant is pre-registered against a sound macrolactonisation operator (\S\ref{sec:modality-cells},
+first occupant is pre-registered, gated on a curated resorcylic aromatisation fold---not yet
+registered, as the reachable orsellinic-type cores already are---together with the macrolactonisation
+release now implemented: a located, rung-2 coverage gap (\S\ref{sec:modality-cells},
 \S\ref{sec:limits}). \textbf{Not a cost artifact:} the engineerable--frontier split is independent of the
 cost functional form and survives leave-one-core-out (\S\ref{sec:dominance}), resting on tier assignments
 calibrated to the biochemistry---so the wall rests on $\kappa_O$ (proven) and a pre-registration, not on the
