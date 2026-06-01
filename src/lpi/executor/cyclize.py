@@ -20,6 +20,7 @@ from __future__ import annotations
 
 from rdkit import Chem
 from rdkit.Chem import AllChem
+from rdkit.Chem import RWMol
 
 from lpi.chem.program import Release
 
@@ -123,11 +124,94 @@ def dihydroisocoumarin(linear_acid: Chem.Mol) -> Chem.Mol | None:
     return _first_unique(_DIHYDROISOCOUMARIN_TEMPLATES, linear_acid)
 
 
-def release(linear_acid: Chem.Mol, mode: Release) -> Chem.Mol | None:
+# --- Macrolactonization (cis-TE) -------------------------------------------------------
+# Unlike the small-ring templates above, a macrolactone is formula-identical to any other
+# one-water closure; the distinguishing DOF is RING SIZE -- which chain hydroxyl attacks the
+# C1 carboxyl. A macrolactone is therefore NOT a fixed SMARTS: the operator esterifies the
+# carboxyl with an aliphatic hydroxyl chosen by the recoverable cis-TE feature (`ring_oh_idx`,
+# the curated rung-2 locant). Phenols and the acid's own -OH are not eligible nucleophiles.
+# When no locant is supplied it fires ONLY if the closure is unambiguous (one carboxyl, one
+# eligible hydroxyl); a non-unique ring size returns None -- the executor does not guess.
+
+
+def _carboxyl_carbons(mol: Chem.Mol) -> list[tuple[int, int]]:
+    """(carbonyl-C idx, acid-OH O idx) for each free carboxylic acid -C(=O)OH."""
+    out = []
+    for a in mol.GetAtoms():
+        if a.GetSymbol() != "C":
+            continue
+        dbl_o = oh_o = None
+        for b in a.GetBonds():
+            o = b.GetOtherAtom(a)
+            if o.GetSymbol() != "O":
+                continue
+            if b.GetBondType() == Chem.BondType.DOUBLE:
+                dbl_o = o.GetIdx()
+            elif o.GetDegree() == 1 and o.GetTotalNumHs() == 1:
+                oh_o = o.GetIdx()
+        if dbl_o is not None and oh_o is not None:
+            out.append((a.GetIdx(), oh_o))
+    return out
+
+
+def _aliphatic_hydroxyls(mol: Chem.Mol) -> list[int]:
+    """O idx of sp3 carbinol -OH groups eligible to close the macrolactone (excludes
+    phenols and the carboxylic-acid -OH, whose carbon bears a =O)."""
+    out = []
+    for a in mol.GetAtoms():
+        if a.GetSymbol() != "O" or a.GetIsAromatic():
+            continue
+        if a.GetDegree() != 1 or a.GetTotalNumHs() != 1:
+            continue
+        c = a.GetNeighbors()[0]
+        if c.GetSymbol() != "C" or c.GetIsAromatic():
+            continue
+        if any(b.GetBondType() == Chem.BondType.DOUBLE and b.GetOtherAtom(c).GetSymbol() == "O"
+               for b in c.GetBonds()):
+            continue  # the carboxyl -OH
+        out.append(a.GetIdx())
+    return out
+
+
+def macrolactonize(linear_acid: Chem.Mol, ring_oh_idx: int | None = None) -> Chem.Mol | None:
+    """Esterify the C1 carboxyl with an aliphatic hydroxyl, losing one water. Ring size is
+    fixed by `ring_oh_idx` (the curated cis-TE locant); when omitted, fires only if the
+    closure is unambiguous, else returns None (no ring-size guess)."""
+    acids = _carboxyl_carbons(linear_acid)
+    if len(acids) != 1:
+        return None
+    carbonyl_c, acid_o = acids[0]
+    candidates = _aliphatic_hydroxyls(linear_acid)
+    if ring_oh_idx is not None:
+        if ring_oh_idx not in candidates:
+            return None
+        oh_o = ring_oh_idx
+    elif len(candidates) == 1:
+        oh_o = candidates[0]
+    else:
+        return None  # ambiguous (or no) ring size -> do not guess
+    rw = RWMol(linear_acid)
+    rw.RemoveBond(carbonyl_c, acid_o)
+    rw.AddBond(carbonyl_c, oh_o, Chem.BondType.SINGLE)
+    o = rw.GetAtomWithIdx(oh_o)
+    o.SetNumExplicitHs(0)
+    o.SetNoImplicit(False)
+    rw.RemoveAtom(acid_o)  # the expelled water O (last: RemoveAtom reindexes)
+    prod = rw.GetMol()
+    try:
+        Chem.SanitizeMol(prod)
+    except Exception:  # noqa: BLE001
+        return None
+    return prod
+
+
+def release(linear_acid: Chem.Mol, mode: Release, *, ring_oh_idx: int | None = None) -> Chem.Mol | None:
     if mode is Release.LACTONIZATION:
         return lactonize(linear_acid)
     if mode is Release.ALDOL_AROMATIC:
         return aldol_aromatic(linear_acid)
     if mode is Release.DIHYDROISOCOUMARIN:
         return dihydroisocoumarin(linear_acid)
+    if mode is Release.MACROLACTONIZATION:
+        return macrolactonize(linear_acid, ring_oh_idx)
     return None

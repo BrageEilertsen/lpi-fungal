@@ -33,7 +33,7 @@ from lpi.search.beam import _carbon_count
 
 _REDUCTIONS = (ReductionState.KETO, ReductionState.KR, ReductionState.DH, ReductionState.ER)
 _RELEASES = (Release.HYDROLYSIS, Release.LACTONIZATION, Release.ALDOL_AROMATIC,
-             Release.DIHYDROISOCOUMARIN, Release.PT_NAPHTHALENE)
+             Release.DIHYDROISOCOUMARIN, Release.PT_NAPHTHALENE, Release.MACROLACTONIZATION)
 
 
 @dataclass
