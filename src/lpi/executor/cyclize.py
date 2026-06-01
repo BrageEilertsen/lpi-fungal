@@ -205,6 +205,95 @@ def macrolactonize(linear_acid: Chem.Mol, ring_oh_idx: int | None = None) -> Che
     return prod
 
 
+# --- Resorcylic aromatization: a register-parameterized POSITIVE CONTROL (NOT a release) ----
+# Deliberately NOT wired into the search release set. It exists to RENDER (not infer) the verdict
+# that the (trajectory,trajectory) macrolactone occupant is sound-unreachable from current
+# observables: a poly-beta-keto stretch admits >1 aromatizable first-ring fold -- the C2-C7 aldol
+# (-> resorcylic acid, e.g. zearalenone) vs the C1-C6 Claisen (-> acylphloroglucinol), the classic
+# PT-domain regiocontrol -- so the register is a DOF the chain does not fix. Given the register it
+# renders the fold; given none it returns None. Because that register (the PT selection) is
+# recoverable from neither the executor's features nor the RAL cohort's MIBiG annotation, a sound
+# executor must return None on the cohort -> the cell is empty by soundness, not by missing code.
+
+
+def _ring_path(mol: Chem.Mol, a: int, c: int) -> list[int]:
+    """Atom indices on the shortest a..c path inclusive (a 6-membered closure gives length 6)."""
+    import collections
+    prev: dict[int, int | None] = {a: None}
+    q = collections.deque([a])
+    while q:
+        x = q.popleft()
+        for nb in mol.GetAtomWithIdx(x).GetNeighbors():
+            k = nb.GetIdx()
+            if k not in prev:
+                prev[k] = x
+                q.append(k)
+    path, cur = [], c
+    while cur is not None:
+        path.append(cur)
+        cur = prev.get(cur)
+    return path
+
+
+def aromatize_register(linear_acid: Chem.Mol, register: tuple[int, int] | None) -> Chem.Mol | None:
+    """Form a first-ring aldol/Claisen at the (alpha-C, carbonyl-C) `register` and aromatize the
+    6-ring: the attacked carbonyl loses its O as water (a carboxyl drops its -OH and keeps =O -> a
+    phenol), the other two ring ketones tautomerize to phenols. `register` stands for the PT-domain
+    fold selection. Returns None when no register is supplied (the soundness behaviour) or the pair
+    is not a 6-ring closure -- the executor does not guess the fold."""
+    if register is None:
+        return None
+    alpha, carbonyl = register
+    path = _ring_path(linear_acid, alpha, carbonyl)
+    if len(path) != 6:
+        return None
+    ring = set(path)
+    rw = RWMol(linear_acid)
+    rw.AddBond(alpha, carbonyl, Chem.BondType.SINGLE)
+    to_remove: list[int] = []
+    for idx in ring:
+        a = rw.GetAtomWithIdx(idx)
+        dbl = [b.GetOtherAtom(a).GetIdx() for b in a.GetBonds()
+               if b.GetBondTypeAsDouble() == 2 and b.GetOtherAtom(a).GetSymbol() == "O"]
+        if not dbl:
+            continue
+        o = dbl[0]
+        if idx == carbonyl:
+            sgl = [b.GetOtherAtom(a).GetIdx() for b in a.GetBonds()
+                   if b.GetBondTypeAsDouble() == 1 and b.GetOtherAtom(a).GetSymbol() == "O"]
+            if sgl:  # carboxyl Claisen: drop -OH (water), keep =O -> phenol
+                rw.RemoveBond(idx, sgl[0])
+                to_remove.append(sgl[0])
+                rw.RemoveBond(idx, o)
+                rw.AddBond(idx, o, Chem.BondType.SINGLE)
+                rw.GetAtomWithIdx(o).SetNoImplicit(False)
+                rw.GetAtomWithIdx(o).SetNumExplicitHs(1)
+            else:    # aldol: attacked ketone O leaves as water
+                rw.RemoveBond(idx, o)
+                to_remove.append(o)
+        else:        # other ring ketone -> phenol
+            rw.RemoveBond(idx, o)
+            rw.AddBond(idx, o, Chem.BondType.SINGLE)
+            rw.GetAtomWithIdx(o).SetNoImplicit(False)
+            rw.GetAtomWithIdx(o).SetNumExplicitHs(1)
+    for idx in ring:
+        rw.GetAtomWithIdx(idx).SetIsAromatic(True)
+        rw.GetAtomWithIdx(idx).SetNoImplicit(False)
+    for i in range(6):
+        b = rw.GetBondBetweenAtoms(path[i], path[(i + 1) % 6])
+        if b:
+            b.SetBondType(Chem.BondType.AROMATIC)
+            b.SetIsAromatic(True)
+    for o in sorted(set(to_remove), reverse=True):
+        rw.RemoveAtom(o)
+    prod = rw.GetMol()
+    try:
+        Chem.SanitizeMol(prod)
+    except Exception:  # noqa: BLE001
+        return None
+    return prod
+
+
 def release(linear_acid: Chem.Mol, mode: Release, *, ring_oh_idx: int | None = None) -> Chem.Mol | None:
     if mode is Release.LACTONIZATION:
         return lactonize(linear_acid)
