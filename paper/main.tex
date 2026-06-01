@@ -41,51 +41,45 @@
 
 \begin{abstract}
 Predicting a fungal natural product from its biosynthetic gene cluster (BGC) is usually posed as
-direct $\mathrm{BGC}\!\to\!$structure regression, and it stalls---reported balanced accuracies of
+direct $\mathrm{BGC}\!\to\!$structure regression. It stalls---reported balanced accuracies of
 $51$--$68\%$, barely moved when a thousand bacterial BGCs are pooled with the few hundred fungal
-ones. We argue the regression targets the wrong object. A product is the image
-$y=\mathrm{Exec}_{\Theta}(z;G)$ of a latent biosynthetic \emph{program} $z$ executed under an
-operator library $\Theta$ and a domain-derived grammar $G$, so the field's ceiling is a statement
-about grammar \emph{identifiability}---how much of $z$ the observables pin down---not about how much
-data exists. We build a sound inverse compiler over this program space and run it in three
-directions. \emph{Forward}, a deterministic executor renders a program to a structure;
-\emph{inverse}, a beam verifier returns the exact set $Z^\star$ of legal programs consistent with the
-observables, as a typed verdict---\textsc{verified}, \textsc{under-observed} (naming the next
-observable that would collapse $Z^\star$), or \textsc{out-of-grammar}. Run inverse across all $326$
-fungal PKS in MIBiG~4.0, exact reconstruction reaches $9/326$---not a disappointment but the
-\emph{boundary} of the natural manifold the engine operates over (a tailoring-latent reformulation
-verifies $7/107$ clusters; where a core is producible, tailoring resolves near-uniquely)---and a cross-taxa transfer probe locates its one
-hard axis: per-cycle reduction chemistry transfers at $1.00$ within a fixed domain set but collapses
-to $0.567$ across the iteration program---bacterial modular and fungal iterative PKS thus instantiate two
-computational regimes of catalytic control: \emph{externalized} per-step state (one module per step,
-learnable) versus \emph{compressed}, state-dependent routing through one reusable manifold. A corpus-wide coverage census then makes that boundary
-defensible rather than asserted: a cap-lifted re-scan shows it genuine ($0$ of $91$ large cores
-reachable, not a scan artifact), and the out-of-grammar remainder sorts onto a \emph{sound-expressibility}
-ladder on which $178$ of the $205$ in-scope cores ($87\%$) touch a family whose sound expressibility is
-unproven---so sound extension with no new regiochemistry adds no further buildable core, and ``unsolved''
-becomes a located map of which
-gaps are buildable, which are open research, and which need a different grammar.
+ones. We argue the target is wrong. A product is the image $y=\mathrm{Exec}_{\Theta}(z;G)$ of a
+latent biosynthetic \emph{program} $z$ executed under an operator library $\Theta$ and a
+domain-derived grammar $G$, so the field's ceiling is grammar \emph{identifiability}---how much of
+$z$ the observables pin down---not data volume.
 
-Run \emph{backward}, the same engine becomes a design tool. We place a desired molecule on a
-\emph{realizability geometry} against the natural manifold, decomposed onto two axes that map to
-different wet-lab capabilities---\emph{structural} edits (domain content; mature bacterial
-modular-PKS precedent) and \emph{control} edits (the iteration program; the $0.567$ frontier)---scored
-by a literature-curated, super-additive cost that \emph{is} the field's measured engineering
-difficulty rather than an assumption we supply. Across the $1$-edit neighbourhood of the manifold the
-control axis dominates ($69$ frontier to $49$ engineerable), and an experiment-selection planner
-ranks the observation that would most collapse $Z^\star$ per unit cost. The same iteration-grammar
-wall is thus a prediction ceiling read one way and a design frontier read the other---a symmetry we
-formalise as an \emph{identifiability--controllability duality} (Theorem~\ref{thm:duality},
-\S\ref{sec:duality}): the verifier's consistent set and the designer's specification space are one
-equivalence class, so prediction and design ambiguity are projections of a single observability quantity
-$\kappa_O$, a result that travels beyond fungal PKS with a falsifiable prediction on RiPP biosynthesis.
-Because structure elucidation in this field proceeds by heterologous expression and NMR with mass
-spectrometry as triage---the methodology of all seven verified products we curate from primary
-sources---we build a metabologenomics \emph{triage} tool whose three-state verdict names explicitly
-the clusters where triage suffices and those that must go to expression$+$NMR. The observability and
-verdict layers are family-agnostic, demonstrated unchanged over PKS, a non-ribosomal peptide (NRPS)
-grammar, and a typed PKS--NRPS hybrid; only the program generator is family-specific. All tools,
-data, and analyses are open and reproducible from single commands.
+We build a sound inverse compiler over this program space. \emph{Forward}, a deterministic executor
+renders a program to a structure. \emph{Inverse}, a beam verifier returns the exact set $Z^\star$ of
+programs consistent with the observables, as a typed verdict: \textsc{verified},
+\textsc{under-observed} (naming the next observable that collapses $Z^\star$), or
+\textsc{out-of-grammar}. Across all $326$ fungal PKS in MIBiG~4.0, exact program reconstruction
+reaches $9/326$---the \emph{boundary} of what the current operator set soundly reaches, not a low
+score. A corpus-wide census makes that boundary defensible and sorts the remainder onto a
+\emph{sound-expressibility} ladder, turning ``unsolved'' into a located map: which gaps are
+buildable, which are open research, which need a different grammar.
+
+A cross-taxa probe locates the one hard axis: per-cycle reduction transfers trivially when each
+cycle's active domains are given---that $1.00$ is the ceiling by construction---but recovering it
+from the fixed domain set alone collapses to $0.567$ across the iteration program; modular and
+iterative PKS thus instantiate two regimes of catalytic control. \emph{Backward}, the same engine
+designs, placing a target on a \emph{realizability geometry} of structural versus iteration-program
+edits, scored by a literature-curated cost that \emph{is} the field's measured engineering
+difficulty. A planner ranks the observation that most collapses $Z^\star$ per unit cost.
+
+Prediction and design are one quantity read twice---an \emph{identifiability--controllability
+duality} (Theorem~\ref{thm:duality}, \S\ref{sec:duality}): the verifier's consistent set and the
+designer's specification space are a single observability $\kappa_O$, so one engine serves both, and
+the result travels, with a falsifiable prediction on RiPP biosynthesis. The stance is calibrated:
+the iteration-grammar wall is \emph{established} on the prediction side (cross-taxa transfer, a
+bacterial control) and \emph{pre-registered} on the design side (the product-neutral degeneracy it
+predicts is, as yet, beyond coverage), and the design contribution rests on measured difficulty, not
+on the cost model's form. Because structure elucidation in this field proceeds by heterologous
+expression and NMR with mass spectrometry as triage---the route for all seven verified products we
+curate from primary sources---the verdict doubles as a metabologenomics triage tool naming which
+clusters triage settles. The observability and verdict layers are family-agnostic, demonstrated
+unchanged over PKS, a non-ribosomal peptide (NRPS) grammar, and a typed PKS--NRPS hybrid; only the
+program generator is family-specific. All tools, data, and analyses are open and reproducible from
+single commands.
 \end{abstract}
 
 \section{Introduction}\label{sec:intro}
@@ -706,6 +700,21 @@ spectra (e.g.\ CFM-ID / GNPS), and turning the curated edit tiers into \emph{obs
 probabilistic realizability}---success distributions fit to wet-lab build outcomes---so the
 design--build--test cycle, not only experiment selection, runs on the same spine. The reference
 implementation (\code{lpi.engine}) is released alongside.
+
+\paragraph{The wall, stated once.} Collected across the three readings, the iteration-grammar wall is
+\emph{proven on the prediction side and pre-registered on the design side}, and on neither an artifact of
+the cost model. \textbf{Proven (prediction):} per-cycle reduction transfers across taxa at a fixed-domain
+ceiling of $0.567$, with a bacterial control ($0.78$ per-module $\to 0.50$ pooled, \S\ref{sec:wall})
+isolating the deficit as the missing per-step input, not model capacity; and the genome--trajectory
+modality assignment and the cost-axis label agree on every edit tested---$0$ of $192$ cross it
+(\S\ref{sec:modality-cells}). \textbf{Pre-registered (design):} the $(\text{trajectory},\text{trajectory})$
+cell---the product-neutral iteration-grammar degeneracy the duality points at---is empty by construction in
+the reachable neighbourhood, because the chemistry that would populate it lies beyond current coverage; its
+first occupant is pre-registered against a sound macrolactonisation operator (\S\ref{sec:modality-cells},
+\S\ref{sec:limits}). \textbf{Not a cost artifact:} the engineerable--frontier split is independent of the
+cost functional form and survives leave-one-core-out (\S\ref{sec:dominance}), resting on tier assignments
+calibrated to the biochemistry---so the wall rests on $\kappa_O$ (proven) and a pre-registration, not on the
+cost shape.
 
 \section{Outlook: the iteration program as a partially observed dynamical control problem}
 \label{sec:pomdp}

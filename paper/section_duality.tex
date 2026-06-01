@@ -7,6 +7,16 @@ Stated cleanly it is a duality between identifiability and controllability that 
 beyond fungal PKS, and we use it to predict where the architecture should reproduce its results on
 families we have not implemented.
 
+\paragraph{One distinction first, and it holds for the whole paper.} The duality's \emph{controllability} is
+design \emph{specification freedom}---the number $\kappa_O$ of programs an observable specification leaves
+open---not engineering \emph{difficulty}, the effort of building any one of them. The word invites fusion
+because the design geometry (\S\ref{sec:moat}) speaks of a \emph{control axis} and \emph{control edits};
+there ``control'' marks the difficulty-driving dimension---the edits the cost model (\S\ref{sec:cost})
+makes expensive---not the freedom. So there are two quantities, held apart throughout: controllability
+($\kappa_O$), a cardinality the duality proves; and the control axis, a difficulty the cost model assumes.
+They meet at exactly one place---the \emph{modality} of the missing feature (the Remark below)---and nowhere
+else.
+
 \paragraph{Setup.} Fix a grammar $G$ with program space $\mathcal{Z}(G)$, an operator library $\Theta$, a
 sound executor $\Exec_\Theta(\cdot\,;G):\mathcal{Z}(G)\to\mathcal{Y}$ into a structure space $\mathcal{Y}$,
 and an observable set $O$ with a projection $\mathrm{obs}_O:\mathcal{Y}\to\mathcal{S}$ onto a signature
@@ -49,6 +59,12 @@ algorithmic output and the designer's specification space are thus identical as 
 is the identification of two operationally distinct objects with one equivalence class.
 \end{proof}
 
+\paragraph{A count, not a cost.} $\kappa_O$ measures how many programs the observables leave open---the
+inference ambiguity, equal to the designer's specification freedom. That ambiguity is not a cost. To
+predict is to resolve the ambiguity, and $\kappa_O$ is its size, so prediction sits on this ledger---the
+proven one. Only how hard any one program is to \emph{build} is the cost model's separate, assumed concern
+(\S\ref{sec:cost}); the theorem licenses the equality of the two \emph{freedoms} only.
+
 \paragraph{Notation.} We write $\kappa_O(y):=\kappa_O(z)$ for any $z\in\Exec^{-1}(y)$; the theorem makes
 this well-defined, since two programs with the same structure share a signature and hence a class.
 
@@ -80,9 +96,11 @@ and a structural specification maps to a unique build route. Compressed, state-d
 iterative PKS gives $\kappa_O>1$ at the same observable (the $0.567$ collapse): inference is under-observed,
 and design admits multiple compositionally degenerate routes---the \emph{existence} of the control axis as
 a design dimension (\S\ref{sec:realiz-geometry}) is the duality read backward, available only to a
-representation that preserves the equivalence class rather than collapsing it. The asymmetry between the
-modular and iterative engineering literatures \citep{yuzawa2018,clustercad2,cox2023} is one quantity at
-one observable, read in opposite directions.
+representation that preserves the equivalence class rather than collapsing it. On the inference/design-\emph{freedom} axis, the modular--iterative asymmetry is one quantity $\kappa_O$
+at one observable read in opposite directions; the engineering-\emph{difficulty} asymmetry those literatures
+\citep{yuzawa2018,clustercad2,cox2023} report tracks it only through the modality---externalised,
+genome-readable per-module state versus compressed, trajectory-latent state---not through $\kappa_O$
+directly.
 \end{corollary}
 
 \begin{corollary}[cross-family prediction]\label{cor:crossfamily}
@@ -100,10 +118,20 @@ NRPS/RiPP chassis of \S\ref{sec:crossgrammar}: instantiate a RiPP grammar and co
 after modification observables.
 \end{corollary}
 
-\begin{remark}
-The duality reframes the field's central diagnostic: fungal biosynthesis is not \emph{separately} hard to
-predict and hard to engineer, but observability-limited, the two hardnesses being projections of one
-quantity onto two questions. The v1 programme follows---characterise $\mathcal{F}_O(G,\Theta)$ as a function
+\begin{remark}[what the duality does, and does not, unify]
+The duality unifies two \emph{freedoms}, not two \emph{difficulties}. By Theorem~\ref{thm:duality} the
+inference \emph{ambiguity} at $z$ and the design \emph{specification freedom} at $y$ are one cardinality
+$\kappa_O$: a structure under-observed for prediction is, by the same count, multiply-routable for design. A
+feature the genome does not fix is, by that same gap, multiply-routable: high $\kappa_O$---the proven
+prediction ambiguity, equal to the design freedom. It is also expensive to build, because the edits that
+would reach it are control edits (the difficulty axis of \S\ref{sec:moat}): high cost, the assumed
+engineering difficulty. The two surface hardnesses---``hard to predict'' and ``hard to engineer''---share a
+cause but are not one quantity: the first is $\kappa_O$, a cardinality the duality proves; the second is the
+cost (\S\ref{sec:cost}, Eq.~\eqref{eq:cost}), a quantity the model assumes; and the trajectory modality of
+the missing feature is the common cause upstream of both, not a third quantity equal to either. Stated
+precisely: fungal biosynthesis is observability-limited---one $\kappa_O$, two freedoms; its prediction
+ambiguity is that $\kappa_O$, its engineering difficulty is the cost model's, and the two co-vary because the
+modality of the missing feature drives both. The v1 programme follows---characterise $\mathcal{F}_O(G,\Theta)$ as a function
 of $O$ for each grammar; the shared layer of \S\ref{sec:mining} implements the query for
 $O\in\{\text{mass},\text{MS/MS}\}$, and widening $O$ until $\mathcal{F}_O$ shrinks to where one wishes to
 operate is then a finite programme on a defined object. We instantiate the duality on the three grammars
@@ -111,3 +139,24 @@ implemented here (PKS, NRPS, hybrid) and predict its survival on RiPP via Coroll
 no theorem over an abstract category of program grammars, only that the proof covers any $(G,\Theta,O)$
 meeting the soundness and relative-completeness conditions of \S\ref{sec:guarantees}.
 \end{remark}
+
+\subsection{The coverage--identifiability structure the duality sits in}\label{sec:coverage-structure}
+Read over the corpus, the verdict partitions into $\mathsf{R}$ ($\kappa_O{=}1$, verified), $\mathsf{U}$
+($\kappa_O{\ge}2$, under-observed), $\mathsf{X}$ ($\kappa_O{=}0$, out-of-grammar) under two knobs of opposite
+monotonicity: enriching the operator library $\Theta$ cannot decrease $\kappa_O$ (it only adds programs:
+$\mathsf{X}\to\mathsf{R}\cup\mathsf{U}$, and by route-overlap $\mathsf{R}\to\mathsf{U}$), while enriching the
+observables $O$ cannot increase it ($\mathsf{U}\to\mathsf{R}$, never exiting $\mathsf{X}$). Since
+$\lvert\mathsf{R}\rvert$ is therefore non-monotone, the honest progress metric is not the raw verified count
+but $\mathsf{R}^{\mathrm{term}}$---cores verified under the \emph{full} operator universe, monotone
+non-decreasing in $\Theta$. This settles the reach-versus-verified reading of the boundary
+(\S\ref{sec:boundary}): olivetolic has $\kappa_O{\ge}2$ under the full universe (genome-distinct,
+starter-determined routes) and so is never terminal, giving $\lvert\mathsf{R}^{\mathrm{term}}\rvert{=}8$;
+registering the encoded PT closures lifts it cleanly to $11$ ($\mathrm{reach}\,9{\to}12$, zero demotions).
+
+\paragraph{The enumeration certifies its own completeness.} The beam can only under-count
+($\kappa_\beta\le\kappa$) and $\kappa$ is monotone in $\Theta$, so a \emph{reported decrease} of
+$\kappa_\beta$ across a nested enrichment is impossible for a complete search---it proves the larger beam
+silently pruned a valid program. This fired: adding a methylmalonyl extender at $\beta{=}8000$ dropped
+reported $\kappa$ for olivetolic ($3\to2$) and BAB ($1\to0$)---a flag, not a result---and widening to
+$5\times10^4$ restored monotonicity and recovered the pruned programs (\code{make kappa-certificate}). The
+relative-completeness caveat of \S\ref{sec:guarantees} thus becomes a runnable per-core check.

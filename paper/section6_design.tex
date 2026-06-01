@@ -115,6 +115,44 @@ starker $93\!:\!34$, and grounding the edit costs (demoting release to a structu
 de~novo C-MeT and iteration-count edits) softened it to a defensible margin. Fungal biosynthetic
 \emph{design} is mostly iteration-program editing: the axis only a sound per-cycle executor can express.
 
+\paragraph{The split is not a cost-model artifact (\code{make design-sensitivity}).} That curation
+\emph{softened} the ratio ($93\!:\!34\to69\!:\!49$) rather than sharpening it is the reassuring direction:
+the tiers track the measured difficulty (Cox 2023; Fisch \& Cox 2011), they were not reverse-engineered
+from $69\!:\!49$. Three checks close the tuning objection. \emph{(i)} The split is independent of the cost
+\emph{form}---no design in the $1$-edit neighbourhood carries $\ge2$ control edits, so the super-additive
+term of Eq.~\eqref{eq:cost} never activates and a linear control cost returns the identical $69\!:\!49$; the
+$k^2$ assumption bears on stacked edits, not this partition. \emph{(ii)} Leave-one-core-out over the nine
+cores holds the dominance ($1.32$--$1.50\times$, no flip). \emph{(iii)} The ordering inverts only under a
+re-tiering that contradicts the record---raising a per-cycle reduction edit to \textsc{speculative}, or
+reclassifying it structural (the latter inflates the engineerable column to $96$). That $96$ is a
+\emph{counterfactual} count, not the committed one: reclassifying per-cycle reduction as structural is
+exactly the move that breaks the $0/192$ feature--axis agreement (\S\ref{sec:modality-cells}), so it shifts
+the cost boundary while leaving the feature-determined modality cells ($49$ genome / $69$ trajectory)
+untouched---the cost boundary moves, the modality does not. This \emph{defends} the split against a tuning
+objection; it does not \emph{establish} the wall---the prediction side (\S\ref{sec:wall}) does that.
+
+\subsection{The design axes are modalities; the decisive cell is empty}\label{sec:modality-cells}
+Every design edit changes a feature in one of two latent modalities: \emph{genome} (domain content,
+loading/AT, release cyclase---read from $\phi(B)$) or \emph{trajectory} (which cycle a present domain fires
+on, under a fixed domain set). The control axis of \S\ref{sec:realiz-geometry} \emph{is} this modality:
+tagging each of the $192$ edits across the $142$ one-edit-neighbour designs by its feature's modality,
+independently of the structural/control label, the two agree in $\mathbf{0}$ of $192$ (\code{make
+design-tag})---a proven assignment of which modality controls each edit. It is separate from how costly the
+edit is: the cost model \emph{then} assigns genome edits a linear cost and trajectory edits a super-additive
+one (Eq.~\eqref{eq:cost})---a difficulty assumption grounded in Cox 2023, one the $69\!:\!49$ split is
+independent of (\S\ref{sec:dominance}), not a consequence the modality assignment derives.
+
+The $(m_{\mathrm{ctrl}},m_{\mathrm{conf}})$ occupancy, over the $118$ engineerable$+$frontier designs (the
+$24$ speculative excluded from the cells), is $(\text{genome},\text{product}){=}46$,
+$(\text{genome},\text{latent}){=}3$, $(\text{trajectory},\text{product}){=}69$, and
+$(\text{trajectory},\text{trajectory}){=}\mathbf{0}$---that is, $49$ genome ($46{+}3$) and $69$ trajectory
+($69{+}0$), the same $49\!:\!69$ as the dominance above. The empty cell is the framework's sharpest honesty:
+the genuine product-neutral iteration-grammar degeneracy---the residual the construction points at---is
+un-witnessed in the reachable neighbourhood, because the chemistry that would populate it (macrolactonising
+highly-reducing cores) lies beyond current executor coverage. It is empty \emph{by construction}, not by
+measurement; its first occupant---a same-product, same-starter, different-cycle fibre---is pre-registered
+against a sound macrolactonisation operator, the located research problem of \S\ref{sec:limits}.
+
 \subsection{The experiment-selection planner}\label{sec:planner}
 Given a design, which experiment should one run next? The planner ranks each modelled observation $o$ by
 expected information gain per unit cost, weighted by realizability:
