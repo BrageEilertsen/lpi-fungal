@@ -52,6 +52,7 @@ class Release(Enum):
     ALDOL_AROMATIC = "aldol_aromatic"  # single-mode aldol/Claisen + aromatization
     DIHYDROISOCOUMARIN = "dihydroisocoumarin"  # composite: lactone + aromatic aldol (mellein)
     MACROLACTONIZATION = "macrolactonization"  # cis-TE macrolactone; ring size = curated locant (rung-2 recoverable feature), else unfired
+    RESORCYLIC_MACROLACTONE = "resorcylic_macrolactone"  # composite: curated C2-C7 resorcylic aromatization + cis-TE macrolactone (beta-resorcylic-acid lactones, e.g. zearalenone)
     PT_NAPHTHALENE = "pt_naphthalene"  # NR-PKS PT-domain pentaketide -> naphthalene
     NONE = "none"  # leave tethered (debug / inspection only)
 

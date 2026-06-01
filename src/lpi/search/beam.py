@@ -41,6 +41,7 @@ _ALL_RELEASES = (
     Release.ALDOL_AROMATIC,
     Release.DIHYDROISOCOUMARIN,
     Release.MACROLACTONIZATION,
+    Release.RESORCYLIC_MACROLACTONE,
 )
 
 # Max whole waters a single-mode cyclization can plausibly expel (lactone + aromatic

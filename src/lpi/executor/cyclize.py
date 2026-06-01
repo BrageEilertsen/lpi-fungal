@@ -173,10 +173,14 @@ def _aliphatic_hydroxyls(mol: Chem.Mol) -> list[int]:
     return out
 
 
-def macrolactonize(linear_acid: Chem.Mol, ring_oh_idx: int | None = None) -> Chem.Mol | None:
+def macrolactonize(linear_acid: Chem.Mol, ring_oh_idx: int | None = None,
+                   *, min_ring: int = 0) -> Chem.Mol | None:
     """Esterify the C1 carboxyl with an aliphatic hydroxyl, losing one water. Ring size is
     fixed by `ring_oh_idx` (the curated cis-TE locant); when omitted, fires only if the
-    closure is unambiguous, else returns None (no ring-size guess)."""
+    closure is unambiguous, else returns None (no ring-size guess). `min_ring` (0 = no bound)
+    rejects closures whose lactone ring is smaller than `min_ring` atoms -- the cis-TE makes
+    a MACROcycle, so the resorcylic composite sets it to exclude the small delta-/gamma-lactones
+    that the lactonization / dihydroisocoumarin releases already model."""
     acids = _carboxyl_carbons(linear_acid)
     if len(acids) != 1:
         return None
@@ -190,6 +194,8 @@ def macrolactonize(linear_acid: Chem.Mol, ring_oh_idx: int | None = None) -> Che
         oh_o = candidates[0]
     else:
         return None  # ambiguous (or no) ring size -> do not guess
+    if min_ring and len(Chem.GetShortestPath(linear_acid, carbonyl_c, oh_o)) < min_ring:
+        return None  # a small delta/gamma-lactone, not a macrocycle -> outside this operator's scope
     rw = RWMol(linear_acid)
     rw.RemoveBond(carbonyl_c, acid_o)
     rw.AddBond(carbonyl_c, oh_o, Chem.BondType.SINGLE)
@@ -294,6 +300,56 @@ def aromatize_register(linear_acid: Chem.Mol, register: tuple[int, int] | None) 
     return prod
 
 
+# --- Resorcylic-acid-lactone release: curated C2-C7 aromatization + cis-TE macrolactonization ------
+# The beta-resorcylic-acid lactones (RALs, e.g. zearalenone) are a curated single-mode C2-C7
+# aromatization -- the OrsA-family PT regiochemistry the grammar already encodes for the reachable
+# tetraketides in _ORSELLINIC_ALDOL -- on the TERMINAL poly-beta-keto stretch of a longer chain,
+# followed by cis-TE macrolactonization of the resulting aromatic seco-acid onto a tail hydroxyl. The
+# ONLY thing keeping _ORSELLINIC_ALDOL from firing on a RAL precursor is its [CX4:8] (sp3) constraint on
+# the C7 substituent: a RAL's C7 carries the reduced macrolactone-forming tail, whose first carbon is
+# sp2 (an alkene). _RESORCYLIC_ALDOL relaxes only that one atom to any carbon, carrying the tail through
+# as the ring 6-substituent exactly as _ORSELLINIC_ALDOL carries a methyl. Curated single-mode by
+# construction (the C2-C7 register); the competing C1-C6 Claisen fold that aromatize_register also
+# renders is deliberately NOT in the grammar -- the same relative-soundness scope (a curated fold encodes
+# characterised enzymology) as the other reachable aromatics. Lives only inside the composite release
+# below, not in _AROMATIC_TEMPLATES, so it cannot change any existing aldol_aromatic verdict.
+_RESORCYLIC_ALDOL = (
+    "[OH][C:1](=[O:10])[CH2:2][C:3](=[O:11])[CH2:4][C:5](=[O:12])[CH2:6][C:7](=O)[#6:8]"
+    ">>[OH][C:1](=[O:10])[c:2]1[c:3]([OH:11])[cH][c:5]([OH:12])[cH][c:7]1[C:8]"
+)
+
+
+def resorcylic_aromatic(linear_acid: Chem.Mol) -> Chem.Mol | None:
+    """Curated C2-C7 resorcylic aromatization of a terminal poly-beta-keto acid stretch, carrying any
+    C7 substituent (the reduced tail) through to the ring as its 6-substituent. Returns the aromatic
+    seco-acid, or None when the motif is absent or matches ambiguously (the single-mode discipline of
+    _ORSELLINIC_ALDOL)."""
+    return _run_single(_RESORCYLIC_ALDOL, linear_acid)
+
+
+# Macrocycle floor -- a chemically-motivated boundary between two cyclase chemistries, NOT a beam/
+# tractability knob. The cis-TE that closes a resorcylic-acid lactone forms a MACROcycle (zearalenone's
+# ring is 14-membered; RALs are >=12); a short chain would instead close to a 6-membered delta-lactone,
+# which is a DIFFERENT chemistry -- the dihydroisocoumarin already owned by Release.DIHYDROISOCOUMARIN.
+# delta-/epsilon-lactones are 6-7 atoms and genuine resorcylic macrolactones are 12+, an order of
+# magnitude apart, so the floor is robust to any reasonable value; 8 cleanly separates them. Without it
+# the composite poaches that delta-lactone regime and inflates an existing core's |Z*| (verified:
+# 6-hydroxymellein gained a spurious 2nd route, 1->2).
+_MACROLACTONE_MIN_RING = 8
+
+
+def resorcylic_macrolactone(linear_acid: Chem.Mol, ring_oh_idx: int | None = None) -> Chem.Mol | None:
+    """Composite beta-resorcylic-acid-lactone release: curated C2-C7 resorcylic aromatization, THEN
+    cis-TE MACROlactonization of the aromatic seco-acid (ring size = curated locant, else the unambiguous
+    closure, else None). Fires only if BOTH steps are unambiguous and the lactone is a macrocycle
+    (>= _MACROLACTONE_MIN_RING) -- the executor guesses neither DOF and does not poach the delta-lactone
+    regime of the dihydroisocoumarin release."""
+    seco = resorcylic_aromatic(linear_acid)
+    if seco is None:
+        return None
+    return macrolactonize(seco, ring_oh_idx, min_ring=_MACROLACTONE_MIN_RING)
+
+
 def release(linear_acid: Chem.Mol, mode: Release, *, ring_oh_idx: int | None = None) -> Chem.Mol | None:
     if mode is Release.LACTONIZATION:
         return lactonize(linear_acid)
@@ -303,4 +359,6 @@ def release(linear_acid: Chem.Mol, mode: Release, *, ring_oh_idx: int | None = N
         return dihydroisocoumarin(linear_acid)
     if mode is Release.MACROLACTONIZATION:
         return macrolactonize(linear_acid, ring_oh_idx)
+    if mode is Release.RESORCYLIC_MACROLACTONE:
+        return resorcylic_macrolactone(linear_acid, ring_oh_idx)
     return None
