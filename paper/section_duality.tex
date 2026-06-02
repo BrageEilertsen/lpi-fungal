@@ -159,4 +159,10 @@ $\kappa_\beta$ across a nested enrichment is impossible for a complete search---
 silently pruned a valid program. This fired: adding a methylmalonyl extender at $\beta{=}8000$ dropped
 reported $\kappa$ for olivetolic ($3\to2$) and BAB ($1\to0$)---a flag, not a result---and widening to
 $5\times10^4$ restored monotonicity and recovered the pruned programs (\code{make kappa-certificate}). The
-relative-completeness caveat of \S\ref{sec:guarantees} thus becomes a runnable per-core check.
+relative-completeness caveat of \S\ref{sec:guarantees} thus becomes a runnable per-core check for the
+\emph{decrease} class---a program found at a smaller $\Theta$ and silently pruned at a larger one. A
+complementary failure escapes it: a core in-grammar yet never surfaced at practical width (zearalenone,
+\S\ref{sec:guarantees}) holds $\kappa_\beta{=}0$ across the enrichment that should raise it---non-decreasing,
+so it passes the monotonicity test. That \emph{failure-to-increase} class is caught instead by a
+generability check (the program is enumerable once its rank-competitors are removed), so the
+relative-completeness story is stratified across two checks rather than covered by one.

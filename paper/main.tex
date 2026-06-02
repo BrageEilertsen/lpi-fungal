@@ -331,7 +331,14 @@ mass tolerance $\epsilon$ and the adduct model. For
 $Z^{\star}_{\Theta}(y;G,O)=\{\,z\in Z_{\Theta}(G,O):\mathrm{Exec}_{\Theta}(z;G)\simeq y\,\}$
 the search is \emph{sound}---every returned $z$ executes to a structure matching $y$ under
 $\simeq$---and \emph{relatively complete}: every legal program in the enumerated grammar that
-matches $y$ is returned, up to the beam bound. It is deliberately \emph{not} biologically complete:
+matches $y$ is returned, up to the beam bound. That bound is load-bearing and has a realised
+counterexample: the $\beta$-resorcylic-acid lactone zearalenone is in the enumerated grammar---its program
+renders the deposited connectivity by construction once the resorcylic-macrolactone operator is
+registered---yet the beam does not surface that program at practical width, because the carbon-closeness
+ranking lets C-methylation-bearing partials crowd out the long unmethylated highly-reducing prefix; it is
+recovered only at impractically large widths. Relative completeness thus holds up to the bound, and on
+large highly-reducing cores the bound is not always practically reachable. It is deliberately \emph{not}
+biologically complete:
 if nature uses an operator outside $\Theta$, an empty $Z^{\star}$ is correct relative to $\Theta$
 even though the molecule is producible \emph{in vivo}. An empty consistent set is therefore a typed
 \emph{certificate of failure mode}---missing operator, hidden control, tailoring under-constraint,
@@ -636,8 +643,10 @@ must not blur.) This is what makes the census of \S\ref{sec:census} a map rather
 aromatic cyclization is a \emph{resolved} rung-2 class (the predictive PT map places orsellinic and 6-MSA
 among the reachable nine); macrolactonization---the dominant in-scope family ($176/205$)---is
 \emph{located} but not resolved (rung~0 passes for the \emph{cis} resorcylic-acid-lactone thioesterases,
-and the rung-4 mixture route is closed by the regiospecific zearalenone TE, leaving rungs~2--3 at a cost
-not yet measured); and the $178$ of $205$ ($87\%$) that touch a hard family are exactly the
+and the rung-4 mixture route is closed by the regiospecific zearalenone TE, with the rung-2
+resorcylic-macrolactone closure now registered (\S\ref{sec:guarantees}) but adding no reachable core---the
+beam does not surface its highly-reducing program at practical width---so rung~3 stays open at a cost and
+the reachable count is unchanged); and the $178$ of $205$ ($87\%$) that touch a hard family are exactly the
 rung-2/3-and-open operators, while the rung-2 closures generalize cleanly---the orsellinic C2$\to$C7
 closure extends to a pentyl starter, building olivetolic acid's $\beta$-resorcylic core (now among the
 reachable nine; Table~\ref{tab:crossgrammar})---so sound, no-new-regiochemistry extension adds no further
@@ -661,7 +670,7 @@ Operator extension & Unlocks & Sound-expressibility rung \\
 \midrule
 more small-aromatic closures & many NR/PR aromatics & rung 2 (resolved; sequence-keyed) \\
 PT-domain regiochemistry classes & larger aromatic folds & rung 2 (predictive, PT-clade) \\
-macrolactonization & resorcylic-acid lactones, macrocycles & rung 2--3 (located; cost open) \\
+macrolactonization & resorcylic-acid lactones, macrocycles & rung 2 registered (reach unchanged); 3 open \\
 oxidative skeletal rearrangement & aflatoxin / sterigmatocystin & rung 3 / open (soundness unproven) \\
 PKS--NRPS handoff checkpoint & hybrid cores & scope boundary (different grammar) \\
 dimerization / depside coupling & non-local products & non-local scope (off the per-program ladder; unassessed) \\
@@ -721,13 +730,21 @@ the cost model. \textbf{Proven (prediction):} per-cycle reduction transfers acro
 ceiling of $0.567$, with a bacterial control ($0.78$ per-module $\to 0.50$ pooled, \S\ref{sec:wall})
 isolating the deficit as the missing per-step input, not model capacity; and the genome--trajectory
 modality assignment and the cost-axis label agree on every edit tested---$0$ of $192$ cross it
-(\S\ref{sec:modality-cells}). \textbf{Pre-registered (design):} the $(\text{trajectory},\text{trajectory})$
-cell---the product-neutral iteration-grammar degeneracy the duality points at---is empty by construction in
-the reachable neighbourhood, because the chemistry that would populate it lies beyond current coverage; its
-first occupant is pre-registered, gated on a curated resorcylic aromatisation fold---not yet
-registered, as the reachable orsellinic-type cores already are---together with the macrolactonisation
-release now implemented: a located, rung-2 coverage gap (\S\ref{sec:modality-cells},
-\S\ref{sec:limits}). \textbf{Not a cost artifact:} the engineerable--frontier split is independent of the
+(\S\ref{sec:modality-cells}). \textbf{Pre-registered $\to$ resolved (design):} the $(\text{trajectory},\text{trajectory})$
+cell---the product-neutral iteration-grammar degeneracy the duality points at---is empty in the reachable
+neighbourhood. Its first occupant was pre-registered as a macrolactonised highly-reducing core, gated on a
+curated resorcylic aromatisation fold together with the macrolactonisation release; both are now registered
+(\S\ref{sec:guarantees}). Building the fold resolves the pre-registration to its \emph{informative-negative}
+branch---the predicted occupant does not appear, for a structural reason. A product-neutral
+same-product/different-cycle fibre requires the cyclisation to \emph{erase} a reduction-state distinction;
+the resorcylic fold closes an all-$\beta$-keto aromatic ring, which carries no reduction landmark to erase,
+so distinct reduction trajectories yield distinct products and no trajectory edit is product-neutral. The
+occupant the cell awaits would need an aromatic core with a \emph{reduced} ring position the fold
+flattens---which the curated single-mode folds do not provide---so the cell stays empty by a rendered
+mechanism, not by missing coverage. (The lactone itself, zearalenone, is in-grammar by construction yet
+outside the reachable set: the beam does not surface its program at practical width, \S\ref{sec:guarantees}.)
+The pre-registration does its job either way: the framework names where its own predicted degeneracy does
+and does not arise (\S\ref{sec:modality-cells}, \S\ref{sec:limits}). \textbf{Not a cost artifact:} the engineerable--frontier split is independent of the
 cost functional form and survives leave-one-core-out (\S\ref{sec:dominance}), resting on tier assignments
 calibrated to the biochemistry---so the wall rests on $\kappa_O$ (proven) and a pre-registration, not on the
 cost shape.
