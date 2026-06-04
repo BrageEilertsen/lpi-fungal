@@ -42,6 +42,7 @@ Single command: `make forward-index`  (PYTHONHASHSEED pinned).  Self-check: `...
 from __future__ import annotations
 
 import csv
+import dataclasses
 import multiprocessing as mp
 import os
 import signal
@@ -63,10 +64,31 @@ from lpi.search.reachability import CARBON_CAP, CARBON_MIN, _scan_spec
 RDLogger.DisableLog("rdApp.*")
 
 PARQUET = PROCESSED / "fungal_pks_pairs.parquet"
-OUT_CSV = Path("results/forward_index.csv")
 GENERABILITY_CSV = Path("results/generability_scan.csv")
 
-THETA0 = _scan_spec()
+# ---- Theta level: the parameterized build-loop --------------------------------------------------------
+# THETA=0 is the cited Theta_0 baseline (== _scan_spec(); reproduces 117/11). THETA=n adds the
+# witness-validated rung-2 build-loop operators registered through level n -- each is kept OUT of
+# beam._ALL_RELEASES so the Theta_0 baseline stays reproducible, and opted in here. This keeps EVERY level
+# reproducible from one command at HEAD (`make forward-index THETA=n`) and makes R_term-monotonicity a
+# RUNNABLE check (`--monotone`: across levels, gaps only decrease, recovered only grows, zero demotions).
+_THETA_EXTENSIONS = {
+    1: (Release.PT_NAPHTHALENE,),   # T4HN proof-of-loop; witness-locked by tests/test_pt_naphthalene.py
+}
+
+
+def theta(level: int):
+    """Theta_level = Theta_0 (_scan_spec) + the build-loop releases registered through `level`."""
+    base = _scan_spec()
+    extra = tuple(r for lv in range(1, level + 1) for r in _THETA_EXTENSIONS.get(lv, ()))
+    return dataclasses.replace(base, releases=base.releases + extra) if extra else base
+
+
+THETA_LEVEL = int(os.environ.get("THETA", "0"))
+THETA = theta(THETA_LEVEL)
+OUT_CSV = Path("results/forward_index.csv" if THETA_LEVEL == 0
+               else f"results/forward_index_theta{THETA_LEVEL}.csv")
+
 N_MAX = 9                  # cycles: covers C<=20 fully (acetyl + 9*2 = 20); C>20 -> inconclusive
 CMAX = CARBON_CAP          # 20: matches the campaign's carbon cap (too_large = C>20)
 EXEC_TIMEOUT_S = 30        # per-exec wall limit: only TRUE pathological hangs hit it (normal exec <50ms)
@@ -89,8 +111,8 @@ def _flat(smi: str) -> str:
 
 
 def _cycle_opts() -> list:
-    me_opts = (False, True) if THETA0.allow_c_methyl else (False,)
-    return [Cycle(reduction=r, c_methyl=me) for r in THETA0.reductions for me in me_opts]
+    me_opts = (False, True) if THETA.allow_c_methyl else (False,)
+    return [Cycle(reduction=r, c_methyl=me) for r in THETA.reductions for me in me_opts]
 
 
 def _gate(lin: tuple, release: Release, fset: frozenset) -> bool:
@@ -180,7 +202,7 @@ def _exec_chunk(chunk: tuple) -> tuple:
     n_exec = n_skip = n_gated = 0
     for combo in _enumerate_from(sc, first):
         lin = linear_acid_formula(Program(starter, combo))
-        for rel in THETA0.releases:
+        for rel in THETA.releases:
             if not _gate(lin, rel, _FSET):
                 continue
             n_gated += 1
@@ -262,7 +284,7 @@ def _selftest() -> None:
     global N_MAX, CMAX
     N_MAX, CMAX = 4, 12
     opts = _cycle_opts()
-    for starter in THETA0.starters:
+    for starter in THETA.starters:
         sc = _STARTER_C[starter]
         serial = set(tuple((c.reduction, c.c_methyl) for c in cb) for cb in _enumerate_combos(sc))
         par: set = set()
@@ -276,15 +298,57 @@ def _selftest() -> None:
     print("SELFTEST PASS: chunked enumeration is complete + non-overlapping (parallel == serial).")
 
 
+def _monotone() -> None:
+    """Runnable R_term-monotonicity check across Theta levels (Prop 16.4c as a test): read the per-level
+    forward_index CSVs and assert the build-loop only ADDS reach -- gaps non-increasing, recovered
+    non-decreasing, and ZERO demotions (no core recovered at a lower level becomes a gap at a higher one).
+    Run the levels first (`make forward-index THETA=0`, `... THETA=1`, ...), then `... --monotone`."""
+    levels: dict = {}
+    paths = [Path("results/forward_index.csv"), *sorted(Path("results").glob("forward_index_theta*.csv"))]
+    for p in paths:
+        if not p.exists():
+            continue
+        lvl = 0 if p.name == "forward_index.csv" else int(p.stem.split("theta")[1])
+        rows = list(csv.DictReader(p.open()))
+        rec = {r["bgc_id"] for r in rows if r["forward_verdict"] == "recovered"}
+        gaps = sum(1 for r in rows if r["forward_verdict"] in ("sound-structural-gap", "formula-infeasible"))
+        incon = sum(1 for r in rows if r["forward_verdict"] == "inconclusive-budget")
+        levels[lvl] = (rec, gaps, incon, len(rows))
+    print(f"R_term-MONOTONICITY across Theta levels {sorted(levels)} (gaps = sound-structural-gap + formula-infeasible):")
+    ok, prev = True, None
+    for lvl in sorted(levels):
+        rec, gaps, incon, n = levels[lvl]
+        line = f"  Theta_{lvl}: recovered={len(rec):>3d}  certified-gaps={gaps:>3d}  inconclusive={incon:>3d}  (of {n})"
+        if prev is not None:
+            prec, pgaps, pincon, _ = prev
+            demoted = prec - rec
+            grew, shrank, clean = len(rec) >= len(prec), gaps <= pgaps, not demoted
+            ok = ok and grew and shrank and clean
+            line += (f"  | recovered {len(rec) - len(prec):+d} {'OK' if grew else 'FAIL'}, "
+                     f"gaps {gaps - pgaps:+d} {'OK' if shrank else 'FAIL'}, "
+                     f"demotions {len(demoted)} {'OK' if clean else 'FAIL'}")
+            if demoted:
+                line += f"  DEMOTED {sorted(demoted)} -- check _THETA_EXTENSIONS is base UNION {{op}}, not base-minus"
+        print(line)
+        prev = (rec, gaps, incon, n)
+    print(f"\n  R_term non-decreasing in Theta (no silent prune): {'PASS' if ok else 'FAIL'}")
+    if not ok:
+        sys.exit(1)
+
+
 def main() -> None:
     if "--selftest" in sys.argv[1:]:
         _selftest()
         return
+    if "--monotone" in sys.argv[1:]:
+        _monotone()
+        return
     t0 = time.time()
-    print("Completion 1 -- forward sound indexing (parallel, build-once / serve-all over Theta_0)\n", flush=True)
-    print(f"Theta_0: starters={THETA0.starters}, releases={len(THETA0.releases)} modes, "
-          f"c_methyl={THETA0.allow_c_methyl}; bound N={N_MAX} cycles, Cmax={CMAX} carbons; "
-          f"exec_timeout={EXEC_TIMEOUT_S}s\n", flush=True)
+    ext = [r.name for lv in range(1, THETA_LEVEL + 1) for r in _THETA_EXTENSIONS.get(lv, ())]
+    print(f"Completion 1 -- forward sound indexing (parallel; THETA level {THETA_LEVEL})\n", flush=True)
+    print(f"Theta_{THETA_LEVEL}: starters={THETA.starters}, releases={len(THETA.releases)} modes"
+          f"{' +' + '+'.join(ext) if ext else ' (base)'}, c_methyl={THETA.allow_c_methyl}; "
+          f"N={N_MAX}, Cmax={CMAX}; exec_timeout={EXEC_TIMEOUT_S}s -> {OUT_CSV.name}\n", flush=True)
 
     targets = load_targets()
     gen_class = _generability_classes()
@@ -297,10 +361,10 @@ def main() -> None:
         fmap[r.bgc_id] = (cho, flat, r.name, r.status)
         tidx[(cho, flat)] = r.bgc_id
         fset_build.add(cho)
-    fset = frozenset(c for c in fset_build if formula_feasible(c, THETA0, max_cycles=c[0] // 2 + 1))
+    fset = frozenset(c for c in fset_build if formula_feasible(c, THETA, max_cycles=c[0] // 2 + 1))
     print(f"  corpus formula gate: {len(fset)} feasible of {len(fset_build)} distinct (C,H,O)\n", flush=True)
 
-    chunks = [(s, i) for s in THETA0.starters for i in range(len(_cycle_opts()))]
+    chunks = [(s, i) for s in THETA.starters for i in range(len(_cycle_opts()))]
     k = max(2, (os.cpu_count() or 4) - 2)
     print(f"[2/3] parallel forward sweep: {len(chunks)} chunks over {k} workers ...", flush=True)
     recovered: dict = {}
@@ -338,7 +402,7 @@ def main() -> None:
     rows = []
     for bgc, (cho, flat, name, status) in fmap.items():
         C, H, O = cho
-        feasible = formula_feasible(cho, THETA0, max_cycles=C // 2 + 1)
+        feasible = formula_feasible(cho, THETA, max_cycles=C // 2 + 1)
         in_range = (C <= CMAX) and (((C - 2 + 1) // 2) <= N_MAX)
         is_rec = (cho, flat) in rec_structs
         if not feasible:

@@ -108,8 +108,12 @@ coverage-illusion:	## Exp C survivorship control: is C-methyl burden enriched pa
 generability:	## Sec 10.1: classify the in-scope-unreachable cores -- search-limited (beam) vs coverage-limited (chemistry). PYTHONHASHSEED pinned (see reachability note above).
 	PYTHONHASHSEED=0 PYTHONPATH=src $(PY) scripts/coverage/generability_scan.py
 
-forward-index:	## Completion 1: forward SOUND index -- re-resolve the 169 structural cores (recovered vs sound gap), recover beam-starved zearalenone. One Theta_0 sweep serves all 214. PYTHONHASHSEED pinned.
-	PYTHONHASHSEED=0 PYTHONPATH=src $(PY) scripts/coverage/forward_index.py
+THETA ?= 0   # build-loop Theta level: 0 = cited baseline (117/11); 1 = +PT_NAPHTHALENE (114/14); see forward_index.py
+forward-index:	## Completion 1: forward SOUND index at Theta level $(THETA). `make forward-index THETA=1` runs the build-loop extension. PYTHONHASHSEED pinned.
+	THETA=$(THETA) PYTHONHASHSEED=0 PYTHONPATH=src $(PY) scripts/coverage/forward_index.py
+
+forward-index-monotone:	## R_term-monotonicity test: across the Theta levels already run, assert gaps only shrink + recovered only grows + zero demotions (Prop 16.4c as a runnable check)
+	PYTHONHASHSEED=0 PYTHONPATH=src $(PY) scripts/coverage/forward_index.py --monotone
 
 rung2-cover:	## Completion 1 build-queue: rung-2 sound set-cover over the 117 certified gaps -- which single soundly-expressible operator buys the most provable reach (reads results/forward_index.csv).
 	PYTHONHASHSEED=0 PYTHONPATH=src $(PY) scripts/coverage/rung2_cover.py
