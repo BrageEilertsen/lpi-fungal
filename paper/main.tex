@@ -592,9 +592,13 @@ design--build--test loop the planner opens. With that scope fixed once, the spec
 
 \begin{itemize}[leftmargin=1.4em,itemsep=2pt]
 \item \textbf{Partial executor coverage.} Single-mode cyclization plus a tetraketide-aromatic and
-a PT-naphthalene class (skeleton-correct; hydroxyl regiochemistry flagged) are implemented; the
-remaining PT-aromatic classes, the Diels--Alder, and macrolactonization are not. Thus the
-$205$ in-scope cores the grammar does not reach (\S\ref{sec:census}) are partly executor coverage and partly true rearrangement.
+a PT-naphthalene class (\emph{witness-exact}: it round-trips the deposited
+$1,3,6,8$-tetrahydroxynaphthalene---correcting an earlier ``skeleton-correct, regiochemistry-flagged''
+status the deposited witness refutes), and a macrolactonization are implemented; the
+remaining PT-aromatic classes and the Diels--Alder are not. Forward sound indexing (below) sorts the
+$205$ in-scope cores the base grammar does not reach (\S\ref{sec:census}) from a tally into a certified
+frontier---which are beam-starved (in grammar), which are provable structural-gaps, and which are out of
+formula-reach.
 \item \textbf{Additive-only tailoring.} The $\sim\!12$ edit types are additive and the joint
 verifier is ``exact-by-budget'' (skeleton embedding $+$ $\Delta$-formula $+$ gene/parsimony
 budget), threshold-free but not yet full atom-by-atom positional reconstruction (positions affect
@@ -644,9 +648,10 @@ aromatic cyclization is a \emph{resolved} rung-2 class (the predictive PT map pl
 among the reachable nine); macrolactonization---the dominant in-scope family ($176/205$)---is
 \emph{located} but not resolved (rung~0 passes for the \emph{cis} resorcylic-acid-lactone thioesterases,
 and the rung-4 mixture route is closed by the regiospecific zearalenone TE, with the rung-2
-resorcylic-macrolactone closure now registered (\S\ref{sec:guarantees}) but adding no reachable core---the
-beam does not surface its highly-reducing program at practical width---so rung~3 stays open at a cost and
-the reachable count is unchanged); and the $178$ of $205$ ($87\%$) that touch a hard family are exactly the
+resorcylic-macrolactone closure now registered (\S\ref{sec:guarantees}): the \emph{beam} does not surface
+its highly-reducing program at practical width, but \emph{forward sound indexing} (below) does, so the
+closure's true increment is the beam-starved set ($+2$ cores, sound reach $9\to11$), not zero, and only the
+fold-gated rung-3 closures stay open above the size bound); and the $178$ of $205$ ($87\%$) that touch a hard family are exactly the
 rung-2/3-and-open operators, while the rung-2 closures generalize cleanly---the orsellinic C2$\to$C7
 closure extends to a pentyl starter, building olivetolic acid's $\beta$-resorcylic core (now among the
 reachable nine; Table~\ref{tab:crossgrammar})---so sound, no-new-regiochemistry extension adds no further
@@ -655,6 +660,34 @@ discriminators that assign a rung---cis-vs-trans annotation (rung~0), the within
 (rung~4), and a structure-vs-sequence experiment with the chain regressed out (rung~2-vs-3)---each carry
 catalogued false-read failure modes (deposition bias, phylogenetic confounding, static-fold blindness),
 so a rung is a verdict to be earned per class, not read off structure (Appendix~\ref{app:census}).
+
+\paragraph{Forward sound indexing turns the boundary into a certified map.} The beam verifier is sound but
+not search-complete ($\kappa_\beta\le\kappa$), so $\kappa_\beta{=}0$ cannot distinguish a coverage gap from an
+in-grammar program the carbon-closeness ranking starves. Running the executor \emph{forward}---enumerating
+$\Theta_0$ to a size bound ($N{=}9$ cycles, $C{\le}20$) and rendering every program---is ranking-free and
+hence complete by construction up to that bound, so an empty structure bucket is a \emph{provable} absence
+certificate, the one verdict the beam cannot issue. Over the $214$ in-scope CHO cores this converts the
+heuristic $9/326$ boundary into a sound map (\texttt{make forward-index}): \textbf{sound reach $11$}---delivering, as an exact reproducible
+result, the reach lift the companion paper forecast for the PT closures---the $9$
+beam-reachable cores plus the $2$ beam-starved in-grammar cores the resorcylic closure enables (including
+zearalenone, recovered where the beam gave $\kappa_\beta{=}0$ through $\beta{=}2{\times}10^{5}$); a
+\textbf{certified frontier of $117$} cores---$83$ \emph{provable structural-gaps} (formula-feasible but
+exhaustively unbuilt up to the bound, each needing a new operator) and $34$ mass-infeasible (each needing new
+formula-budget chemistry); and $86$ \emph{inconclusive} cores ($C{>}20$, beyond the size bound, reported as
+such and never as gaps). The boundary's search-incompleteness was thus \emph{exactly two cores}, removed by
+the forward path; what remains is the genuine coverage frontier, now certifiable, and the only residual limit
+is a size cap on the map's completeness, not on the executor.
+
+\paragraph{A monotone build-loop over the certified frontier.} Restricting the structural-proxy set-cover to
+soundly-expressible (rung-2) classes turns the $117$ into a \emph{build-queue} (\texttt{make rung2-cover}):
+$19$ rung-2 (buildable now), $62$ rung-3-open (fold-gated regiochemistry), $34$ rung-3-mass (formula-changing
+tailoring). Because registering a sound operator can only move cores gap$\to$reachable, $R_{\mathrm{term}}$ is
+non-decreasing in $\Theta$---which we make a \emph{runnable} check (\texttt{make forward-index-monotone},
+asserting zero demotions across $\Theta$ levels). The loop's first step delivers it: registering the
+witness-exact PT pentaketide$\to$naphthalene closure recovers the three deposited tetrahydroxynaphthalenes
+(sound reach $11\to14$; they also become beam-reachable, $9\to12$), zero demotions, \emph{witness-first}---the
+operator round-trips its deposited structure, no regiochemistry fabricated. The remaining rung-2 family is
+then mechanism, not open question.
 
 \begin{table}[h]
 \centering\small
@@ -669,8 +702,8 @@ belong to a different grammar.}
 Operator extension & Unlocks & Sound-expressibility rung \\
 \midrule
 more small-aromatic closures & many NR/PR aromatics & rung 2 (resolved; sequence-keyed) \\
-PT-domain regiochemistry classes & larger aromatic folds & rung 2 (predictive, PT-clade) \\
-macrolactonization & resorcylic-acid lactones, macrocycles & rung 2 registered (reach unchanged); 3 open \\
+PT-domain regiochemistry classes & larger aromatic folds & rung 2 (PT-clade; naphthalene closure delivered, $+3$) \\
+macrolactonization & resorcylic-acid lactones, macrocycles & rung 2 registered ($+2$ via forward index); rung 3 open above the size bound \\
 oxidative skeletal rearrangement & aflatoxin / sterigmatocystin & rung 3 / open (soundness unproven) \\
 PKS--NRPS handoff checkpoint & hybrid cores & scope boundary (different grammar) \\
 dimerization / depside coupling & non-local products & non-local scope (off the per-program ladder; unassessed) \\
@@ -742,7 +775,9 @@ so distinct reduction trajectories yield distinct products and no trajectory edi
 occupant the cell awaits would need an aromatic core with a \emph{reduced} ring position the fold
 flattens---which the curated single-mode folds do not provide---so the cell stays empty by a rendered
 mechanism, not by missing coverage. (The lactone itself, zearalenone, is in-grammar by construction yet
-outside the reachable set: the beam does not surface its program at practical width, \S\ref{sec:guarantees}.)
+outside the \emph{beam}-reachable set; \emph{forward sound indexing} now recovers it (\S\ref{sec:limits}),
+confirming the $\kappa_\beta{=}0$ at practical width was a search artifact, not missing coverage,
+\S\ref{sec:guarantees}.)
 The pre-registration does its job either way: the framework names where its own predicted degeneracy does
 and does not arise (\S\ref{sec:modality-cells}, \S\ref{sec:limits}). \textbf{Not a cost artifact:} the engineerable--frontier split is independent of the
 cost functional form and survives leave-one-core-out (\S\ref{sec:dominance}), resting on tier assignments
