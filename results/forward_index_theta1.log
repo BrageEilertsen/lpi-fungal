@@ -1,0 +1,61 @@
+Completion 1 -- forward sound indexing (parallel; THETA level 1)
+
+Theta_1: starters=('acetyl', 'propionyl', 'hexanoyl'), releases=7 modes +PT_NAPHTHALENE, c_methyl=True; N=9, Cmax=20; exec_timeout=30s -> forward_index_theta1.csv
+
+[1/3] load 214 CHO targets directly from the parquet (no beam scan) ...
+  CHO targets: 214 (reachable=9, unreachable=111, too_large=94)
+  corpus formula gate: 136 feasible of 159 distinct (C,H,O)
+
+[2/3] parallel forward sweep: 24 chunks over 6 workers ...
+    chunk 1/24 | exec=341,835 gated=341,835 skip=0 recovered=0/214 incomplete_formulas=0 t=1083s
+    chunk 2/24 | exec=717,659 gated=717,659 skip=0 recovered=0/214 incomplete_formulas=0 t=1195s
+    chunk 3/24 | exec=1,164,085 gated=1,164,085 skip=0 recovered=0/214 incomplete_formulas=0 t=1374s
+    chunk 4/24 | exec=1,433,795 gated=1,433,795 skip=0 recovered=0/214 incomplete_formulas=0 t=2017s
+    chunk 5/24 | exec=1,607,347 gated=1,607,347 skip=0 recovered=0/214 incomplete_formulas=0 t=3417s
+    chunk 6/24 | exec=2,053,773 gated=2,053,773 skip=0 recovered=0/214 incomplete_formulas=0 t=3595s
+    chunk 7/24 | exec=2,951,741 gated=2,951,741 skip=0 recovered=1/214 incomplete_formulas=0 t=3702s
+    chunk 8/24 | exec=3,932,753 gated=3,932,753 skip=0 recovered=5/214 incomplete_formulas=0 t=4012s
+    chunk 9/24 | exec=4,074,230 gated=4,074,230 skip=0 recovered=5/214 incomplete_formulas=0 t=4016s
+    chunk 10/24 | exec=4,811,761 gated=4,811,761 skip=0 recovered=6/214 incomplete_formulas=0 t=4278s
+    chunk 11/24 | exec=4,940,277 gated=4,940,277 skip=0 recovered=6/214 incomplete_formulas=0 t=4373s
+    chunk 12/24 | exec=4,965,725 gated=4,965,725 skip=0 recovered=6/214 incomplete_formulas=0 t=4429s
+    chunk 13/24 | exec=6,105,805 gated=6,105,805 skip=0 recovered=9/214 incomplete_formulas=0 t=4443s
+    chunk 14/24 | exec=6,115,196 gated=6,115,196 skip=0 recovered=9/214 incomplete_formulas=0 t=4450s
+    chunk 15/24 | exec=6,121,311 gated=6,121,311 skip=0 recovered=9/214 incomplete_formulas=0 t=4463s
+    chunk 16/24 | exec=6,139,771 gated=6,139,771 skip=0 recovered=9/214 incomplete_formulas=0 t=4485s
+    chunk 17/24 | exec=6,145,529 gated=6,145,529 skip=0 recovered=9/214 incomplete_formulas=0 t=4498s
+    chunk 18/24 | exec=6,162,581 gated=6,162,581 skip=0 recovered=9/214 incomplete_formulas=0 t=4502s
+    chunk 19/24 | exec=6,165,593 gated=6,165,593 skip=0 recovered=9/214 incomplete_formulas=0 t=4509s
+    chunk 20/24 | exec=6,541,417 gated=6,541,417 skip=0 recovered=9/214 incomplete_formulas=0 t=4521s
+    chunk 21/24 | exec=6,551,854 gated=6,551,854 skip=0 recovered=9/214 incomplete_formulas=0 t=4521s
+    chunk 22/24 | exec=6,647,527 gated=6,647,527 skip=0 recovered=9/214 incomplete_formulas=0 t=4529s
+    chunk 23/24 | exec=6,989,362 gated=6,989,362 skip=0 recovered=9/214 incomplete_formulas=0 t=4607s
+    chunk 24/24 | exec=7,259,072 gated=7,259,072 skip=0 recovered=9/214 incomplete_formulas=0 t=4658s
+  swept: executed=7,259,072 gated=7,259,072 timed_out=0 recovered=9/214  (4658s)
+
+[3/3] classify + write ...
+
+========================================================================
+COMPLETION 1 -- FORWARD SOUND INDEX of 214 CHO targets (Theta_0, N=9, Cmax=20):
+
+  recovered               :   14
+  sound-structural-gap    :   80
+  formula-infeasible      :   34
+  inconclusive-budget     :   86
+  --------------------------------------------------
+  A0 parity   : 9/9 reachable cores recovered (PASS)
+  A1 headline : zearalenone (BGC0001057) -> recovered (PASS)
+
+  A2 -- re-partition of the beam's 169 `coverage-limited-structural`:
+        recovered (beam-starved, in-grammar) : 5
+        sound-structural-gap (genuine)       : 80
+        inconclusive-budget (C>20 / N>9) : 84
+        formula-infeasible (reclassified)    : 0
+
+  consistency : 34/34 of generability's coverage-limited-formula re-confirm formula-infeasible (PASS)
+
+  A4 efficiency: one parallel sweep served all 214 targets in 4658s, 7,259,072 executor calls (7,259,072 formula-gated).
+  exec timeouts: 0 (-> 0 formulas marked incomplete -> their gaps degrade to inconclusive, never false gaps)
+========================================================================
+
+wrote results/forward_index_theta1.csv  (4658s total)

@@ -505,6 +505,24 @@ for the 62 + the conformational residue on one structural-prediction lever. PROX
 necessary-not-sufficient; the SOUND per-operator yield is whatever `make forward-index` reports as
 gap→reachable after the operator is built + κ-certified.
 
+**Build-loop log (Θ-extensions beyond the cited baseline).** The frontier above is Θ₀ (tag
+`lpi-v0.24-forward-index`; `make forward-index THETA=0` → 11/117). Each build-loop step registers a
+witness-validated rung-2 operator as Θ_n (`make forward-index THETA=n`), kept out of the Θ₀ release set so
+the citation stays anchored; `make forward-index-monotone` certifies R_term non-decreasing (Prop 16.4c as a
+runnable test).
+
+| step | operator | Θ_n | recovered | certified-gaps | monotone |
+|---|---|---|---|---|---|
+| 1 | PT_NAPHTHALENE — T4HN bicyclic double-aldol (witness BGC0001257/0001258) | Θ₁ | 11→**14** | 117→**114** | +3 / −3 / **0 demotions** PASS |
+
+Step 1 recovered EXACTLY the 3 deposited tetrahydroxynaphthalenes (sound-structural-gap → recovered);
+nothing else moved (PT_NAPHTHALENE fires only on the all-keto pentaketide — None-test). It *promoted* an
+operator that already existed and was witness-exact — the "gap" was a stale "off-by-one OH" docstring the
+deposited witness refuted (corrected; locked by `tests/test_pt_naphthalene.py`) plus its exclusion from the
+Θ₀ release set. Reach 9→12 — realizing §10.1's own projection. Next queued (witness-first): single-ring
+orsellinic/resorcinol variants (check first whether they need new chemistry), sorbicillinoid, RAL
+register-variants. Ceiling = the ~19 rung-2 floor; the larger reach is the fold-bet (62 rung-3-open).
+
 ---
 
 ## Scoreboard and what "solved" means
