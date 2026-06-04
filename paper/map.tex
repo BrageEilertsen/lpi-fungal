@@ -1,0 +1,387 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{natbib}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\zstar}{$Z^\star$}
+
+% =====================================================================================
+% STANDALONE "map" paper (paper 2). Spine = coverage census + roadmap. Boundary and
+% frontier are COMPRESSED-AND-CITED to the design preprint (eilertsen2026preprint), not
+% re-derived. Framing guardrails, enforced throughout:
+%   G1  every boundary is the CURRENT SOUND GRAMMAR's reach, never "biological."
+%   G2  the MIBiG-DEPOSITED manifold (326, study-biased), never "the entire manifold."
+%   G3  proxy vs measured is explicit; buildable-today floor = 8; 19%/37% are
+%       structural-proxy UPPER BOUNDS pending the measured re-run, not established.
+%   G4  certified counts = results; the set-cover curve / entanglement / PT-subclass
+%       split = located-hardness ROADMAP with upper-bound caveats, never measurements.
+% =====================================================================================
+
+\title{\textbf{A located map of the fungal polyketide problem}\\[2pt]
+\large boundary, frontier, and coverage, characterized by a sound executor's reach}
+
+\author{Brage Eilertsen\\
+\small \texttt{brageei@uio.no}\\
+\small \textit{University of Oslo}}
+
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Predicting a fungal natural product from its biosynthetic gene cluster (BGC) is unsolved, but
+``unsolved'' has not been a precise statement. We characterize \emph{where} the problem lies and
+\emph{what kind} of hardness each piece is, over the MIBiG-deposited fungal PKS manifold ($326$
+entries, biased toward well-studied compounds), by the reach of a sound inverse compiler: a
+deterministic executor renders a biosynthetic program to a structure, and a verifier returns the
+exact consistent set \zstar{} of programs an observation admits~\citep{eilertsen2026preprint}.
+The map has three panels. \textbf{(i)~Boundary}: exact reconstruction reaches $8/326$---the boundary
+of the \emph{current sound grammar's reach}, not a biological limit on the manifold. \textbf{(ii)~Frontier}:
+within the reachable cores, the conformational decision frontier is thin and localized, and exact by
+complete enumeration---zero over the non-methylating aromatic interiors, single-digit within the
+highly-reducing subclass. \textbf{(iii)~Coverage census}: the out-of-grammar remainder partitions
+into an \emph{in-scope} tailoring gap (CHO chemistry a polyketide grammar could in principle reach),
+a \emph{heteroatom scope boundary} (a different grammar's problem), and a small inconclusive bucket;
+a re-scan with a lifted size cap establishes that the boundary is genuine rather than a tractability
+artifact---$0$ of $91$ conclusively tested large cores were reachable. A structural-proxy set-cover
+analysis---an explicit upper bound---shows the in-scope hardness is concentrated in a few coarse
+families but dominated by non-aromatic ring/macrolactonization and overwhelmingly entangled: $86\%$ of
+in-scope cores touch a family whose sound expressibility is unproven, and the soundly-extendable
+part---what a soundness-preserving build with no new regiochemistry recovers---is $\approx$one core. The contribution is the located map itself: it partitions the unsolved into \emph{buildable},
+\emph{research-bet}, and \emph{different-grammar}, telling the field where to spend effort and what
+kind each piece needs---a more useful object, we argue, than a partial solver.
+\end{abstract}
+
+% -------------------------------------------------------------------------------------
+\section{The question: where does a sound executor's reach stop?}
+\label{sec:framing}
+A product is the image $y=\mathrm{Exec}_{\Theta}(z;G)$ of a latent biosynthetic program $z$ executed
+under an operator library $\Theta$ and a domain-derived grammar $G$; genome mining is inference over
+$z$ from observables, and the field's ceiling is a statement about grammar \emph{identifiability}
+rather than data volume~\citep{eilertsen2026preprint}. That framework is the design paper's subject;
+here we turn the same machinery on a different question. The executor is \emph{sound}---it builds only
+mass- and chemistry-consistent structures, and the verifier rejects the rest---so its set of reachable
+products is a precise, certifiable object. We ask: over the MIBiG-deposited fungal PKS manifold, where
+does that reach stop, and what \emph{kind} of hardness is each gap?
+
+This is a negative-space characterization, and one distinction governs every number below. The
+executor's reach defines what is \emph{reachable}; it is silent about what is not. Out-of-grammar
+chemistry does not appear in the reachable set as a hard case---it is \emph{absent} from it entirely.
+So every boundary we report is the boundary of the current sound grammar's reach, not a claim about
+where the manifold itself stops, and every fraction is exact-over-reachable and silent-about-unreachable.
+We say ``the executor's reach,'' never ``the biological limit,'' because the map does not know the latter.
+
+\paragraph{What ``sound'' and ``verified'' each guarantee.} The two carry deliberately-divided weight,
+and the division becomes load-bearing once aromatics enter. \emph{Soundness} is the executor's
+conservation guarantee together with the verifier's formula prefilter: every structure built is mass-
+and chemistry-consistent, and formula-inconsistent candidates are rejected---exactly as strong as
+stated, no weaker. The \textsc{verified} verdict is \emph{strictly stronger}: graph-isomorphism
+($\simeq$) to the true deposited product, not mere mass-consistency. For most chemistry the two travel
+together, but for \emph{regiochemically-degenerate} classes---aromatics above all, where ring-oxygen
+position is formula-invariant---a wrong-regiochemistry product is fully mass-sound yet not $\simeq$ the
+truth. Mass-soundness alone therefore does not certify regiochemistry; $\simeq$ does, and $\simeq$'s
+correctness for an aromatic core rests on the encoded closure being chemically right---\emph{curated
+domain chemistry}, not a mechanical guarantee. ``Reachable''/\textsc{verified} means $\simeq$-correct
+throughout, and for aromatic cores that correctness inherits the verified closure regiochemistry.
+
+% -------------------------------------------------------------------------------------
+\section{Panel 1 --- the boundary (certified)}
+\label{sec:boundary}
+Run inverse across all $326$ deposited fungal PKS, exact reconstruction reaches $8/326$: the typed
+verifier returns a non-empty, exactly-matching \zstar{} for eight cores and a \textsc{verified} /
+\textsc{under-observed} / \textsc{out-of-grammar} verdict for the rest~\citep{eilertsen2026preprint}.
+This $8/326$ is the boundary of the current sound grammar's reach---more precisely, of the sound
+grammar \emph{plus the curated regiochemistry} of its encoded closures: orsellinic and 6-MSA are
+reachable because their aromatic regiochemistry was author-verified and encoded, so the eight are
+$\simeq$-exact, inheriting that curated correctness rather than pure mass-soundness (the honest form
+of G1). We do not re-derive it here; we
+take it as the definition of ``reachable'' that the other two panels stand on, and we carry its two
+caveats forward unchanged: the corpus is deposited and study-biased (G2), and the count is exact over
+what the grammar reaches and silent about what it does not (G1).
+
+% -------------------------------------------------------------------------------------
+\section{Panel 2 --- the frontier (certified)}
+\label{sec:frontier}
+\emph{Within} the reachable cores, how much of the per-cycle decision problem is genuinely
+conformational---resolvable only by a pocket coordinate a synthase-local view cannot supply? Walking
+the consistent set as a prefix trie and enumerating to exhaustion on the distinct reachable chemistries
+shows this frontier is thin and \emph{localized}, and exact rather than cap-limited: it is zero over
+the non-methylating aromatic interiors (label-symmetry is structurally impossible without a methylation
+firing) and single-digit within the highly-reducing subclass, sharpest in the small,
+methylation-position-ambiguous clusters~\citep{eilertsen2026preprint}. We import the result as the
+second face of the map and note only its governing caveat (G1): it is exact over \emph{reachable}
+cores; a larger conformational frontier can hide behind the coverage boundary that Panel~3 measures,
+among the cores the grammar cannot yet build.
+
+% -------------------------------------------------------------------------------------
+\section{Panel 3 --- the coverage census}
+\label{sec:census}
+The new work of this paper is to characterize the $318$ non-reachable cores: not merely to count them,
+but to sort them by \emph{what kind} of operator each is missing, and to size how concentrated that
+demand is.
+
+\paragraph{The partition (certified).} Table~\ref{tab:partition} gives it. Of $326$ deposited cores,
+$8$ are reachable; $206$ are CHO chemistry the polyketide grammar could in principle reach but does not
+(the \emph{in-scope} gap); $112$ contain non-CHO atoms (N, halogen, S) and so need machinery outside
+the polyketide reduction grammar entirely (the \emph{scope boundary}). These are different questions
+and we never blend them.
+
+\paragraph{The boundary is genuine, not a scan artifact.} The reachability scan caps exact-match
+search at $C{\le}20$ for tractability, so $94$ large cores were initially untested. We re-scanned all
+$94$ with the cap lifted to $C80$. \emph{Zero} of the $91$ conclusively tested large cores were
+reachable (the remaining $3$ exhausted the reduced search budget and are held as inconclusive, not
+folded into ``unreachable''). The size cap was concealing no reachable cores: the out-of-grammar counts
+are genuine gaps in the grammar's reach, not a tractability limit. This forecloses the most immediate
+objection to Panel~1---that the boundary is an artifact of where we stopped scanning---and we state it
+as the result it is.
+
+\begin{table}[t]\centering\small
+\begin{tabular}{lrl}
+\toprule
+class & cores & kind of hardness \\
+\midrule
+reachable (exact)            & $8$   & built today \\
+CHO, in-scope                & $206$ & add a polyketide tailoring operator (\S\ref{sec:roadmap}) \\
+\quad (confirmed unreachable & $203$ & ) \\
+\quad (inconclusive, budget  & $3$   & reachability not exhaustively confirmed) \\
+heteroatom, scope boundary   & $112$ & a different grammar (NRPS-hybrid / halogenase) \\
+\midrule
+total                        & $326$ & MIBiG-deposited, study-biased \\
+\bottomrule
+\end{tabular}
+\caption{The coverage partition (certified). Counts are exact over the executor's reach
+(G1); the corpus is the MIBiG-deposited manifold (G2).}
+\label{tab:partition}
+\end{table}
+
+\paragraph{Where the in-scope hardness lives (roadmap; structural-proxy upper bound).} We tag each
+in-scope core by the coarse operator class(es) its structure requires---\emph{aromatic\_cyclization},
+\emph{oxidative\_tailoring}, \emph{non\_aromatic\_ring/rearrangement}, \emph{prenylation}, and two
+catch-alls---anchoring the oxidation tag to the grammar's formula budget (a core that becomes
+formula-feasible after removing $k$ oxygens has an oxidation gap, not a topology gap). A greedy
+set-cover over these classes (Table~\ref{tab:cover}) is steep: a few coarse families proxy-cover the
+bulk. \textbf{This curve is a structural-feature proxy and an explicit upper bound on recovery}: a core
+counts as proxy-recovered when all its tagged classes are present, which is necessary but not
+sufficient---the tag does not guarantee the operator can be written \emph{soundly}, and the
+non-aromatic families are coarse grab-bags that will fracture into several real operators. The
+steepness measures how few \emph{chemical families} the demand falls into, not how few operators a
+solution needs. The dominant family is \emph{non-aromatic ring / macrolactonization}---present in $176$
+of $206$ cores, the resorcylic-acid lactones (zearalenone, hypothemycin) and mycophenolic acid among
+them---not aromatic cyclization, and it is a hard, soundness-open class.\footnote{The operator-class
+tagger's ring detection was corrected to count heterocyclic (lactone) rings, not only all-carbon
+rings; this reclassified the resorcylic-acid-lactone family from clean-aromatic to
+aromatic-plus-macrolactonization (entangled), reducing the clean single-class count from $76$ to $23$
+and raising the entangled fraction from $19\%$ to $47\%$. The corrected figures are reported
+throughout; the correction moved the count in the conservative direction (less buildable, more
+entangled).}
+
+\begin{table}[t]\centering\small
+\begin{tabular}{rlr}
+\toprule
+\#operator classes & + class added & cumulative proxy-recovered (of $206$) \\
+\midrule
+1 & non\_aromatic\_ring/rearrangement  & $83$  \,($40\%$) \\
+2 & aromatic\_cyclization              & $159$ \,($77\%$) \\
+3 & oxidative\_tailoring               & $187$ \,($91\%$) \\
+4 & prenylation                        & $197$ \,($96\%$) \\
+5 & other\_formula                     & $203$ \,($99\%$) \\
+6 & other\_topology                    & $206$ \,($100\%$) \\
+\bottomrule
+\end{tabular}
+\caption{In-scope recovery, greedy set-cover. \textbf{Structural-proxy UPPER BOUND} (G3/G4),
+not measured recovery. Concentration into few coarse families is the signal; the per-step counts
+are not a count of buildable operators.}
+\label{tab:cover}
+\end{table}
+
+\paragraph{How much of the concentrated part is clean (roadmap; the decisive split).} Steepness alone
+is misleading, because the proxy is loosest on cores that need more than one class. We fix one
+canonical, mutually-exclusive decomposition of the $206$ (Table~\ref{tab:mece}), tagging the
+\emph{hard, possibly-unsound} families as \{non-aromatic ring/rearrangement, oxidative tailoring,
+formula change\}; aromatic cyclization is the clean buildable class, and other-topology / prenylation
+are held as \emph{soft}---meaning only \emph{not the rearrangement/oxidation soundness wall} (a
+candidate new release mode and a discrete known addition, respectively), with their own sound
+expressibility \emph{otherwise unassessed}, so they do not silently join the buildable count. The $3$ inconclusive cores (Table~\ref{tab:partition})
+are included here, tagged by structure despite inconclusive reachability. From this one partition the
+headline views follow---and they \emph{overlap}; they are projections, not addends: the
+\textbf{clean single-class aromatic} pile is $23$ ($11\%$); cores that \textbf{touch a hard family}
+number $178$ ($86\%=83$ single-hard $+\,85$ aromatic-entangled $+\,10$ other-entangled); cores
+\textbf{entangled} across two or more classes number $97$ ($47\%=85+12$). So building the aromatic
+operators soundly recovers \emph{at most} the $23$ clean cores; the $85$ aromatic-but-entangled need a
+hard operator too and may not be soundly expressible. That $86\%$ of in-scope cores touch a hard,
+soundness-open family---not the curve's steepness---is what governs whether solving the in-scope core
+is a finite grind or stalls, and it says: mostly it stalls.
+
+\begin{table}[t]\centering\small
+\begin{tabular}{lrr}
+\toprule
+operator-class set & cores & \% of $206$ \\
+\midrule
+clean aromatic (aromatic cyclization only)              & $23$  & $11$ \\
+single hard (rearrangement / oxidation / formula only)  & $83$  & $40$ \\
+single soft (topology / prenylation only)               & $3$   & $1$  \\
+aromatic $+$ hard (entangled)                           & $85$  & $41$ \\
+other entangled (two classes)                           & $12$  & $6$  \\
+\midrule
+total                                                   & $206$ & $100$ \\
+\bottomrule
+\end{tabular}
+\caption{Canonical mutually-exclusive decomposition of the $206$ in-scope cores by operator-class set
+(roadmap; structural-proxy tags, G4). Hard $=$ \{rearrangement, oxidation, formula change\}. The
+$11/86/47\%$ views in the text are overlapping projections of this single partition; the $3$
+inconclusive cores are included, tagged structurally.}
+\label{tab:mece}
+\end{table}
+
+\paragraph{The scope boundary (heteroatom).} The $112$ non-CHO cores are dominated by nitrogen:
+$98$ of the $112$ contain N, of which $90$ need only an N-incorporation operator and $8$ need nitrogen
+\emph{plus} a halogen or sulfur operator; halogen appears in $22$ and sulfur in $1$. These are not a failure of the polyketide grammar; they are the target of a
+different grammar---NRPS-hybridization and dedicated halogenase/heteroatom machinery---and define the
+boundary of pure polyketide space. We report them as that boundary and do not re-annex them into
+``fungal PKS.''
+
+% -------------------------------------------------------------------------------------
+\section{The located next build}
+\label{sec:roadmap}
+The census specifies the roadmap, and it specifies it as three different \emph{kinds} of work.
+
+\paragraph{Bounded build: nearly empty.} The one coherent, soundly-expressible in-scope family is
+aromatic cyclization---the class where the mass/formula verifier, plus a regiochemistry-aware harness
+that gates on graph-isomorphism and verified provenance (\S\ref{sec:framing}), can certify a new
+closure. But the corrected census shows it is almost entirely entangled. Of the $206$ in-scope cores
+only $23$ ($11\%$) are clean single-class aromatic, and of those only \emph{one} (olivetolic acid) is a
+pure verified-mode product recoverable by extending an already-encoded closure; the other $22$ use PT
+cyclization modes the executor has not yet encoded. Those modes are finite and sequence-predictable
+(\S\ref{sec:procedure}), so closing them is a per-\emph{mode} curation---a handful of classes, each
+confirmed against the primary literature once, not $22$ separate decisions---but each is new encoding,
+so the safe-extension \emph{measured} ceiling \emph{today} (no new modes added) is $\approx$$1$ core
+($\approx$$0.5\%$). The honest floor
+today is $8$ reachable plus $0$ clean-buildable-today, and the soundly-extendable gain is a single
+core. We report it as that, not as a build to schedule: the encouraging ``aromatic quarter'' of the
+first pass was a tagging artifact, and the corrected map says even the buildable-looking family is
+mostly entangled with the hard operators below.
+
+\paragraph{Research bet, and now the dominant pile: rearrangement and oxidation.} $86\%$ of in-scope
+cores touch a hard family, chiefly \emph{macrolactonization} (non-aromatic ring, in $176$ of $206$),
+with oxidative tailoring layered on; these route through operators whose \emph{sound expressibility is
+unproven}. This is most of the in-scope gap, not a remainder. We flag it as an open research question,
+not as scheduled engineering;
+the learned, gene-conditioned operator route---templates licensed by a BGC's tailoring genes, admitted
+only when they pass the verifier's mass/formula gate---is the candidate, but whether it covers these
+families soundly is exactly what is unknown. If a substantial fraction is soundly inexpressible,
+complete genome-to-product prediction is permanently partial, which is a finding to state.
+
+\paragraph{Unassigned residual: the soft classes.} A further $3$ in-scope cores ($1\%$;
+Table~\ref{tab:mece}) carry only a soft class (other-topology or prenylation). These are \emph{not yet
+assigned} to buildable-versus-research-bet: prenylation is a discrete, plausibly sound addition that
+may join the build, while other-topology is the grab-bag that fractures in Phase~1 and could resolve
+either way. The three-way roadmap covers the rest; the residual is named here rather than folded into
+the buildable count, pending a per-class soundness assessment.
+
+\paragraph{Different grammar: the heteroatom third.} The scope boundary (\S\ref{sec:census}) is handed
+to NRPS-hybrid machinery, not addressed here.
+
+% -------------------------------------------------------------------------------------
+\section{The instrument: a decision procedure for sound expressibility}
+\label{sec:procedure}
+The map locates where the hardness is; the durable object is a procedure \emph{for} adjudicating each
+piece---\emph{proposed} here, and demonstrated on the one class the map has actually resolved. An operator $O$ is \textbf{soundly expressible from $\varphi$ iff the
+formula-invariant degree of freedom it must resolve is a computable function of the recoverable
+features $\varphi(B)$.} Soundness (mass) is free by construction; $\simeq$-correctness is the bite;
+the DOF is exactly where $\simeq$ and mass diverge---ring-oxygen position for aromatics, ring size for
+macrolactones. The procedure places an operator on a cost ladder, beneath which sits one prior
+question, and it reports a verdict only where the evidence reaches one.
+
+\paragraph{Rung 0 --- the $\varphi$-scope prior.} Does the determinant even live in the unit
+$\varphi$ ranges over? $\varphi(B)$ is the cluster. If the deciding enzyme is \emph{trans-acting}---a
+separate gene that need not be co-clustered---the determinant is outside cluster-$\varphi$, a scope
+failure no per-cluster operator can repair. This is asked first because it is cheap, corpus-answerable
+from annotations, and \emph{free of deposition bias}: ``is there an annotated releasing domain in this
+cluster'' is a structural fact about the deposit, not a chemistry outcome enriched by what gets
+published.
+
+\paragraph{The cost ladder.} Fix $\varphi$ once as \emph{the cluster}---the BGC---since the stated
+problem is BGC$\to$product; ``recoverable'' means recoverable from the cluster, and that fixing is
+also what makes rung~0 well-posed. With $\varphi_{\text{chain}}$ the upstream-determined linear
+precursor and the cluster-encoded releasing enzyme contributing its sequence, fold, and dynamics in
+turn:
+(1)~$f(\varphi_{\text{chain}})$ --- trivial, the chain fixes it;
+(2)~$f(\varphi_{\text{chain}},\,\text{enzyme sequence})$ --- \emph{curatable from sequence} (cheap; a
+finite rule set keyed to a sequence class, the PT-clade pattern);
+(3)~$f(\varphi_{\text{chain}},\,\text{enzyme fold/dynamics})$ but not the sequence directly ---
+\emph{recoverable through the fold}: AF2 maps sequence$\to$fold and, in principle, fold$\to$kinetics
+by MD/QM, so even kinetic or dynamic selection is a function of the cluster at \emph{escalating,
+possibly ruinous} cost---a costly rung~3, not an impossibility;
+(4)~\emph{not a function of any cluster feature} $\Rightarrow$ \emph{soundly inexpressible}: no sound
+\emph{and} complete grammar exists for the class. Exactly two conditions reach rung~4: (i)~the outcome
+is intrinsically a \emph{distribution}---the enzyme makes a genuine mixture, so there is no single
+product and no function maps to a non-point (a within-enzyme collision is its signature); (ii)~the
+determinant lies \emph{outside the organism's genome} (a host or environmental input). A trans-acting
+enzyme encoded \emph{elsewhere in the genome} is not rung~4 but a rung-0 scope failure, and
+kinetic/dynamic selection is a costly rung~3---so the impossibility bar is high and narrow, consistent
+with the honest ceiling being ``expressible at escalating cost almost everywhere.''
+Discriminators: rung~0 by cis-vs-trans annotation; rung~4(i) by a within-enzyme collision (one
+sequence, one substrate, $\geq\!2$ products); rung~2-vs-3 by a structure-vs-sequence experiment with
+$\varphi_{\text{chain}}$ regressed out. Each discriminator's false reads are catalogued---deposition
+bias, phylogenetic confounding, base-rate inflation, low-pLDDT folds, sequence-proxy circularity,
+static-fold blindness---because every one of them manufactures the encouraging answer.
+
+\paragraph{Resolved exemplar: aromatic cyclization (rung~2).} The PT domain is integral to the NR-PKS
+(rung~0 passes, cis), and---decisively for rung~2---PT cyclization regiochemistry is a \emph{finite,
+sequence-predictable} map: fungal PT domains fall into a handful of phylogenetic classes whose
+regioselectivity (C2--C7, C4--C9, C6--C11) has been classified \emph{and prospectively verified} from
+sequence~\citep{ptregio}. So the formula-invariant DOF is a function of the enzyme's sequence---a
+finite rule set, not a per-core lookup. The executor encodes those modes as closures validated under
+$\simeq$, and ``literature confirmation'' is a per-\emph{mode} check of the sequence-keyed rule (a
+handful of modes), which is what places orsellinic and 6-MSA among the reachable $8$
+(\S\ref{sec:boundary}). Aromatic cyclization is therefore a \emph{resolved} rung-2 instance---the
+instrument returning a predictive verdict, not buildability once handed the answer.
+
+\paragraph{Located, not yet resolved: macrolactonization.} Rung~0: for the dominant resorcylic-acid-
+lactone family the releasing thioesterase is a \emph{cis} C-terminal NR-PKS domain (studied in vitro
+as an excised TE), so the determinant is in-cluster and rung~0 passes; the trans-acting minority
+(e.g.\ certain polyene macrolides) is the rung-0-failure subset, flaggable from annotations. Rung-4(i)---the
+intrinsic-distribution route---is closed: the characterized zearalenone TE is regiospecific on a fixed
+substrate (one substrate, one ring), so the outcome is a point, not a mixture. So macrolactonization sits on rungs~2--3---curatable at a cost not yet
+measured---and the structure-vs-sequence experiment is the live discriminator. The instrument has thus
+\emph{located} macrolactonization (not rung~0, not rung-4-stochastic) without resolving its cost, and
+that pending state is reported as pending, not as a verdict.
+
+% -------------------------------------------------------------------------------------
+\section{Contribution}
+\label{sec:contribution}
+A negative-space characterization is a contribution because it converts ``fungal PKS biosynthesis is
+hard'' into an \emph{actionable partition}: it tells every group which fraction is a bounded
+engineering build, which is an open research question, and which belongs to a different enzyme family
+---where to spend effort and what kind of effort each piece needs---which a partial solver does not.
+Beyond the partition, the durable object is the decision procedure (\S\ref{sec:procedure}): a single
+criterion---an operator is soundly expressible iff its formula-invariant DOF is a function of
+recoverable $\varphi$---with discriminators that place each operator class on a cost ladder,
+demonstrated \emph{resolved} on aromatic cyclization (rung~2, the $8$) and \emph{located} on
+macrolactonization (rung~0 passed, the stochastic route to inexpressibility closed, cost still open).
+We offer it as a \emph{proposed} procedure---a criterion, one worked verdict (aromatics), and one
+application in progress (macrolactonization)---not a general adjudicator: its reach across the
+remaining classes is a claim to be earned one class at a time, which this paper does not yet make.
+The map is complete as a characterization and explicit about where it stops: the boundary and frontier
+are certified (exact, exhaustion-checked, over reachable cores), the partition is certified, the
+recovery curve is a stated upper bound, and the soundly-extendable part is measured at $\approx$one
+core---the rest gated on confirmed regiochemistry and on operators whose soundness is unproven.
+Its value is not a prediction accuracy; it is the located statement of what fungal-PKS prediction
+\emph{requires}, drawn by a tool sound enough to make ``reachable'' a certifiable word.
+
+% -------------------------------------------------------------------------------------
+\begin{thebibliography}{9}\small
+\bibitem[Eilertsen(2026)]{eilertsen2026preprint} B.~Eilertsen.
+\emph{Sound Biosynthetic Design over Iterative Grammars: A Realizability Geometry for Fungal
+Polyketides.} Preprint, 2026. \url{https://github.com/BrageEilertsen/lpi-fungal} (DOI to be assigned
+on posting).
+\bibitem[Li et al.(2010)]{ptregio} Y.~Li, W.~Xu, and Y.~Tang. Classification, prediction, and
+verification of the regioselectivity of fungal polyketide synthase product template domains.
+\emph{J. Biol. Chem.}, 285(30):22764--22773, 2010. doi:10.1074/jbc.M110.128504.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,268 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\usepackage{enumitem}
+
+\newcommand{\R}{\mathsf{R}}
+\newcommand{\U}{\mathsf{U}}
+\newcommand{\X}{\mathsf{X}}
+\newcommand{\Rterm}{\mathsf{R}^{\mathrm{term}}}
+\newcommand{\kO}{\kappa_{O}}
+\newcommand{\Zstar}{Z^{\star}}
+
+\title{\textbf{A Coverage--Identifiability Calculus for\\Biosynthetic Program Inference and Design}}
+\author{Brage Eilertsen\\
+\small \texttt{brageei@uio.no}\quad University of Oslo\\
+\small \textit{companion to ``Sound Biosynthetic Design over Iterative Grammars''}}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{quote}\small\itshape
+\textbf{Status of this draft.} Skeleton $+$ framing prose $+$ every empirical claim wired to its
+reproduction command. The formal development (definitions, lemmas, theorems, proofs) lives in full in
+the methods document \texttt{complete\_miner\_method.md} (\S16); this manuscript packages it as a
+standalone paper. Prose set per the author's delegation; final voice and the headline-adjacent phrasing
+are the author's. Two results enter as \emph{pre-registration} (macrolactonization, lanthipeptide
+structural datapoint), never as claimed datapoints, until their external inputs exist.
+\end{quote}
+
+\begin{abstract}
+The companion paper poses fungal-polyketide structure prediction as verifier-grounded inference over
+latent biosynthetic programs, and shows the field's accuracy ceiling is a statement about grammar
+identifiability rather than data volume. Here we extract the family-agnostic object underneath that
+instance: a \textbf{coverage--identifiability calculus}. A sound executor's three-state verdict
+partitions any biosynthetic corpus into verified ($\R$), under-observed ($\U$), and out-of-grammar
+($\X$) sets, governed by two knobs with opposite monotonicities --- an operator library $\Theta$
+(coverage) and an observable set $O$ (resolution). $O$-enrichment moves $\U\to\R$ and can never exit
+$\X$; $\Theta$-enrichment moves $\X\to\R\cup\U$ and can demote $\R\to\U$. The asymmetry makes coverage
+($\lvert\X\rvert$) and identifiability ($\lvert\U\rvert$) distinct degrees of freedom that trade, and
+identifies the honest monotone progress metric as $\Rterm$ (verified under the full operator universe),
+not the raw verified count. We prove the verdict is provably terminating --- every cluster resolves
+under product, genomic, or trajectory observation, with the within-enzyme product mixture the sole
+permanent floor --- and that the observability quantity $\kO$ stratifies into a \textbf{modality ladder}
+(product / genomic / trajectory) whose cells are family-invariant. A controllability--modality theorem
+shows the design difficulty axes (structural vs control edits) \emph{are} the genome vs trajectory
+modalities, deriving rather than positing the field's measured cost structure; and the cross-taxa
+prediction wall is re-read as the genome$\to$trajectory modality crossing. We validate the calculus
+against the executor on fungal PKS (the partition, both monotonicities, the completeness certificate,
+$\Rterm$, the controllability duality) and instantiate its combinatorial half on a non-PKS family
+(lanthipeptide, on a provenanced lacticin-481 core), with the structural datapoint held behind an honest
+validation-independence gate. Every reported number reproduces from a single documented command.
+\end{abstract}
+
+\section{Introduction}
+The companion paper makes a specific claim about fungal polyketide synthases: the product is the image
+$y=\mathrm{Exec}_\Theta(z;G)$ of a latent program $z$, and the field's $51$--$68\%$ accuracy ceiling
+reflects grammar identifiability, not sample size. That paper's machinery --- a sound deterministic
+executor, a beam verifier returning the exact consistent set $\Zstar$, and a three-state
+reconstructibility verdict --- is built for fungal PKS but is, by construction, not specific to them:
+only the program generator is family-specific, while the observability and verdict layers are shared.
+
+This paper isolates what is general. We show the three-state verdict, read as a \emph{partition over a
+corpus}, obeys a small calculus with two control knobs and a single observability quantity, and that
+this calculus (i) makes precise what ``mining a corpus'' means and what its honest progress metric is,
+(ii) certifies its own enumeration completeness, (iii) proves a termination property for the verdict,
+and (iv) unifies the inference and design halves of the companion paper through a modality refinement
+of its identifiability--controllability duality. The fungal instance becomes one occupant of a
+family-invariant structure; a second family (lanthipeptide) is instantiated to test cross-family
+transfer.
+
+The contribution is a theory layer that travels: any biosynthetic family expressible as a sound
+executor over a program grammar inherits the calculus, the termination guarantee, and the modality
+ladder. The fungal results of the companion paper validate it; the lanthipeptide results test it on
+chemistry the original engine never saw.
+
+\section{The three-state partition and the $(\Theta, O)$ calculus}
+\emph{(Full development: \texttt{complete\_miner\_method.md} \S16.1--16.2.)}
+
+For a grammar $G$, operator library $\Theta$, and observable set $O$, write
+$\kappa_{\Theta,O}(y)=\lvert Z^\star_\Theta(y;G,O)\rvert$. Each corpus member falls in exactly one of
+$\R$ ($\kappa=1$, verified), $\U$ ($\kappa\ge2$, under-observed), $\X$ ($\kappa=0$, out-of-grammar). By
+Theorem~1 of the companion paper, $\kappa_{\Theta,O}$ is simultaneously the inference ambiguity and the
+design freedom at $y$ --- the partition is read identically by predictor and designer.
+
+A granularity the calculus surfaces immediately: $\kO$ counts \emph{programs} (Theorem~1's equivalence
+class), so $\R$ is the program-verified set, distinct from the structure-reachable set. On MIBiG~4.0
+fungal PKS this is the reach-9 / verified-8 distinction --- nine structures placed, eight to a unique
+program, the ninth (olivetolic) a sound two-route degeneracy.
+
+\paragraph{The two knobs, opposite monotonicities.} $O$-enrichment refines the observable signature, so
+$\kappa$ is non-increasing: it moves $\U\to\R$ and leaves $\X$ invariant (you cannot observe your way
+out of a coverage gap). $\Theta$-enrichment enlarges the program space, so $\kappa$ is non-decreasing:
+it moves $\X\to\R\cup\U$ and can \emph{demote} $\R\to\U$ (a richer operator set can manufacture a second
+route to an already-unique structure). Coverage and identifiability are therefore distinct degrees of
+freedom that trade; the monotone quantities are $\lvert\X\rvert$ (coverage) and, at fixed $\Theta$,
+$\lvert\U\rvert$ (identifiability) --- never $\lvert\R\rvert$.
+
+\paragraph{Coverage flow.} The $\Theta$-move transition matrix has three theorem-forced zeros
+($\R\!\not\to\!\X$, $\U\!\not\to\!\R$, $\U\!\not\to\!\X$); the live cells are $\X\to\R$ (clean coverage),
+$\X\to\U$ (coverage needing an observable), $\R\to\U$ (ambiguity births). The empirically decisive law:
+\textbf{demotion is driven by operator overlap, not growth} --- adding a redundant route demotes, adding
+disjoint chemistry grows $\R$ cleanly (\S6).
+
+\section{Reach, $\Rterm$, and a runnable completeness certificate}
+\emph{(Full development: \S16.3--16.4.)}
+
+Because $\lvert\R\rvert$ is non-monotone, the honest progress metric is \textbf{$\Rterm$}: cores
+verified under the full operator universe $\mathcal U$, not merely the current $\Theta$.
+$\lvert\Rterm\rvert$ is monotone non-decreasing in $\Theta$; a core verified only because $\Theta$ is
+impoverished (provisional) demotes to $\U$ as $\Theta\to\mathcal U$. The reach-9/verified-8 gap is
+exactly this: olivetolic has $\kappa(\cdot;\mathcal U)\ge2$, so it is never terminal ---
+$\lvert\Rterm\rvert=8$, stable across the declared beam-adequate universe (terminality is
+universe-relative; \S16.4a).
+
+\paragraph{$\kappa$-monotonicity is a completeness certificate.} The beam verifier can only under-count
+($\kappa_\beta\le\kappa$), and $\kappa$ is monotone in $\Theta$; so a reported decrease
+$\kappa_\beta(\Theta')<\kappa_\beta(\Theta)$ for $\Theta\subseteq\Theta'$ \emph{proves} the larger
+search pruned a valid program. The relative-completeness caveat of the companion paper's \S4.1 thereby
+becomes a runnable per-core diagnostic --- a zero-false-alarm detector of beam inadequacy, complemented
+by exhaustion as the sufficient certificate. This fired in practice (a methylmalonyl-extended scan
+inverted $\kappa$ at $\beta=8000$; widening to $5\!\times\!10^4$ restored monotonicity).
+
+\paragraph{Validation independence.} Executor correctness is certified by reconstructing a \emph{known}
+structure to a $\simeq$-match --- sound only if the known structure is determined independently of the
+executor's inputs. A program-derived (e.g.\ sequence$+$connectivity) anchor is what the executor
+consumes, so matching against it is a mirror, not a gate. This is why families with scarce deposited
+structures are exactly the U-verdict families: the validation wall and the identifiability wall
+coincide.
+
+\section{The modality ladder and the controllability--modality duality}
+\emph{(Full development: \S16.7, \S16.13.)}
+
+The observability quantity $\kO$ stratifies into mutually non-refining \textbf{modalities}:
+\emph{product} (mass, MS/MS, NMR --- functions of the structure), \emph{genomic}
+(domain/sequence/loading-domain --- functions of $\phi(B)$), and \emph{trajectory} (per-cycle
+intermediate, isotope provenance). Product-only observation can refine no finer than the fibres of
+$\mathrm{Exec}_\Theta$ (which is non-injective); sub-fibre resolution needs a latent modality.
+
+\paragraph{Trajectory-completeness.} A program's provenance-tagged intermediate trajectory determines
+it uniquely, so every $\kappa\ge2$ fibre closes under some modality --- there is no permanent
+$\U_\infty$; the within-enzyme product mixture (one sequence, one substrate, $\ge2$ products) is the
+sole permanent floor, and there the mixture certificate \emph{is} the correct output. Hence the
+three-state verdict is provably terminating: every cluster resolves to $\Rterm$, $\U$ (tagged with its
+cheapest closing modality), or $\X$.
+
+\paragraph{Controllability--modality (the design half).} A design edit changes a program feature living
+in the genome or trajectory modality. The wet-lab capability that realizes it equals the modality of
+that feature: structural edits are genome-class (genome-readable, genome-engineerable --- mature
+combinatorial biosynthesis), control edits are trajectory-class (genome-invisible, the
+iteration-program frontier). This \emph{derives} the companion paper's \S9 design axes and the
+\emph{shape} of its super-additive cost (genome edits separable $\to$ linear; trajectory edits coupled
+through one reused manifold $\to$ super-additive), rather than positing them. The cross-taxa prediction
+wall ($1.00\to0.567$) is the genome$\to$trajectory modality crossing: bacterial modular control closes
+at the genome modality (per-module sequence reads the program), fungal iterative control closes only at
+trajectory.
+
+\section{Cross-family: family-invariant cells}
+\emph{(Full development: \S16.13--16.14.)}
+
+The $(m_{\mathrm{ctrl}},m_{\mathrm{conf}})$ cells are \textbf{family-invariant} --- the design-side face
+of the shared observability/verdict layer; what differs across families is which chemistry occupies
+which cell. Fungal PKS populate every cell, with cycle-assignment in the
+$(\text{trajectory},\text{trajectory})$ cell (the genuine hard, product-neutral $\U$). The framework
+predicts a non-PKS family will occupy the same cells with different chemistry.
+
+\paragraph{The cells, measured (\texttt{make design-tag}).} Tagging each edit of the fungal 1-edit
+neighbourhood by its program feature's modality, \emph{independently} of \S9's structural/control axis
+label, the two are in conflict in \textbf{0 of 192} edits --- Theorem~16.13 confirmed corpus-wide, not
+merely on the 6-MSA neighbourhood. Occupancy: $(\text{genome},\text{product})=46$,
+$(\text{genome},\text{latent})=3$ (the olivetolic-class product-neutral starter swaps, genome-read),
+$(\text{trajectory},\text{product})=69$ (every frontier edit mass-confirmable, matching \S9.3's
+``(0,1) verified by accurate mass''), and $(\text{trajectory},\text{trajectory})=\mathbf{0}$. The empty
+$(\text{trajectory},\text{trajectory})$ cell is decisive: the iteration-grammar $\U$-class is
+\textbf{empirically un-witnessed} in the reachable neighbourhood --- confirming, not asserting, the
+coverage-gating \S16.12 pre-registers (it lives beyond the current boundary, in $\X$).
+
+\paragraph{Lanthipeptide (RiPP), pre-registered and partly validated.} Core-residue identity is
+genome-modality (read off the ORF). Ring topology is the
+$(\text{trajectory-control},\text{product-confirm})$ cell --- genome-prediction-limited and
+design-limited (Repka's barrier), yet product-resolvable (the bridges are bonds). Because lanthionine
+bridging is mass-neutral, every topology of a core is an isomer: $\kappa_{\mathrm{mass}}=$ (number of
+legal pairings), so the topology-$\U$ fibre is \emph{factorial} in ring count --- derived, not asserted.
+The combinatorial half is validated on a real provenanced core (lacticin 481); the structural
+$\simeq$-datapoint is held behind the validation-independence gate (no independent deposited atomic
+structure exists for the 27-mer), which is itself consistent with the U-verdict.
+
+\section{Results (each wired to a reproduction command)}
+All numbers below reproduce from the open code base; commands as named (\texttt{make} targets in the
+repository) plus the lanthipeptide additions.
+
+\begin{table}[h]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}p{2.9cm}p{6.3cm}p{3.6cm}@{}}
+\toprule
+Result & Claim & Reproduce \\
+\midrule
+Partition (fungal PKS) & $\R=8$, $\U=1$ (olivetolic), $\X=317$; reach 9 & \texttt{make reachability} \\
+Monotonicity asymmetry & starter sweep: $\lvert\R\rvert\,9{\to}8$, reach $9{\to}9$, one demotion; forbidden cells empty & \texttt{make coverage-sweep} \\
+Overlap-not-growth & release$+$PT sweeps: clean $\X\to\R$, 0 demotions & \texttt{make coverage-sweep} \\
+$\Rterm$ monotone & $8$ (robust to $+$methylmalonyl) $\to 11$ ($+$PT), clean & \texttt{make coverage-sweep} \\
+Completeness certificate & $\kappa$-inversion caught $\beta{=}8000$ pruning; certified the PT climb & \texttt{make kappa-check} \\
+Cross-taxa $=$ modality crossing & genome modality: bacterial $60\to70/118$ ($+10$), $31/58$ silent-KR; fungal floor $0.567$ & \texttt{make seqhead}, \texttt{make differential} \\
+Controllability duality & $69{:}49$ frontier:engineerable $=$ trajectory:genome (0/192 edits in conflict); $(0,1)$ edits mass-confirmable & \texttt{make design-tag} \\
+Lanthipeptide combinatorics & $\kappa_{\mathrm{mass}}=P(6,3){=}120$ / $P(4,3){=}24$ on lacticin-481 core; containment of $\{9\text{--}14,11\text{--}25,18\text{--}26\}$; isomass & \texttt{make test} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Suite: 181 tests pass (161 prior $+$ 20 lanthipeptide). Provenance for the lanthipeptide core: UniProt
+P36499, cross-validated against FEBS Lett.\ 1996 (PMID 8764998) and JACS 2013 (PMC3736828).
+
+\section{Limitations and the two pre-registered forward edges}
+The calculus is established without external inputs; what remains is gated and enters as falsifiable
+pre-registration with turnkey executors behind it.
+
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+\item \textbf{Macrolactonization (the iteration-grammar trajectory-$\U$ witness).} Predicts a small but
+nonzero count of same-product / same-starter / different-cycle fibres among newly-reachable HR
+macrolactone cores --- the first live occupant of the $(\text{trajectory},\text{trajectory})$ cell.
+Gated on a sound macrolactonization operator (the rung-2/3 ``cost-open'' ring chemistry).
+\item \textbf{Lanthipeptide structural datapoint.} Predicts ring topology lands in
+$(\text{trajectory-control},\text{product-confirm})$, MS/MS/NMR-resolvable, genome-prediction-limited.
+Gated on an independent deposited atomic structure clearing the $\simeq$-gate; the scaffold
+(enumeration $+$ partition harness) is built and suite-green, the structural renderers stubbed behind
+tripwire tests.
+\end{itemize}
+
+Four live falsifiers attach to the lanthipeptide prediction; the macrolactonization climb is certified
+by the same $\kappa$-monotonicity completeness check. Neither claims a datapoint before its gate clears.
+
+\section{Conclusion}
+A sound executor over a biosynthetic program grammar carries more than a predictor: its three-state
+verdict is a partition obeying a two-knob calculus in which coverage and identifiability are distinct,
+trading quantities; whose honest progress metric is $\Rterm$; whose enumeration self-certifies by
+$\kappa$-monotonicity; and whose verdict provably terminates, with the within-enzyme mixture the only
+permanent floor. The observability quantity stratifies into a family-invariant modality ladder that
+unifies the inference and design halves of the companion paper --- the cross-taxa prediction wall and
+the design-difficulty axes are one quantity read in two modalities. The fungal instance validates the
+calculus; lanthipeptide tests it on a second family. What the framework cannot yet claim, it
+pre-registers, behind a validation-independence gate that ties the limits of what is buildable to the
+limits of what is independently observable --- the same wall, named honestly.
+
+\begin{thebibliography}{9}
+\bibitem{design} B.~Eilertsen. \emph{Sound Biosynthetic Design over Iterative Grammars: A Realizability
+Geometry for Fungal Polyketides} (2026a).
+\bibitem{refs} Riedling et al.\ 2024 (the $51$--$68\%$ ceiling); Cox 2023 (iterative HR-PKS
+programming); Repka et al.\ 2017 (lanthipeptide enzymology); Crawford et al.\ 2009, Li et al.\ 2010
+(PT-domain regiochemistry); Eng/Tao et al.\ (ClusterCAD); Zdouc et al.\ 2025 (MIBiG 4.0); Lin et al.\
+2023 (ESM-2); Landrum et al.\ 2025 (RDKit); van den Hooven et al.\ 1996 (lacticin 481 NMR); Knerr \&
+van der Donk 2013 (lacticin 481 synthesis). \emph{(Full bibliography inherited from the companion paper
+plus the lanthipeptide sources.)}
+\end{thebibliography}
+
+\noindent\emph{Formal proofs, the full transition-matrix and modality-ladder treatment, all
+definitions/lemmas/theorems, and the per-result derivations are in \texttt{complete\_miner\_method.md}
+(\S16), which serves as this paper's methods/supplement until merged.}
+
+\end{document}

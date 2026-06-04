@@ -1,0 +1,72 @@
+Experiment C -- coverage-illusion control: is C-methylation burden enriched PAST the
+reachability boundary, at matched carbon count? (survivorship test of the Gate-3 frontier)
+============================================================================================
+H = C-methyl BRANCH count on the deposited structure (upper bound for true C-MeT);
+primary axis controlled for carbon count C. Reachable(9) vs CHO-in-scope-unreachable(205);
+112 heteroatom cores reported separately. Citrinin = pre-named high-H/unreachable control.
+
+[1] CALIBRATION  (proxy H vs executor true C-MeT; guards the post-PKS/ring over-count)
+    core                          true_CMeT proxy_H   delta
+    LovB dihydromonacolin L nonake(no deposited SMILES -> excluded from calibration)
+    tenellin polyketide backbone ((no deposited SMILES -> excluded from calibration)
+    orsellinic acid [reach]               0       1  +1 OVER
+    (-)-Mellein [reach]                   0       1  +1 OVER
+    6-methylsalicyclic a [reach]          0       1  +1 OVER
+    6-methylsalicyclic a [reach]          0       1  +1 OVER
+    6-hydroxymellein [reach]              0       1  +1 OVER
+    Orsellinic acid [reach]               0       1  +1 OVER
+    BAB [reach]                           0       0
+    orsellinic acid [reach]               0       1  +1 OVER
+    olivetolic acid [reach]               0       0
+    3-hydroxybutyric aci [cur]            0       1  +1 OVER
+    6-hydroxymellein [cur]                0       1  +1 OVER
+    6-methylsalicylic ac [cur]            0       1  +1 OVER
+    citrinin [cur]                        3       3
+    hexanoic acid (fully [cur]            0       0
+    2-methylbutyric acid [cur]            1       1
+    mellein [cur]                         0       1  +1 OVER
+    octanoic acid (fully [cur]            0       0
+    orsellinic acid [cur]                 0       1  +1 OVER
+    triacetic acid lacto [cur]            0       1  +1 OVER
+    -> exact=6  over=13  under=0  (n=19 calibratable)
+    over-count is the starter/ring & hydroxy-terminal methyl the proxy cannot tell from
+    a true C-MeT; it falls on small AROMATIC cores that dominate the REACHABLE arm, so it
+    INFLATES reachable H -> any residual reachable<unreachable gap is conservative.
+
+[2] POSITIVE CONTROL -- citrinin (BGC0001338) must be high-H (>=2) AND unreachable
+    citrinin: H=3  C=13  status=unreachable  -> PASS (high-H, past boundary)
+
+[3] PRIMARY -- reachable vs CHO-in-scope-unreachable, controlling for carbon count
+    n: reachable=9  cho-unreachable=205
+    carbon range: reachable C[8,12]  cho C[7,41]  (severe size confound -> control mandatory)
+
+    RAW (uncontrolled -- expected to be confounded by size):
+      reachable    meanH=0.778  P(H>=1)=0.778  P(H>=2)=0.000
+      cho-unreach  meanH=2.278  P(H>=1)=0.815  P(H>=2)=0.546
+
+    WITHIN-CARBON-STRATA (the control):
+      stratum           reach n/meanH/P>=2          cho n/meanH/P>=2
+      C[ 7,10]               7/1.00/0.00              17/0.76/0.24
+      C[11,12]               2/0.00/0.00              10/1.30/0.30
+      C[13,15]                     0/-/-              24/1.25/0.29
+      C[16,20]                     0/-/-              60/1.38/0.35
+      C[21,99]                     0/-/-              94/3.49/0.82
+
+    MATCHED OVERLAP stratum C[8,12] (where all reachable cores live):
+      reachable: n=9  meanH=0.778  H>=2: 0/9
+      cho-unr. : n=24  meanH=1.000  H>=2: 7/24
+      Fisher one-sided P(cho more H>=2 than reachable) = 0.149
+
+    LOGISTIC  P(unreachable) ~ 1 + H + C   (controls H for size):
+      intercept      beta=-4.2416  se=1.7226  z=-2.46
+      H (C-methyl)   beta=+0.2754  se=0.5650  z=+0.49
+      C (carbons)    beta=+0.5523  se=0.1687  z=+3.27
+
+[4] SECONDARY (not pooled into primary)
+    heteroatom (skip_element, n=112): meanH=2.562  P(H>=2)=0.625  -- out-of-grammar for SCOPE (N/halogen)
+    pks_subclass annotated in primary set: 11/214 (too sparse for a corpus-wide axis -> stratifier only, as pre-committed)
+
+============================================================================================
+controlled effect of H on unreachability: z=+0.49 (need >1.96 for survivorship); size effect z(C)=+3.27
+matched-stratum meanH gap (cho - reachable) = +0.222; Fisher one-sided p = 0.149
+VERDICT: THINNESS SURVIVES (residue claim holds on this axis): once carbon count is controlled, C-methyl burden does NOT predict unreachability (H ns) while size DOES (C significant). The dramatic RAW gap (P(H>=2) ~0 reachable vs ~0.55 unreachable) is a SIZE artifact -- the reachability boundary is a carbon/combinatorial wall, not a methylation wall; the cores past it are LARGE, not specifically pocket-hard at matched size. The Gate-3 frontier thinness is therefore NOT a methylation-survivorship illusion. CAVEATS (load-bearing): (i) underpowered -- reachable n=9, all C<=12, so the matched control exists in ONE narrow stratum; (ii) the proxy INFLATES the reachable arm (calibration: starter/ring methyls), biasing toward this very conclusion; (iii) this speaks ONLY to methylation-hardness -- the size/heteroatom boundary is large and is the real coverage frontier.

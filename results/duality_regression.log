@@ -1,0 +1,27 @@
+Duality regression -- Theorem 1: Z*(verifier) == D(y;O) at the accurate-mass observable
+====================================================================================
+For every distinct ACTUAL product formula in the full producible set, the verifier's mass
+prefilter must return EXACTLY the producible programs with that formula (sound + complete).
+Capped enumerations VOID the test (never reported as exhaustive). == is canonical-SMILES
+set equality (graph iso up to canonicalization), NOT substructure.
+
+[pks] PKS full(4-red+cmet), acetyl, n=1..3
+    n_full=584  distinct_formulas=90  formulas_matching_D=90  -> PASS
+[pks] PKS 4-red, acetyl+propionyl, n=1..3
+    n_full=168  distinct_formulas=58  formulas_matching_D=58  -> PASS
+[nrps] NRPS 8-residue, hydrolysis+macrolactam, n=1..3
+    n_full=796  distinct_formulas=234  formulas_matching_D=234  -> PASS
+[hybrid] HYBRID default, max_residues=1, PK n=1..2
+    n_full=160  distinct_formulas=78  formulas_matching_D=78  -> PASS
+
+[lanthi] out-of-grammar guard: enumerate must raise (registered SCAFFOLD, no executor)
+    PASS: raised NotImplementedError
+
+====================================================================================
+  pks     PASS  90/90 formulas  (n_full=584)  -- PKS full(4-red+cmet), acetyl, n=1..3
+  pks     PASS  58/58 formulas  (n_full=168)  -- PKS 4-red, acetyl+propionyl, n=1..3
+  nrps    PASS  234/234 formulas  (n_full=796)  -- NRPS 8-residue, hydrolysis+macrolactam, n=1..3
+  hybrid  PASS  78/78 formulas  (n_full=160)  -- HYBRID default, max_residues=1, PK n=1..2
+  lanthi  PASS  out-of-grammar guard
+
+VERDICT: SUPPORTED: Theorem-1 duality holds across PKS/NRPS/HYBRID -- 460/460 product formulas, the verifier's Z* == the independent O-consistent set D(y;O) exactly. Mass prefilter is sound AND complete; LANTHI guard holds.

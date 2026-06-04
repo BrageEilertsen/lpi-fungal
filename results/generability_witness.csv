@@ -1,0 +1,5 @@
+bgc_id,name,beta,kappa,budget_exhausted,runtime_s,beta_monotone
+BGC0001057,zearalenone,8000,0,False,11.227,True
+BGC0001057,zearalenone,50000,0,False,42.635,True
+BGC0001057,zearalenone,120000,0,False,53.348,True
+BGC0001057,zearalenone,200000,0,False,210.823,True

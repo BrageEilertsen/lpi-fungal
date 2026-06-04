@@ -5,8 +5,8 @@ Phase-0 out-of-grammar census: missing-operator classes + recovery curve
 ==========================================================================
 RE-SCAN too_large (C>20) with lifted cap (C80)
 ==========================================================================
-  re-scan outcome: unreachable=91, budget=3
-  -> 0 were reachable-but-untested (scan-cap artifacts, NOT coverage gaps, excluded); 3 returned 'budget' (reachability not exhaustively confirmed at the reduced re-scan budget -- classified structurally below as a lower bound); the rest are confirmed unreachable. All non-reachable cores fold into the curves by actual missing class.
+  re-scan outcome: unreachable=87, budget=7
+  -> 0 were reachable-but-untested (scan-cap artifacts, NOT coverage gaps, excluded); 7 returned 'budget' (reachability not exhaustively confirmed at the reduced re-scan budget -- classified structurally below as a lower bound); the rest are confirmed unreachable. All non-reachable cores fold into the curves by actual missing class.
 
 ==========================================================================
 CURVE 1 -- CHO-unreachable (IN-SCOPE: add a PKS tailoring operator)

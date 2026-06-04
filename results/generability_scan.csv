@@ -1,0 +1,206 @@
+bgc_id,name,carbons,C,H,O,base_status,formula_feasible,kappa_8000,class,soundness,budget_exhausted,n_programs_executed,n_pruned_overshoot,runtime_s
+BGC0000003,AF-toxin,22,22,32,9,too_large,True,0,coverage-limited-structural,HEURISTIC,False,42,285440,19.065
+BGC0000004,aflatoxin G1,17,17,12,7,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0000005,aflatoxin,17,17,12,7,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0000006,aflatoxin B1,17,17,12,6,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0000007,aflatoxin G1,17,17,12,7,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0000008,aflatoxin B1,17,17,12,6,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0000009,aflatoxin B1,17,17,12,6,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0000010,aflatoxin,17,17,12,7,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0000011,Sterigmatocystin,18,18,12,6,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,289024,9.005
+BGC0000012,alternapyrone,28,28,44,3,too_large,True,0,coverage-limited-structural,HEURISTIC,False,24957,238868,103.131
+BGC0000013,alternariol,14,14,10,5,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,159808,2.436
+BGC0000022,asperfuranone,19,19,24,5,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,3925,230912,15.366
+BGC0000027,ankaflavin,23,23,30,5,too_large,True,0,coverage-limited-structural,HEURISTIC,False,4870,212480,29.049
+BGC0000030,bikaverin,20,20,14,8,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0000039,compactin,23,23,36,6,too_large,True,0,coverage-limited-structural,HEURISTIC,False,31184,212480,74.538
+BGC0000045,dehydrocurvularin,16,16,18,5,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,80,166144,4.606
+BGC0000046,depudecin,11,11,16,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,1552,18896,1.087
+BGC0000048,dothistromin,18,18,12,9,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0000057,F9775A,21,21,16,8,too_large,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0000076,hypothemycin,19,19,22,8,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,230912,11.179
+BGC0000077,hypothemycin,19,19,22,8,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,230912,11.156
+BGC0000088,lovastatin,24,24,36,5,too_large,True,0,coverage-limited-structural,HEURISTIC,False,11270,192000,42.604
+BGC0000089,lovastatin,24,24,36,5,too_large,True,0,coverage-limited-structural,HEURISTIC,False,11270,192000,44.394
+BGC0000098,monacolin K,24,24,36,5,too_large,True,0,coverage-limited-structural,HEURISTIC,False,11270,192000,43.738
+BGC0000099,monascorubrin,23,23,26,5,too_large,True,0,coverage-limited-structural,HEURISTIC,False,150,212480,22.636
+BGC0000101,emodin,15,15,10,5,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0000104,mycophenolic acid,17,17,20,6,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,20,254976,6.417
+BGC0000120,patulin,7,7,6,4,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0000146,solanapyrone D,18,18,22,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,8580,289024,18.058
+BGC0000152,sterigmatocystin,18,18,12,6,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,289024,9.098
+BGC0000154,stipitatic acid,8,8,6,5,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0000155,T-toxin,41,41,68,13,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,256000,82.395
+BGC0000156,TAN-1612,21,21,18,9,too_large,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0000160,terreic acid,7,7,6,4,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0000161,isoterrein,8,8,10,3,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,93,1396,0.047
+BGC0000170,yanuthone D,28,28,38,8,too_large,True,0,coverage-limited-structural,HEURISTIC,False,82,224000,33.215
+BGC0000684,asperthecin,15,15,10,8,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0001057,zearalenone,18,18,22,5,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,2195,289024,11.215
+BGC0001067,Fumagillin,26,26,34,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,155,240384,30.919
+BGC0001118,endocrocin,16,16,10,7,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0001141,4-epi-15-epi-brefeldin A,16,16,24,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,18076,166144,22.278
+BGC0001143,azanigerone A,19,19,22,7,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,230912,20.052
+BGC0001144,neosartoricin B,24,24,26,8,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,192000,26.189
+BGC0001158,bikaverin,20,20,14,8,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0001219,shanorellin,9,9,10,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,20,3328,0.059
+BGC0001242,oxyjavanicin,15,15,14,7,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0001243,botryenalol,17,17,26,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,21150,254976,44.096
+BGC0001245,lasiodiplodin,17,17,24,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,14140,254976,30.742
+BGC0001246,trans-resorcylide,16,16,18,5,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,80,166144,4.763
+BGC0001247,cercosporin,29,29,26,10,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,256000,41.998
+BGC0001252,UNII-YC2Q1O94PT,19,19,30,6,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,26107,230912,45.431
+BGC0001257,"1,3,6,8-tetrahydroxynaphthalene",10,10,8,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,5,7920,0.077
+BGC0001258,"1,3,6,8-tetrahydroxynaphthalene",10,10,8,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,5,7920,0.077
+BGC0001259,elsinochrome A,30,30,24,10,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,192000,44.775
+BGC0001264,betaenone A,21,21,34,5,too_large,True,0,coverage-limited-structural,HEURISTIC,False,22640,292352,52.304
+BGC0001266,grayanic acid,23,23,26,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,212480,26.779
+BGC0001269,gibberellin A3,19,19,22,6,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,55,230912,11.448
+BGC0001270,gibberellin A7,19,19,22,5,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,680,230912,12.331
+BGC0001271,emericellin,25,25,28,5,too_large,True,0,coverage-limited-structural,HEURISTIC,False,75,272384,26.302
+BGC0001272,elsinochrome B,30,30,26,10,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,192000,44.161
+BGC0001273,asperlactone,9,9,12,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,132,3328,0.085
+BGC0001280,betaenone C,21,21,34,5,too_large,True,0,coverage-limited-structural,HEURISTIC,False,22640,292352,51.622
+BGC0001281,ustilagic acid,36,36,64,18,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,192000,68.769
+BGC0001304,aflavarin,24,24,22,9,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,192000,24.218
+BGC0001305,fujikurin B,12,12,18,5,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,2147,44992,2.032
+BGC0001309,usnic acid,18,18,16,7,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,289024,9.534
+BGC0001338,citrinin,13,13,14,5,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,300,107264,1.375
+BGC0001339,squalestatin S1,35,35,46,13,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,256000,66.450
+BGC0001340,byssochlamic acid,18,18,20,6,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,25,289024,9.282
+BGC0001373,sordarin,27,27,40,8,too_large,True,0,coverage-limited-structural,HEURISTIC,False,553,192000,34.165
+BGC0001385,byssochlamic acid,18,18,20,6,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,25,289024,9.061
+BGC0001390,LL-Z1272beta,23,23,32,3,too_large,True,0,coverage-limited-structural,HEURISTIC,False,57100,217152,126.580
+BGC0001400,citreoviridin,23,23,30,6,too_large,True,0,coverage-limited-structural,HEURISTIC,False,1080,212480,23.819
+BGC0001401,melleolide F,23,23,30,6,too_large,True,0,coverage-limited-structural,HEURISTIC,False,1080,212480,23.824
+BGC0001403,trypacidin,18,18,16,7,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,289024,9.367
+BGC0001404,sorbicillin,14,14,16,3,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,9240,159808,10.324
+BGC0001446,asparasone A,18,18,14,8,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0001450,macrophorin A,22,22,32,4,too_large,True,0,coverage-limited-structural,HEURISTIC,False,59534,285568,127.304
+BGC0001508,andrastin A,28,28,38,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,546,224000,40.375
+BGC0001541,cercosporin,29,29,26,10,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,256000,41.675
+BGC0001542,cercosporin,29,29,26,10,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,256000,43.367
+BGC0001557,cornexistin,16,16,20,6,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,80,166144,4.871
+BGC0001578,duclauxin,29,29,22,11,too_large,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0001600,fusarielin H,25,25,38,3,too_large,True,0,coverage-limited-structural,HEURISTIC,False,49736,279460,144.818
+BGC0001606,gibepyrone-A,10,10,12,2,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,806,7920,0.513
+BGC0001677,mycophenolic acid,17,17,20,6,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,20,254976,6.714
+BGC0001708,novofumigatonin,25,25,32,8,too_large,True,0,coverage-limited-structural,HEURISTIC,False,5,272384,27.312
+BGC0001720,oosporein,14,14,10,8,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0001729,paraherquonin,24,24,28,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,192000,22.733
+BGC0001749,epipyriculol,14,14,16,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,3405,159808,4.869
+BGC0001827,xenovulene A,22,22,30,4,too_large,True,0,coverage-limited-structural,HEURISTIC,False,32699,285568,73.899
+BGC0001865,elsinochrome C,30,30,28,10,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,192000,45.683
+BGC0001866,viriditoxin,34,34,30,14,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,224000,56.107
+BGC0001886,Secalonic acid B,32,32,30,14,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,256000,49.988
+BGC0001899,abscisic acid,15,15,20,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,12400,163584,14.083
+BGC0001906,"2-acetyl-1,3,6,8-tetrahydroxynaphthalene",12,12,10,5,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,5,44992,0.436
+BGC0001909,strobilurin A,16,16,18,3,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,3630,166144,7.802
+BGC0001913,phomoidride,31,31,38,10,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,224000,43.254
+BGC0001926,chrodrimanin B,25,25,30,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,5,272384,25.239
+BGC0001988,neosartorin,34,34,32,15,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,224000,53.556
+BGC0002030,viriditoxin,34,34,30,14,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,224000,53.814
+BGC0002062,agnestin A,15,15,12,6,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0002063,cryptosporioptide B,38,38,34,18,too_large,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0002065,strobilurin A,16,16,18,3,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,3630,166144,7.774
+BGC0002139,burnettiene A,32,32,42,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,155,256000,50.821
+BGC0002154,"1,3,5,8-tetrahydroxynapthalene",10,10,8,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,5,7920,0.077
+BGC0002155,nectriapyrone C,11,11,14,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,750,18896,0.576
+BGC0002161,scytalone,10,10,10,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,40,7920,0.091
+BGC0002165,betaenone C,21,21,34,5,too_large,True,0,coverage-limited-structural,HEURISTIC,False,22640,292352,50.198
+BGC0002168,decumbenone a,16,16,24,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,18076,166144,22.518
+BGC0002170,4-methyl-5-dimethyltetradecahexaene-β-ketolactone,22,22,28,3,too_large,True,0,coverage-limited-structural,HEURISTIC,False,31115,287840,66.878
+BGC0002175,YWA1,14,14,12,6,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,159808,2.394
+BGC0002177,ustilaginoidin N,29,29,22,10,too_large,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0002180,(+)-asperlin,10,10,12,5,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,44,7920,0.095
+BGC0002185,gregatin A,16,16,20,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,3630,166144,7.602
+BGC0002190,sorbicillin,14,14,16,3,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,9240,159808,9.553
+BGC0002191,prolipyrone B,10,10,10,5,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,5,7920,0.077
+BGC0002192,FR901512,21,21,28,6,too_large,True,0,coverage-limited-structural,HEURISTIC,False,1004,292352,16.063
+BGC0002194,epipyrone A,34,34,44,10,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,224000,60.259
+BGC0002197,terrestric acid,11,11,14,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,750,18896,0.597
+BGC0002200,aurovertin E,23,23,30,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,150,212480,22.167
+BGC0002206,harziphilone,15,15,18,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,4525,163584,7.028
+BGC0002209,ustethylin A,11,11,14,5,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,220,18896,0.288
+BGC0002222,zopfiellin,21,21,26,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,10,292352,14.768
+BGC0002223,scytalidin,22,22,28,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,90,285440,19.724
+BGC0002224,zopfiellin,21,21,26,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,10,292352,14.831
+BGC0002233,trichoxide,18,18,26,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,41390,289024,59.251
+BGC0002234,flavoglaucin,19,19,28,3,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,70981,231936,109.832
+BGC0002235,"12,13-dihydroxymagnaporthepyrone",16,16,20,5,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,800,166144,5.161
+BGC0002236,8-methyldiaporthin,14,14,16,5,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,750,159808,2.859
+BGC0002238,"2,4'-dihydroxy-3'-methoxypropiophenone",10,10,12,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,176,7920,0.155
+BGC0002241,ywa1,14,14,12,6,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,159808,2.395
+BGC0002243,biruloquinone,17,17,10,7,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0002244,pestalotiollide B,21,21,22,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,292352,14.812
+BGC0002249,phaeospelide A,34,34,50,8,too_large,True,0,coverage-limited-structural,HEURISTIC,False,1451,224000,58.412
+BGC0002255,lijiquinone,23,23,26,5,too_large,True,0,coverage-limited-structural,HEURISTIC,False,150,212480,21.879
+BGC0002257,rufoschweinitzin,30,30,30,8,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,192000,43.264
+BGC0002258,shimalactone A,29,29,40,4,too_large,True,0,coverage-limited-structural,HEURISTIC,False,35697,258560,126.738
+BGC0002262,sporothriolide,13,13,18,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,7925,107264,7.054
+BGC0002263,spiromarmycin,19,19,24,6,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,680,230912,11.897
+BGC0002265,atranorin,19,19,18,8,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,230912,11.255
+BGC0002266,calidoustene A,21,21,28,6,too_large,True,0,coverage-limited-structural,HEURISTIC,False,1004,292352,15.967
+BGC0002427,subglutinol A,27,27,38,4,too_large,True,0,coverage-limited-structural,HEURISTIC,False,19451,193664,73.749
+BGC0002428,FDDP-D,29,29,42,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,5072,256000,50.823
+BGC0002429,higginsianin B,27,27,40,4,too_large,True,0,coverage-limited-structural,HEURISTIC,False,34534,193664,109.450
+BGC0002483,usnic acid,18,18,16,7,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,289024,9.114
+BGC0002507,sporandol,28,28,26,8,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,224000,32.895
+BGC0002511,biruloquinone,17,17,10,7,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0002513,6-methylcristazarin,14,14,14,6,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,159808,2.410
+BGC0002515,solanapyrone A,18,18,22,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,8580,289024,18.136
+BGC0002516,prephenalenone,14,14,12,6,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,159808,2.378
+BGC0002525,fusarubin,15,15,14,7,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0002537,emeridone F,25,25,28,6,too_large,True,0,coverage-limited-structural,HEURISTIC,False,5,272384,25.383
+BGC0002593,lecanoric acid,16,16,14,7,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,166144,4.537
+BGC0002594,orcinol,7,7,8,2,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,60,584,0.023
+BGC0002596,lecanoric acid,16,16,14,7,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,166144,4.533
+BGC0002603,chevalone E,26,26,38,4,too_large,True,0,ambiguous-budget,HEURISTIC,True,60000,177696,158.737
+BGC0002604,sartorypyrone A,28,28,40,5,too_large,True,0,coverage-limited-structural,HEURISTIC,False,15005,224000,69.397
+BGC0002614,subglutinol A,27,27,38,4,too_large,True,0,coverage-limited-structural,HEURISTIC,False,19451,193664,75.102
+BGC0002616,mycophenolic acid,17,17,20,6,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,20,254976,6.608
+BGC0002619,mycophenolic acid,17,17,20,6,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,20,254976,6.326
+BGC0002709,aurofusarin,30,30,18,12,too_large,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0002731,nanangenine A,15,15,22,5,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,12220,163584,13.796
+BGC0002745,verrucosidin,24,24,32,6,too_large,True,0,coverage-limited-structural,HEURISTIC,False,460,192000,23.106
+BGC0002758,Azanidulone,11,11,10,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,25,18896,0.188
+BGC0002759,brevione E,28,28,34,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,5,224000,33.155
+BGC0002845,Sartorypyrone A,28,28,40,5,too_large,True,0,coverage-limited-structural,HEURISTIC,False,15005,224000,68.651
+BGC0002848,CJ-20557,19,19,20,7,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,230912,11.104
+BGC0002849,Luteodienoside A,23,23,38,13,too_large,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0002852,"3,6-dialkyl-α-pyrone",10,10,12,3,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,464,7920,0.309
+BGC0002864,Mollicellin Z ,21,21,22,6,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,292352,14.685
+BGC0002872,Zaragozic acid A,35,35,46,14,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,256000,60.605
+BGC0002874,cristazarin,13,13,12,6,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0002877,Cordypyrone A,22,22,28,3,too_large,True,0,coverage-limited-structural,HEURISTIC,False,31115,287840,66.907
+BGC0002883,biruloquinone,17,17,10,7,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0002891,arthripenoid C,30,30,44,9,too_large,True,0,coverage-limited-structural,HEURISTIC,False,54,192000,42.817
+BGC0002911,naringenin,15,15,12,5,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,163584,3.419
+BGC0002930,6'-O-demethyl-dihydroaustalide K,24,24,32,5,too_large,True,0,coverage-limited-structural,HEURISTIC,False,1880,192000,25.543
+BGC0002936,Gyrophoric acid,24,24,20,10,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,192000,22.408
+BGC0002953,11'-O-desmethyl fendlerol,26,26,40,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,14073,240384,56.919
+BGC0002966,luteodienoside A,23,23,38,13,too_large,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0002970,xylariolide D,10,10,14,3,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,834,7920,0.520
+BGC0002971,Fugralin A,12,12,20,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,4029,44992,3.384
+BGC0002984,Brefeldin A,16,16,24,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,18076,166144,22.558
+BGC0002987,scirpilin A,26,26,36,2,too_large,True,0,ambiguous-budget,HEURISTIC,True,60000,218404,165.234
+BGC0002999,(2S)-annullatin A,17,17,22,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,6315,254976,12.726
+BGC0003006,Rasfonin,25,25,38,6,too_large,True,0,coverage-limited-structural,HEURISTIC,False,17396,272384,58.459
+BGC0003011,Eupenifeldin,33,33,40,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,192000,53.154
+BGC0003013,agonodepside A,23,23,26,5,too_large,True,0,coverage-limited-structural,HEURISTIC,False,150,212480,21.973
+BGC0003028,Terrestric acid,11,11,14,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,750,18896,0.573
+BGC0003032,soppiline A,21,21,34,3,too_large,True,0,coverage-limited-structural,HEURISTIC,False,24872,293728,57.575
+BGC0003093,Phomoxanthone A,38,38,38,16,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,256000,71.952
+BGC0003094,Roseopurpurin C,18,18,20,7,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,0,289024,9.093
+BGC0003099,"7-But-15-enyl-6,8-dihydroxy-3(R)-pent-11-enylisochroman-1-one",18,18,22,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,8580,289024,18.137
+BGC0003108,pycnidione,33,33,40,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,192000,53.302
+BGC0003109,stachysalicyloid C,16,16,20,2,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,17240,167744,21.764
+BGC0003113,multiformin A,24,24,26,6,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,192000,22.482
+BGC0003115,orsellinoxypropanoic acid,11,11,12,6,unreachable,False,,coverage-limited-formula,SOUND,,,,0.000
+BGC0003118,Multiforisin H,13,13,16,6,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,330,107264,1.266
+BGC0003120,Minutellin A,27,27,30,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,192000,32.512
+BGC0003126,kotanin,24,24,22,8,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,192000,22.424
+BGC0003142,FDDP D,29,29,42,7,too_large,True,0,coverage-limited-structural,HEURISTIC,False,5072,256000,50.782
+BGC0003144,Physodic acid,26,26,30,8,too_large,True,0,coverage-limited-structural,HEURISTIC,False,0,240384,30.050
+BGC0003150,Ascochitine,15,15,16,5,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,100,163584,3.506
+BGC0003151,Annullatin D,17,17,22,4,unreachable,True,0,coverage-limited-structural,HEURISTIC,False,6315,254976,12.712

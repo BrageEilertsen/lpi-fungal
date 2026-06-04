@@ -23,8 +23,13 @@ roundtrip:
 search:
 	PYTHONPATH=src $(PY) -m lpi.cli.search
 
+# Reproducibility: pin PYTHONHASHSEED on the beam-scan targets so their unreachable/budget
+# split is bit-reproducible from one command. The search enumeration is already hash-independent
+# (frozen-dataclass programs, repr-tiebreak beam sort, no set/dict iteration in the scan path),
+# so this is defensive determinism hygiene -- it does NOT by itself prevent stale-artifact drift:
+# a committed log/csv must still be regenerated when the executor grammar (e.g. the release set) changes.
 reachability:
-	PYTHONPATH=src $(PY) -m lpi.cli.reachability
+	PYTHONHASHSEED=0 PYTHONPATH=src $(PY) -m lpi.cli.reachability
 
 corematch:
 	PYTHONPATH=src $(PY) -m lpi.cli.corematch
@@ -59,8 +64,8 @@ clean:
 seqhead:
 	PYTHONPATH=src $(PY) scripts/explorations/bacterial_esm_demo.py > results/seqhead.log
 
-census:
-	PYTHONPATH=src $(PY) scripts/coverage/oog_census.py
+census:	## re-scans the 94 too_large cores; PYTHONHASHSEED pinned (see reproducibility note above reachability)
+	PYTHONHASHSEED=0 PYTHONPATH=src $(PY) scripts/coverage/oog_census.py
 
 coverage-sweep:
 	PYTHONPATH=src $(PY) scripts/coverage/theta_sweep.py
@@ -87,3 +92,24 @@ kappa-certificate: kappa-check	## alias: reproduces the beta=8000->5e4 kappa inv
 
 homology-stratify:
 	PYTHONPATH=src $(PY) scripts/coverage/homology_stratify.py
+
+b1:	## B1 (decisive): does substrate state s_t clear the 0.567 wall? (faithful (a)-vs-(b) harness)
+	PYTHONPATH=src $(PY) scripts/policy/b1_substrate_wall.py
+
+b3:	## B3: free-label scaling law -- does decision count (not cluster count) drive accuracy?
+	PYTHONPATH=src $(PY) scripts/policy/b3_free_label_scaling.py
+
+duality:	## Theorem 1 property test: verifier Z* == independent O-consistent set D(y;O), all grammars
+	PYTHONPATH=src $(PY) scripts/duality_regression.py
+
+coverage-illusion:	## Exp C survivorship control: is C-methyl burden enriched past the reachability boundary at matched C?
+	PYTHONPATH=src $(PY) scripts/coverage/coverage_illusion.py
+
+generability:	## Sec 10.1: classify the in-scope-unreachable cores -- search-limited (beam) vs coverage-limited (chemistry). PYTHONHASHSEED pinned (see reachability note above).
+	PYTHONHASHSEED=0 PYTHONPATH=src $(PY) scripts/coverage/generability_scan.py
+
+forward-index:	## Completion 1: forward SOUND index -- re-resolve the 169 structural cores (recovered vs sound gap), recover beam-starved zearalenone. One Theta_0 sweep serves all 214. PYTHONHASHSEED pinned.
+	PYTHONHASHSEED=0 PYTHONPATH=src $(PY) scripts/coverage/forward_index.py
+
+rung2-cover:	## Completion 1 build-queue: rung-2 sound set-cover over the 117 certified gaps -- which single soundly-expressible operator buys the most provable reach (reads results/forward_index.csv).
+	PYTHONHASHSEED=0 PYTHONPATH=src $(PY) scripts/coverage/rung2_cover.py

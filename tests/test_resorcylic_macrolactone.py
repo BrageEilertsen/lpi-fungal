@@ -83,3 +83,26 @@ def test_resorcylic_macrolactone_excludes_delta_lactone():
         Program("acetyl", (Cycle(R.KR), Cycle(R.KETO), Cycle(R.KETO), Cycle(R.KETO)),
                 Release.HYDROLYSIS)).linear
     assert resorcylic_macrolactone(delta_lactone_chain) is None
+
+
+def test_zearalenone_program_within_scan_grammar():
+    """Theta_0-reachability (the generability witness's load-bearing premise): EVERY operator the
+    zearalenone program uses is in the scan grammar `_scan_spec()` -- acetyl starter, malonyl extender,
+    {KR,ER,KETO,DH} reductions, no C-MeT, RESORCYLIC_MACROLACTONE release, n_cycles within cap. Together
+    with test_release_dispatches... (the program renders BGC0001057), this proves zearalenone is in the
+    UNPRUNED reachable set under Theta_0 (kappa>=1). With the kappa-monotonicity certificate
+    (kappa_beta <= kappa, non-decreasing in beta; Prop 16.4c / make kappa-check), it follows that
+    zearalenone is 'recoverable at sufficient beta' -- so the generability witness's kappa_beta=0 through
+    beta=200000 is a beam UNDER-COUNT (an engineering/beam limit), NOT a Theta_0 coverage gap. This is the
+    fact that makes the `coverage-limited-structural` class beam-contaminated rather than a clean
+    coverage certificate."""
+    from lpi.search.reachability import _scan_spec
+
+    S = _scan_spec()
+    p = ZEARALENONE_PROGRAM
+    assert p.starter in S.starters
+    assert all(c.reduction in S.reductions for c in p.cycles)
+    assert all(c.extender in S.extenders for c in p.cycles)
+    assert (not any(c.c_methyl for c in p.cycles)) or S.allow_c_methyl
+    assert p.release in S.releases
+    assert S.max_cycles is None or p.n_cycles <= S.max_cycles

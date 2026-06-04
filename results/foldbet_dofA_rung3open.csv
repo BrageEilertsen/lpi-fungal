@@ -1,0 +1,63 @@
+bgc_id,name,C,classes,sole_carbocycle
+BGC0000022,asperfuranone,19,non_aromatic_carbocycle,True
+BGC0000076,hypothemycin,19,aromatic_cyclization+macrolactonization+non_aromatic_carbocycle,False
+BGC0000077,hypothemycin,19,aromatic_cyclization+macrolactonization+non_aromatic_carbocycle,False
+BGC0001143,azanigerone A,19,non_aromatic_carbocycle,True
+BGC0001252,UNII-YC2Q1O94PT,19,non_aromatic_carbocycle,True
+BGC0001269,gibberellin A3,19,non_aromatic_carbocycle,True
+BGC0001270,gibberellin A7,19,non_aromatic_carbocycle,True
+BGC0002263,spiromarmycin,19,non_aromatic_carbocycle,True
+BGC0000011,Sterigmatocystin,18,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0000146,solanapyrone D,18,non_aromatic_carbocycle,True
+BGC0000152,sterigmatocystin,18,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0001309,usnic acid,18,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0001340,byssochlamic acid,18,non_aromatic_carbocycle,True
+BGC0001385,byssochlamic acid,18,non_aromatic_carbocycle,True
+BGC0001403,trypacidin,18,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0002233,trichoxide,18,non_aromatic_carbocycle,True
+BGC0002483,usnic acid,18,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0002515,solanapyrone A,18,non_aromatic_carbocycle,True
+BGC0003094,Roseopurpurin C,18,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0003099,"7-But-15-enyl-6,8-dihydroxy-3(R)-pent-11-enylisochroman-1-one",18,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0000104,mycophenolic acid,17,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0001243,botryenalol,17,non_aromatic_carbocycle,True
+BGC0001677,mycophenolic acid,17,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0002616,mycophenolic acid,17,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0002619,mycophenolic acid,17,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0002999,(2S)-annullatin A,17,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0003151,Annullatin D,17,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0001141,4-epi-15-epi-brefeldin A,16,macrolactonization+non_aromatic_carbocycle,False
+BGC0001557,cornexistin,16,non_aromatic_carbocycle,True
+BGC0002168,decumbenone a,16,non_aromatic_carbocycle,True
+BGC0002185,gregatin A,16,non_aromatic_carbocycle,True
+BGC0002235,"12,13-dihydroxymagnaporthepyrone",16,non_aromatic_carbocycle,True
+BGC0002984,Brefeldin A,16,macrolactonization+non_aromatic_carbocycle,False
+BGC0001899,abscisic acid,15,non_aromatic_carbocycle,True
+BGC0002206,harziphilone,15,non_aromatic_carbocycle,True
+BGC0002731,nanangenine A,15,non_aromatic_carbocycle,True
+BGC0002911,naringenin,15,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0003150,Ascochitine,15,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0000013,alternariol,14,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0002175,YWA1,14,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0002236,8-methyldiaporthin,14,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0002241,ywa1,14,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0002513,6-methylcristazarin,14,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0002516,prephenalenone,14,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0001338,citrinin,13,non_aromatic_carbocycle,True
+BGC0002262,sporothriolide,13,non_aromatic_carbocycle,True
+BGC0003118,Multiforisin H,13,non_aromatic_carbocycle,True
+BGC0001305,fujikurin B,12,non_aromatic_carbocycle,True
+BGC0000046,depudecin,11,non_aromatic_carbocycle,True
+BGC0002155,nectriapyrone C,11,non_aromatic_carbocycle,True
+BGC0002197,terrestric acid,11,non_aromatic_carbocycle,True
+BGC0002758,Azanidulone,11,non_aromatic_carbocycle,True
+BGC0003028,Terrestric acid,11,non_aromatic_carbocycle,True
+BGC0001606,gibepyrone-A,10,non_aromatic_carbocycle,True
+BGC0002161,scytalone,10,aromatic_cyclization+non_aromatic_carbocycle,False
+BGC0002180,(+)-asperlin,10,non_aromatic_carbocycle,True
+BGC0002191,prolipyrone B,10,non_aromatic_carbocycle,True
+BGC0002852,"3,6-dialkyl-α-pyrone",10,non_aromatic_carbocycle,True
+BGC0002970,xylariolide D,10,non_aromatic_carbocycle,True
+BGC0001219,shanorellin,9,non_aromatic_carbocycle,True
+BGC0001273,asperlactone,9,non_aromatic_carbocycle,True
+BGC0000161,isoterrein,8,non_aromatic_carbocycle,True

@@ -1,0 +1,34 @@
+B3 -- free-label scaling law (decisions, not clusters)
+==============================================================================
+corpus: 25 BGCs, 88 canonical decisions
+fixed held-out TEST: 8 clusters (26 cycles); train pool: 17 clusters (62 cycles)
+sweep k=[3, 6, 9, 12, 15, 17]; R=20 draws/k; n_steps=300; seed=0xc0ffee
+leave-cluster-out: the 8 test clusters are NEVER in any training subset.
+
+PRE-COMMITTED: SUPPORTED if mean test acc rises with decisions and largest-k draw-pct-lo >
+smallest-k draw-pct-hi (climbing); REFUSED if flat within draw spread; INCONCLUSIVE if
+positive-but-overlapping. n=25 is short/noisy -> a flat result is a first-class negative.
+
+[POSITION] features=['t', 'frac', 'sub_hr']
+    k  mean_dec  test_acc       draw[2.5,97.5]     testboot[2.5,97.5]
+    3      11.4    0.3865   [0.269, 0.597]      [0.241, 0.593]
+    6      20.6    0.3365   [0.172, 0.561]      [0.200, 0.615]
+    9      33.1    0.3404   [0.249, 0.564]      [0.094, 0.539]
+   12      44.2    0.3288   [0.231, 0.637]      [0.087, 0.536]
+   15      54.2    0.3096   [0.249, 0.366]      [0.087, 0.538]
+   17      62.0    0.2692   [0.269, 0.269]      [0.000, 0.522]
+  -> delta(mean test acc, k=3->17) = -0.1173; climbing(draw-pct-separated)=False
+
+[SUBSTRATE] features=['t', 'frac', 'sub_hr', 'chain_c', 'oxid_sum', 'n_red', 'prev']
+    k  mean_dec  test_acc       draw[2.5,97.5]     testboot[2.5,97.5]
+    3      10.4    0.3346   [0.192, 0.502]      [0.286, 0.500]
+    6      22.9    0.3769   [0.287, 0.482]      [0.160, 0.500]
+    9      34.4    0.4385   [0.308, 0.674]      [0.158, 0.710]
+   12      43.5    0.4423   [0.346, 0.599]      [0.192, 0.565]
+   15      54.6    0.4173   [0.326, 0.540]      [0.174, 0.593]
+   17      62.0    0.3923   [0.385, 0.423]      [0.192, 0.727]
+  -> delta(mean test acc, k=3->17) = +0.0577; climbing(draw-pct-separated)=False
+
+------------------------------------------------------------------------------
+VERDICT (POSITION, deployable): INCONCLUSIVE: slope delta=-0.1173 but draw spreads overlap end-to-end (n=25 underpowered); free-label scaling is suggested, not demonstrated.
+Note: SUBSTRATE is an oracle; its curve bounds the formalism, POSITION the deployable lever.

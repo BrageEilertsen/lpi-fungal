@@ -9,11 +9,16 @@ Status:
   * Tetraketide single-ring class (orsellinic / 6-MSA) is handled in
     :mod:`lpi.executor.cyclize` (one productive mode at that chain length).
   * Pentaketide -> naphthalene (the T4HN / scytalone melanin class) is implemented here.
-    The carbon SKELETON produced is a correct naphthalene (validated), which is what
-    core-match needs. The exact hydroxyl REGIOCHEMISTRY differs from 1,3,6,8-T4HN by one
-    position -- the precise PT fold is FLAGGED for Brage in QUESTIONS.md (Q8); until
-    confirmed, this release is skeleton-correct but not exact-match-correct, so it is used
-    for core-match but NOT counted as an exact-match hit.
+    WITNESS-VALIDATED EXACT MATCH (2026-06-04): cyclize_naphthalene round-trips the deposited
+    1,3,6,8-tetrahydroxynaphthalene (MIBiG BGC0001257/0001258, C10H8O4) EXACTLY (canonical-SMILES
+    identity), and returns None on every non-(all-keto-pentaketide) input (None-test: tetra-/
+    hexaketide, any reduction, non-acetyl starter -> None). This CORRECTS the earlier
+    "skeleton-correct, off-by-one OH / pending Q8" note -- the deposited witness refutes it: the
+    SMARTS produces the exact 1,3,6,8 regiochemistry. It is the curated single-mode PT naphthalene
+    register (the OrsA/PT-clade fold), sound relative to the curated grammar exactly as the C2-C7
+    RESORCYLIC register is; other naphthalene regiochemistries are a different (absent) register.
+    Locked by tests/test_pt_naphthalene.py. Eligible for the sound base universe Theta_0 (the
+    rung-2 Theta-extension / build-loop proof-of-loop step).
   * Hexa-/hepta-/octaketide PT classes (anthrone/aflatoxin precursors) are NOT yet
     implemented -- they need the tethered (pre-release) Claisen path and confirmed
     regiochemistry (QUESTIONS.md Q8).
@@ -27,10 +32,10 @@ from rdkit.Chem import AllChem
 PT_REGIOSELECTIVITY_CLASSES = ("C2-C7 (tetraketide)", "naphthalene (pentaketide)",
                                "C4-C9", "C6-C11", "octaketide-anthrone")
 
-# Non-reduced pentaketide thioester -> tetrahydroxynaphthalene. Two ring-closing bonds
-# (starter-methyl carbon becomes a bridgehead; C5-keto oxygen is the leaving water; the
-# thioester is released by Claisen). Skeleton = naphthalene (correct); OH regiochemistry
-# is pending Brage's PT-fold confirmation (QUESTIONS.md Q8).
+# Non-reduced all-keto pentaketide thioester -> 1,3,6,8-tetrahydroxynaphthalene. Two ring-closing
+# bonds (starter-methyl carbon -> bridgehead; thioester released by Claisen). WITNESS-EXACT: the
+# product round-trips deposited BGC0001257/0001258 by canonical-SMILES identity (the curated
+# single-mode PT register, cf. the RESORCYLIC C2-C7 register).
 _PT_NAPHTHALENE = (
     "[CH3:1][C:2](=[O:11])[CH2:3][C:4](=[O:12])[CH2:5][C:6](=[O:13])[CH2:7]"
     "[C:8](=[O:14])[CH2:9][C:10](=[O:15])[S:16][#0:17]"

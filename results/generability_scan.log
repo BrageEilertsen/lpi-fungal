@@ -1,0 +1,270 @@
+Sec. 10.1 generability scan: classify the in-scope-unreachable cores (two-walls split)
+
+Theta_0 = base reachability universe: starters=('acetyl', 'propionyl', 'hexanoyl'), extenders=('MALONYL',), releases=6 modes, c_methyl=True
+bulk beta=8000 (single rung; 50000 shown redundant by the prior full-ladder run)
+
+[1/3] base partition: scan_parquet(Theta_0, beam=4000) ...
+[1/326] BGC0000003 too_large (reachable so far: 0)
+[26/326] BGC0000077 unreachable (reachable so far: 0)
+[51/326] BGC0000992 skip_element (reachable so far: 0)
+[60/326] BGC0001121 reachable (reachable so far: 1)
+[75/326] BGC0001244 reachable (reachable so far: 2)
+[76/326] BGC0001245 unreachable (reachable so far: 2)
+[96/326] BGC0001275 reachable (reachable so far: 3)
+[97/326] BGC0001276 reachable (reachable so far: 4)
+[101/326] BGC0001305 unreachable (reachable so far: 4)
+[121/326] BGC0001489 reachable (reachable so far: 5)
+[126/326] BGC0001557 unreachable (reachable so far: 5)
+[151/326] BGC0001906 unreachable (reachable so far: 5)
+[176/326] BGC0002171 skip_element (reachable so far: 5)
+[196/326] BGC0002212 reachable (reachable so far: 6)
+[201/326] BGC0002229 skip_element (reachable so far: 6)
+[211/326] BGC0002240 reachable (reachable so far: 7)
+[226/326] BGC0002263 unreachable (reachable so far: 7)
+[251/326] BGC0002555 skip_element (reachable so far: 7)
+[255/326] BGC0002595 reachable (reachable so far: 8)
+[276/326] BGC0002847 reachable (reachable so far: 9)
+[301/326] BGC0002999 unreachable (reachable so far: 9)
+[326/326] BGC0003154 skip_element (reachable so far: 9)
+
+  base statuses: {'reachable': 9, 'skip_element': 112, 'too_large': 94, 'unreachable': 111}
+  reachable at base: 9 (expect 9)
+  in-scope-unreachable target set: 205 (unreachable=111, too_large=94, budget=0)
+
+[2/3] classifying 205 cores at beta=8000 (resume: 0 already done) ...
+  [1/205] BGC0000003 C22 coverage-limited-structural  HEURISTIC k8000=0 AF-toxin
+  [2/205] BGC0000004 C17 coverage-limited-formula     SOUND     k8000= aflatoxin G1
+  [3/205] BGC0000005 C17 coverage-limited-formula     SOUND     k8000= aflatoxin
+  [4/205] BGC0000006 C17 coverage-limited-formula     SOUND     k8000= aflatoxin B1
+  [5/205] BGC0000007 C17 coverage-limited-formula     SOUND     k8000= aflatoxin G1
+  [6/205] BGC0000008 C17 coverage-limited-formula     SOUND     k8000= aflatoxin B1
+  [7/205] BGC0000009 C17 coverage-limited-formula     SOUND     k8000= aflatoxin B1
+  [8/205] BGC0000010 C17 coverage-limited-formula     SOUND     k8000= aflatoxin
+  [9/205] BGC0000011 C18 coverage-limited-structural  HEURISTIC k8000=0 Sterigmatocystin
+  [10/205] BGC0000012 C28 coverage-limited-structural  HEURISTIC k8000=0 alternapyrone
+  [11/205] BGC0000013 C14 coverage-limited-structural  HEURISTIC k8000=0 alternariol
+  [12/205] BGC0000022 C19 coverage-limited-structural  HEURISTIC k8000=0 asperfuranone
+  [13/205] BGC0000027 C23 coverage-limited-structural  HEURISTIC k8000=0 ankaflavin
+  [14/205] BGC0000030 C20 coverage-limited-formula     SOUND     k8000= bikaverin
+  [15/205] BGC0000039 C23 coverage-limited-structural  HEURISTIC k8000=0 compactin
+  [16/205] BGC0000045 C16 coverage-limited-structural  HEURISTIC k8000=0 dehydrocurvularin
+  [17/205] BGC0000046 C11 coverage-limited-structural  HEURISTIC k8000=0 depudecin
+  [18/205] BGC0000048 C18 coverage-limited-formula     SOUND     k8000= dothistromin
+  [19/205] BGC0000057 C21 coverage-limited-formula     SOUND     k8000= F9775A
+  [20/205] BGC0000076 C19 coverage-limited-structural  HEURISTIC k8000=0 hypothemycin
+  [21/205] BGC0000077 C19 coverage-limited-structural  HEURISTIC k8000=0 hypothemycin
+  [22/205] BGC0000088 C24 coverage-limited-structural  HEURISTIC k8000=0 lovastatin
+  [23/205] BGC0000089 C24 coverage-limited-structural  HEURISTIC k8000=0 lovastatin
+  [24/205] BGC0000098 C24 coverage-limited-structural  HEURISTIC k8000=0 monacolin K
+  [25/205] BGC0000099 C23 coverage-limited-structural  HEURISTIC k8000=0 monascorubrin
+  [26/205] BGC0000101 C15 coverage-limited-formula     SOUND     k8000= emodin
+  [27/205] BGC0000104 C17 coverage-limited-structural  HEURISTIC k8000=0 mycophenolic acid
+  [28/205] BGC0000120 C 7 coverage-limited-formula     SOUND     k8000= patulin
+  [29/205] BGC0000146 C18 coverage-limited-structural  HEURISTIC k8000=0 solanapyrone D
+  [30/205] BGC0000152 C18 coverage-limited-structural  HEURISTIC k8000=0 sterigmatocystin
+  [31/205] BGC0000154 C 8 coverage-limited-formula     SOUND     k8000= stipitatic acid
+  [32/205] BGC0000155 C41 coverage-limited-structural  HEURISTIC k8000=0 T-toxin
+  [33/205] BGC0000156 C21 coverage-limited-formula     SOUND     k8000= TAN-1612
+  [34/205] BGC0000160 C 7 coverage-limited-formula     SOUND     k8000= terreic acid
+  [35/205] BGC0000161 C 8 coverage-limited-structural  HEURISTIC k8000=0 isoterrein
+  [36/205] BGC0000170 C28 coverage-limited-structural  HEURISTIC k8000=0 yanuthone D
+  [37/205] BGC0000684 C15 coverage-limited-formula     SOUND     k8000= asperthecin
+  [38/205] BGC0001057 C18 coverage-limited-structural  HEURISTIC k8000=0 zearalenone
+  [39/205] BGC0001067 C26 coverage-limited-structural  HEURISTIC k8000=0 Fumagillin
+  [40/205] BGC0001118 C16 coverage-limited-formula     SOUND     k8000= endocrocin
+  [41/205] BGC0001141 C16 coverage-limited-structural  HEURISTIC k8000=0 4-epi-15-epi-brefeldin A
+  [42/205] BGC0001143 C19 coverage-limited-structural  HEURISTIC k8000=0 azanigerone A
+  [43/205] BGC0001144 C24 coverage-limited-structural  HEURISTIC k8000=0 neosartoricin B
+  [44/205] BGC0001158 C20 coverage-limited-formula     SOUND     k8000= bikaverin
+  [45/205] BGC0001219 C 9 coverage-limited-structural  HEURISTIC k8000=0 shanorellin
+  [46/205] BGC0001242 C15 coverage-limited-formula     SOUND     k8000= oxyjavanicin
+  [47/205] BGC0001243 C17 coverage-limited-structural  HEURISTIC k8000=0 botryenalol
+  [48/205] BGC0001245 C17 coverage-limited-structural  HEURISTIC k8000=0 lasiodiplodin
+  [49/205] BGC0001246 C16 coverage-limited-structural  HEURISTIC k8000=0 trans-resorcylide
+  [50/205] BGC0001247 C29 coverage-limited-structural  HEURISTIC k8000=0 cercosporin
+  [51/205] BGC0001252 C19 coverage-limited-structural  HEURISTIC k8000=0 UNII-YC2Q1O94PT
+  [52/205] BGC0001257 C10 coverage-limited-structural  HEURISTIC k8000=0 1,3,6,8-tetrahydroxynaph
+  [53/205] BGC0001258 C10 coverage-limited-structural  HEURISTIC k8000=0 1,3,6,8-tetrahydroxynaph
+  [54/205] BGC0001259 C30 coverage-limited-structural  HEURISTIC k8000=0 elsinochrome A
+  [55/205] BGC0001264 C21 coverage-limited-structural  HEURISTIC k8000=0 betaenone A
+  [56/205] BGC0001266 C23 coverage-limited-structural  HEURISTIC k8000=0 grayanic acid
+  [57/205] BGC0001269 C19 coverage-limited-structural  HEURISTIC k8000=0 gibberellin A3
+  [58/205] BGC0001270 C19 coverage-limited-structural  HEURISTIC k8000=0 gibberellin A7
+  [59/205] BGC0001271 C25 coverage-limited-structural  HEURISTIC k8000=0 emericellin
+  [60/205] BGC0001272 C30 coverage-limited-structural  HEURISTIC k8000=0 elsinochrome B
+  [61/205] BGC0001273 C 9 coverage-limited-structural  HEURISTIC k8000=0 asperlactone
+  [62/205] BGC0001280 C21 coverage-limited-structural  HEURISTIC k8000=0 betaenone C
+  [63/205] BGC0001281 C36 coverage-limited-structural  HEURISTIC k8000=0 ustilagic acid
+  [64/205] BGC0001304 C24 coverage-limited-structural  HEURISTIC k8000=0 aflavarin
+  [65/205] BGC0001305 C12 coverage-limited-structural  HEURISTIC k8000=0 fujikurin B
+  [66/205] BGC0001309 C18 coverage-limited-structural  HEURISTIC k8000=0 usnic acid
+  [67/205] BGC0001338 C13 coverage-limited-structural  HEURISTIC k8000=0 citrinin
+  [68/205] BGC0001339 C35 coverage-limited-structural  HEURISTIC k8000=0 squalestatin S1
+  [69/205] BGC0001340 C18 coverage-limited-structural  HEURISTIC k8000=0 byssochlamic acid
+  [70/205] BGC0001373 C27 coverage-limited-structural  HEURISTIC k8000=0 sordarin
+  [71/205] BGC0001385 C18 coverage-limited-structural  HEURISTIC k8000=0 byssochlamic acid
+  [72/205] BGC0001390 C23 coverage-limited-structural  HEURISTIC k8000=0 LL-Z1272beta
+  [73/205] BGC0001400 C23 coverage-limited-structural  HEURISTIC k8000=0 citreoviridin
+  [74/205] BGC0001401 C23 coverage-limited-structural  HEURISTIC k8000=0 melleolide F
+  [75/205] BGC0001403 C18 coverage-limited-structural  HEURISTIC k8000=0 trypacidin
+  [76/205] BGC0001404 C14 coverage-limited-structural  HEURISTIC k8000=0 sorbicillin
+  [77/205] BGC0001446 C18 coverage-limited-formula     SOUND     k8000= asparasone A
+  [78/205] BGC0001450 C22 coverage-limited-structural  HEURISTIC k8000=0 macrophorin A
+  [79/205] BGC0001508 C28 coverage-limited-structural  HEURISTIC k8000=0 andrastin A
+  [80/205] BGC0001541 C29 coverage-limited-structural  HEURISTIC k8000=0 cercosporin
+  [81/205] BGC0001542 C29 coverage-limited-structural  HEURISTIC k8000=0 cercosporin
+  [82/205] BGC0001557 C16 coverage-limited-structural  HEURISTIC k8000=0 cornexistin
+  [83/205] BGC0001578 C29 coverage-limited-formula     SOUND     k8000= duclauxin
+  [84/205] BGC0001600 C25 coverage-limited-structural  HEURISTIC k8000=0 fusarielin H
+  [85/205] BGC0001606 C10 coverage-limited-structural  HEURISTIC k8000=0 gibepyrone-A
+  [86/205] BGC0001677 C17 coverage-limited-structural  HEURISTIC k8000=0 mycophenolic acid
+  [87/205] BGC0001708 C25 coverage-limited-structural  HEURISTIC k8000=0 novofumigatonin
+  [88/205] BGC0001720 C14 coverage-limited-formula     SOUND     k8000= oosporein
+  [89/205] BGC0001729 C24 coverage-limited-structural  HEURISTIC k8000=0 paraherquonin
+  [90/205] BGC0001749 C14 coverage-limited-structural  HEURISTIC k8000=0 epipyriculol
+  [91/205] BGC0001827 C22 coverage-limited-structural  HEURISTIC k8000=0 xenovulene A
+  [92/205] BGC0001865 C30 coverage-limited-structural  HEURISTIC k8000=0 elsinochrome C
+  [93/205] BGC0001866 C34 coverage-limited-structural  HEURISTIC k8000=0 viriditoxin
+  [94/205] BGC0001886 C32 coverage-limited-structural  HEURISTIC k8000=0 Secalonic acid B
+  [95/205] BGC0001899 C15 coverage-limited-structural  HEURISTIC k8000=0 abscisic acid
+  [96/205] BGC0001906 C12 coverage-limited-structural  HEURISTIC k8000=0 2-acetyl-1,3,6,8-tetrahy
+  [97/205] BGC0001909 C16 coverage-limited-structural  HEURISTIC k8000=0 strobilurin A
+  [98/205] BGC0001913 C31 coverage-limited-structural  HEURISTIC k8000=0 phomoidride
+  [99/205] BGC0001926 C25 coverage-limited-structural  HEURISTIC k8000=0 chrodrimanin B
+  [100/205] BGC0001988 C34 coverage-limited-structural  HEURISTIC k8000=0 neosartorin
+  [101/205] BGC0002030 C34 coverage-limited-structural  HEURISTIC k8000=0 viriditoxin
+  [102/205] BGC0002062 C15 coverage-limited-formula     SOUND     k8000= agnestin A
+  [103/205] BGC0002063 C38 coverage-limited-formula     SOUND     k8000= cryptosporioptide B
+  [104/205] BGC0002065 C16 coverage-limited-structural  HEURISTIC k8000=0 strobilurin A
+  [105/205] BGC0002139 C32 coverage-limited-structural  HEURISTIC k8000=0 burnettiene A
+  [106/205] BGC0002154 C10 coverage-limited-structural  HEURISTIC k8000=0 1,3,5,8-tetrahydroxynapt
+  [107/205] BGC0002155 C11 coverage-limited-structural  HEURISTIC k8000=0 nectriapyrone C
+  [108/205] BGC0002161 C10 coverage-limited-structural  HEURISTIC k8000=0 scytalone
+  [109/205] BGC0002165 C21 coverage-limited-structural  HEURISTIC k8000=0 betaenone C
+  [110/205] BGC0002168 C16 coverage-limited-structural  HEURISTIC k8000=0 decumbenone a
+  [111/205] BGC0002170 C22 coverage-limited-structural  HEURISTIC k8000=0 4-methyl-5-dimethyltetra
+  [112/205] BGC0002175 C14 coverage-limited-structural  HEURISTIC k8000=0 YWA1
+  [113/205] BGC0002177 C29 coverage-limited-formula     SOUND     k8000= ustilaginoidin N
+  [114/205] BGC0002180 C10 coverage-limited-structural  HEURISTIC k8000=0 (+)-asperlin
+  [115/205] BGC0002185 C16 coverage-limited-structural  HEURISTIC k8000=0 gregatin A
+  [116/205] BGC0002190 C14 coverage-limited-structural  HEURISTIC k8000=0 sorbicillin
+  [117/205] BGC0002191 C10 coverage-limited-structural  HEURISTIC k8000=0 prolipyrone B
+  [118/205] BGC0002192 C21 coverage-limited-structural  HEURISTIC k8000=0 FR901512
+  [119/205] BGC0002194 C34 coverage-limited-structural  HEURISTIC k8000=0 epipyrone A
+  [120/205] BGC0002197 C11 coverage-limited-structural  HEURISTIC k8000=0 terrestric acid
+  [121/205] BGC0002200 C23 coverage-limited-structural  HEURISTIC k8000=0 aurovertin E
+  [122/205] BGC0002206 C15 coverage-limited-structural  HEURISTIC k8000=0 harziphilone
+  [123/205] BGC0002209 C11 coverage-limited-structural  HEURISTIC k8000=0 ustethylin A
+  [124/205] BGC0002222 C21 coverage-limited-structural  HEURISTIC k8000=0 zopfiellin
+  [125/205] BGC0002223 C22 coverage-limited-structural  HEURISTIC k8000=0 scytalidin
+  [126/205] BGC0002224 C21 coverage-limited-structural  HEURISTIC k8000=0 zopfiellin
+  [127/205] BGC0002233 C18 coverage-limited-structural  HEURISTIC k8000=0 trichoxide
+  [128/205] BGC0002234 C19 coverage-limited-structural  HEURISTIC k8000=0 flavoglaucin
+  [129/205] BGC0002235 C16 coverage-limited-structural  HEURISTIC k8000=0 12,13-dihydroxymagnaport
+  [130/205] BGC0002236 C14 coverage-limited-structural  HEURISTIC k8000=0 8-methyldiaporthin
+  [131/205] BGC0002238 C10 coverage-limited-structural  HEURISTIC k8000=0 2,4'-dihydroxy-3'-methox
+  [132/205] BGC0002241 C14 coverage-limited-structural  HEURISTIC k8000=0 ywa1
+  [133/205] BGC0002243 C17 coverage-limited-formula     SOUND     k8000= biruloquinone
+  [134/205] BGC0002244 C21 coverage-limited-structural  HEURISTIC k8000=0 pestalotiollide B
+  [135/205] BGC0002249 C34 coverage-limited-structural  HEURISTIC k8000=0 phaeospelide A
+  [136/205] BGC0002255 C23 coverage-limited-structural  HEURISTIC k8000=0 lijiquinone
+  [137/205] BGC0002257 C30 coverage-limited-structural  HEURISTIC k8000=0 rufoschweinitzin
+  [138/205] BGC0002258 C29 coverage-limited-structural  HEURISTIC k8000=0 shimalactone A
+  [139/205] BGC0002262 C13 coverage-limited-structural  HEURISTIC k8000=0 sporothriolide
+  [140/205] BGC0002263 C19 coverage-limited-structural  HEURISTIC k8000=0 spiromarmycin
+  [141/205] BGC0002265 C19 coverage-limited-structural  HEURISTIC k8000=0 atranorin
+  [142/205] BGC0002266 C21 coverage-limited-structural  HEURISTIC k8000=0 calidoustene A
+  [143/205] BGC0002427 C27 coverage-limited-structural  HEURISTIC k8000=0 subglutinol A
+  [144/205] BGC0002428 C29 coverage-limited-structural  HEURISTIC k8000=0 FDDP-D
+  [145/205] BGC0002429 C27 coverage-limited-structural  HEURISTIC k8000=0 higginsianin B
+  [146/205] BGC0002483 C18 coverage-limited-structural  HEURISTIC k8000=0 usnic acid
+  [147/205] BGC0002507 C28 coverage-limited-structural  HEURISTIC k8000=0 sporandol
+  [148/205] BGC0002511 C17 coverage-limited-formula     SOUND     k8000= biruloquinone
+  [149/205] BGC0002513 C14 coverage-limited-structural  HEURISTIC k8000=0 6-methylcristazarin
+  [150/205] BGC0002515 C18 coverage-limited-structural  HEURISTIC k8000=0 solanapyrone A
+  [151/205] BGC0002516 C14 coverage-limited-structural  HEURISTIC k8000=0 prephenalenone
+  [152/205] BGC0002525 C15 coverage-limited-formula     SOUND     k8000= fusarubin
+  [153/205] BGC0002537 C25 coverage-limited-structural  HEURISTIC k8000=0 emeridone F
+  [154/205] BGC0002593 C16 coverage-limited-structural  HEURISTIC k8000=0 lecanoric acid
+  [155/205] BGC0002594 C 7 coverage-limited-structural  HEURISTIC k8000=0 orcinol
+  [156/205] BGC0002596 C16 coverage-limited-structural  HEURISTIC k8000=0 lecanoric acid
+  [157/205] BGC0002603 C26 ambiguous-budget             HEURISTIC k8000=0 chevalone E
+  [158/205] BGC0002604 C28 coverage-limited-structural  HEURISTIC k8000=0 sartorypyrone A
+  [159/205] BGC0002614 C27 coverage-limited-structural  HEURISTIC k8000=0 subglutinol A
+  [160/205] BGC0002616 C17 coverage-limited-structural  HEURISTIC k8000=0 mycophenolic acid
+  [161/205] BGC0002619 C17 coverage-limited-structural  HEURISTIC k8000=0 mycophenolic acid
+  [162/205] BGC0002709 C30 coverage-limited-formula     SOUND     k8000= aurofusarin
+  [163/205] BGC0002731 C15 coverage-limited-structural  HEURISTIC k8000=0 nanangenine A
+  [164/205] BGC0002745 C24 coverage-limited-structural  HEURISTIC k8000=0 verrucosidin
+  [165/205] BGC0002758 C11 coverage-limited-structural  HEURISTIC k8000=0 Azanidulone
+  [166/205] BGC0002759 C28 coverage-limited-structural  HEURISTIC k8000=0 brevione E
+  [167/205] BGC0002845 C28 coverage-limited-structural  HEURISTIC k8000=0 Sartorypyrone A
+  [168/205] BGC0002848 C19 coverage-limited-structural  HEURISTIC k8000=0 CJ-20557
+  [169/205] BGC0002849 C23 coverage-limited-formula     SOUND     k8000= Luteodienoside A
+  [170/205] BGC0002852 C10 coverage-limited-structural  HEURISTIC k8000=0 3,6-dialkyl-α-pyrone
+  [171/205] BGC0002864 C21 coverage-limited-structural  HEURISTIC k8000=0 Mollicellin Z 
+  [172/205] BGC0002872 C35 coverage-limited-structural  HEURISTIC k8000=0 Zaragozic acid A
+  [173/205] BGC0002874 C13 coverage-limited-formula     SOUND     k8000= cristazarin
+  [174/205] BGC0002877 C22 coverage-limited-structural  HEURISTIC k8000=0 Cordypyrone A
+  [175/205] BGC0002883 C17 coverage-limited-formula     SOUND     k8000= biruloquinone
+  [176/205] BGC0002891 C30 coverage-limited-structural  HEURISTIC k8000=0 arthripenoid C
+  [177/205] BGC0002911 C15 coverage-limited-structural  HEURISTIC k8000=0 naringenin
+  [178/205] BGC0002930 C24 coverage-limited-structural  HEURISTIC k8000=0 6'-O-demethyl-dihydroaus
+  [179/205] BGC0002936 C24 coverage-limited-structural  HEURISTIC k8000=0 Gyrophoric acid
+  [180/205] BGC0002953 C26 coverage-limited-structural  HEURISTIC k8000=0 11'-O-desmethyl fendlero
+  [181/205] BGC0002966 C23 coverage-limited-formula     SOUND     k8000= luteodienoside A
+  [182/205] BGC0002970 C10 coverage-limited-structural  HEURISTIC k8000=0 xylariolide D
+  [183/205] BGC0002971 C12 coverage-limited-structural  HEURISTIC k8000=0 Fugralin A
+  [184/205] BGC0002984 C16 coverage-limited-structural  HEURISTIC k8000=0 Brefeldin A
+  [185/205] BGC0002987 C26 ambiguous-budget             HEURISTIC k8000=0 scirpilin A
+  [186/205] BGC0002999 C17 coverage-limited-structural  HEURISTIC k8000=0 (2S)-annullatin A
+  [187/205] BGC0003006 C25 coverage-limited-structural  HEURISTIC k8000=0 Rasfonin
+  [188/205] BGC0003011 C33 coverage-limited-structural  HEURISTIC k8000=0 Eupenifeldin
+  [189/205] BGC0003013 C23 coverage-limited-structural  HEURISTIC k8000=0 agonodepside A
+  [190/205] BGC0003028 C11 coverage-limited-structural  HEURISTIC k8000=0 Terrestric acid
+  [191/205] BGC0003032 C21 coverage-limited-structural  HEURISTIC k8000=0 soppiline A
+  [192/205] BGC0003093 C38 coverage-limited-structural  HEURISTIC k8000=0 Phomoxanthone A
+  [193/205] BGC0003094 C18 coverage-limited-structural  HEURISTIC k8000=0 Roseopurpurin C
+  [194/205] BGC0003099 C18 coverage-limited-structural  HEURISTIC k8000=0 7-But-15-enyl-6,8-dihydr
+  [195/205] BGC0003108 C33 coverage-limited-structural  HEURISTIC k8000=0 pycnidione
+  [196/205] BGC0003109 C16 coverage-limited-structural  HEURISTIC k8000=0 stachysalicyloid C
+  [197/205] BGC0003113 C24 coverage-limited-structural  HEURISTIC k8000=0 multiformin A
+  [198/205] BGC0003115 C11 coverage-limited-formula     SOUND     k8000= orsellinoxypropanoic aci
+  [199/205] BGC0003118 C13 coverage-limited-structural  HEURISTIC k8000=0 Multiforisin H
+  [200/205] BGC0003120 C27 coverage-limited-structural  HEURISTIC k8000=0 Minutellin A
+  [201/205] BGC0003126 C24 coverage-limited-structural  HEURISTIC k8000=0 kotanin
+  [202/205] BGC0003142 C29 coverage-limited-structural  HEURISTIC k8000=0 FDDP D
+  [203/205] BGC0003144 C26 coverage-limited-structural  HEURISTIC k8000=0 Physodic acid
+  [204/205] BGC0003150 C15 coverage-limited-structural  HEURISTIC k8000=0 Ascochitine
+  [205/205] BGC0003151 C17 coverage-limited-structural  HEURISTIC k8000=0 Annullatin D
+
+[3/3] witness deep beta-escalation (8000, 50000, 120000, 200000) (positive control) ...
+    [witness BGC0001057 zearalenone] beta=   8000  kappa=0  budget=False  11.2s
+    [witness BGC0001057 zearalenone] beta=  50000  kappa=0  budget=False  42.6s
+    [witness BGC0001057 zearalenone] beta= 120000  kappa=0  budget=False  53.3s
+    [witness BGC0001057 zearalenone] beta= 200000  kappa=0  budget=False  210.8s
+
+========================================================================
+GENERABILITY PARTITION of 205 in-scope-unreachable cores (Theta_0, bulk beta=8000):
+
+  search-limited (beam-starved, SOUND)        :    0  <- engineering / rung-1
+  coverage-limited-formula (mass-infeasible)  :   34  <- new chemistry / rung-3  [SOUND]
+  coverage-limited-structural (skeleton miss) :  169  <- beam-contaminated (see witness) [HEURISTIC]
+  ambiguous-budget (search-incomplete)        :    2  <- unresolved frontier   [HEURISTIC]
+  --------------------------------------------------------------
+  formula-feasible (in-grammar by mass)       :  171 / 205
+  mass-INfeasible (SOUND need-new-chemistry)  :   34 / 205
+
+  reconciliation -- too_large cores reachable at this beta: 0/94 (census cap-lifted: 0/91)
+
+  PRE-REGISTERED MECHANICAL READOUT: CHEMISTRY-dominant (coverage): wall substantially mass/skeleton-limited (mechanical count)
+    (search-limited=0 vs coverage[formula+structural]=203; unresolved=2)
+
+  HONEST READING: the SOUND results are (a) 34 mass-infeasible cores (need new chemistry) and
+  (b) the search-limited count is >=1 by CONSTRUCTION (zearalenone, Exp A) though 0 surface at
+  beta=8000. The 169 'structural' cores are NOT a clean coverage certificate: the witness
+  escalation shows the beam underflows an in-grammar C18 core, so this class is beam-contaminated
+  (the engineering wall gates the chemistry test). See the witness block above.
+========================================================================
+
+wrote results/generability_scan.csv and results/generability_witness.csv  (9735s total)

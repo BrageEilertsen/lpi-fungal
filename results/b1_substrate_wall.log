@@ -1,0 +1,40 @@
+B1 -- substrate-state conditioning vs the 0.567 wall (faithful (a)-vs-(b) harness)
+==============================================================================
+corpus: 25 BGC assets (GOLD |Z*|=1: 16, SILVER |Z*|>1: 9)
+loss: NLML (identical to train_weak); eval: leave-one-BGC-out (25 folds)
+CI: cluster bootstrap over held-out BGCs, 2000 reps, 95% percentile; seed=0xc0ffee
+wall (constant-domain cross-taxa LOSO baseline): 0.567
+
+PRE-COMMITTED reading: SUPPORTED iff SUBSTRATE CI-lower > 0.567 AND SUBSTRATE > POSITION
+(CI-separated); REFUSED if SUBSTRATE <= POSITION or fails to clear 0.567; SUBSTRATE is an
+ORACLE (prior actions known) so it tests the FORMALISM, not a deployable predictor.
+
+[CONSTANT ] features=(intercept only)
+            canonical acc = 0.4659  95%CI [0.3143, 0.6220]  (n=88 cycles)
+            agreed    acc = 0.4531  95%CI [0.2586, 0.6668]  (n=64 cycles)
+
+[POSITION ] features=['t', 'frac', 'sub_hr']
+            canonical acc = 0.4432  95%CI [0.3000, 0.5976]  (n=88 cycles)
+            agreed    acc = 0.5312  95%CI [0.3623, 0.7200]  (n=64 cycles)
+
+[SUBSTRATE] features=['t', 'frac', 'sub_hr', 'chain_c', 'oxid_sum', 'n_red', 'prev']
+            canonical acc = 0.4545  95%CI [0.3294, 0.6000]  (n=88 cycles)
+            agreed    acc = 0.5312  95%CI [0.3653, 0.7200]  (n=64 cycles)
+
+------------------------------------------------------------------------------
+DECISIVE CONTRASTS (canonical per-cycle accuracy):
+  SUBSTRATE - POSITION lift = +0.0114   (SUBSTRATE 0.4545 vs POSITION 0.4432)
+  POSITION  - CONSTANT lift = -0.0227   (POSITION 0.4432 vs CONSTANT 0.4659)
+  SUBSTRATE clears wall 0.567? CI-lower 0.3294 > 0.567: False
+
+PER-SUBCLASS canonical accuracy (HR=1, PR=0):
+  [CONSTANT ] all: HR=0.222(n=36) PR=0.635(n=52)  | curated-only(exact): HR=0.053(n=19) PR=0.636(n=11)
+  [POSITION ] all: HR=0.139(n=36) PR=0.654(n=52)  | curated-only(exact): HR=0.263(n=19) PR=0.636(n=11)
+  [SUBSTRATE] all: HR=0.278(n=36) PR=0.577(n=52)  | curated-only(exact): HR=0.368(n=19) PR=0.455(n=11)
+  (inventory subclass tags are a family heuristic; the curated-only split is exact.)
+
+==============================================================================
+VERDICT: REFUSED: SUBSTRATE does not clear 0.567 (CI straddles/below the wall) -- the wall stands even with the oracle substrate state.
+Caveat (load-bearing): SUBSTRATE is an ORACLE (oxid_sum/n_red/prev = true prior actions).
+Even a SUPPORTED here is a statement about the FORMALISM a_t=f(s_t); the deployable
+wall-clearance question is CONSTANT-vs-POSITION, both of which use only observable state.

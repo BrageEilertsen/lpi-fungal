@@ -50,10 +50,10 @@ BGC0001340,byssochlamic acid,unreachable,unreachable,CHO,non_aromatic_ring_rearr
 BGC0001373,sordarin,too_large,unreachable,CHO,non_aromatic_ring_rearrangement,1
 BGC0001385,byssochlamic acid,unreachable,unreachable,CHO,non_aromatic_ring_rearrangement,1
 BGC0001400,citreoviridin,too_large,unreachable,CHO,non_aromatic_ring_rearrangement,1
-BGC0001450,macrophorin A,too_large,unreachable,CHO,non_aromatic_ring_rearrangement,1
+BGC0001450,macrophorin A,too_large,budget,CHO,non_aromatic_ring_rearrangement,1
 BGC0001508,andrastin A,too_large,unreachable,CHO,non_aromatic_ring_rearrangement,1
 BGC0001557,cornexistin,unreachable,unreachable,CHO,non_aromatic_ring_rearrangement,1
-BGC0001600,fusarielin H,too_large,unreachable,CHO,non_aromatic_ring_rearrangement,1
+BGC0001600,fusarielin H,too_large,budget,CHO,non_aromatic_ring_rearrangement,1
 BGC0001606,gibepyrone-A,unreachable,unreachable,CHO,non_aromatic_ring_rearrangement,1
 BGC0001708,novofumigatonin,too_large,unreachable,CHO,non_aromatic_ring_rearrangement,1
 BGC0001729,paraherquonin,too_large,unreachable,CHO,non_aromatic_ring_rearrangement,1
@@ -79,7 +79,7 @@ BGC0002233,trichoxide,unreachable,unreachable,CHO,non_aromatic_ring_rearrangemen
 BGC0002235,"12,13-dihydroxymagnaporthepyrone",unreachable,unreachable,CHO,non_aromatic_ring_rearrangement,1
 BGC0002249,phaeospelide A,too_large,unreachable,CHO,non_aromatic_ring_rearrangement,1
 BGC0002255,lijiquinone,too_large,unreachable,CHO,non_aromatic_ring_rearrangement,1
-BGC0002258,shimalactone A,too_large,unreachable,CHO,non_aromatic_ring_rearrangement,1
+BGC0002258,shimalactone A,too_large,budget,CHO,non_aromatic_ring_rearrangement,1
 BGC0002262,sporothriolide,unreachable,unreachable,CHO,non_aromatic_ring_rearrangement,1
 BGC0002263,spiromarmycin,unreachable,unreachable,CHO,non_aromatic_ring_rearrangement,1
 BGC0002266,calidoustene A,too_large,unreachable,CHO,non_aromatic_ring_rearrangement,1
@@ -172,7 +172,7 @@ BGC0002966,luteodienoside A,too_large,unreachable,CHO,non_aromatic_ring_rearrang
 BGC0000170,yanuthone D,too_large,unreachable,CHO,non_aromatic_ring_rearrangement|prenylation,2
 BGC0001067,Fumagillin,too_large,unreachable,CHO,non_aromatic_ring_rearrangement|prenylation,2
 BGC0002428,FDDP-D,too_large,unreachable,CHO,non_aromatic_ring_rearrangement|prenylation,2
-BGC0002429,higginsianin B,too_large,unreachable,CHO,non_aromatic_ring_rearrangement|prenylation,2
+BGC0002429,higginsianin B,too_large,budget,CHO,non_aromatic_ring_rearrangement|prenylation,2
 BGC0003142,FDDP D,too_large,unreachable,CHO,non_aromatic_ring_rearrangement|prenylation,2
 BGC0001578,duclauxin,too_large,unreachable,CHO,aromatic_cyclization|non_aromatic_ring_rearrangement|other_formula,3
 BGC0002177,ustilaginoidin N,too_large,unreachable,CHO,aromatic_cyclization|non_aromatic_ring_rearrangement|other_formula,3

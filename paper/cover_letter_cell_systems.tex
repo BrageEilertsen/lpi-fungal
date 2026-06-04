@@ -1,0 +1,73 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=0.9in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+\usepackage{microtype}
+\usepackage{parskip}
+\setlength{\parskip}{6pt}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\pagestyle{empty}
+
+\begin{document}
+
+\noindent{\large\textbf{Brage Eilertsen}}\\[2pt]
+{\small University of Oslo \,\textbar\, brageei@uio.no}\\[-5pt]
+\noindent\rule{\linewidth}{0.4pt}
+
+\vspace{8pt}
+\hfill 2 June 2026
+
+\vspace{4pt}
+\noindent The Editors\\
+\textit{Cell Systems}, Cell Press
+
+\vspace{10pt}
+\noindent Dear Editors,
+
+I am pleased to submit my manuscript, ``Sound Biosynthetic Design over Iterative Grammars: A
+Realizability Geometry for Fungal Polyketides,'' for consideration as a Research Article in
+\textit{Cell Systems}.
+
+Predicting a fungal natural product from its biosynthetic gene cluster has stalled at 51--68\%
+balanced accuracy, and pooling a thousand bacterial clusters with the few hundred fungal ones barely
+moves that ceiling. This manuscript argues the target is mis-specified. A product is the image of a
+latent biosynthetic program executed under a domain-derived grammar, so the ceiling is grammar
+\emph{identifiability}---how much of the program the observables pin down---not data volume. Recast
+this way, prediction and design become one quantity: the programs consistent with an observation and
+the programs an engineer may specify toward a target are the same observability class. The manuscript
+proves this as an identifiability--controllability duality, so a single engine serves both directions.
+
+Concretely, the work builds a sound, grammar-agnostic inverse compiler. A deterministic executor
+renders a program to a structure; a beam verifier returns the exact consistent program set as a typed
+verdict---\emph{verified}, \emph{under-observed}, or \emph{out-of-grammar}---where the under-observed
+state names the next observable that would collapse the ambiguity. Run in inference over the 326 fungal
+PKS clusters in MIBiG~4.0, exact reconstruction reaches nine cores; a corpus-wide census establishes
+this as a genuine boundary of the current sound grammar rather than a low score, and sorts the
+remainder onto a located expressibility ladder. In the design direction, the same engine places a
+target on a realizability geometry scored by a literature-curated cost that encodes the field's
+measured engineering difficulty, and a planner ranks the experiment that most collapses the candidate
+set per unit cost. The observability and verdict layers are family-agnostic, demonstrated unchanged
+across PKS, a non-ribosomal peptide (NRPS) grammar, and a typed PKS--NRPS hybrid.
+
+The work suits the quantitative, computational readership of \textit{Cell Systems}: its contribution is
+a systems-level principle---an observability quantity that unifies prediction and design---instantiated
+in an open, reproducible tool and grounded in a sound verifier rather than a single accuracy figure. I
+am explicit about scope: the engine is a metabologenomics triage tool that names the clusters where
+accurate mass and tandem mass spectrometry are insufficient and structure elucidation is required, not
+a replacement for elucidation.
+
+The manuscript is original, has not been published, and is not under consideration elsewhere. All code,
+data, and analyses are openly available, and every reported number reproduces from a single documented
+command (\url{https://github.com/BrageEilertsen/lpi-fungal}). I am the sole author and declare no
+competing interests. I would gladly suggest reviewers on request.
+
+\vspace{2pt}
+Thank you for considering this work.
+
+\vspace{6pt}
+\noindent Sincerely,\\[18pt]
+Brage Eilertsen\\
+{\small University of Oslo \,\textbar\, brageei@uio.no}
+
+\end{document}
