@@ -135,7 +135,8 @@ modality of the missing feature drives both. The v1 programme follows---characte
 of $O$ for each grammar; the shared layer of \S\ref{sec:mining} implements the query for
 $O\in\{\text{mass},\text{MS/MS}\}$, and widening $O$ until $\mathcal{F}_O$ shrinks to where one wishes to
 operate is then a finite programme on a defined object. We instantiate the duality on the three grammars
-implemented here (PKS, NRPS, hybrid) and predict its survival on RiPP via Corollary~\ref{cor:crossfamily}; we claim
+implemented here (PKS, NRPS, hybrid)---machine-checked exhaustively, $Z^\star{=}D(y;O)$ on $460/460$ distinct
+product formulas (\code{make duality})---and predict its survival on RiPP via Corollary~\ref{cor:crossfamily}; we claim
 no theorem over an abstract category of program grammars, only that the proof covers any $(G,\Theta,O)$
 meeting the soundness and relative-completeness conditions of \S\ref{sec:guarantees}.
 \end{remark}
@@ -150,8 +151,10 @@ $\lvert\mathsf{R}\rvert$ is therefore non-monotone, the honest progress metric i
 but $\mathsf{R}^{\mathrm{term}}$---cores verified under the \emph{full} operator universe, monotone
 non-decreasing in $\Theta$. This settles the reach-versus-verified reading of the boundary
 (\S\ref{sec:boundary}): olivetolic has $\kappa_O{\ge}2$ under the full universe (genome-distinct,
-starter-determined routes) and so is never terminal, giving $\lvert\mathsf{R}^{\mathrm{term}}\rvert{=}8$;
-registering the encoded PT closures lifts it cleanly to $11$ ($\mathrm{reach}\,9{\to}12$, zero demotions).
+starter-determined routes) and so is never terminal, giving $\lvert\mathsf{R}^{\mathrm{term}}\rvert{=}8$.
+Forward sound indexing (\S\ref{sec:limits}) makes this growth a reproducible, runnable result: the recovered
+set only grows with $\Theta$---sound reach $11$ at $\Theta_0$ rising to $14$ once the encoded PT closure is
+registered ($\Theta_1$), zero demotions---delivering the projected PT lift at the broader \emph{reach} resolution.
 
 \paragraph{The enumeration certifies its own completeness.} The beam can only under-count
 ($\kappa_\beta\le\kappa$) and $\kappa$ is monotone in $\Theta$, so a \emph{reported decrease} of
