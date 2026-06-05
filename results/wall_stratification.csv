@@ -1,0 +1,327 @@
+bgc_id,compound,formula,subclass,frac_arom,H_per_C,nC,reach,forward
+BGC0000003,AF-toxin,C22H32O9,HR-like (reduced),0.0,1.45,22,too_large,inconclusive-budget
+BGC0000004,aflatoxin G1,C17H12O7,NR-like (aromatic),0.53,0.71,17,unreachable,formula-infeasible
+BGC0000005,aflatoxin,C17H12O7,NR-like (aromatic),0.53,0.71,17,unreachable,formula-infeasible
+BGC0000006,aflatoxin B1,None,NR-like (aromatic),0.53,0.71,17,unreachable,formula-infeasible
+BGC0000007,aflatoxin G1,C17H12O7,NR-like (aromatic),0.53,0.71,17,unreachable,formula-infeasible
+BGC0000008,aflatoxin B1,None,NR-like (aromatic),0.53,0.71,17,unreachable,formula-infeasible
+BGC0000009,aflatoxin B1,None,NR-like (aromatic),0.53,0.71,17,unreachable,formula-infeasible
+BGC0000010,aflatoxin,C17H12O7,NR-like (aromatic),0.53,0.71,17,unreachable,formula-infeasible
+BGC0000011,Sterigmatocystin,C18H12O6,NR-like (aromatic),0.72,0.67,18,unreachable,sound-structural-gap
+BGC0000012,alternapyrone,C28H44O3,PR/mixed,0.18,1.57,28,too_large,inconclusive-budget
+BGC0000013,alternariol,C14H10O5,NR-like (aromatic),0.93,0.71,14,unreachable,sound-structural-gap
+BGC0000022,asperfuranone,C19H24O5,PR/mixed,0.21,1.26,19,unreachable,sound-structural-gap
+BGC0000027,ankaflavin,C23H30O5,PR/mixed,0.0,1.3,23,too_large,inconclusive-budget
+BGC0000030,bikaverin,C20H14O8,NR-like (aromatic),0.65,0.7,20,unreachable,formula-infeasible
+BGC0000037,cichorine,C10H11NO3,hybrid/non-PKS (N),0.6,1.1,10,skip_element,-
+BGC0000039,compactin,C23H36O6,HR-like (reduced),0.0,1.57,23,too_large,inconclusive-budget
+BGC0000045,dehydrocurvularin,C16H18O5,PR/mixed,0.38,1.12,16,unreachable,sound-structural-gap
+BGC0000046,depudecin,C11H16O4,HR-like (reduced),0.0,1.45,11,unreachable,sound-structural-gap
+BGC0000048,dothistromin,C18H12O9,NR-like (aromatic),0.67,0.67,18,unreachable,formula-infeasible
+BGC0000057,F9775A,C21H16O8,PR/mixed,0.29,0.76,21,too_large,formula-infeasible
+BGC0000062,Fumonisin B1,C34H59NO15,hybrid/non-PKS (N),0.0,1.74,34,skip_element,-
+BGC0000063,hydroxyl-Fumonisin C1,None,hybrid/non-PKS (N),0.0,1.73,33,skip_element,-
+BGC0000064,fusarin C,C22H29NO5,hybrid/non-PKS (N),0.0,1.32,22,skip_element,-
+BGC0000070,griseofulvin,C17H17ClO6,PR/mixed,0.35,1.0,17,skip_element,-
+BGC0000076,hypothemycin,C19H22O8,PR/mixed,0.32,1.16,19,unreachable,sound-structural-gap
+BGC0000077,hypothemycin,C19H22O8,PR/mixed,0.32,1.16,19,unreachable,sound-structural-gap
+BGC0000088,lovastatin,C24H36O5,HR-like (reduced),0.0,1.5,24,too_large,inconclusive-budget
+BGC0000089,lovastatin,C24H36O5,HR-like (reduced),0.0,1.5,24,too_large,inconclusive-budget
+BGC0000098,monacolin K,C24H36O5,HR-like (reduced),0.0,1.5,24,too_large,inconclusive-budget
+BGC0000099,monascorubrin,C23H26O5,PR/mixed,0.0,1.13,23,too_large,inconclusive-budget
+BGC0000101,emodin,C15H10O5,NR-like (aromatic),0.8,0.67,15,unreachable,formula-infeasible
+BGC0000104,mycophenolic acid,C17H20O6,PR/mixed,0.35,1.18,17,unreachable,sound-structural-gap
+BGC0000120,patulin,C7H6O4,PR/mixed,0.0,0.86,7,unreachable,formula-infeasible
+BGC0000121,Pestheic Acid,None,NR-like (aromatic),0.67,0.83,18,skip_element,-
+BGC0000129,pyripyropene A,C31H37NO10,hybrid/non-PKS (N),0.32,1.19,31,skip_element,-
+BGC0000134,radicicol,C18H17ClO6,PR/mixed,0.33,0.94,18,skip_element,-
+BGC0000146,solanapyrone D,C18H22O4,PR/mixed,0.28,1.22,18,unreachable,sound-structural-gap
+BGC0000152,sterigmatocystin,C18H12O6,NR-like (aromatic),0.72,0.67,18,unreachable,sound-structural-gap
+BGC0000154,stipitatic acid,C8H6O5,NR-like (aromatic),0.88,0.75,8,unreachable,formula-infeasible
+BGC0000155,T-toxin,C41H68O13,HR-like (reduced),0.0,1.66,41,too_large,inconclusive-budget
+BGC0000156,TAN-1612,C21H18O9,NR-like (aromatic),0.48,0.86,21,too_large,formula-infeasible
+BGC0000160,terreic acid,C7H6O4,PR/mixed,0.0,0.86,7,unreachable,formula-infeasible
+BGC0000161,isoterrein,C8H10O3,PR/mixed,0.0,1.25,8,unreachable,sound-structural-gap
+BGC0000168,viridicatumtoxin,C30H31NO10,hybrid/non-PKS (N),0.33,1.03,30,skip_element,-
+BGC0000170,yanuthone D,C28H38O8,PR/mixed,0.0,1.36,28,too_large,inconclusive-budget
+BGC0000684,asperthecin,C15H10O8,NR-like (aromatic),0.8,0.67,15,unreachable,formula-infeasible
+BGC0000959,aspyridone A,C19H23NO4,hybrid/non-PKS (N),0.58,1.21,19,skip_element,-
+BGC0000968,chaetoglobosin A,C34H40N2O5,hybrid/non-PKS (N),0.24,1.18,34,skip_element,-
+BGC0000977,cyclopiazonic acid,C20H20N2O3,hybrid/non-PKS (N),0.4,1.0,20,skip_element,-
+BGC0000983,cytochalasin E,C28H33NO7,hybrid/non-PKS (N),0.21,1.18,28,skip_element,-
+BGC0000992,fusaridione A,C27H31NO4,hybrid/non-PKS (N),0.22,1.15,27,skip_element,-
+BGC0001026,NG-391,C22H27NO7,hybrid/non-PKS (N),0.0,1.23,22,skip_element,-
+BGC0001030,ochratoxin A,C20H18ClNO6,hybrid/non-PKS (N),0.6,0.9,20,skip_element,-
+BGC0001035,pneumocandin B0,C50H80N8O17,hybrid/non-PKS (N),0.12,1.6,50,skip_element,-
+BGC0001037,pseurotin,C22H25NO8,hybrid/non-PKS (N),0.27,1.14,22,skip_element,-
+BGC0001049,tenellin,C21H23NO5,hybrid/non-PKS (N),0.52,1.1,21,skip_element,-
+BGC0001057,zearalenone,C18H22O5,PR/mixed,0.33,1.22,18,unreachable,recovered
+BGC0001067,Fumagillin,C26H34O7,PR/mixed,0.0,1.31,26,too_large,inconclusive-budget
+BGC0001118,endocrocin,C16H10O7,NR-like (aromatic),0.75,0.62,16,unreachable,formula-infeasible
+BGC0001121,orsellinic acid,C8H8O4,NR-like (aromatic),0.75,1.0,8,reachable,recovered
+BGC0001122,dihydroisoflavipucine,C12H17NO4,hybrid/non-PKS (N),0.42,1.42,12,skip_element,-
+BGC0001124,pyranonigrin E,C18H21NO4,hybrid/non-PKS (N),0.28,1.17,18,skip_element,-
+BGC0001136,desmethylbassianin,C22H23NO5,hybrid/non-PKS (N),0.5,1.05,22,skip_element,-
+BGC0001141,4-epi-15-epi-brefeldin A,C16H24O4,HR-like (reduced),0.0,1.5,16,unreachable,sound-structural-gap
+BGC0001143,azanigerone A,C19H22O7,PR/mixed,0.0,1.16,19,unreachable,sound-structural-gap
+BGC0001144,neosartoricin B,C24H26O8,NR-like (aromatic),0.42,1.08,24,too_large,inconclusive-budget
+BGC0001158,bikaverin,C20H14O8,NR-like (aromatic),0.65,0.7,20,unreachable,formula-infeasible
+BGC0001187,xenolozoyenone,C17H23NO4,hybrid/non-PKS (N),0.0,1.35,17,skip_element,-
+BGC0001190,fusaric acid,C10H13NO2,hybrid/non-PKS (N),0.5,1.3,10,skip_element,-
+BGC0001205,communesin A,C28H32N4O2,hybrid/non-PKS (N),0.43,1.14,28,skip_element,-
+BGC0001218,fumosorinone,C29H35NO5,hybrid/non-PKS (N),0.21,1.21,29,skip_element,-
+BGC0001219,shanorellin,C9H10O4,PR/mixed,0.0,1.11,9,unreachable,sound-structural-gap
+BGC0001242,oxyjavanicin,C15H14O7,NR-like (aromatic),0.4,0.93,15,unreachable,formula-infeasible
+BGC0001243,botryenalol,C17H26O4,HR-like (reduced),0.0,1.53,17,unreachable,sound-structural-gap
+BGC0001244,(-)-Mellein,C10H10O3,NR-like (aromatic),0.6,1.0,10,reachable,recovered
+BGC0001245,lasiodiplodin,C17H24O4,PR/mixed,0.35,1.41,17,unreachable,sound-structural-gap
+BGC0001246,trans-resorcylide,C16H18O5,PR/mixed,0.38,1.12,16,unreachable,recovered
+BGC0001247,cercosporin,C29H26O10,NR-like (aromatic),0.69,0.9,29,too_large,inconclusive-budget
+BGC0001252,UNII-YC2Q1O94PT,C19H30O6,HR-like (reduced),0.0,1.58,19,unreachable,sound-structural-gap
+BGC0001253,ACT-Toxin I,C26H39NO10,hybrid/non-PKS (N),0.0,1.5,26,skip_element,-
+BGC0001254,ACT-Toxin II,C26H39NO9,hybrid/non-PKS (N),0.0,1.5,26,skip_element,-
+BGC0001255,equisetin,C22H31NO4,hybrid/non-PKS (N),0.0,1.41,22,skip_element,-
+BGC0001257,"1,3,6,8-tetrahydroxynaphthalene",C10H8O4,NR-like (aromatic),1.0,0.8,10,unreachable,sound-structural-gap
+BGC0001258,"1,3,6,8-tetrahydroxynaphthalene",C10H8O4,NR-like (aromatic),1.0,0.8,10,unreachable,sound-structural-gap
+BGC0001259,elsinochrome A,C30H24O10,NR-like (aromatic),0.67,0.8,30,too_large,inconclusive-budget
+BGC0001262,AK-toxin I,C23H27NO6,hybrid/non-PKS (N),0.26,1.17,23,skip_element,-
+BGC0001264,betaenone A,C21H34O5,HR-like (reduced),0.0,1.62,21,too_large,inconclusive-budget
+BGC0001265,melanin,C18H10N2O4,hybrid/non-PKS (N),0.89,0.56,18,skip_element,-
+BGC0001266,grayanic acid,C23H26O7,NR-like (aromatic),0.52,1.13,23,too_large,inconclusive-budget
+BGC0001268,fusarin C,C22H29NO5,hybrid/non-PKS (N),0.0,1.32,22,skip_element,-
+BGC0001269,gibberellin A3,C19H22O6,PR/mixed,0.0,1.16,19,unreachable,sound-structural-gap
+BGC0001270,gibberellin A7,C19H22O5,PR/mixed,0.0,1.16,19,unreachable,sound-structural-gap
+BGC0001271,emericellin,C25H28O5,NR-like (aromatic),0.52,1.12,25,too_large,inconclusive-budget
+BGC0001272,elsinochrome B,C30H26O10,NR-like (aromatic),0.67,0.87,30,too_large,inconclusive-budget
+BGC0001273,asperlactone,C9H12O4,PR/mixed,0.0,1.33,9,unreachable,sound-structural-gap
+BGC0001275,6-methylsalicyclic acid,C8H8O3,NR-like (aromatic),0.75,1.0,8,reachable,recovered
+BGC0001276,6-methylsalicyclic acid,C8H8O3,NR-like (aromatic),0.75,1.0,8,reachable,recovered
+BGC0001280,betaenone C,C21H34O5,HR-like (reduced),0.0,1.62,21,too_large,inconclusive-budget
+BGC0001281,ustilagic acid,C36H64O18,HR-like (reduced),0.0,1.78,36,too_large,inconclusive-budget
+BGC0001304,aflavarin,C24H22O9,NR-like (aromatic),0.75,0.92,24,too_large,inconclusive-budget
+BGC0001305,fujikurin B,C12H18O5,HR-like (reduced),0.0,1.5,12,unreachable,sound-structural-gap
+BGC0001309,usnic acid,C18H16O7,PR/mixed,0.33,0.89,18,unreachable,sound-structural-gap
+BGC0001338,citrinin,C13H14O5,PR/mixed,0.0,1.08,13,unreachable,sound-structural-gap
+BGC0001339,squalestatin S1,C35H46O13,PR/mixed,0.17,1.31,35,too_large,inconclusive-budget
+BGC0001340,byssochlamic acid,C18H20O6,PR/mixed,0.0,1.11,18,unreachable,sound-structural-gap
+BGC0001358,leucinostatin A,C62H111N11O13,hybrid/non-PKS (N),0.0,1.79,62,skip_element,-
+BGC0001360,mycophenolic acid,C12H14Br2N2OS,hybrid/non-PKS (N),0.58,1.17,12,skip_element,-
+BGC0001373,sordarin,C27H40O8,HR-like (reduced),0.0,1.48,27,too_large,inconclusive-budget
+BGC0001385,byssochlamic acid,C18H20O6,PR/mixed,0.0,1.11,18,unreachable,sound-structural-gap
+BGC0001390,LL-Z1272beta,C23H32O3,PR/mixed,0.26,1.39,23,too_large,inconclusive-budget
+BGC0001400,citreoviridin,C23H30O6,PR/mixed,0.22,1.3,23,too_large,inconclusive-budget
+BGC0001401,melleolide F,C23H30O6,PR/mixed,0.26,1.3,23,too_large,inconclusive-budget
+BGC0001403,trypacidin,C18H16O7,PR/mixed,0.33,0.89,18,unreachable,sound-structural-gap
+BGC0001404,sorbicillin,C14H16O3,NR-like (aromatic),0.43,1.14,14,unreachable,sound-structural-gap
+BGC0001405,chaetoviridin E,C23H25ClO6,PR/mixed,0.0,1.09,23,skip_element,-
+BGC0001445,leporin B,C22H25NO3,hybrid/non-PKS (N),0.5,1.14,22,skip_element,-
+BGC0001446,asparasone A,C18H14O8,NR-like (aromatic),0.67,0.78,18,unreachable,formula-infeasible
+BGC0001449,ucs1025a,C20H25NO5,hybrid/non-PKS (N),0.0,1.25,20,skip_element,-
+BGC0001450,macrophorin A,C22H32O4,HR-like (reduced),0.0,1.45,22,too_large,inconclusive-budget
+BGC0001466,wortmanamide,C21H37NO4,hybrid/non-PKS (N),0.0,1.76,21,skip_element,-
+BGC0001489,6-hydroxymellein,C10H10O4,NR-like (aromatic),0.6,1.0,10,reachable,recovered
+BGC0001508,andrastin A,C28H38O7,PR/mixed,0.0,1.36,28,too_large,inconclusive-budget
+BGC0001541,cercosporin,C29H26O10,NR-like (aromatic),0.69,0.9,29,too_large,inconclusive-budget
+BGC0001542,cercosporin,C29H26O10,NR-like (aromatic),0.69,0.9,29,too_large,inconclusive-budget
+BGC0001544,chlorflavonin,C18H15ClO7,NR-like (aromatic),0.83,0.83,18,skip_element,-
+BGC0001557,cornexistin,C16H20O6,PR/mixed,0.0,1.25,16,unreachable,sound-structural-gap
+BGC0001563,curvupallide-B,C14H17NO5,hybrid/non-PKS (N),0.0,1.21,14,skip_element,-
+BGC0001578,duclauxin,C29H22O11,NR-like (aromatic),0.52,0.76,29,too_large,formula-infeasible
+BGC0001600,fusarielin H,C25H38O3,HR-like (reduced),0.0,1.52,25,too_large,inconclusive-budget
+BGC0001606,gibepyrone-A,C10H12O2,NR-like (aromatic),0.5,1.2,10,unreachable,sound-structural-gap
+BGC0001616,himeic acid A,C22H29NO8,hybrid/non-PKS (N),0.23,1.32,22,skip_element,-
+BGC0001626,isoindolinone,C8H7NO,hybrid/non-PKS (N),0.75,0.88,8,skip_element,-
+BGC0001677,mycophenolic acid,C17H20O6,PR/mixed,0.35,1.18,17,unreachable,sound-structural-gap
+BGC0001708,novofumigatonin,C25H32O8,PR/mixed,0.0,1.28,25,too_large,inconclusive-budget
+BGC0001720,oosporein,C14H10O8,PR/mixed,0.0,0.71,14,unreachable,formula-infeasible
+BGC0001722,aspernidine A,C24H33NO4,hybrid/non-PKS (N),0.25,1.38,24,skip_element,-
+BGC0001729,paraherquonin,C24H28O7,PR/mixed,0.0,1.17,24,too_large,inconclusive-budget
+BGC0001738,phomasetin,C25H35NO4,hybrid/non-PKS (N),0.0,1.4,25,skip_element,-
+BGC0001741,phyllostictine A,C17H27NO5,hybrid/non-PKS (N),0.0,1.59,17,skip_element,-
+BGC0001749,epipyriculol,C14H16O4,NR-like (aromatic),0.43,1.14,14,unreachable,sound-structural-gap
+BGC0001793,swainsonine,C8H15NO3,hybrid/non-PKS (N),0.0,1.88,8,skip_element,-
+BGC0001794,swainsonine,C8H15NO3,hybrid/non-PKS (N),0.0,1.88,8,skip_element,-
+BGC0001827,xenovulene A,C22H30O4,PR/mixed,0.0,1.36,22,too_large,inconclusive-budget
+BGC0001857,burnettramic acid A,C41H71NO12,hybrid/non-PKS (N),0.0,1.73,41,skip_element,-
+BGC0001865,elsinochrome C,C30H28O10,NR-like (aromatic),0.67,0.93,30,too_large,inconclusive-budget
+BGC0001866,viriditoxin,C34H30O14,NR-like (aromatic),0.59,0.88,34,too_large,inconclusive-budget
+BGC0001874,α-cyclopiazonic acid,C20H20N2O3,hybrid/non-PKS (N),0.4,1.0,20,skip_element,-
+BGC0001881,pyrichalasin H,C31H41NO6,hybrid/non-PKS (N),0.19,1.32,31,skip_element,-
+BGC0001886,Secalonic acid B,C32H30O14,PR/mixed,0.38,0.94,32,too_large,inconclusive-budget
+BGC0001899,abscisic acid,C15H20O4,PR/mixed,0.0,1.33,15,unreachable,sound-structural-gap
+BGC0001906,"2-acetyl-1,3,6,8-tetrahydroxynaphthale",C12H10O5,NR-like (aromatic),0.83,0.83,12,unreachable,sound-structural-gap
+BGC0001909,strobilurin A,None,PR/mixed,0.38,1.12,16,unreachable,sound-structural-gap
+BGC0001913,phomoidride,C31H38O10,PR/mixed,0.0,1.23,31,too_large,inconclusive-budget
+BGC0001923,ascochlorin,C23H29ClO4,PR/mixed,0.26,1.26,23,skip_element,-
+BGC0001926,chrodrimanin B,C25H30O7,PR/mixed,0.24,1.2,25,too_large,inconclusive-budget
+BGC0001966,BII-rafflesfungin,C44H75N9O17,hybrid/non-PKS (N),0.0,1.7,44,skip_element,-
+BGC0001982,pyrichalasin H,C31H41NO6,hybrid/non-PKS (N),0.19,1.32,31,skip_element,-
+BGC0001988,neosartorin,C34H32O15,PR/mixed,0.35,0.94,34,too_large,inconclusive-budget
+BGC0002030,viriditoxin,C34H30O14,NR-like (aromatic),0.59,0.88,34,too_large,inconclusive-budget
+BGC0002035,ilicicolin H,C27H31NO4,hybrid/non-PKS (N),0.41,1.15,27,skip_element,-
+BGC0002062,agnestin A,None,NR-like (aromatic),0.6,0.8,15,unreachable,formula-infeasible
+BGC0002063,cryptosporioptide B,C38H34O18,PR/mixed,0.32,0.89,38,too_large,formula-infeasible
+BGC0002065,strobilurin A,None,PR/mixed,0.38,1.12,16,unreachable,sound-structural-gap
+BGC0002066,harzianopyridone,None,hybrid/non-PKS (N),0.36,1.36,14,skip_element,-
+BGC0002067,atpenin B,None,hybrid/non-PKS (N),0.33,1.53,15,skip_element,-
+BGC0002093,ilicicolin H,None,hybrid/non-PKS (N),0.41,1.15,27,skip_element,-
+BGC0002139,burnettiene A,C32H42O7,PR/mixed,0.0,1.31,32,too_large,inconclusive-budget
+BGC0002154,"1,3,5,8-tetrahydroxynapthalene",None,NR-like (aromatic),1.0,0.8,10,unreachable,sound-structural-gap
+BGC0002155,nectriapyrone C,None,NR-like (aromatic),0.45,1.27,11,unreachable,sound-structural-gap
+BGC0002158,tenuazonic acid,None,hybrid/non-PKS (N),0.0,1.5,10,skip_element,-
+BGC0002161,scytalone,None,NR-like (aromatic),0.6,1.0,10,unreachable,sound-structural-gap
+BGC0002165,betaenone C,None,HR-like (reduced),0.0,1.62,21,too_large,inconclusive-budget
+BGC0002168,decumbenone a,None,HR-like (reduced),0.0,1.5,16,unreachable,sound-structural-gap
+BGC0002169,acurin A,None,hybrid/non-PKS (N),0.0,1.29,21,skip_element,-
+BGC0002170,4-methyl-5-dimethyltetradecahexaene-β-,None,PR/mixed,0.0,1.27,22,too_large,inconclusive-budget
+BGC0002171,pyrophen,None,hybrid/non-PKS (N),0.69,1.06,16,skip_element,-
+BGC0002175,YWA1,None,NR-like (aromatic),0.71,0.86,14,unreachable,sound-structural-gap
+BGC0002177,ustilaginoidin N,None,NR-like (aromatic),0.79,0.76,29,too_large,formula-infeasible
+BGC0002180,(+)-asperlin,None,PR/mixed,0.0,1.2,10,unreachable,sound-structural-gap
+BGC0002185,gregatin A,None,PR/mixed,0.0,1.25,16,unreachable,sound-structural-gap
+BGC0002186,fusaristatin A,None,hybrid/non-PKS (N),0.0,1.61,36,skip_element,-
+BGC0002187,monorden D,None,PR/mixed,0.33,1.06,18,skip_element,-
+BGC0002188,W493 B,None,hybrid/non-PKS (N),0.13,1.62,45,skip_element,-
+BGC0002190,sorbicillin,None,NR-like (aromatic),0.43,1.14,14,unreachable,sound-structural-gap
+BGC0002191,prolipyrone B,None,NR-like (aromatic),0.5,1.0,10,unreachable,sound-structural-gap
+BGC0002192,FR901512,None,PR/mixed,0.29,1.33,21,too_large,inconclusive-budget
+BGC0002194,epipyrone A,None,PR/mixed,0.15,1.29,34,too_large,inconclusive-budget
+BGC0002197,terrestric acid,None,PR/mixed,0.0,1.27,11,unreachable,sound-structural-gap
+BGC0002200,aurovertin E,None,PR/mixed,0.22,1.3,23,too_large,inconclusive-budget
+BGC0002203,beauverolide Ba,C31H49N3O5,hybrid/non-PKS (N),0.19,1.58,31,skip_element,-
+BGC0002204,flavichalasine F,None,hybrid/non-PKS (N),0.0,1.56,25,skip_element,-
+BGC0002205,phomacin D,None,hybrid/non-PKS (N),0.0,1.48,25,skip_element,-
+BGC0002206,harziphilone,None,PR/mixed,0.0,1.2,15,unreachable,sound-structural-gap
+BGC0002209,ustethylin A,None,NR-like (aromatic),0.55,1.27,11,unreachable,sound-structural-gap
+BGC0002210,pyranoviolin A,None,hybrid/non-PKS (N),0.38,1.15,13,skip_element,-
+BGC0002212,Orsellinic acid,C8H8O4,NR-like (aromatic),0.75,1.0,8,reachable,recovered
+BGC0002214,methyl (2S)-4-methyl-2-(octanoylamino),None,hybrid/non-PKS (N),0.0,1.93,15,skip_element,-
+BGC0002222,zopfiellin,None,PR/mixed,0.0,1.24,21,too_large,inconclusive-budget
+BGC0002223,scytalidin,C22H28O7,PR/mixed,0.0,1.27,22,too_large,inconclusive-budget
+BGC0002224,zopfiellin,C21H26O7,PR/mixed,0.0,1.24,21,too_large,inconclusive-budget
+BGC0002229,aculin A,None,hybrid/non-PKS (N),0.0,1.27,26,skip_element,-
+BGC0002230,tolypyridone C,None,hybrid/non-PKS (N),0.52,1.19,21,skip_element,-
+BGC0002231,fusaric acid,None,hybrid/non-PKS (N),0.5,1.3,10,skip_element,-
+BGC0002233,trichoxide,None,HR-like (reduced),0.0,1.44,18,unreachable,sound-structural-gap
+BGC0002234,flavoglaucin,None,PR/mixed,0.32,1.47,19,unreachable,sound-structural-gap
+BGC0002235,"12,13-dihydroxymagnaporthepyrone",C16H20O5,PR/mixed,0.31,1.25,16,unreachable,sound-structural-gap
+BGC0002236,8-methyldiaporthin,None,NR-like (aromatic),0.64,1.14,14,unreachable,sound-structural-gap
+BGC0002237,dichlorodiaporthin,None,NR-like (aromatic),0.69,0.92,13,skip_element,-
+BGC0002238,"2,4'-dihydroxy-3'-methoxypropiophenone",None,NR-like (aromatic),0.6,1.2,10,unreachable,sound-structural-gap
+BGC0002239,pyrrocidine A,None,hybrid/non-PKS (N),0.19,1.19,31,skip_element,-
+BGC0002240,BAB,None,PR/mixed,0.0,1.33,12,reachable,recovered
+BGC0002241,ywa1,None,NR-like (aromatic),0.71,0.86,14,unreachable,sound-structural-gap
+BGC0002243,biruloquinone,None,NR-like (aromatic),0.88,0.59,17,unreachable,formula-infeasible
+BGC0002244,pestalotiollide B,None,NR-like (aromatic),0.57,1.05,21,too_large,inconclusive-budget
+BGC0002247,chaetoconvosins B,None,hybrid/non-PKS (N),0.2,1.23,30,skip_element,-
+BGC0002249,phaeospelide A,None,HR-like (reduced),0.0,1.47,34,too_large,inconclusive-budget
+BGC0002250,triticone A,None,hybrid/non-PKS (N),0.0,1.07,14,skip_element,-
+BGC0002253,waikikiamide A,None,hybrid/non-PKS (N),0.39,0.95,41,skip_element,-
+BGC0002254,notoamide F,None,hybrid/non-PKS (N),0.3,1.15,27,skip_element,-
+BGC0002255,lijiquinone,None,PR/mixed,0.0,1.13,23,too_large,inconclusive-budget
+BGC0002257,rufoschweinitzin,None,NR-like (aromatic),0.67,1.0,30,too_large,inconclusive-budget
+BGC0002258,shimalactone A,None,PR/mixed,0.0,1.38,29,too_large,inconclusive-budget
+BGC0002259,beauveriolide I,None,hybrid/non-PKS (N),0.22,1.52,27,skip_element,-
+BGC0002261,lucilactaene,None,hybrid/non-PKS (N),0.0,1.23,22,skip_element,-
+BGC0002262,sporothriolide,None,PR/mixed,0.0,1.38,13,unreachable,sound-structural-gap
+BGC0002263,spiromarmycin,None,PR/mixed,0.0,1.26,19,unreachable,sound-structural-gap
+BGC0002265,atranorin,C19H18O8,NR-like (aromatic),0.63,0.95,19,unreachable,sound-structural-gap
+BGC0002266,calidoustene A,None,PR/mixed,0.0,1.33,21,too_large,inconclusive-budget
+BGC0002268,"CJ-16,173",None,hybrid/non-PKS (N),0.58,1.0,19,skip_element,-
+BGC0002269,MCA17-1,None,hybrid/non-PKS (N),0.0,1.07,14,skip_element,-
+BGC0002270,swainsonine,None,hybrid/non-PKS (N),0.0,1.88,8,skip_element,-
+BGC0002275,pyrophen,None,hybrid/non-PKS (N),0.69,1.06,16,skip_element,-
+BGC0002281,sambutoxin,None,hybrid/non-PKS (N),0.39,1.39,28,skip_element,-
+BGC0002304,varicidin A,None,hybrid/non-PKS (N),0.0,1.38,21,skip_element,-
+BGC0002375,cladosporiumin I,None,hybrid/non-PKS (N),0.0,1.31,13,skip_element,-
+BGC0002427,subglutinol A,None,PR/mixed,0.19,1.41,27,too_large,inconclusive-budget
+BGC0002428,FDDP-D,C29H42O7,PR/mixed,0.17,1.45,29,too_large,inconclusive-budget
+BGC0002429,higginsianin B,C27H40O4,PR/mixed,0.19,1.48,27,too_large,inconclusive-budget
+BGC0002483,usnic acid,None,PR/mixed,0.33,0.89,18,unreachable,sound-structural-gap
+BGC0002502,fumonisin B3,None,hybrid/non-PKS (N),0.0,1.74,34,skip_element,-
+BGC0002505,xenoacremone A,None,hybrid/non-PKS (N),0.21,1.21,29,skip_element,-
+BGC0002507,sporandol,None,NR-like (aromatic),0.71,0.93,28,too_large,inconclusive-budget
+BGC0002511,biruloquinone,None,NR-like (aromatic),0.88,0.59,17,unreachable,formula-infeasible
+BGC0002513,6-methylcristazarin,C14H14O6,NR-like (aromatic),0.43,1.0,14,unreachable,sound-structural-gap
+BGC0002515,solanapyrone A,None,PR/mixed,0.28,1.22,18,unreachable,sound-structural-gap
+BGC0002516,prephenalenone,None,NR-like (aromatic),0.71,0.86,14,unreachable,sound-structural-gap
+BGC0002525,fusarubin,None,NR-like (aromatic),0.4,0.93,15,unreachable,formula-infeasible
+BGC0002537,emeridone F,None,PR/mixed,0.0,1.12,25,too_large,inconclusive-budget
+BGC0002538,chaetolivacine A,None,hybrid/non-PKS (N),0.21,1.21,29,skip_element,-
+BGC0002546,cytoglobosin X,None,hybrid/non-PKS (N),0.25,1.31,32,skip_element,-
+BGC0002555,emerimicin V,None,hybrid/non-PKS (N),0.15,1.56,78,skip_element,-
+BGC0002592,geodin,None,PR/mixed,0.35,0.71,17,skip_element,-
+BGC0002593,lecanoric acid,None,NR-like (aromatic),0.75,0.88,16,unreachable,sound-structural-gap
+BGC0002594,orcinol,None,NR-like (aromatic),0.86,1.14,7,unreachable,sound-structural-gap
+BGC0002595,orsellinic acid,None,NR-like (aromatic),0.75,1.0,8,reachable,recovered
+BGC0002596,lecanoric acid,None,NR-like (aromatic),0.75,0.88,16,unreachable,sound-structural-gap
+BGC0002598,ochratoxin A,None,hybrid/non-PKS (N),0.6,0.9,20,skip_element,-
+BGC0002603,chevalone E,None,PR/mixed,0.19,1.46,26,too_large,inconclusive-budget
+BGC0002604,sartorypyrone A,None,PR/mixed,0.18,1.43,28,too_large,inconclusive-budget
+BGC0002605,ochratoxin A,None,hybrid/non-PKS (N),0.6,0.9,20,skip_element,-
+BGC0002606,ochratoxin A,None,hybrid/non-PKS (N),0.6,0.9,20,skip_element,-
+BGC0002607,ochratoxin A,None,hybrid/non-PKS (N),0.6,0.9,20,skip_element,-
+BGC0002608,ochratoxin A,None,hybrid/non-PKS (N),0.6,0.9,20,skip_element,-
+BGC0002609,ochratoxin A,None,hybrid/non-PKS (N),0.6,0.9,20,skip_element,-
+BGC0002614,subglutinol A,None,PR/mixed,0.19,1.41,27,too_large,inconclusive-budget
+BGC0002616,mycophenolic acid,None,PR/mixed,0.35,1.18,17,unreachable,sound-structural-gap
+BGC0002619,mycophenolic acid,None,PR/mixed,0.35,1.18,17,unreachable,sound-structural-gap
+BGC0002709,aurofusarin,None,NR-like (aromatic),0.6,0.6,30,too_large,formula-infeasible
+BGC0002731,nanangenine A,None,HR-like (reduced),0.0,1.47,15,unreachable,sound-structural-gap
+BGC0002745,verrucosidin,None,PR/mixed,0.21,1.33,24,too_large,inconclusive-budget
+BGC0002749,aspcandine,C12H10N2O3,hybrid/non-PKS (N),0.5,0.83,12,skip_element,-
+BGC0002758,Azanidulone,C11H10O4,PR/mixed,0.0,0.91,11,unreachable,sound-structural-gap
+BGC0002759,brevione E,None,PR/mixed,0.0,1.21,28,too_large,inconclusive-budget
+BGC0002812,Colletochlorin A,C18H25ClO5,PR/mixed,0.33,1.39,18,skip_element,-
+BGC0002845,Sartorypyrone A,C28H40O5,PR/mixed,0.18,1.43,28,too_large,inconclusive-budget
+BGC0002847,olivetolic acid,C12H16O4,NR-like (aromatic),0.5,1.33,12,reachable,recovered
+BGC0002848,CJ-20557,C19H20O7,NR-like (aromatic),0.63,1.05,19,unreachable,sound-structural-gap
+BGC0002849,Luteodienoside A,C23H38O13,HR-like (reduced),0.0,1.65,23,too_large,formula-infeasible
+BGC0002852,"3,6-dialkyl-α-pyrone",C10H12O3,NR-like (aromatic),0.5,1.2,10,unreachable,sound-structural-gap
+BGC0002864,Mollicellin Z ,C21H22O6,NR-like (aromatic),0.57,1.05,21,too_large,inconclusive-budget
+BGC0002867,chlorogeumsanol B,C23H29Cl1O7,PR/mixed,0.0,1.26,23,skip_element,-
+BGC0002872,Zaragozic acid A,C35H46O14,PR/mixed,0.17,1.31,35,too_large,inconclusive-budget
+BGC0002874,cristazarin,C13H12O6,NR-like (aromatic),0.46,0.92,13,unreachable,formula-infeasible
+BGC0002877,Cordypyrone A,C22H28O3,PR/mixed,0.23,1.27,22,too_large,inconclusive-budget
+BGC0002883,biruloquinone,C17H10O7,NR-like (aromatic),0.88,0.59,17,unreachable,formula-infeasible
+BGC0002887,radicicol,C18H17ClO6,PR/mixed,0.33,0.94,18,skip_element,-
+BGC0002891,arthripenoid C,C30H44O9,PR/mixed,0.2,1.47,30,too_large,inconclusive-budget
+BGC0002904,fumonisin B2,C34H59NO14,hybrid/non-PKS (N),0.0,1.74,34,skip_element,-
+BGC0002911,naringenin,C15H12O5,NR-like (aromatic),0.8,0.8,15,unreachable,sound-structural-gap
+BGC0002930,6'-O-demethyl-dihydroaustalide K,C24H32O5,PR/mixed,0.25,1.33,24,too_large,inconclusive-budget
+BGC0002936,Gyrophoric acid,C24H20O10,NR-like (aromatic),0.75,0.83,24,too_large,inconclusive-budget
+BGC0002953,11'-O-desmethyl fendlerol,None,HR-like (reduced),0.0,1.54,26,too_large,inconclusive-budget
+BGC0002966,luteodienoside A,C25H38O13,HR-like (reduced),0.0,1.65,23,too_large,formula-infeasible
+BGC0002970,xylariolide D,C10H14O3,NR-like (aromatic),0.5,1.4,10,unreachable,sound-structural-gap
+BGC0002971,Fugralin A,C12H20O4,HR-like (reduced),0.0,1.67,12,unreachable,sound-structural-gap
+BGC0002980,sphingofungin B,C20H39NO6,hybrid/non-PKS (N),0.0,1.95,20,skip_element,-
+BGC0002984,Brefeldin A,C16H24O4,HR-like (reduced),0.0,1.5,16,unreachable,sound-structural-gap
+BGC0002987,scirpilin A,C26H36O2,PR/mixed,0.23,1.38,26,too_large,inconclusive-budget
+BGC0002993,Oxopyrrolidine A,C24H29NO5,hybrid/non-PKS (N),0.25,1.21,24,skip_element,-
+BGC0002998,ilicicolinal,None,PR/mixed,0.26,1.35,23,skip_element,-
+BGC0002999,(2S)-annullatin A,None,PR/mixed,0.35,1.29,17,unreachable,sound-structural-gap
+BGC0003006,Rasfonin,C25H38O6,HR-like (reduced),0.0,1.52,25,too_large,inconclusive-budget
+BGC0003011,Eupenifeldin,C33H40O7,NR-like (aromatic),0.42,1.21,33,too_large,inconclusive-budget
+BGC0003013,agonodepside A,C23H26O5,NR-like (aromatic),0.52,1.13,23,too_large,inconclusive-budget
+BGC0003017,Macrollin A,C21H29NO3,hybrid/non-PKS (N),0.29,1.38,21,skip_element,-
+BGC0003018,sclerotiorin,None,PR/mixed,0.0,1.1,21,skip_element,-
+BGC0003028,Terrestric acid,C11H14O4,PR/mixed,0.0,1.27,11,unreachable,sound-structural-gap
+BGC0003032,soppiline A,C21H34O3,HR-like (reduced),0.0,1.62,21,too_large,inconclusive-budget
+BGC0003093,Phomoxanthone A,C38H38O16,PR/mixed,0.32,1.0,38,too_large,inconclusive-budget
+BGC0003094,Roseopurpurin C,C18H20O7,PR/mixed,0.33,1.11,18,unreachable,sound-structural-gap
+BGC0003099,"7-But-15-enyl-6,8-dihydroxy-3(R)-pent-",C18H22O4,PR/mixed,0.33,1.22,18,unreachable,sound-structural-gap
+BGC0003108,pycnidione,C33H40O7,NR-like (aromatic),0.42,1.21,33,too_large,inconclusive-budget
+BGC0003109,stachysalicyloid C,C16H20O2,PR/mixed,0.38,1.25,16,unreachable,sound-structural-gap
+BGC0003113,multiformin A,C24H26O6,PR/mixed,0.0,1.08,24,too_large,inconclusive-budget
+BGC0003115,orsellinoxypropanoic acid,C11H12O6,NR-like (aromatic),0.55,1.09,11,unreachable,formula-infeasible
+BGC0003118,Multiforisin H,C13H16O6,PR/mixed,0.38,1.23,13,unreachable,sound-structural-gap
+BGC0003120,Minutellin A,C27H30O7,PR/mixed,0.0,1.11,27,too_large,inconclusive-budget
+BGC0003126,kotanin,C24H22O8,NR-like (aromatic),0.75,0.92,24,too_large,inconclusive-budget
+BGC0003142,FDDP D,C29H42O7,PR/mixed,0.17,1.45,29,too_large,inconclusive-budget
+BGC0003144,Physodic acid,C26H30O8,NR-like (aromatic),0.46,1.15,26,too_large,inconclusive-budget
+BGC0003145,macrophasetin A,C22H31NO3,hybrid/non-PKS (N),0.0,1.41,22,skip_element,-
+BGC0003147,Taslactam C,C10H15NO3,hybrid/non-PKS (N),0.0,1.5,10,skip_element,-
+BGC0003149,Taslactam D,C10H15NO3,hybrid/non-PKS (N),0.0,1.5,10,skip_element,-
+BGC0003150,Ascochitine,C15H16O5,NR-like (aromatic),0.6,1.07,15,unreachable,sound-structural-gap
+BGC0003151,Annullatin D,None,PR/mixed,0.35,1.29,17,unreachable,sound-structural-gap
+BGC0003154,cyclopiazonic acid,None,hybrid/non-PKS (N),0.4,1.0,20,skip_element,-
