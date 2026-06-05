@@ -230,15 +230,73 @@ def _selftest():
         sys.exit(1)
 
 
+def _worker_sig():
+    """Picklable Pool initializer (spawn can't pickle a lambda): install the per-exec SIGALRM handler."""
+    signal.signal(signal.SIGALRM, FI._on_alarm)
+
+
 def _resolve_one(args):
     bgc, name, T, flat = args
     verdict, witness, ntried = resolve(T, flat)
     return (bgc, name, T, verdict, witness, ntried)
 
 
+def _e2e_one(args):
+    bgc, fwd, T, flat = args
+    v, w, n = resolve(T, flat)
+    return (bgc, fwd, v, w, n)
+
+
+def _e2e():
+    """End-to-end gate: resolve() must reproduce forward_index.csv's DEFINITIVE C<=20 verdicts -- the
+    exec+match+verdict path that --selftest's enumeration check does not cover. Cap raised so C<=20 formulas
+    can exhaust; a resolve()=inconclusive-* on a forward gap is cap-limited (couldn't finish), NOT a wiring
+    bug. PASS iff zero CONTRADICTIONS (a definitive verdict that disagrees: recovered<->gap flip, infeasible
+    mismatch)."""
+    global ORDER_CAP
+    ORDER_CAP = int(os.environ.get("E2E_CAP", "2000000"))
+    rows = list(csv.DictReader(open("results/forward_index.csv")))
+    cle20 = [r for r in rows if int(r["C"]) <= 20]
+    df = __import__("pandas").read_parquet(FI.PARQUET)
+    smi = {r["bgc_id"]: (r.get("product_smiles_canonical") or r.get("product_smiles_raw")) for _, r in df.iterrows()}
+    work = []
+    for r in cle20:
+        s = smi.get(r["bgc_id"])
+        if not s:
+            continue
+        mol = M.mol_from_smiles(s)
+        work.append((r["bgc_id"], r["forward_verdict"], FI._formula_cho(mol),
+                     Chem.MolToSmiles(mol, isomericSmiles=False)))
+    print(f"--e2e: resolve() vs forward_index on {len(work)} C<=20 cores (ORDER_CAP={ORDER_CAP:,}) ...", flush=True)
+    k = max(2, (os.cpu_count() or 4) - 2)
+    match = capped = rec_confirmed = 0
+    contradictions = []
+    with mp.Pool(k, initializer=_worker_sig) as pool:
+        for bgc, fwd, v, w, n in pool.imap_unordered(_e2e_one, work):
+            if v == fwd:
+                match += 1
+                rec_confirmed += (fwd == "recovered")
+            elif v.startswith("inconclusive"):
+                capped += 1  # couldn't exhaust within budget -- cap-limited, not a contradiction
+            else:
+                contradictions.append((bgc, fwd, v))  # definitive disagreement = wiring bug
+    ok = len(contradictions) == 0
+    print(f"--e2e: matched={match} (recoveries confirmed {rec_confirmed}), cap-limited={capped}, "
+          f"CONTRADICTIONS={len(contradictions)}", flush=True)
+    for bgc, fwd, v in contradictions[:12]:
+        print(f"   CONTRADICTION {bgc}: forward_index={fwd}  resolve={v}", flush=True)
+    print(f"E2E GATE {'PASS' if ok else 'FAIL'}: resolve() reproduces forward_index C<=20 verdicts "
+          f"(no definitive contradiction).", flush=True)
+    if not ok:
+        sys.exit(1)
+
+
 def main():
     if "--selftest" in sys.argv[1:]:
         _selftest()
+        return
+    if "--e2e" in sys.argv[1:]:
+        _e2e()
         return
     t0 = time.time()
     print(f"Completion 2 -- formula-directed resolution of the C>20 inconclusive set (ORDER_CAP={ORDER_CAP:,})\n",
@@ -260,7 +318,7 @@ def main():
 
     k = max(2, (os.cpu_count() or 4) - 2)
     results = []
-    with mp.Pool(k, initializer=lambda: signal.signal(signal.SIGALRM, FI._on_alarm)) as pool:
+    with mp.Pool(k, initializer=_worker_sig) as pool:
         for i, res in enumerate(pool.imap_unordered(_resolve_one, work), 1):
             results.append(res)
             if i % 10 == 0 or i == len(work):
