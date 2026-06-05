@@ -146,7 +146,8 @@ engine into a design tool, and cross-grammar demonstrations. Our contributions a
 deterministic executor and beam verifier returning the exact consistent program set \zstar{}
 behind one observable-constrained interface (Sections~\ref{sec:executor}--\ref{sec:verifier}).
 \item A \textbf{deterministic reconstructibility analysis} of fungal iterative PKS over MIBiG~4.0
-(Section~\ref{sec:manifold}): exact-match $9/326$, a core-match \emph{sensitivity} showing
+(Section~\ref{sec:manifold}): exact-match $9/326$ (lifted to a sound reach of $11$ by a complete forward
+search, \S\ref{sec:limits}), a core-match \emph{sensitivity} showing
 structural-similarity proxies are unreliable, and a tailoring-latent reformulation ($7/107$ verified
 near-uniquely; where a core is producible, tailoring resolves near-uniquely), with a curated literature benchmark
 (Section~\ref{sec:benchmark}) and a cross-taxa transfer probe of the iteration-grammar wall
@@ -653,7 +654,8 @@ among the reachable nine); macrolactonization---the dominant in-scope family ($1
 and the rung-4 mixture route is closed by the regiospecific zearalenone TE, with the rung-2
 resorcylic-macrolactone closure now registered (\S\ref{sec:guarantees}): the \emph{beam} does not surface
 its highly-reducing program at practical width, but \emph{forward sound indexing} (below) does, so the
-closure's true increment is the beam-starved set ($+2$ cores, sound reach $9\to11$), not zero, and only the
+closure's true increment is the beam-starved set ($+2$ cores: the beam's reach of $9$ lifts to a sound
+reach of $11$), not zero, and only the
 fold-gated rung-3 closures stay open above the size bound); and the $178$ of $205$ ($87\%$) that touch a hard family are exactly the
 rung-2/3-and-open operators, while the rung-2 closures generalize cleanly---the orsellinic C2$\to$C7
 closure extends to a pentyl starter, building olivetolic acid's $\beta$-resorcylic core (now among the
@@ -722,7 +724,7 @@ inverse compiler over that space serves three jobs on one spine $y=\mathrm{Exec}
 \emph{forward} it renders programs to structures; run \emph{inverse} it reconstructs known products
 and assigns them to metabolome peaks, returning a typed verdict rather than a single accuracy score;
 run \emph{backward} it designs. The diagnostic half characterizes the natural manifold the engine
-operates over---exact reconstruction at $9/326$ is its \emph{boundary}---the sharp edge of the current grammar's reach, not a low score---the
+operates over---exact reconstruction at $9/326$ by the beam, lifted to a sound reach of $11$ by complete forward search (\S\ref{sec:limits}), is its \emph{boundary}---the sharp edge of the current grammar's reach, not a low score---the
 $1.00\!\to\!0.567$ cross-taxa collapse its one hard axis, and structural-similarity proxies are shown
 \emph{not} to be reconstructibility metrics. The contribution is what the backward direction buys: a
 \emph{realizability geometry} that scores any target molecule by its edit distance to that manifold
@@ -893,6 +895,7 @@ Python~$3.12$, RDKit~$2025.9.6$; optional \texttt{torch}/\texttt{transformers} f
 cross-taxa transfer and ESM-2 components. Each result maps to one command:
 \code{make data} (the $326$ pairs), \code{make roundtrip} (executor gate),
 \code{make search} (the verifier and \zstar{}), \code{make reachability} (exact-match $9/326$),
+\code{make forward-index} (the complete forward map: sound reach $11$, certified frontier $117{=}83{+}34$, tag \texttt{lpi-v0.24-forward-index}),
 \code{make census} (the \S\ref{sec:census}/Appendix~\ref{app:census} census: partition, set-cover,
 MECE, and the cap-lifted $0$-of-$91$ re-scan), \code{make two-walls} (the \S\ref{sec:wall}
 $\sim$9\%/61\% subclass wall split),
