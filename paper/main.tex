@@ -52,11 +52,14 @@ We build a sound inverse compiler over this program space. \emph{Forward}, a det
 renders a program to a structure. \emph{Inverse}, a beam verifier returns the exact set $Z^\star$ of
 programs consistent with the observables, as a typed verdict: \textsc{verified},
 \textsc{under-observed} (naming the next observable that collapses $Z^\star$), or
-\textsc{out-of-grammar}. Across all $326$ fungal PKS in MIBiG~4.0, exact program reconstruction
-reaches $9/326$---the \emph{boundary} of what the current operator set soundly reaches, not a low
-score. A corpus-wide census makes that boundary defensible and sorts the remainder onto a
-\emph{sound-expressibility} ladder, turning ``unsolved'' into a located map: which gaps are
-buildable, which are open research, which need a different grammar.
+\textsc{out-of-grammar}. Across all $326$ fungal PKS in MIBiG~4.0 the beam verifier reaches $9/326$; running the executor
+\emph{forward}---ranking-free, hence complete by construction up to a size bound---lifts this to a
+\textbf{sound reach of $11$} (recovering two in-grammar cores the beam's ranking starved) and converts
+the \emph{boundary} into a \emph{certified} map: a frontier of $117$ cores ($83$ \emph{provable}
+structural-gaps and $34$ mass-infeasible) with $86$ larger cores reported as bounded-inconclusive, never
+miscounted as gaps. A corpus-wide census places the remainder on a \emph{sound-expressibility} ladder,
+turning ``unsolved'' into a located map: which gaps are buildable, which are open research, which need a
+different grammar.
 
 A cross-taxa probe locates the one hard axis: per-cycle reduction transfers trivially when each
 cycle's active domains are given---that $1.00$ is the ceiling by construction---but recovering it
@@ -852,6 +855,18 @@ label-distinguishable cases (isoterrein to $0.05$, asperlin to $0.38$) on the sa
 specific work: the substrate counter localizes which cycle is being asked about, the structural
 channel routes within that cycle's pocket-substrate geometry, and the executor bounds the set
 within which either can rule.
+
+\paragraph{The coverage tail and the policy frontier are one missing observable.} Forward sound indexing
+(\S\ref{sec:limits}) sharpens this convergence. The C$>$20 cores it cannot resolve above the size bound are
+not a brute-force limit: pinning a target formula collapses the carbon-cap combinatorics and leaves exactly
+the \emph{ordering} of the formula-fixed cycle multiset---which cycle does what---as the residual, and for
+the large highly-reducing cores that ordering count is astronomical. But that ordering \emph{is} the
+per-cycle policy $\pi$ of this section: the directed search must enumerate every ordering precisely because,
+lacking $s_t$, it cannot tell which one the synthase realised. The conformational coordinate that collapses
+Gate-3 for citrinin is the same coordinate that would prune the ordering space to nature's single
+trajectory---so the C$>$20 coverage tail and the label-symmetric identifiability frontier are one missing
+observable, reached from two directions. A pocket lever that generalises past $n{=}1$ would do double duty:
+complete the map and break the wall at once.
 
 This measurement holds within boundaries that must stay sharp, because it has the same shape as the
 coverage boundary one level up: exact over what is reachable, silent about what is not. The figures
