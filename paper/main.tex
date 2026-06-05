@@ -897,7 +897,8 @@ Python~$3.12$, RDKit~$2025.9.6$; optional \texttt{torch}/\texttt{transformers} f
 cross-taxa transfer and ESM-2 components. Each result maps to one command:
 \code{make data} (the $326$ pairs), \code{make roundtrip} (executor gate),
 \code{make search} (the verifier and \zstar{}), \code{make reachability} (exact-match $9/326$),
-\code{make forward-index} (the complete forward map: sound reach $11$, certified frontier $117{=}83{+}34$, tag \texttt{lpi-v0.24-forward-index}),
+\code{make forward-index} (the complete forward map: sound reach $11$, certified frontier $117{=}83{+}34$, tag \texttt{lpi-v0.24-forward-index}; \code{THETA=1} runs the build-loop step, $+3$ THN to reach $14$),
+\code{make rung2-cover} (the $19/62/34$ rung-2 build-queue) and \code{make forward-index-monotone} (the $R_{\mathrm{term}}$ zero-demotion check),
 \code{make census} (the \S\ref{sec:census}/Appendix~\ref{app:census} census: partition, set-cover,
 MECE, and the cap-lifted $0$-of-$91$ re-scan), \code{make two-walls} (the \S\ref{sec:wall}
 $\sim$9\%/61\% subclass wall split),
