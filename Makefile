@@ -120,3 +120,6 @@ rung2-cover:	## Completion 1 build-queue: rung-2 sound set-cover over the 117 ce
 
 forward-directed:	## Completion 2: formula-DIRECTED resolution of the C>20 inconclusive set the brute sweep cannot reach (sound inversion; --selftest gates it). Run after forward-index.
 	PYTHONHASHSEED=0 PYTHONPATH=src $(PY) scripts/coverage/forward_directed.py
+
+lasiodiplodin:	## First genome -> position-sound DECORATED product: reachable resorcylic core + curated O-methylation, verified vs deposited BGC0001245 (curation-conditional, S4.1).
+	PYTHONHASHSEED=0 PYTHONPATH=src $(PY) scripts/coverage/lasiodiplodin_demo.py
