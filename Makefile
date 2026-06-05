@@ -126,3 +126,6 @@ lasiodiplodin:	## First genome -> position-sound DECORATED product: reachable re
 
 stratify:	## Re-derive the two-walls split + NAME the HR reductive-routing set (the pocket bet's exact denominator + routing-cell sampling frame). In-house, no AF2.
 	PYTHONHASHSEED=0 PYTHONPATH=src $(PY) scripts/coverage/wall_stratification.py
+
+hr-structure:	## Cyclization structure of the HR routing wall: why it has no cheap render-given-policy member (25 exotic / 3 ordering-walled / 1 out-of-grammar). In-house, no AF2.
+	PYTHONHASHSEED=0 PYTHONPATH=src $(PY) scripts/coverage/hr_wall_structure.py
