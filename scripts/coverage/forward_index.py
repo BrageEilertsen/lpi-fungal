@@ -86,11 +86,15 @@ def theta(level: int):
 
 THETA_LEVEL = int(os.environ.get("THETA", "0"))
 THETA = theta(THETA_LEVEL)
-OUT_CSV = Path("results/forward_index.csv" if THETA_LEVEL == 0
-               else f"results/forward_index_theta{THETA_LEVEL}.csv")
 
-N_MAX = 9                  # cycles: covers C<=20 fully (acetyl + 9*2 = 20); C>20 -> inconclusive
-CMAX = CARBON_CAP          # 20: matches the campaign's carbon cap (too_large = C>20)
+N_MAX = int(os.environ.get("NMAX", "9"))             # cycle bound: 9 covers C<=20 fully (acetyl + 9*2 = 20)
+CMAX = int(os.environ.get("CMAX", str(CARBON_CAP)))  # carbon bound: default 20 (campaign cap); raise for the C>20 push
+
+# Default config (Theta_0, N=9, C<=20) keeps the cited baseline filename untouched; any other
+# config is tagged into its own file so a C>20 / Theta sweep can never clobber the cited result.
+_suffix = (f"_theta{THETA_LEVEL}" if THETA_LEVEL else "") + \
+          (f"_cmax{CMAX}_n{N_MAX}" if (CMAX, N_MAX) != (CARBON_CAP, 9) else "")
+OUT_CSV = Path(f"results/forward_index{_suffix}.csv")
 EXEC_TIMEOUT_S = 30        # per-exec wall limit: only TRUE pathological hangs hit it (normal exec <50ms)
 CHO_STATUSES = ("reachable", "unreachable", "too_large", "budget")
 _STARTER_C = {"acetyl": 2, "propionyl": 3, "butyryl": 4, "hexanoyl": 6}
@@ -336,12 +340,52 @@ def _monotone() -> None:
         sys.exit(1)
 
 
+def _drycount() -> None:
+    """Tractability probe for the C>20 push. Brute forward enumeration grows ~(branching)^N under the
+    carbon cap; resolving C>20 cores needs many more cycles than the C<=20 sweep (a C=2k core needs ~k-1
+    cycles), so the space can explode super-exponentially. This counts RAW combos at the current
+    (CMAX, N_MAX) WITHOUT gating/executing -- the enumeration wall is the binding cost -- and verdicts
+    whether a full run is overnight-feasible BEFORE any daemon is committed.
+    Run: CMAX=<c> NMAX=<n> python scripts/coverage/forward_index.py --drycount"""
+    import time as _t
+    CAP = 60_000_000  # raw-combo abort: enumeration alone beyond this is not an overnight job
+    print(f"  drycount: CMAX={CMAX}, N_MAX={N_MAX}, starters={list(THETA.starters)}, "
+          f"cycle options/step={len(_cycle_opts())}", flush=True)
+    raw = 0
+    t0 = _t.time()
+    aborted = False
+    for starter in THETA.starters:
+        sc = _STARTER_C[starter]
+        for first in _cycle_opts():
+            for _ in _enumerate_from(sc, first):
+                raw += 1
+                if raw >= CAP:
+                    aborted = True
+                    break
+            if aborted:
+                break
+        if aborted:
+            break
+    dt = max(_t.time() - t0, 1e-9)
+    print(f"  raw combos: {raw:,}{'  (HIT CAP -- not exhaustive)' if aborted else ''}  "
+          f"in {dt:.1f}s  ({raw / dt:,.0f}/s)", flush=True)
+    if aborted:
+        print(f"  VERDICT: INTRACTABLE at CMAX={CMAX}, N={N_MAX} -- raw enumeration alone exceeds "
+              f"{CAP:,} combos. A brute forward sweep here is not overnight-feasible.", flush=True)
+    else:
+        print(f"  VERDICT: ENUMERABLE -- {raw:,} raw combos. Full run (gate+exec) is feasible; "
+              f"gated execs are a small fraction (Theta_0: 7.26M gated).", flush=True)
+
+
 def main() -> None:
     if "--selftest" in sys.argv[1:]:
         _selftest()
         return
     if "--monotone" in sys.argv[1:]:
         _monotone()
+        return
+    if "--drycount" in sys.argv[1:]:
+        _drycount()
         return
     t0 = time.time()
     ext = [r.name for lv in range(1, THETA_LEVEL + 1) for r in _THETA_EXTENSIONS.get(lv, ())]
