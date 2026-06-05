@@ -207,7 +207,7 @@ Result & Claim & Reproduce \\
 Partition (fungal PKS) & $\R=8$, $\U=1$ (olivetolic), $\X=317$; reach 9 & \texttt{make reachability} \\
 Monotonicity asymmetry & starter sweep: $\lvert\R\rvert\,9{\to}8$, reach $9{\to}9$, one demotion; forbidden cells empty & \texttt{make coverage-sweep} \\
 Overlap-not-growth & release$+$PT sweeps: clean $\X\to\R$, 0 demotions & \texttt{make coverage-sweep} \\
-$\Rterm$ monotone & $8$ (robust to $+$methylmalonyl) $\to 11$ ($+$PT), clean & \texttt{make coverage-sweep} \\
+$\Rterm$ \& forward reach (delivered) & $\Rterm{=}8$ verified-terminal; \emph{forward sound reach} $11$ at $\Theta_0$ ($9$ beam-reachable $+\,2$ beam-starved, incl.\ zearalenone) $\to 14$ at $\Theta_1$ ($+$PT naphthalene), $0$ demotions & \texttt{make forward-index} \\
 Completeness certificate & $\kappa$-inversion caught $\beta{=}8000$ pruning; certified the PT climb & \texttt{make kappa-check} \\
 Cross-taxa $=$ modality crossing & genome modality: bacterial $60\to70/118$ ($+10$), $31/58$ silent-KR; fungal floor $0.567$ & \texttt{make seqhead}, \texttt{make differential} \\
 Controllability duality & $69{:}49$ frontier:engineerable $=$ trajectory:genome (0/192 edits in conflict); $(0,1)$ edits mass-confirmable & \texttt{make design-tag} \\
