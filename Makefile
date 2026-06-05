@@ -117,3 +117,6 @@ forward-index-monotone:	## R_term-monotonicity test: across the Theta levels alr
 
 rung2-cover:	## Completion 1 build-queue: rung-2 sound set-cover over the 117 certified gaps -- which single soundly-expressible operator buys the most provable reach (reads results/forward_index.csv).
 	PYTHONHASHSEED=0 PYTHONPATH=src $(PY) scripts/coverage/rung2_cover.py
+
+forward-directed:	## Completion 2: formula-DIRECTED resolution of the C>20 inconclusive set the brute sweep cannot reach (sound inversion; --selftest gates it). Run after forward-index.
+	PYTHONHASHSEED=0 PYTHONPATH=src $(PY) scripts/coverage/forward_directed.py
