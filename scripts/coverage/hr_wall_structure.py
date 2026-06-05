@@ -6,15 +6,22 @@ Reads the HR set (make stratify -> results/wall_stratification.csv) and classifi
   * in-grammar (macrolactone / linear) = render-given-policy IS possible IF the policy is supplied.
 
 Finding (the disconfirming result of the 'cook a render-given-policy flagship' attempt -- I tried to find
-ONE clean HR core to render given its policy, and the wall refused): NO HR core is render-given-policy-able
-by the current engine. Of the 29: 25 carry EXOTIC cyclization (decalin/cyclopentane/epoxide/THF -> need a
-new cyclization operator, i.e. policy + coverage); 3 are ring-clean but C>20 ORDERING-WALLED for the
-directed resolver (soppiline A C21 verified: no recovery within budget; phaeospelide C34, T-toxin C41);
-and the 1 ring-clean C<=20 core, Fugralin A (C12), is resolver-tested -> SOUND-STRUCTURAL-GAP (its methyl
-ester + gem-dimethyl are out-of-grammar; 4029 orderings exhausted, no render). So every member is hard one
-way or another -- exotic chemistry, ordering-walled, or out-of-grammar tailoring -- there is no cheap
-render-given-policy demonstrator. That CONFIRMS the pocket (a conformational observable) is the sole lever
-for HR routing: no enumerator reaches the clean cores, and the rest need new cyclization chemistry on top.
+ONE CHEAP clean HR core to render given its policy; the wall refused a cheap one). PRECISE claims only:
+  * 25/29 carry EXOTIC cyclization (decalin/cyclopentane/epoxide/THF) NOT in the release grammar -> the
+    pocket is NECESSARY but NOT SUFFICIENT for the full HR molecule: cracking the reduction policy yields the
+    program, but RENDERING still needs cyclization/tailoring coverage for most. [load-bearing, confirmed]
+  * Fugralin A (C12, ring-clean): EXHAUSTED at 4029 orderings -> confirmed SOUND coverage gap (methyl-ester
+    + gem-dimethyl out-of-grammar). [definitive]
+  * soppiline A (C21, ring-clean): the directed resolver SEARCHES for the program by enumerating orderings
+    (this is NOT render-given-policy); it was capped/killed with no early recovery -> INCONCLUSIVE, ordering-
+    wall vs coverage-gap UNDISTINGUISHED (the C>20 ambiguity). phaeospelide C34 / T-toxin C41: untried.
+  * The resolver tests SEARCHABILITY, not render-given-policy. Executing a SUPPLIED policy on the clean cores
+    is UNTESTED -> the dynamics claim ('given the policy, the executor renders it') is untested there, NOT
+    refuted. The deferred render-given-policy flagship (hand-supply one clean core's policy + execute) is the
+    DEMO + the DISAMBIGUATOR: a render confirms ordering-wall AND render-given-policy at once; a no-render
+    exposes a coverage gap even given the policy.
+CONFIRMED: no cheap SEARCHABLE HR flagship; and the pocket is the sole lever for the reduction POLICY
+(no enumerator finds the clean cores' programs cheaply) -- necessary, not the whole molecule.
 """
 from __future__ import annotations
 
@@ -79,11 +86,13 @@ def main() -> None:
         print(f"  {b}  C{nC:<3} {name:26s} {fl}   [{tractable}]")
     n_clean_walled = sum(1 for _, _, nC, _ in clean if nC > 20)
     n_clean_small = len(clean) - n_clean_walled
-    print(f"\nFINDING: no HR core is render-given-policy-able by the current engine.")
-    print(f"  {len(exotic)} exotic cyclization (policy + coverage); {n_clean_walled} ring-clean but C>20 ordering-walled;")
-    print(f"  {n_clean_small} ring-clean C<=20 (Fugralin A) -> resolver-tested SOUND-STRUCTURAL-GAP "
-          f"(out-of-grammar methyl-ester + gem-dimethyl).")
-    print(f"  => no cheap flagship; the pocket (a conformational observable) is the sole lever for HR routing.")
+    print(f"\nFINDING: no cheap SEARCHABLE HR flagship (render-given-policy itself is UNTESTED on the clean cores).")
+    print(f"  {len(exotic)} exotic cyclization -> pocket NECESSARY but NOT SUFFICIENT (need cyclization/tailoring coverage too);")
+    print(f"  {n_clean_walled} ring-clean C>20 -> resolver SEARCH inconclusive (soppiline capped, NOT exhausted; "
+          f"ordering-wall vs coverage-gap undistinguished);")
+    print(f"  {n_clean_small} ring-clean C<=20 (Fugralin A) -> EXHAUSTED 4029 -> confirmed sound coverage-gap (out-of-grammar).")
+    print(f"  => clean cores' render-given-policy is the deferred flagship's job (demo + disambiguator); "
+          f"pocket = sole lever for the reduction policy.")
 
 
 if __name__ == "__main__":
